@@ -261,4 +261,12 @@ Four things this shook out, all of which produced *confidently wrong* numbers be
 
 Performance: the function stops early once a whole batch of weeks comes back empty, so the in-season case doesn't fetch all 16. Runs 3–5s, inside Vercel's 10s limit, cached 15 minutes.
 
+### 2026-09-09 — hardening for a live Saturday
+
+Not features. Three things that would have misbehaved during an actual game:
+
+1. **A failed poll used to wipe the board.** The `catch` in `load()` replaced `#board` with an error message, so one dropped request on stadium wifi erased every score on screen. Now the error only shows when there is nothing to preserve (`!games.length`); otherwise the existing scores stay and the page keeps retrying. Verified by stubbing `window.fetch` to reject: 8 cards before, 8 cards after.
+2. **Mobile browsers suspend timers when the phone locks**, so returning to the page showed stale scores with no sign of it. A `visibilitychange` handler now reloads on return, but only if the data is more than 45s old.
+3. **The footer used to claim freshness it didn't have.** It now reads "Updated 12:33 PM" normally, and flips to "Not updating — last reached the scores 4 minutes ago" once the data goes stale, ticking every 15s so it becomes true without needing a successful load.
+
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.

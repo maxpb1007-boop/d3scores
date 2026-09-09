@@ -1344,12 +1344,33 @@ async function load() {
       pendingGame = null;
       if (g) openGame(g, { fromHistory: true });
     }
-    document.getElementById("foot").textContent =
-      "Scores refresh every minute. Last checked " +
-      new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) + ".";
+    lastGoodLoad = Date.now();
+    showFreshness();
   } catch (err) {
-    document.getElementById("board").innerHTML =
-      `<p class="msg">Scores aren't loading.<span class="hint">Check your connection, then reload. (${esc(err.message)})</span></p>`;
+    // Never wipe scores that are already on screen. A dropped poll on stadium
+    // wifi should cost you freshness, not the whole board — one blip used to
+    // replace every score with an error message.
+    if (!games.length) {
+      document.getElementById("board").innerHTML =
+        `<p class="msg">Scores aren't loading.<span class="hint">Check your connection — this will keep retrying. (${esc(err.message)})</span></p>`;
+    }
+    showFreshness();
+  }
+}
+
+// How old the scores on screen actually are. A frozen page should say so
+// rather than quietly show minute-old numbers as though they were current.
+let lastGoodLoad = 0;
+
+function showFreshness() {
+  const foot = document.getElementById("foot");
+  if (!lastGoodLoad) { foot.textContent = "Loading scores…"; return; }
+  const secs = Math.round((Date.now() - lastGoodLoad) / 1000);
+  const when = new Date(lastGoodLoad).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  if (secs < 90) foot.textContent = `Scores refresh every minute. Updated ${when}.`;
+  else {
+    const mins = Math.round(secs / 60);
+    foot.textContent = `Not updating — last reached the scores ${mins} minute${mins === 1 ? "" : "s"} ago (${when}).`;
   }
 }
 
@@ -1430,6 +1451,19 @@ buildWeeks();
 markWeek({ scroll: true });
 load();
 setInterval(load, 60000);   // upstream caches for 60s, so refreshing faster is pointless
+
+// Mobile browsers suspend timers when the phone locks or the tab is hidden, so
+// coming back to the page would show stale scores with no sign of it. Refresh
+// on return, but only if what's on screen has actually gone stale.
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState !== "visible") return;
+  showFreshness();
+  if (Date.now() - lastGoodLoad > 45000) load();
+});
+
+// Keep the freshness line truthful between polls: if the network is down, the
+// footer needs to start saying so without waiting for a successful load.
+setInterval(showFreshness, 15000);
 </script>
 </body>
 </html>
