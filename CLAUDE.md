@@ -269,4 +269,34 @@ Not features. Three things that would have misbehaved during an actual game:
 2. **Mobile browsers suspend timers when the phone locks**, so returning to the page showed stale scores with no sign of it. A `visibilitychange` handler now reloads on return, but only if the data is more than 45s old.
 3. **The footer used to claim freshness it didn't have.** It now reads "Updated 12:33 PM" normally, and flips to "Not updating — last reached the scores 4 minutes ago" once the data goes stale, ticking every 15s so it becomes true without needing a successful load.
 
+### 2026-09-09 (last) — everything pushed and verified against the deployed site
+
+All commits are on `main` and live. The whole thing was checked end-to-end on **https://d3scores.vercel.app**, not on localhost, because the deployed artifact is the only one that matters.
+
+What passed, with the numbers, so a future session can diff against them:
+
+| Check | Result |
+|---|---|
+| `index.html` | 200, 65.8 KB, 0.32 s |
+| `/api/scoreboard` | 200, 117 games, 115 with scores, 114 final, 30 conferences, 8 Landmark |
+| `/api/scoreboard?week=02` | 200 |
+| `/api/game?id=…&resource=boxscore` | 200 |
+| `/api/season?year=2026` | 200 in 4.4 s, 114 games, `weeksFailed: 0` |
+| `/api/season?year=2025` | 1255 games / 16 weeks, **mean SoS .4964**, WIAC holds the top 4 |
+| Bad input (5 variants incl. `resource=../../etc`) | all **400** |
+| CORS + cache headers | `access-control-allow-origin: *`, `x-vercel-cache` present |
+
+The 2025 validation is the one worth rerunning after any change to `api/season.js` — mean SoS must sit near .500 and the WIAC must surface on its own. Arithmetic that agrees with reality is the test; arithmetic that merely runs is not.
+
+Rendering was checked at 375×812 with `localStorage` cleared. **The empty-week fallback fired unprompted** — on a Wednesday it landed on `?week=1&conf=landmark` with 8 games rather than an empty week 2, which is the fix from earlier today working without being asked to. SoS on 2026 correctly refuses to print 220 rows of `.000` and explains why instead; switching to 2025 renders 230 rows matching the API exactly; RedZone shows 1 live game with the conference filter hidden and labelled "all of D3". No console warnings anywhere.
+
+Two cosmetic things seen and deliberately not fixed, since neither is worth touching before a real Saturday:
+
+- **The SoS table has no sticky header.** Scrolled to rank 195 on a phone, the `.444` and `.438` columns are unlabelled and you cannot tell SoS from opponents' win percentage.
+- **Juniata vs Keystone is two identical navy swatches.** Exactly the "two navy teams in one game" hazard already noted in the colours section, now observed in the wild.
+
+One non-reproducible oddity: the conference filter appeared to reset from `landmark` to `all` during the first SoS season switch, but a clean retest preserved it correctly across two switches. Not chased. Worth a second look if it recurs.
+
+**Preview-tool limitation, new and worth knowing:** the preview browser is pinned to the dev-server origin and **silently refuses to navigate off-site** — `location.href = "https://…"` and `location.assign()` both leave `location.href` unchanged, with no error. So the deployed site cannot be screenshotted through these tools. Verify deployment with `curl` (status, size, `grep` for newly shipped code) and use the local server, which runs the identical `index.html` and the identical `api/*.js`, for anything visual.
+
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.
