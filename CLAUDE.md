@@ -124,4 +124,18 @@ Machine setup, so a future session doesn't rediscover it:
 
 Process note: several steps failed on the first attempt (Homebrew command with no Homebrew, Gatekeeper block, sandbox refusing writes outside the project folder). None were data problems — all environment setup. The API work from earlier sessions still stands untouched.
 
-**Next session starts with:** Phase 1, step 2 — the serverless proxy function at `/api/scoreboard`, which fetches `https://ncaa-api.henrygd.me/scoreboard/football/d3/2026/01/all` server-side and re-serves it with CORS headers. This is the fix for the no-CORS constraint. Only after that works does `index.html` get any JavaScript.
+### 2026-09-08 (later still) — Phase 1 step 2 SHIPPED
+
+**The proxy is live: https://d3scores.vercel.app/api/scoreboard** — see `api/scoreboard.js`.
+
+Verified live: 117 games with no params, 106 with `?week=02`, `400` on malformed year/week, `access-control-allow-origin: *` present, and `x-vercel-cache: HIT` on repeat requests. The CORS wall is gone; the browser can now read scores.
+
+Notes for future work on this file:
+
+- **Use `module.exports`, not `export default`.** There is no `package.json`, so Vercel treats `.js` as CommonJS. `export default` will crash the function. If a `package.json` with `"type": "module"` is ever added, this flips.
+- Year and week are regex-validated as digits *before* being interpolated into the upstream URL. Keep that. Without it the endpoint is an open proxy.
+- `s-maxage=60` matches upstream's own 60s cache. Vercel strips `s-maxage` from the response header (it shows as bare `public`) and applies it internally — confirmed working via `x-vercel-cache: HIT`, so don't "fix" the missing header.
+- Upstream week 01 = 117 games, week 02 = 106 games, as of 2026-09-08. Useful sanity numbers.
+- The handler can be tested locally with plain `node` by passing a fake `{ query }` and a stub `res` with `setHeader`/`status`/`json`. No `vercel dev` and no npm install required. Do this before deploying.
+
+**Next session starts with:** Phase 1, step 3 — `index.html` fetches `/api/scoreboard` and renders games grouped by conference (teams, scores, status, clock). Then step 4, the conference filter defaulting to Landmark. Then step 5, 60s auto-refresh.
