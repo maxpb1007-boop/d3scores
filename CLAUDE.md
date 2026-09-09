@@ -299,4 +299,30 @@ One non-reproducible oddity: the conference filter appeared to reset from `landm
 
 **Preview-tool limitation, new and worth knowing:** the preview browser is pinned to the dev-server origin and **silently refuses to navigate off-site** — `location.href = "https://…"` and `location.assign()` both leave `location.href` unchanged, with no error. So the deployed site cannot be screenshotted through these tools. Verify deployment with `curl` (status, size, `grep` for newly shipped code) and use the local server, which runs the identical `index.html` and the identical `api/*.js`, for anything visual.
 
+### 2026-09-09 (really last) — the feed gets stuck, and it lies in both directions
+
+Max spotted a game marked live that had kicked off **140 hours earlier**: `Wilkes 7 @ King's (PA) 0`, game `6606174`, still reporting `currentPeriod: "1ST"`, `contestClock: "00:00"`, `gameState: "pre"` six days after the fact. Not a rendering bug — the upstream record simply never got finalised, and it never will.
+
+**There is no field on the scoreboard that catches this.** `gameState` says `pre`, `finalMessage` says `1ST`, the score is populated. Every existing rule was satisfied.
+
+The box score *does* carry a trustworthy flag — `status` is `"F"` on a finished game and `"O"` on this one, confirmed by comparing `6606156` against `6606174`. **But it costs a request per game**, so it is no use to a 117-game scoreboard. Noted here in case a future feature already has the box score in hand.
+
+So the check is time-based instead: `STALE_AFTER = 8 hours` past `startTimeEpoch`. A game runs about three and a half hours; six is generous even with a lightning delay. Verified against synthetic cases — still live at 1h, 3h and 7h after kickoff, flips at 9h.
+
+**Week 1 had three stuck records, and they failed in two different ways:**
+
+| Game | Symptom before | Now reads |
+|---|---|---|
+| Wilkes @ King's (PA) | claimed **live**, 140h after kickoff | `No final score` |
+| Juniata @ Keystone | offered a **kickoff time**, 267h after kickoff | `No result` |
+| Simpson (CA) @ Whittier | offered a **kickoff time**, 91h after kickoff | `No result` |
+
+Neither "Final" nor "live" is honest for these — `7-0` is a real first-quarter score whose ending nobody reported. The wording says exactly that much and no more.
+
+**One bug hid behind another.** With the live game gone, RedZone's empty state surfaced its own version of the same mistake: "Next kickoff is Juniata at Keystone, **Sat Aug 29**" — it picked the earliest game without a score, and a game that never got a result looks identical to one that hasn't started. Fixed by requiring the kickoff to be in the future. Week 1 now says "No games left to play in week 1"; week 2 correctly names Oberlin at Denison tomorrow.
+
+**The generalisable lesson: absence of a result is not evidence of the future.** `!hasScore(g)` was read as "upcoming" in two separate places. Anywhere this code infers a game's state from a missing value, check the clock as well.
+
+Because `isLive()` derives from `statusOf()`, the LIVE badge and RedZone both corrected themselves — the badge went from `Live 1` to `Live`, and 0 cards now carry the red treatment. Which also means **RedZone has still never been seen with a genuinely live game.** The one game that made it look populated was this broken record.
+
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.

@@ -508,13 +508,36 @@ function shortDayOf(g) {
 
 function hasScore(g) { return g.home.score !== "" || g.away.score !== ""; }
 
+// A football game lasts about three and a half hours. Six is generous even
+// with a long weather delay, so anything still unresolved eight hours after
+// kickoff is a stuck record, not a game in progress.
+const STALE_AFTER = 8 * 60 * 60 * 1000;
+
+// The feed does get stuck, and stays stuck: as of 09/09, Wilkes at King's (PA)
+// had been reporting "1ST" with a 7-0 score for 140 hours. Without this check
+// that game claims to be live forever, inflates the LIVE badge, and sits at the
+// top of RedZone on a Saturday ahead of games that are genuinely being played.
+function isStale(g) {
+  const kickoff = Number(g.startTimeEpoch) * 1000;
+  return Number.isFinite(kickoff) && kickoff > 0 && Date.now() - kickoff > STALE_AFTER;
+}
+
 // Working out whether a game is done, live, or upcoming is fiddly, because
-// gameState lies: some played games still say "pre". Two rules keep it honest:
+// gameState lies: some played games still say "pre". Three rules keep it honest:
 //   - only treat a game as FINAL when it actually says FINAL
+//   - a game long past its kickoff and still not final is stuck, not live
 //   - otherwise, if there are scores on the board, it is live
 function statusOf(g) {
   const isFinal = g.gameState === "final" || g.finalMessage === "FINAL" || g.currentPeriod === "FINAL";
   if (isFinal) return { text: "Final", live: false };
+
+  // Say plainly that the number on screen isn't the end of the story, rather
+  // than dressing a week-old first quarter up as either live or final. We know
+  // the score is partial; we don't know what it finished.
+  if (isStale(g)) {
+    return { text: hasScore(g) ? "No final score" : "No result", live: false, stale: true };
+  }
+
   if (g.gameState === "live" || hasScore(g)) {
     // contestClock is often "0:00" or "00:00" between plays — noise, not time.
     const clock = /^0?0:00$/.test(g.contestClock) ? "" : g.contestClock;
@@ -685,7 +708,12 @@ function renderRedzone() {
   const live = games.filter(isLive);
 
   if (!live.length) {
-    const next = games.filter(g => !hasScore(g)).sort((x, y) => num(x.startTimeEpoch) - num(y.startTimeEpoch))[0];
+    // "Not started" is not the same as "in the future". Two week-1 games never
+    // got a result reported and would otherwise be offered as the next kickoff,
+    // dated last month — so require the kickoff to actually be ahead of us.
+    const next = games
+      .filter(g => !hasScore(g) && num(g.startTimeEpoch) * 1000 > Date.now())
+      .sort((x, y) => num(x.startTimeEpoch) - num(y.startTimeEpoch))[0];
     board.innerHTML = `<p class="msg">Nothing is in progress right now.
       <span class="hint">${next
         ? `Next kickoff is ${esc(next.away.names.short)} at ${esc(next.home.names.short)}, ${esc(shortDayOf(next))} ${esc(next.startTime || "")}.`
