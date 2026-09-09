@@ -105,7 +105,26 @@ Only after Phase 3 gives you clean, validated states. Logistic regression on dow
 
 ### Phase 5 — "Fun things"
 
-Deliberately undefined. Define it after Phase 2, from things you actually wished the site did while watching a game. Ideas invented now are ideas invented without evidence.
+Originally left undefined on purpose. The ideas below were raised 2026-09-08, before a real game weekend had been watched, so treat them as candidates rather than commitments — but they're recorded so they aren't lost.
+
+Ordered by cost, cheapest first. **The order is the recommendation.**
+
+**1. Favourite teams — cheap, do this first.**
+Let someone pick teams and pin them to the top, or filter to just them. Pure front-end: store the list in `localStorage`, no backend, no new API calls, no database. A couple of hours. Highest value per hour of anything on this list, because it converts a browsing site into one people reopen.
+
+**2. A real name — cheap, but blocking.**
+"d3scores" is a working title and the URL is `d3scores.vercel.app`. Worth settling before the link gets shared widely, because changing it after people bookmark it is worse than changing it now. Renaming the Vercel project changes the subdomain; a custom domain (~$12/yr) is the durable version.
+
+**3. Standings, division-wide and per conference — medium, and the API won't help.**
+**`/standings/football/d3/2026` returns 500, and `/rankings/football/d3` is stale** (served data "through Nov 15, 2025"). Both are dead ends — see CLAUDE.md. So standings must be *computed from game results*: walk every week's scoreboard, tally win/loss per team, group by `conferenceSeo`. That's ~16 proxy calls, doable without a database but too slow to do in the browser on every page load, so it needs either a cached serverless function or a nightly job. Conference records need care: only count games where both teams share a conference.
+
+**4. Stat leaders, per conference — expensive, but the data exists.**
+Validated 2026-09-08: `/game/{id}/boxscore` does contain per-player lines (`teamBoxscore[].playerStats[]`, categories `rushing` / `passing` / `receiving` / `kicking` / `punting` / `puntReturn` / `kickReturn` / `defense`). So this is not blocked on data availability — it's blocked on request volume. Division-wide leaders mean one box score **per game**, 117+ per week, aggregated. That is precisely the accumulation problem Phase 3's database exists to solve. **Do not attempt before Phase 3.**
+
+**0. Real team colours — cheapest of the lot, and it was missed.**
+Also found 2026-09-08: box scores carry `teams[].color`, a real hex school colour, on every team sampled. Harvest them once (walk one week of box scores, build a `seoname → colour` map, commit it as a static JSON file) and the scoreboard gets genuine team identity with no ongoing request cost. Watch out for near-black colours needing a lightness floor. This is numbered 0 because it's smaller than everything above it and was only missed because nobody opened the box score endpoint.
+
+Note the pattern: 0, 1 and 2 need no new data at runtime. 3 needs derived data. 4 needs stored data. That's also the order they should ship in.
 
 ---
 
