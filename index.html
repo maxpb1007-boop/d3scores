@@ -207,6 +207,30 @@
   .game { cursor: pointer; }
   @media (hover: hover) { .game:hover { border-color: #b9c1cc; } }
 
+  /* ---------------- followed players ---------------- */
+  .pcard { background: var(--card); border: 1px solid var(--line); border-radius: 7px; padding: 9px 12px 10px; }
+  .pcard .ph { display: grid; grid-template-columns: 14px 1fr auto; gap: 9px; align-items: center; }
+  .pcard .pn { font-weight: 600; font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pcard .pn .no { color: var(--mute); font-weight: 500; }
+  .pcard .drop {
+    width: 26px; height: 26px; padding: 0; border: 0; background: none; cursor: pointer;
+    color: var(--gold); display: grid; place-items: center;
+  }
+  .pcard .ctx { font-size: 11px; color: var(--mute); margin: 6px 0 0; letter-spacing: 0.2px; }
+  .pcard .stat { display: grid; grid-template-columns: 46px 1fr; gap: 8px; font-size: 13px; padding: 5px 0 0; }
+  .pcard .stat .cat { color: var(--mute); font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; padding-top: 3px; }
+  .pcard .stat .val { color: var(--mid); }
+  .pcard .stat .val b { color: var(--ink); font-weight: 600; }
+  .pcard.quiet .ctx { color: var(--mute); }
+
+  .ldr .row { position: relative; }
+  .ldr .follow {
+    width: 24px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer;
+    color: #ccd2da; display: grid; place-items: center;
+  }
+  .ldr .follow[aria-pressed="true"] { color: var(--gold); }
+  .ldr .row { grid-template-columns: 54px 1fr 24px; }
+
   .msg { background: var(--card); border: 1px solid var(--line); border-radius: 7px; padding: 32px 18px; text-align: center; color: var(--mid); margin-top: 20px; }
   .msg b { color: var(--ink); font-weight: 600; }
   .msg .hint { display: block; margin-top: 6px; font-size: 13px; color: var(--mute); }
@@ -223,7 +247,10 @@
   <nav class="weeks" id="weeks" aria-label="Week"></nav>
 </div>
 
-<main id="board"><p class="msg">Loading scores…</p></main>
+<main>
+  <div id="players"></div>
+  <div id="board"><p class="msg">Loading scores…</p></div>
+</main>
 <footer id="foot"></footer>
 
 <dialog id="detail" aria-label="Game detail"></dialog>
@@ -332,6 +359,26 @@ let favs = loadFavs();
 
 const isFavTeam = (seo) => favs.has(seo);
 const isFavGame = (g) => isFavTeam(g.home.names.seo) || isFavTeam(g.away.names.seo);
+
+// --- followed players ------------------------------------------------------
+// The API gives players no stable id — just a name and (sometimes) a jersey
+// number, repeated per game. So the key is team + surname + forename. Jersey
+// numbers are deliberately not part of the key: they are null on some players
+// and can change between seasons.
+const PLAYER_KEY = "d3scores.players";
+
+function playerKey(teamSeo, p) {
+  return [teamSeo, String(p.lastName || "").toUpperCase(), String(p.firstName || "").toUpperCase()].join("|");
+}
+function loadPlayers() {
+  try { return new Map(JSON.parse(localStorage.getItem(PLAYER_KEY)) || []); }
+  catch { return new Map(); }
+}
+function savePlayers() {
+  try { localStorage.setItem(PLAYER_KEY, JSON.stringify([...players])); }
+  catch { /* storage unavailable; follows just won't survive a reload */ }
+}
+let players = loadPlayers();
 
 // Turn text from the API into text that is safe to put in the page.
 // Without this, a team name containing < or & could break the markup.
@@ -588,6 +635,41 @@ function statsHTML(box) {
     </tbody></table>`;
 }
 
+// One readable line per stat category, e.g. "18/27, 245 yds, 2 TD".
+// passingAttempts is sometimes "0" while completions are not, so the split is
+// only shown when attempts are actually present.
+function statLine(category, p) {
+  const td = (n, label) => (num(n) ? `, ${num(n)} ${label}` : "");
+  switch (category) {
+    case "passing": {
+      const att = num(p.passingAttempts), cmp = num(p.passingCompletions);
+      const split = att ? `${cmp}/${att}` : `${cmp} comp`;
+      return `${split}, <b>${num(p.passingYards)} yds</b>${td(p.passingTDs, "TD")}${td(p.passingInterceptions, "INT")}`;
+    }
+    case "rushing":
+      return `${num(p.rushingAttempts)} car, <b>${num(p.rushingYards)} yds</b>${td(p.rushingTDs, "TD")}`;
+    case "receiving":
+      return `${num(p.receivingReceptions)} rec, <b>${num(p.receivingYards)} yds</b>${td(p.receivingTDs, "TD")}`;
+    case "defense": {
+      const bits = [`<b>${num(p.totalTackles)} tkl</b>`];
+      if (num(p.sacks)) bits.push(`${num(p.sacks)} sack`);
+      if (num(p.defenseInterceptions)) bits.push(`${num(p.defenseInterceptions)} INT`);
+      if (num(p.fumblesRecovered)) bits.push(`${num(p.fumblesRecovered)} FR`);
+      return bits.join(", ");
+    }
+    case "kicking": {
+      const bits = [];
+      if (num(p.fieldGoalsAttempted)) bits.push(`${num(p.fieldGoalsMade)}/${num(p.fieldGoalsAttempted)} FG`);
+      if (num(p.patAttempted)) bits.push(`${num(p.patMade)}/${num(p.patAttempted)} XP`);
+      return bits.length ? bits.join(", ") : `${num(p.kickingPts)} pts`;
+    }
+    case "punting":
+      return `${num(p.puntingPunts)} punts, ${num(p.puntingAverage)} avg`;
+    default:
+      return "";
+  }
+}
+
 // Best passer / rusher / receiver per team, by yards.
 function leadersHTML(box) {
   const teams = box.teams || [];
@@ -609,22 +691,24 @@ function leadersHTML(box) {
     const rush = best(ps, "rushing", "rushingYards");
     const rec = best(ps, "receiving", "receivingYards");
     const lines = [];
-    if (pass && num(pass.passingYards)) {
-      const att = num(pass.passingAttempts);
-      const cmp = num(pass.passingCompletions);
-      const split = att ? `${cmp}/${att}, ` : `${cmp} comp, `;
-      lines.push(["Pass", `${who(pass)} — ${split}<b>${num(pass.passingYards)} yds</b>${num(pass.passingTDs) ? `, ${num(pass.passingTDs)} TD` : ""}`]);
-    }
-    if (rush && num(rush.rushingYards)) {
-      lines.push(["Rush", `${who(rush)} — ${num(rush.rushingAttempts)} car, <b>${num(rush.rushingYards)} yds</b>${num(rush.rushingTDs) ? `, ${num(rush.rushingTDs)} TD` : ""}`]);
-    }
-    if (rec && num(rec.receivingYards)) {
-      lines.push(["Rec", `${who(rec)} — ${num(rec.receivingReceptions)} rec, <b>${num(rec.receivingYards)} yds</b>${num(rec.receivingTDs) ? `, ${num(rec.receivingTDs)} TD` : ""}`]);
-    }
+    if (pass && num(pass.passingYards)) lines.push(["Pass", `${who(pass)} — ${statLine("passing", pass)}`, pass]);
+    if (rush && num(rush.rushingYards)) lines.push(["Rush", `${who(rush)} — ${statLine("rushing", rush)}`, rush]);
+    if (rec && num(rec.receivingYards)) lines.push(["Rec", `${who(rec)} — ${statLine("receiving", rec)}`, rec]);
     if (!lines.length) return "";
     return `<div class="ldr">
       <div class="who"><span class="sw" style="background:${esc(teamColor(t.seoname))};width:12px;height:12px;border-radius:2px;display:inline-block"></span>${esc(t.nameShort)}</div>
-      ${lines.map(([c, v]) => `<div class="row"><span class="cat">${c}</span><span class="val">${v}</span></div>`).join("")}
+      ${lines.map(([c, v, p]) => {
+        const key = playerKey(t.seoname, p);
+        const on = players.has(key);
+        return `<div class="row"><span class="cat">${c}</span><span class="val">${v}</span>
+          <button class="follow" aria-pressed="${on}"
+            data-follow="${esc(key)}" data-team="${esc(t.seoname)}"
+            data-first="${esc(p.firstName || "")}" data-last="${esc(p.lastName || "")}"
+            data-number="${esc(p.number ?? "")}" data-teamname="${esc(t.nameShort)}"
+            aria-label="${on ? "Unfollow" : "Follow"} ${esc(titleCase(p.lastName || ""))}"
+            title="${on ? "Unfollow" : "Follow this player"}">${on ? STAR : STAR_OFF}</button>
+        </div>`;
+      }).join("")}
     </div>`;
   };
 
@@ -635,8 +719,19 @@ function leadersHTML(box) {
 
 // Player names arrive shouted ("DELANEY"). Title-case them, keeping the
 // hyphen and apostrophe pieces capitalised (O'Brien, Parks-Gill).
+//
+// Short vowel-less words are left fully capitalised, because they're initials
+// rather than names: RJ, TJ, CJ, JT. Testing for vowels keeps real two-letter
+// names like Bo, Ty and Al out of it.
 function titleCase(s) {
-  return String(s).toLowerCase().replace(/(^|[\s'’-])([a-z])/g, (_, sep, ch) => sep + ch.toUpperCase());
+  return String(s)
+    .toLowerCase()
+    .replace(/[^\s]+/g, (word) =>
+      word.length <= 3 && !/[aeiouy]/.test(word)
+        ? word.toUpperCase()
+        : word
+            .replace(/(^|['’-])([a-z])/g, (_, sep, ch) => sep + ch.toUpperCase())
+            .replace(/^Mc([a-z])/, (_, ch) => "Mc" + ch.toUpperCase()));
 }
 
 function sheetHeader(g, statusText, live) {
@@ -758,6 +853,27 @@ function toast(message) {
 }
 
 dlg.addEventListener("click", (e) => {
+  const follow = e.target.closest("button[data-follow]");
+  if (follow) {
+    const key = follow.dataset.follow;
+    if (players.has(key)) players.delete(key);
+    // Store the raw name as the API gave it. Formatting is applied at render
+    // time, so improving the name rules fixes already-followed players too.
+    else players.set(key, {
+      team: follow.dataset.team,
+      teamName: follow.dataset.teamname,
+      number: follow.dataset.number,
+      first: follow.dataset.first,
+      last: follow.dataset.last,
+    });
+    savePlayers();
+    const on = players.has(key);
+    follow.setAttribute("aria-pressed", String(on));
+    follow.innerHTML = on ? STAR : STAR_OFF;
+    follow.title = on ? "Unfollow" : "Follow this player";
+    renderPlayers();
+    return;
+  }
   if (e.target.closest("#shareDetail")) { shareCurrentGame(); return; }
   if (e.target.closest("#closeDetail")) { dlg.close(); return; }
   // Clicking the backdrop closes: the dialog element itself is the backdrop area.
@@ -789,6 +905,98 @@ window.addEventListener("popstate", () => {
   const g = games.find(x => String(x.gameID) === id);
   if (g) openGame(g, { fromHistory: true });
 });
+
+// ---------------------------------------------------------------------------
+// "Your players": for each followed player, find their team's game this week,
+// pull that game's box score, and show their line. Box scores are fetched once
+// per game and reused, so following four players on two teams costs two
+// requests, not four.
+// ---------------------------------------------------------------------------
+const boxCache = new Map();
+
+function getBox(gameID) {
+  if (!boxCache.has(gameID)) {
+    boxCache.set(gameID, fetch(`${GAME_API}?id=${encodeURIComponent(gameID)}&resource=boxscore`)
+      .then(r => (r.ok ? r.json() : null))
+      .catch(() => null));
+  }
+  return boxCache.get(gameID);
+}
+
+// Every stat line this player recorded in the game, across categories.
+function playerLines(box, teamSeo, key) {
+  const team = (box.teams || []).find(t => t.seoname === teamSeo);
+  if (!team) return [];
+  const tb = (box.teamBoxscore || []).find(b => String(b.teamId) === String(team.teamId));
+  if (!tb) return [];
+  const ORDER = ["passing", "rushing", "receiving", "defense", "kicking", "punting"];
+  const LABEL = { passing: "Pass", rushing: "Rush", receiving: "Rec", defense: "Def", kicking: "Kick", punting: "Punt" };
+  return (tb.playerStats || [])
+    .filter(p => playerKey(teamSeo, p) === key)
+    .sort((a, b) => ORDER.indexOf(a.category) - ORDER.indexOf(b.category))
+    .map(p => [LABEL[p.category] || p.category, statLine(p.category, p)])
+    .filter(([, v]) => v);
+}
+
+// `name` is the older stored shape; `first`/`last` is current.
+function playerName(meta) {
+  return meta.first || meta.last
+    ? titleCase(`${meta.first || ""} ${meta.last || ""}`.trim())
+    : String(meta.name || "Unknown");
+}
+
+function playerCard(meta, key, inner, quiet) {
+  const name = playerName(meta);
+  const no = meta.number ? `<span class="no">#${esc(meta.number)}</span> ` : "";
+  return `<div class="pcard ${quiet ? "quiet" : ""}">
+    <div class="ph">
+      <span class="swatch" style="background:${esc(teamColor(meta.team))}"></span>
+      <span class="pn">${no}${esc(name)}</span>
+      <button class="drop" data-unfollow="${esc(key)}" aria-label="Unfollow ${esc(name)}" title="Unfollow">${STAR}</button>
+    </div>
+    ${inner}
+  </div>`;
+}
+
+async function renderPlayers() {
+  const host = document.getElementById("players");
+  if (!players.size) { host.innerHTML = ""; return; }
+
+  // Which game is each followed player's team in this week?
+  const entries = [...players].map(([key, meta]) => {
+    const g = games.find(x => x.home.names.seo === meta.team || x.away.names.seo === meta.team);
+    return { key, meta, game: g };
+  });
+
+  const shell = (body) => `<section class="group pinned">
+      <header><h2>Your players</h2><span class="n">${entries.length}</span><span class="rule"></span></header>
+      <div class="grid">${body}</div>
+    </section>`;
+
+  // Draw immediately with what needs no request, then fill in the stat lines.
+  host.innerHTML = shell(entries.map(({ key, meta, game }) => {
+    if (!game) return playerCard(meta, key, `<p class="ctx">No game in week ${week}</p>`, true);
+    const opp = game.home.names.seo === meta.team ? game.away : game.home;
+    const at = game.home.names.seo === meta.team ? "vs" : "at";
+    if (!hasScore(game)) {
+      return playerCard(meta, key, `<p class="ctx">${at} ${esc(opp.names.short)} · ${esc(game.startTime || "TBA")}</p>`, true);
+    }
+    return playerCard(meta, key,
+      `<p class="ctx">${at} ${esc(opp.names.short)} · ${esc(statusOf(game).text)}</p>
+       <div data-slot="${esc(key)}"><p class="ctx">Loading…</p></div>`, false);
+  }).join(""));
+
+  // Now fetch the box scores, one per distinct game.
+  await Promise.all(entries.filter(e => e.game && hasScore(e.game)).map(async ({ key, meta, game }) => {
+    const box = await getBox(game.gameID);
+    const slot = host.querySelector(`[data-slot="${CSS.escape(key)}"]`);
+    if (!slot) return;
+    const lines = box ? playerLines(box, meta.team, key) : [];
+    slot.innerHTML = lines.length
+      ? lines.map(([c, v]) => `<div class="stat"><span class="cat">${esc(c)}</span><span class="val">${v}</span></div>`).join("")
+      : `<p class="ctx">No stats recorded</p>`;
+  }));
+}
 
 // The week tabs are built once and then only re-flagged. Rebuilding them on
 // every refresh would also re-run scrollIntoView, sliding the strip sideways
@@ -829,6 +1037,7 @@ async function load() {
     games.sort((a, b) => Number(a.startTimeEpoch) - Number(b.startTimeEpoch));
     buildConfMenu();
     render();
+    renderPlayers();
     // A shared ?game= link can only be opened once the week's games are in.
     if (pendingGame) {
       const g = games.find(x => String(x.gameID) === pendingGame);
@@ -857,6 +1066,14 @@ document.getElementById("weeks").addEventListener("click", e => {
   markWeek();
   syncUrl();
   load();
+});
+
+document.getElementById("players").addEventListener("click", e => {
+  const drop = e.target.closest("button[data-unfollow]");
+  if (!drop) return;
+  players.delete(drop.dataset.unfollow);
+  savePlayers();
+  renderPlayers();
 });
 
 document.getElementById("board").addEventListener("click", e => {

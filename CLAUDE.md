@@ -191,4 +191,16 @@ Things learned building it:
 
 **Local dev now runs the real functions.** The scratch dev server routes `/api/*` through the actual `api/*.js` files, so the page under test uses the same code Vercel runs. `index.html` points at `http://localhost:8000/api/...` when on localhost. That means opening `index.html` without the dev server running will fail to load scores — start the server first.
 
+### 2026-09-08 (last) — following players
+
+**The differentiating feature, and it needs no database.** Star a player in any box score and their line appears in a "Your players" group at the top of the board, every week. A D1 parent has fifteen places to see their kid's stat line; a D3 parent has none.
+
+How it works, and the traps:
+
+- **Players have no id in this API.** Only `firstName`, `lastName`, and a `number` that is sometimes `null`. The key is therefore `teamSeo|LASTNAME|FIRSTNAME`. **Jersey number is deliberately not part of the key** — it's null on some players and changes between seasons.
+- **Cost is one box score per game, not per player.** `boxCache` dedupes, so following four players on two teams costs two requests. Following players across many teams gets expensive; if that becomes common, this is the point where the Phase 3 database earns its place.
+- Followed players are stored in `localStorage` under `d3scores.players` as `[key, meta]` pairs.
+- **Store raw data, format at render.** The first version stored the already-title-cased name, so "RJ" was frozen as "Rj" even after the formatter was fixed. Now `firstName`/`lastName` are stored as the API sends them and formatted every render, so fixing the rules retroactively fixes followed players.
+- Name formatting: shouted names are title-cased, but short vowel-less words stay capitalised (`RJ`, `JT`, `CJ`) while real two-letter names are left alone (`Bo`, `Ty`, `Al`), and `Mc` prefixes are handled (`McDaniel`). Tested against a list of awkward cases.
+
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.
