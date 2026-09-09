@@ -1,1 +1,4 @@
 .DS_Store
+
+# Local command-line tools, installed per-machine. Not part of the site.
+.tools/
