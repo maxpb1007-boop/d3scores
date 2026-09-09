@@ -90,7 +90,7 @@ Down and distance parse cleanly from `driveText` via `"{down} and {distance} at 
 `/game/{gameID}/boxscore` contains two things the scoreboard endpoint does not:
 
 1. **Real school colours.** `teams[].color` is a hex string — `montclair-st` → `#D01841`, `roanoke` → `#A30046`, `olivet` → `#9f1000`. Present on **12 of 12** teams sampled. Also present: `seoname`, `name6Char`, `nameFull`, `teamId`.
-   - **This is the way to get team identity into the UI.** The scoreboard endpoint has no colours, but colours can be harvested once — walk one week of box scores, build a `seoname → colour` map, save it as a static file. One-time cost, no per-request expense afterwards.
+   - **Harvested 2026-09-08 into `teams.js`** (6.4 KB, `window.TEAM_COLORS`, keyed by `seoname`). Regenerate with `node tools/harvest-colors.js`, which walks weeks 1-2 with a 120 ms gap between requests. **129 requests, 14 failures, 230 of 244 teams covered.** The misses are mostly non-D3 opponents (Davidson, Butler, St. Xavier, Salisbury) whose box scores 404; they fall back to neutral grey in the UI.
    - Caution: some colours are very dark (`wooster` → `#010101`, `juniata` → `#031832`). Any UI using them needs a lightness floor or they'll read as black-on-black, and two navy teams in one game will be indistinguishable.
 2. **Per-player stats.** `teamBoxscore[].playerStats[]` with `firstName`, `lastName`, `number`, and category-specific fields. Categories seen: `rushing`, `passing`, `receiving`, `kicking`, `punting`, `puntReturn`, `kickReturn`, `defense`. Not every category appears in every game.
    - So stat leaders are *possible*, but cost one request per game. Division-wide leaders = 117+ requests per week. That's the accumulation problem Phase 3's database exists for.

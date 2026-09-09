@@ -128,14 +128,15 @@
   @media (prefers-reduced-motion: reduce) { .head .dot { animation: none } }
 
   .team {
-    display: grid; grid-template-columns: 34px 1fr auto 9px;
-    align-items: center; gap: 9px;
+    display: grid; grid-template-columns: 16px 1fr auto 9px;
+    align-items: center; gap: 10px;
     padding: 1px 0;
   }
-  .abbr {
-    font-family: "Barlow Condensed", Barlow, sans-serif;
-    font-weight: 700; font-size: 13px; letter-spacing: 0.3px;
-    color: var(--mute);
+  /* Stands in for the logo ESPN would show. The colour is the school's own,
+     so the inset ring keeps very pale schools from vanishing on white. */
+  .swatch {
+    width: 16px; height: 16px; border-radius: 3px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.16);
   }
   .name {
     min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -148,13 +149,15 @@
   }
   .caret { width: 9px; }
   .won .name { color: var(--ink); font-weight: 600; }
-  .won .pts, .won .abbr { color: var(--ink); }
+  .won .pts { color: var(--ink); }
   .won .caret::before {
     content: ""; display: block;
     border: 4.5px solid transparent; border-right-color: var(--ink);
     margin-left: -1px;
   }
-  .lost .name, .lost .pts, .lost .abbr { color: var(--mute); }
+  /* Text dims for the losing side, but the swatch does not — dimming a real
+     school colour misreports it (Catholic's red turns pink). */
+  .lost .name, .lost .pts { color: var(--mute); }
 
   .msg {
     background: var(--card); border: 1px solid var(--line); border-radius: 6px;
@@ -177,6 +180,7 @@
 <main id="board"><p class="msg">Loading scores…</p></main>
 <footer id="foot"></footer>
 
+<script src="teams.js"></script>
 <script>
 // ---------------------------------------------------------------------------
 // Where to get the data.
@@ -289,11 +293,18 @@ function statusOf(g) {
   return { text: g.startTime || "Scheduled", live: false };
 }
 
+// Real school colours, from teams.js. Teams we couldn't harvest (mostly
+// non-D3 opponents whose box scores 404) fall back to a neutral grey.
+const FALLBACK_COLOR = "#c2c8d1";
+function teamColor(seo) {
+  return (window.TEAM_COLORS && window.TEAM_COLORS[seo]) || FALLBACK_COLOR;
+}
+
 function teamRow(team, opponent, decided) {
   const won = decided && team.winner;
   const lost = decided && opponent.winner && !team.winner;
   return `<div class="team ${won ? "won" : ""} ${lost ? "lost" : ""}">
-    <span class="abbr">${esc(team.names.char6)}</span>
+    <span class="swatch" style="background:${esc(teamColor(team.names.seo))}"></span>
     <span class="name">${esc(team.names.short)}</span>
     <span class="pts">${esc(team.score)}</span>
     <span class="caret"></span>
