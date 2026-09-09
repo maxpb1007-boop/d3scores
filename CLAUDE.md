@@ -233,4 +233,15 @@ Fix: after loading, if no game in the week has a score, fall back once to the pr
 
 **The lesson worth keeping: verify by opening the deployed site with no parameters, on a phone-sized screen, with `localStorage` cleared.** Every earlier check used `?week=1` or a seeded state, which hid this completely. The default path is the one every new visitor takes and it was the only one never tested.
 
+### 2026-09-09 — D3 RedZone shipped
+
+A `LIVE n` button in the masthead switches to a one-screen view of every game in progress across the division, closest game first. State lives in the URL as `?view=live`, so it's shareable.
+
+- **RedZone deliberately ignores the conference filter** — the point is every live game at once — so the filter is hidden while it's on, rather than left looking active but inert.
+- **Score changes are found by diffing polls.** There is no "recent scoring" field in the API. `lastScores` holds the previous reading per game and `scoreDeltas` records the difference, shown as a `+7` badge for four minutes. Memory only, no storage. The first poll after a page load can only establish a baseline, so a badge needs two readings — expect no badges for the first minute.
+- Liveness uses the existing `statusOf()` rule (has a score and isn't FINAL), **not** `gameState`, which lies.
+- Empty state names the next kickoff rather than saying nothing: "Next kickoff is Oberlin at Denison, Thu Sep 10 7:00 PM ET."
+
+**Untested, and it is the important part:** this has never been seen with several games genuinely in progress. Week 1's data contains exactly one stuck-live game, and the `+7` badge was verified by faking a previous poll in the console. **Saturday is the real test** — specifically whether `contestClock` is populated often enough to be worth showing, and whether deltas appear at a useful rate on a 60s poll.
+
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.

@@ -55,13 +55,51 @@
   }
 
   select {
-    margin-left: auto; min-width: 0; max-width: 210px;
+    min-width: 0; max-width: 210px;
     font: 500 13px Barlow, sans-serif; color: var(--ink);
     background: var(--card); border: 1px solid var(--line); border-radius: 6px;
     height: 33px; padding: 0 27px 0 10px; appearance: none;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'><path d='M2 4.5l4 4 4-4' fill='none' stroke='%234f5762' stroke-width='1.7' stroke-linecap='round'/></svg>");
     background-repeat: no-repeat; background-position: right 9px center;
   }
+
+  /* Live toggle in the masthead. Red only when something is actually on. */
+  .livebtn {
+    display: inline-flex; align-items: center; gap: 6px; flex: none;
+    height: 33px; padding: 0 11px; cursor: pointer;
+    font: 700 12px Barlow, sans-serif; letter-spacing: 0.6px; text-transform: uppercase;
+    color: var(--mid); background: var(--card);
+    border: 1px solid var(--line); border-radius: 6px;
+  }
+  .livebtn .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mute); }
+  .livebtn.hot { color: var(--red); border-color: rgba(206,17,38,0.45); }
+  .livebtn.hot .dot { background: var(--red); animation: pulse 1.6s ease-in-out infinite; }
+  .livebtn[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff; }
+  .livebtn[aria-pressed="true"] .dot { background: #fff; }
+  @media (prefers-reduced-motion: reduce) { .livebtn .dot { animation: none; } }
+
+  /* ---------------- redzone ---------------- */
+  .rz { display: grid; gap: 10px; grid-template-columns: 1fr; margin-top: 16px; }
+  @media (min-width: 640px) { .rz { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 960px) { .rz { grid-template-columns: 1fr 1fr 1fr; } }
+
+  .rzg {
+    background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--red);
+    border-radius: 7px; padding: 10px 12px 11px; cursor: pointer; position: relative;
+  }
+  .rzg .rzhead {
+    display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.7px; text-transform: uppercase; color: var(--red);
+    padding-bottom: 7px; margin-bottom: 7px; border-bottom: 1px solid var(--hair);
+  }
+  .rzg .rzhead .conf { margin-left: auto; color: var(--mute); font-weight: 500; letter-spacing: 0.2px; text-transform: none; }
+  .rzg .team { grid-template-columns: 14px 1fr auto auto; }
+  .rzg .pts { font-size: 26px; }
+  .rzg .delta {
+    font: 700 11px Barlow, sans-serif; color: #fff; background: var(--red);
+    border-radius: 10px; padding: 2px 7px; margin-left: 8px; white-space: nowrap;
+  }
+  .rzg .margin { font-size: 11px; color: var(--mute); margin-top: 8px; }
 
   .weeks { max-width: 1080px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; padding: 0 8px; }
   .weeks::-webkit-scrollbar { display: none; }
@@ -242,6 +280,9 @@
 <div class="shell">
   <div class="bar">
     <h1 class="mark"><span class="d3">D3</span><span class="word">Scores</span></h1>
+    <button class="livebtn" id="liveBtn" aria-pressed="false" style="margin-left:auto">
+      <span class="dot"></span><span id="liveLabel">Live</span>
+    </button>
     <select id="conf" aria-label="Filter by conference"></select>
   </div>
   <nav class="weeks" id="weeks" aria-label="Week"></nav>
@@ -335,11 +376,13 @@ let pendingGame = startParams.get("game");          // opened once games have lo
 // specific week, fall back once to the last week that actually has results.
 let weekWasChosen = startParams.has("week");
 let triedFallback = false;
+let redzone = startParams.get("view") === "live";
 
 function viewUrl(gameID) {
   const p = new URLSearchParams();
   p.set("week", String(week));
   if (conf && conf !== "favourites") p.set("conf", conf);
+  if (redzone) p.set("view", "live");
   if (gameID) p.set("game", String(gameID));
   return location.pathname + "?" + p.toString();
 }
@@ -492,6 +535,9 @@ function section(title, list, { pinned = false, showDay = false } = {}) {
 function render() {
   const board = document.getElementById("board");
   markWeek();
+  markLiveButton();
+
+  if (redzone) { renderRedzone(); return; }
 
   let shown = games;
   if (conf === "favourites") shown = games.filter(isFavGame);
@@ -523,6 +569,118 @@ function render() {
   board.innerHTML =
     (pinned.length ? section("Your teams", pinned, { pinned: true, showDay: true }) : "") +
     [...byDay].map(([day, list]) => section(day, list)).join("");
+}
+
+// ---------------------------------------------------------------------------
+// RedZone: one screen of everything currently in progress, across all of D3.
+//
+// Score changes are found by diffing each 60s poll against the last one and
+// held in memory — there is no "recent scoring" field in the API, and this
+// needs no storage.
+// ---------------------------------------------------------------------------
+const lastScores = new Map();     // gameID -> { h, a } from the previous poll
+const scoreDeltas = new Map();    // gameID -> { h, a, at } since the last change
+const DELTA_LIFE = 4 * 60 * 1000; // how long a "+7" badge stays up
+
+function isLive(g) {
+  const s = statusOf(g);
+  return s.live;
+}
+
+function trackScores(list) {
+  for (const g of list) {
+    const id = String(g.gameID);
+    const h = num(g.home.score), a = num(g.away.score);
+    const prev = lastScores.get(id);
+    // The first poll only establishes a baseline; a delta needs two readings.
+    if (prev && (h !== prev.h || a !== prev.a)) {
+      scoreDeltas.set(id, { h: h - prev.h, a: a - prev.a, at: Date.now() });
+    }
+    lastScores.set(id, { h, a });
+  }
+}
+
+function freshDelta(gameID) {
+  const d = scoreDeltas.get(String(gameID));
+  if (!d) return null;
+  if (Date.now() - d.at > DELTA_LIFE) { scoreDeltas.delete(String(gameID)); return null; }
+  return d;
+}
+
+function rzTeamRow(team, opponent, delta) {
+  const lead = num(team.score) > num(opponent.score);
+  return `<div class="team ${lead ? "won" : ""}">
+    <span class="swatch" style="background:${esc(teamColor(team.names.seo))}"></span>
+    <span class="name">${esc(team.names.short)}</span>
+    <span class="pts">${esc(team.score || "0")}</span>
+    ${delta ? `<span class="delta">+${delta}</span>` : "<span></span>"}
+  </div>`;
+}
+
+function rzCard(g) {
+  const s = statusOf(g);
+  const d = freshDelta(g.gameID);
+  const conference = seoOf(g.home) && seoOf(g.home) === seoOf(g.away) ? confName(seoOf(g.home)) : "";
+  const margin = Math.abs(num(g.home.score) - num(g.away.score));
+  const marginText = margin === 0 ? "Tied" : `${margin} point${margin === 1 ? "" : "s"}`;
+  return `<article class="rzg" data-game="${esc(g.gameID)}" tabindex="0" role="button"
+      aria-label="${esc(g.away.names.short)} at ${esc(g.home.names.short)}, open box score">
+    <div class="rzhead">
+      <span class="dot" style="width:6px;height:6px;border-radius:50%;background:var(--red);display:inline-block"></span>
+      <span>${esc(s.text)}</span>
+      ${conference ? `<span class="conf">${esc(conference)}</span>` : ""}
+    </div>
+    ${rzTeamRow(g.away, g.home, d && d.a > 0 ? d.a : 0)}
+    ${rzTeamRow(g.home, g.away, d && d.h > 0 ? d.h : 0)}
+    <p class="margin">${marginText}</p>
+  </article>`;
+}
+
+function renderRedzone() {
+  const board = document.getElementById("board");
+  document.getElementById("players").innerHTML = "";
+
+  // RedZone deliberately ignores the conference filter — the whole point is
+  // every game at once.
+  const live = games.filter(isLive);
+
+  if (!live.length) {
+    const next = games.filter(g => !hasScore(g)).sort((x, y) => num(x.startTimeEpoch) - num(y.startTimeEpoch))[0];
+    board.innerHTML = `<p class="msg">Nothing is in progress right now.
+      <span class="hint">${next
+        ? `Next kickoff is ${esc(next.away.names.short)} at ${esc(next.home.names.short)}, ${esc(shortDayOf(next))} ${esc(next.startTime || "")}.`
+        : `No games left to play in week ${week}.`}</span></p>`;
+    return;
+  }
+
+  // Closest games first — that's what a RedZone screen is for.
+  const sorted = [...live].sort((x, y) => {
+    const mx = Math.abs(num(x.home.score) - num(x.away.score));
+    const my = Math.abs(num(y.home.score) - num(y.away.score));
+    if (mx !== my) return mx - my;
+    return num(y.startTimeEpoch) - num(x.startTimeEpoch);
+  });
+
+  board.innerHTML = `
+    <section class="group pinned">
+      <header>
+        <h2>In progress</h2>
+        <span class="n">${live.length} game${live.length === 1 ? "" : "s"}${live.length > 1 ? " · closest first" : ""} · all of D3</span>
+        <span class="rule"></span>
+      </header>
+      <div class="rz">${sorted.map(rzCard).join("")}</div>
+    </section>`;
+}
+
+function markLiveButton() {
+  const n = games.filter(isLive).length;
+  const btn = document.getElementById("liveBtn");
+  btn.classList.toggle("hot", n > 0 && !redzone);
+  btn.setAttribute("aria-pressed", String(redzone));
+  document.getElementById("liveLabel").textContent = n ? `Live ${n}` : "Live";
+  // The conference filter doesn't apply in RedZone — it shows every live game
+  // in the division — so hide it rather than leave it looking active.
+  document.getElementById("conf").hidden = redzone;
 }
 
 // ---------------------------------------------------------------------------
@@ -1051,9 +1209,10 @@ async function load() {
       return load();
     }
 
+    trackScores(games);
     buildConfMenu();
     render();
-    renderPlayers();
+    if (!redzone) renderPlayers();
     // A shared ?game= link can only be opened once the week's games are in.
     if (pendingGame) {
       const g = games.find(x => String(x.gameID) === pendingGame);
@@ -1093,7 +1252,20 @@ document.getElementById("players").addEventListener("click", e => {
   renderPlayers();
 });
 
+document.getElementById("liveBtn").addEventListener("click", () => {
+  redzone = !redzone;
+  syncUrl();
+  render();
+  if (!redzone) renderPlayers();
+});
+
 document.getElementById("board").addEventListener("click", e => {
+  const rz = e.target.closest(".rzg[data-game]");
+  if (rz) {
+    const g = games.find(x => String(x.gameID) === rz.dataset.game);
+    if (g) openGame(g);
+    return;
+  }
   const btn = e.target.closest("button.fav");
   if (btn) {
     const seo = btn.dataset.seo;
