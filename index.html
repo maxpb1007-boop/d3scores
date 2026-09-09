@@ -3,81 +3,141 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>D3 Scores</title>
+<meta name="theme-color" content="#0b0d11">
+<title>D3 Scores — NCAA Division III Football</title>
 <style>
   :root {
-    --bg: #0f1115;
-    --card: #181b22;
-    --line: #262b35;
-    --text: #e8eaed;
-    --dim: #9aa3b2;
-    --live: #ff5c5c;
+    --bg:      #0b0d11;
+    --raise:   #14181f;
+    --card:    #161b23;
+    --line:    #242b36;
+    --text:    #eef1f5;
+    --dim:     #8d97a8;
+    --faint:   #5b6577;
+    --live:    #ff4d4d;
+    --accent:  #4da3ff;
+    --radius:  12px;
   }
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font: 16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
     -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
   }
-  header {
-    position: sticky; top: 0; z-index: 2;
-    background: var(--bg);
-    border-bottom: 1px solid var(--line);
-    padding: 12px 16px;
-  }
-  h1 { margin: 0 0 10px; font-size: 20px; letter-spacing: -0.2px; }
-  .controls { display: flex; gap: 8px; align-items: center; }
-  select, button {
-    font: inherit;
-    color: var(--text);
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 8px 10px;
-  }
-  select { flex: 1; min-width: 0; }
-  button { width: 40px; text-align: center; cursor: pointer; }
-  button:disabled { opacity: 0.35; cursor: default; }
-  .week { color: var(--dim); font-size: 14px; min-width: 62px; text-align: center; }
 
-  main { padding: 8px 16px 40px; max-width: 720px; margin: 0 auto; }
-  h2 {
-    font-size: 13px; text-transform: uppercase; letter-spacing: 0.6px;
-    color: var(--dim); margin: 22px 0 8px; font-weight: 600;
+  /* ---------- header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 5;
+    background: rgba(11,13,17,0.86);
+    backdrop-filter: saturate(140%) blur(12px);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 16px 10px;
   }
+  .brand { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
+  .brand h1 { margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.3px; }
+  .brand span { font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: 1px; }
+
+  .controls { display: flex; gap: 8px; align-items: stretch; }
+  .weeknav {
+    display: flex; align-items: center;
+    background: var(--raise); border: 1px solid var(--line); border-radius: 10px;
+    overflow: hidden; flex: none;
+  }
+  .weeknav button {
+    background: none; border: 0; color: var(--text);
+    font-size: 18px; line-height: 1; width: 34px; height: 38px; cursor: pointer;
+  }
+  .weeknav button:disabled { color: var(--faint); cursor: default; }
+  .weeknav .label {
+    font-size: 13px; font-weight: 600; color: var(--dim);
+    min-width: 58px; text-align: center; font-variant-numeric: tabular-nums;
+  }
+  select {
+    flex: 1; min-width: 0; height: 38px;
+    font: inherit; font-size: 14px; color: var(--text);
+    background: var(--raise); border: 1px solid var(--line);
+    border-radius: 10px; padding: 0 10px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%238d97a8' stroke-width='1.6' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat; background-position: right 10px center;
+    padding-right: 28px;
+  }
+
+  /* ---------- board ---------- */
+  main { padding: 6px 16px 44px; max-width: 680px; margin: 0 auto; }
+  .meta { color: var(--faint); font-size: 12px; padding: 10px 2px 2px; }
+
+  h2 {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.1px;
+    color: var(--dim); font-weight: 700;
+    margin: 24px 0 10px;
+  }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
   .game {
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 10px 12px;
-    margin-bottom: 8px;
+    border-radius: var(--radius);
+    padding: 12px 14px 10px;
+    margin-bottom: 9px;
   }
-  .team { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
-  .team + .team { margin-top: 4px; }
-  .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .score { font-variant-numeric: tabular-nums; font-weight: 600; }
-  .winner { font-weight: 700; }
-  .loser .name, .loser .score { color: var(--dim); }
+  .game.is-live { border-color: rgba(255,77,77,0.42); }
+
+  .team { display: flex; align-items: center; gap: 10px; }
+  .team + .team { margin-top: 7px; }
+  .tag {
+    flex: none; width: 42px; height: 24px; border-radius: 6px;
+    display: grid; place-items: center;
+    font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: 0.4px;
+    color: #fff;
+  }
+  .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; }
+  .score { font-variant-numeric: tabular-nums; font-size: 19px; font-weight: 600; min-width: 30px; text-align: right; }
+  .winner .name { font-weight: 700; }
+  .winner .score { font-weight: 800; }
+  .loser .name, .loser .score, .loser .tag { opacity: 0.45; }
+
   .status {
-    margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line);
-    font-size: 13px; color: var(--dim);
-    display: flex; justify-content: space-between; gap: 10px;
+    margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    font-size: 12px; color: var(--faint);
   }
-  .status .live { color: var(--live); font-weight: 600; }
-  .msg { color: var(--dim); padding: 30px 0; text-align: center; }
-  footer { color: var(--dim); font-size: 12px; text-align: center; padding: 0 16px 30px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-weight: 600; color: var(--dim);
+  }
+  .pill.final { color: var(--dim); }
+  .pill.live { color: var(--live); }
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--live);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+  @media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+
+  .msg { color: var(--dim); padding: 44px 10px; text-align: center; font-size: 15px; }
+  .msg b { color: var(--text); }
+  footer { color: var(--faint); font-size: 11px; text-align: center; padding: 0 16px 32px; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>D3 Scores</h1>
+  <div class="brand">
+    <h1>D3 Scores</h1>
+    <span>NCAA Division III</span>
+  </div>
   <div class="controls">
-    <button id="prev" aria-label="Previous week">&lsaquo;</button>
-    <span class="week" id="weekLabel">Week 1</span>
-    <button id="next" aria-label="Next week">&rsaquo;</button>
+    <div class="weeknav">
+      <button id="prev" aria-label="Previous week">&lsaquo;</button>
+      <span class="label" id="weekLabel">Week 1</span>
+      <button id="next" aria-label="Next week">&rsaquo;</button>
+    </div>
     <select id="conf" aria-label="Filter by conference"></select>
   </div>
 </header>
@@ -162,6 +222,16 @@ function seoOf(side) {
   return "";
 }
 
+// A stable colour per school. The API gives no logos or team colours, so this
+// derives a hue from the team's own slug: same school always gets the same
+// colour, and neighbouring schools get different ones. These are NOT official
+// school colours — they exist so the eye can tell rows apart.
+function teamColor(seo) {
+  let h = 0;
+  for (let i = 0; i < seo.length; i++) h = (h * 31 + seo.charCodeAt(i)) % 360;
+  return `hsl(${h} 42% 34%)`;
+}
+
 // Which conference heading a game belongs under. If both teams are in the
 // same conference it's a conference game; otherwise it's non-conference.
 function groupOf(g) {
@@ -194,7 +264,9 @@ function statusOf(g) {
 
 function teamRow(team, opponent, decided) {
   const lost = decided && opponent.winner && !team.winner;
+  const seo = team.names.seo || team.names.char6 || "";
   return `<div class="team ${team.winner ? "winner" : ""} ${lost ? "loser" : ""}">
+    <span class="tag" style="background:${teamColor(seo)}">${esc(team.names.char6)}</span>
     <span class="name">${esc(team.names.short)}</span>
     <span class="score">${esc(team.score)}</span>
   </div>`;
@@ -203,12 +275,13 @@ function teamRow(team, opponent, decided) {
 function gameCard(g) {
   const s = statusOf(g);
   const decided = hasScore(g);
-  const away = teamRow(g.away, g.home, decided);
-  const home = teamRow(g.home, g.away, decided);
-  return `<article class="game">
-    ${away}${home}
+  return `<article class="game ${s.live ? "is-live" : ""}">
+    ${teamRow(g.away, g.home, decided)}
+    ${teamRow(g.home, g.away, decided)}
     <div class="status">
-      <span class="${s.live ? "live" : ""}">${esc(s.text)}</span>
+      <span class="pill ${s.live ? "live" : "final"}">
+        ${s.live ? '<span class="dot"></span>' : ""}${esc(s.text)}
+      </span>
       <span>${esc(g.startDate)}</span>
     </div>
   </article>`;
@@ -226,7 +299,7 @@ function render() {
   document.getElementById("next").disabled = week >= MAX_WEEK;
 
   if (!shown.length) {
-    board.innerHTML = `<p class="msg">No ${conf === "all" ? "" : confName(conf) + " "}games in week ${week}.</p>`;
+    board.innerHTML = `<p class="msg">No <b>${esc(conf === "all" ? "D3" : confName(conf))}</b> games in week ${week}.</p>`;
     return;
   }
 
@@ -244,7 +317,11 @@ function render() {
     return a.localeCompare(b);
   });
 
-  board.innerHTML = keys.map(k =>
+  const liveCount = shown.filter(g => statusOf(g).live).length;
+  const meta = `<p class="meta">${shown.length} game${shown.length === 1 ? "" : "s"}` +
+               `${liveCount ? ` · ${liveCount} live now` : ""}</p>`;
+
+  board.innerHTML = meta + keys.map(k =>
     `<h2>${esc(k)}</h2>` + buckets.get(k).map(gameCard).join("")
   ).join("");
 }
@@ -273,7 +350,7 @@ async function load() {
     buildConfMenu();
     render();
     document.getElementById("foot").textContent =
-      "Updated " + new Date().toLocaleTimeString();
+      "Updated " + new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
   } catch (err) {
     document.getElementById("board").innerHTML =
       `<p class="msg">Couldn't load scores.<br>${esc(err.message)}</p>`;
