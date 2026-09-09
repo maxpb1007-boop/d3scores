@@ -119,6 +119,36 @@ A D1 parent has fifteen places to see their kid's stat line. **A D3 parent has n
 
 **0b. Shareable links — shipped 2026-09-08.** Week, conference and game now live in the URL, so any view can be texted to someone; a shared `?game=` link opens straight to that box score. This matters because word of mouth is the only distribution this site will ever have. Static Open Graph tags were added so a pasted link isn't blank — but *per-game* previews would need server-side rendering, which v1 doesn't do.
 
+---
+
+### The 2026-09-09 idea list, with feasibility checked against the API
+
+Raised by Max; each was tested against real endpoints rather than assumed. **Ordered by what to build first.**
+
+**A. D3 RedZone — one screen of live games. BUILD FIRST.**
+Everything needed already works: `gameState`, `currentPeriod`, `contestClock`, both scores, 60s refresh. "Biggest score changes" is a diff between polls, held in memory — no storage. Two known hazards: `contestClock` is frequently `"0:00"` mid-game, and `gameState` lies, so liveness must be decided by "has a score and isn't final." It's also the only idea that answers *what do I do on a Saturday afternoon*; everything else is read weekly.
+
+**B. Stat leaders — now CHEAP, previously mis-scoped.**
+`/stats/football/d3/current/individual/{id}` publishes them already, 50 per page. **No database, no per-game aggregation.** See CLAUDE.md for category ids. This moved from "Phase 3" to "an afternoon."
+
+**C. Player pages — half buildable now.**
+Position and class year come from the stats leaderboards; per-game lines come from box scores. A game log across a season still needs accumulation, so *that* part is Phase 3. Height, weight, hometown, awards and recruiting are **not in this API at all** and would mean scraping 232 school sites — the dead Plan B. Don't.
+
+**D. Standings → strength of schedule → power rankings → bubble watch. ONE project, in that order, in OCTOBER.**
+All four need the same base: every result of the season tallied into records, computed locally because `/standings` returns 500. SoS is then nearly free. Power rankings are a real modelling job and are genuinely differentiating — rankings start arguments and arguments spread links. Bubble watch is the hardest thing on the list and its difficulty is *not technical*: it requires correctly modelling NCAA D3 selection (Pool A automatic bids, Pool B, Pool C at-large), which exists in no API. Get it subtly wrong and the site confidently misinforms a school about its season.
+**Timing is the real constraint.** Rankings built on two weeks of results are noise, and nobody is on a bubble in September.
+
+**E. Player star ratings — recommended against.**
+These are 19-year-olds who are not public figures. Their *stats* are facts and are defensible; a subjective public rating is an opinion with your name attached, and the complaints come to you. Ranking *teams* carries none of that.
+
+**F. Accounts — skip; there's a cheaper 90%.**
+Following already works via `localStorage`. Accounts buy exactly one thing, cross-device sync, and cost passwords, email, reset flows, a database and responsibility for other people's data. **Cheaper middle ground: a transfer link that encodes your follows in a URL.** An afternoon's work. Build real accounts only once someone actually asks for sync.
+
+**G. Stadium pages — not possible from this API.**
+Checked explicitly: no venue, city, capacity or attendance field exists anywhere in the scoreboard or box score. Photos add a licensing problem on top. This is a manual research project across 232 schools, and it is the least valuable item here — nobody opens a scores site to learn a stadium's capacity.
+
+---
+
 **1. Favourite teams — cheap, do this first.**
 Let someone pick teams and pin them to the top, or filter to just them. Pure front-end: store the list in `localStorage`, no backend, no new API calls, no database. A couple of hours. Highest value per hour of anything on this list, because it converts a browsing site into one people reopen.
 

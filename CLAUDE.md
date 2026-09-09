@@ -97,6 +97,25 @@ Down and distance parse cleanly from `driveText` via `"{down} and {distance} at 
 2. **Per-player stats.** `teamBoxscore[].playerStats[]` with `firstName`, `lastName`, `number`, and category-specific fields. Categories seen: `rushing`, `passing`, `receiving`, `kicking`, `punting`, `puntReturn`, `kickReturn`, `defense`. Not every category appears in every game.
    - So stat leaders are *possible*, but cost one request per game. Division-wide leaders = 117+ requests per week. That's the accumulation problem Phase 3's database exists for.
 
+### Stats leaderboards — FOUND 2026-09-09, and they change the plan
+
+**`/stats/football/d3/{season}/{individual|team}/{categoryId}`** and `/…/p2`, `/p3` for further pages (50 rows each).
+
+This endpoint was never tried before today. It matters because **it makes division-wide stat leaders free.** The earlier assumption — that leaders required fetching a box score per game and therefore needed the Phase 3 database — is **wrong**. The NCAA already computes and publishes them.
+
+- `season` accepts `current`, `2026`, `2025`, `2024`. **History works**: 2025 returns full-season data (top receiver Grayson Kerscher, Denison, 1239 yds), 2024 likewise. Unlike `/rankings`, this is *not* stale — `current` was "Through games Saturday, September 05, 2026."
+- **Every individual row carries `Cl` (class year, e.g. `So.`) and `Position` (e.g. `RB`).** These are the bio fields that are `null` in the box score. A player's year and position are therefore obtainable after all — height, weight and hometown still are not.
+
+Individual category ids: `7` Rushing Yards/Game · `8` Passing Efficiency · `11` Total Offense · `12` Receptions/Game · `13` Receiving Yards/Game · `14` Interceptions/Game · `15` Punt Returns · `16` Kickoff Returns · `17` Punting · `18` Field Goals/Game · `19` Scoring · `20` All Purpose · `34` Total Tackles · `35` Solo Tackles · `36` Sacks · `37` Forced Fumbles · `38` Passes Defended · `39` Tackles For Loss.
+
+Team category ids: `21` Total Offense · `22` Total Defense · `23` Rushing Offense · `24` Rushing Defense · `25` Passing Offense · `27` Scoring Offense · `28` Scoring Defense · `29` Turnover Margin · `40` Team Passing Efficiency Defense.
+
+Ids outside those sets return 404 or 500; the numbering is sparse, so don't assume a range.
+
+**Still absent everywhere in this API:** venue, stadium, city, attendance, capacity, player height, weight and hometown. Checked explicitly. Stadium pages are not buildable from this source.
+
+Also note `data.ncaa.com/casablanca/...` paths return 404 — the upstream is not reachable directly by that route, so the hosted proxy stays the only way in.
+
 ### Reference game saved
 
 `game_6606156_play_by_play.json` and `game_6606156_boxscore.json` — Gettysburg 24 @ Juniata 7, 09/03/2026, 209 plays. Use this as the fixture for any parser work so you're not hammering the API in a loop.
