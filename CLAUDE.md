@@ -138,4 +138,21 @@ Notes for future work on this file:
 - Upstream week 01 = 117 games, week 02 = 106 games, as of 2026-09-08. Useful sanity numbers.
 - The handler can be tested locally with plain `node` by passing a fake `{ query }` and a stub `res` with `setHeader`/`status`/`json`. No `vercel dev` and no npm install required. Do this before deploying.
 
-**Next session starts with:** Phase 1, step 3 — `index.html` fetches `/api/scoreboard` and renders games grouped by conference (teams, scores, status, clock). Then step 4, the conference filter defaulting to Landmark. Then step 5, 60s auto-refresh.
+### 2026-09-08 (last) — Phase 1 steps 3, 4, 5 BUILT
+
+`index.html` now fetches `/api/scoreboard`, groups games by conference, filters (default Landmark), and reloads every 60s. Plain HTML/CSS/JS in one file, no framework, as planned.
+
+Things the data forced, which are not obvious from reading the code:
+
+- **`conferenceName` is empty on every team in every game.** Only `conferenceSeo` is populated. The display names in the `CONFERENCES` map in `index.html` were written by hand and are *not* authoritative — fix any that are wrong.
+- **`finalMessage` is not just for finals.** A live game had `finalMessage: "1ST"`. Treating any non-empty `finalMessage` as "game over" is wrong and was a real bug caught in testing. Only `FINAL` means final.
+- Confirmed again that `gameState` lies: `Wilkes 7 @ King's (PA) 0` had `gameState: "pre"` with live scores and `currentPeriod: "1ST"`. The rule used is: FINAL only when it says FINAL; otherwise any game with a score is live.
+- **`contestClock` is often `"0:00"` mid-game.** Suppressed when zeroed, or every live game reads "1ST 00:00".
+- The API returns games in arbitrary order. Sorted by `startTimeEpoch`.
+- Week 01 spans 08/29–09/05; week 02 spans 09/10–09/12. Week number is computed from a `SEASON_START` of Aug 31 2026. **If weeks drift, that constant is the thing to fix.**
+- Grouping assigns each game to exactly one heading: the shared conference if both teams match, else "Non-conference". Verified 117 games in, 117 cards out, no duplicates. Caveat: in week 1, 113 of 117 were non-conference, so headings do little early in the season. Revisit if it still feels useless in October.
+- A week back/forward control was added beyond the plan, because in midweek the current week has no scores yet and there'd be nothing to look at.
+
+**Testing without a browser:** the loopback network is blocked in the agent sandbox, so local servers can't be previewed. Instead the `<script>` is extracted from `index.html` and run in `node:vm` against a fake `document` and a stubbed `fetch` reading saved JSON. That caught both real bugs above. Worth redoing whenever the render logic changes.
+
+**Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.
