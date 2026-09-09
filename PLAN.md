@@ -109,6 +109,16 @@ Originally left undefined on purpose. The ideas below were raised 2026-09-08, be
 
 Ordered by cost, cheapest first. **The order is the recommendation.**
 
+**The strategic question, thought through 2026-09-08: why would anyone come *back*?**
+
+A scoreboard alone doesn't earn a second visit — a parent can text another parent. The audience for D3 scores is not general sports fans; it is **families, players, classmates and alumni attached to specific people**. That points somewhere ESPN structurally cannot go.
+
+A D1 parent has fifteen places to see their kid's stat line. **A D3 parent has none.** The data exists — `/game/{id}/boxscore` carries per-player lines with names and jersey numbers — and nobody surfaces it.
+
+**So the sharpest idea available is: follow a player, not just a team.** "Follow #17 Brysen Delaney" → his line every week. It needs **no database**: one box score request per followed player per week, computed on demand. Roughly 4 hours. This is the recommended next bet, and the scoreboard is best understood as how people find the site, not why they return.
+
+**0b. Shareable links — shipped 2026-09-08.** Week, conference and game now live in the URL, so any view can be texted to someone; a shared `?game=` link opens straight to that box score. This matters because word of mouth is the only distribution this site will ever have. Static Open Graph tags were added so a pasted link isn't blank — but *per-game* previews would need server-side rendering, which v1 doesn't do.
+
 **1. Favourite teams — cheap, do this first.**
 Let someone pick teams and pin them to the top, or filter to just them. Pure front-end: store the list in `localStorage`, no backend, no new API calls, no database. A couple of hours. Highest value per hour of anything on this list, because it converts a browsing site into one people reopen.
 

@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
 <title>D3 Scores — NCAA Division III Football</title>
+<meta name="description" content="Live scores, box scores and player leaders for every NCAA Division III football game.">
+<!-- Shown when someone pastes a link into a group chat. These are static, so
+     every shared link previews the same way; per-game previews would need the
+     page to be rendered on the server, which v1 doesn't do. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="D3 Scores">
+<meta property="og:title" content="D3 Scores — every Division III football game">
+<meta property="og:description" content="Live scores, box scores and player leaders for all of NCAA Division III football.">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -143,9 +152,15 @@
   .sheet .kicker { font-size: 10px; font-weight: 700; letter-spacing: 0.9px; text-transform: uppercase; color: var(--mute); }
   .sheet .kicker.live { color: var(--red); }
   .sheet .close {
-    margin-left: auto; width: 32px; height: 32px; border-radius: 6px;
+    width: 32px; height: 32px; border-radius: 6px;
     border: 1px solid var(--line); background: var(--card); color: var(--mid);
     font-size: 17px; line-height: 1; cursor: pointer;
+  }
+  .sheet #shareDetail { margin-left: auto; }
+  .sheet .toast {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    bottom: 22px; background: var(--ink); color: #fff;
+    font-size: 13px; padding: 8px 14px; border-radius: 20px; z-index: 3;
   }
   .sheet .side { display: grid; grid-template-columns: 16px 1fr auto; gap: 10px; align-items: center; }
   .sheet .side + .side { margin-top: 5px; }
@@ -269,9 +284,36 @@ function currentWeek() {
   return Math.min(MAX_WEEK, Math.max(1, Math.floor(days / 7) + 1));
 }
 
-let week = currentWeek();
-let conf = "landmark";     // PLAN.md: default the view to Landmark
+// ---------------------------------------------------------------------------
+// The URL is the app's state, so any view can be sent to someone else:
+//   ?week=1&conf=landmark          a week and a conference
+//   ?week=1&game=6606156           a specific game's box score
+// Without this there is nothing to share, and word of mouth is the only
+// distribution this site will ever have.
+// ---------------------------------------------------------------------------
+const startParams = new URLSearchParams(location.search);
+
+function readWeek() {
+  const w = Number(startParams.get("week"));
+  return Number.isInteger(w) && w >= 1 && w <= MAX_WEEK ? w : currentWeek();
+}
+
+let week = readWeek();
+let conf = startParams.get("conf") || "landmark";   // PLAN.md: default to Landmark
 let games = [];
+let pendingGame = startParams.get("game");          // opened once games have loaded
+
+function viewUrl(gameID) {
+  const p = new URLSearchParams();
+  p.set("week", String(week));
+  if (conf && conf !== "favourites") p.set("conf", conf);
+  if (gameID) p.set("game", String(gameID));
+  return location.pathname + "?" + p.toString();
+}
+
+function syncUrl() {
+  history.replaceState(history.state, "", viewUrl(null));
+}
 
 // --- favourite teams -------------------------------------------------------
 // Stored in the browser only. No accounts, no server, nothing to leak. Private
@@ -612,6 +654,12 @@ function sheetHeader(g, statusText, live) {
     <div class="top">
       <span class="kicker ${live ? "live" : ""}">${esc(statusText)}</span>
       <span class="kicker" style="letter-spacing:.3px;text-transform:none">${esc(shortDayOf(g))}</span>
+      <button class="close" id="shareDetail" aria-label="Share this game" title="Share">
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" style="display:block;margin:auto">
+          <path d="M12 15V4m0 0L8.5 7.5M12 4l3.5 3.5M5 13v5a2 2 0 002 2h10a2 2 0 002-2v-5"
+            fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
       <button class="close" id="closeDetail" aria-label="Close">✕</button>
     </div>
     ${row(g.away, g.home)}
@@ -619,8 +667,25 @@ function sheetHeader(g, statusText, live) {
   </header>`;
 }
 
-async function openGame(g) {
+const BASE_TITLE = document.title;
+let openGameId = null;
+let closingFromHistory = false;
+
+function gameHeadline(g) {
+  const a = g.away.names.short, h = g.home.names.short;
+  return hasScore(g)
+    ? `${a} ${g.away.score}, ${h} ${g.home.score}`
+    : `${a} at ${h}`;
+}
+
+async function openGame(g, { fromHistory = false } = {}) {
   const s = statusOf(g);
+  openGameId = String(g.gameID);
+  document.title = `${gameHeadline(g)} — D3 Scores`;
+  // Opening from a tap adds a history entry so Back closes the sheet. Opening
+  // because the URL already said so must not add one.
+  if (fromHistory) history.replaceState({ game: openGameId }, "", viewUrl(g.gameID));
+  else history.pushState({ game: openGameId }, "", viewUrl(g.gameID));
   dlg.innerHTML = `<div class="sheet" tabindex="-1">${sheetHeader(g, s.text, s.live)}
     <div class="body"><p class="note" style="padding:18px 0">Loading box score…</p></div></div>`;
   if (!dlg.open) dlg.showModal();
@@ -663,10 +728,66 @@ async function openGame(g) {
     : `<p class="note" style="padding:18px 0">No box score detail was published for this game.</p>`;
 }
 
+async function shareCurrentGame() {
+  const g = games.find(x => String(x.gameID) === openGameId);
+  if (!g) return;
+  const url = location.origin + viewUrl(g.gameID);
+  const text = `${gameHeadline(g)} — D3 Scores`;
+  try {
+    if (navigator.share) { await navigator.share({ title: text, text, url }); return; }
+    await navigator.clipboard.writeText(url);
+    toast("Link copied");
+  } catch (err) {
+    // The user dismissing the share sheet also lands here; that's not an error.
+    if (err && err.name === "AbortError") return;
+    toast("Couldn't copy the link");
+  }
+}
+
+function toast(message) {
+  const sheet = dlg.querySelector(".sheet");
+  if (!sheet) return;
+  const old = sheet.querySelector(".toast");
+  if (old) old.remove();
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.textContent = message;
+  sheet.style.position = "relative";
+  sheet.appendChild(el);
+  setTimeout(() => el.remove(), 1800);
+}
+
 dlg.addEventListener("click", (e) => {
+  if (e.target.closest("#shareDetail")) { shareCurrentGame(); return; }
   if (e.target.closest("#closeDetail")) { dlg.close(); return; }
   // Clicking the backdrop closes: the dialog element itself is the backdrop area.
   if (e.target === dlg) dlg.close();
+});
+
+// Closing the sheet — by button, backdrop, or Escape — should also undo the
+// history entry, so Back doesn't reopen the game the user just dismissed.
+dlg.addEventListener("close", () => {
+  openGameId = null;
+  document.title = BASE_TITLE;
+  // Strip ?game= rather than calling history.back(). Back would walk off the
+  // site entirely for someone who arrived on a shared game link.
+  if (!closingFromHistory) history.replaceState({}, "", viewUrl(null));
+});
+
+// Keep the sheet in step with the URL when the user presses Back or Forward.
+window.addEventListener("popstate", () => {
+  const id = new URLSearchParams(location.search).get("game");
+  if (!id) {
+    if (dlg.open) {
+      closingFromHistory = true;
+      dlg.close();
+      closingFromHistory = false;
+    }
+    return;
+  }
+  if (id === openGameId) return;
+  const g = games.find(x => String(x.gameID) === id);
+  if (g) openGame(g, { fromHistory: true });
 });
 
 // The week tabs are built once and then only re-flagged. Rebuilding them on
@@ -708,6 +829,12 @@ async function load() {
     games.sort((a, b) => Number(a.startTimeEpoch) - Number(b.startTimeEpoch));
     buildConfMenu();
     render();
+    // A shared ?game= link can only be opened once the week's games are in.
+    if (pendingGame) {
+      const g = games.find(x => String(x.gameID) === pendingGame);
+      pendingGame = null;
+      if (g) openGame(g, { fromHistory: true });
+    }
     document.getElementById("foot").textContent =
       "Scores refresh every minute. Last checked " +
       new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) + ".";
@@ -717,13 +844,18 @@ async function load() {
   }
 }
 
-document.getElementById("conf").addEventListener("change", e => { conf = e.target.value; render(); });
+document.getElementById("conf").addEventListener("change", e => {
+  conf = e.target.value;
+  syncUrl();
+  render();
+});
 
 document.getElementById("weeks").addEventListener("click", e => {
   const btn = e.target.closest("button[data-week]");
   if (!btn) return;
   week = Number(btn.dataset.week);
   markWeek();
+  syncUrl();
   load();
 });
 
