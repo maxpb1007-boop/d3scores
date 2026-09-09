@@ -77,7 +77,9 @@ Example play:
 
 ### ⚠️ Three known defects in the play-by-play — these matter for the model
 
-1. **The running score is broken.** In the test game, all 209 plays report `homeScore: 0, visitorScore: 0`. The final was Gettysburg 24, Juniata 7. **The score fields are unusable.** Score state has to be reconstructed — either by parsing `TOUCHDOWN` / `FIELD GOAL` / `safety` / PAT text out of `playText` in order, or by cross-referencing `/scoring-summary`, which does return correct per-quarter scoring.
+1. **The running score is broken.** In the test game, all 209 plays report `homeScore: 0, visitorScore: 0`. The final was Gettysburg 24, Juniata 7. **The score fields are unusable.** Score state has to be reconstructed by parsing `TOUCHDOWN` / `FIELD GOAL` / `safety` / PAT text out of `playText` in order.
+   - **CORRECTION 2026-09-08:** an earlier version of this file said `/scoring-summary` "does return correct per-quarter scoring." **That is wrong on both counts.** Its `visitScore` / `homeScore` fields are also all `"0"`, and in 3 of 5 games sampled they were partly populated but still not a usable running score. Worse, **the scoring feed can be missing plays entirely**: game `6606053` (UChicago 34 @ Trine 48) lists only 6 Trine touchdowns and 6 extra points — 42 points — for a team that scored 48. Six points have no corresponding play.
+   - What `/scoring-summary` *is* good for: the scoring **events** — `scoreType` (`TD`, `XP`, `FG`, `SAF`, `TPC` = two-point conversion), `time`, `teamId`, and a readable `scoreText`. Summing `scoreType` values reconstructs a correct line score in 4 of 5 games sampled. **Always validate the reconstruction against the real final before showing it** — `index.html` does this and hides the quarter columns when it doesn't reconcile.
 2. **`clock` is mostly empty.** It's populated at drive starts and on scoring plays, blank on most snaps. Time remaining has to be interpolated or carried forward from the last known clock.
 3. **`driveText` doesn't say whose side of the field.** `"1 and 12 at 2"` was followed by a 98-yard touchdown run — so "at 2" meant the offense's own 2. Side of field has to come from parsing the yard-line token in `playText` (e.g. `JUNIATA35`, `GETTYSBU42`) against which team has the ball.
 
@@ -175,5 +177,18 @@ The dark theme was rejected twice as looking generic. Rebuilt light, ESPN-shaped
 Verified in a real browser: favourites survive reload, the pinned group counts match, totals stay at 117 with no duplication, and both empty states render with a way forward.
 
 **Preview tooling note:** the local server *does* work — the first attempt failed only because the server hadn't finished starting. `preview_start` + navigating the browser to `http://localhost:8000` allows real screenshots and DOM inspection. This is the single biggest workflow improvement of the session; design work without it was guesswork. Known limitation: `preview_click` does not reach elements inside a horizontally scrolling container (the week tabs) — use `element.click()` in `preview_eval` instead.
+
+### 2026-09-08 (later still) — Phase 2 done early: game detail
+
+Tapping any game opens a box score sheet: line score, scoring plays by quarter, team stat comparison, and passing/rushing/receiving leaders. Built on a second proxy, `api/game.js`, which whitelists `boxscore` / `scoring-summary` / `team-stats` / `play-by-play` and validates the id as digits.
+
+Things learned building it:
+
+- **Player stat coverage is uneven.** Gettysburg @ Juniata has *no* `rushing` or `passing` player lines at all — only receiving, punting, defense, kicking. UChicago @ Trine has everything. The leaders section has to degrade per category, not assume a full set.
+- `passingAttempts` is sometimes `"0"` while `passingCompletions` is not — so a naive `18/0` line is possible. Guarded.
+- Player names arrive shouted (`DELANEY`) and are title-cased in the UI, keeping hyphen/apostrophe segments capitalised.
+- The line score is reconstructed and **validated against the real final**; when it doesn't reconcile the quarter columns are hidden and the sheet says why. See the corrected defect note above.
+
+**Local dev now runs the real functions.** The scratch dev server routes `/api/*` through the actual `api/*.js` files, so the page under test uses the same code Vercel runs. `index.html` points at `http://localhost:8000/api/...` when on localhost. That means opening `index.html` without the dev server running will fail to load scores — start the server first.
 
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.

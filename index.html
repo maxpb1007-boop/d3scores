@@ -122,6 +122,76 @@
   .fav[aria-pressed="true"] { color: var(--gold); }
   @media (hover: hover) { .fav:hover { color: var(--mid); } .fav[aria-pressed="true"]:hover { color: var(--gold); } }
 
+  /* ---------------- game detail ---------------- */
+  dialog#detail {
+    padding: 0; border: 0; background: var(--card); color: var(--ink);
+    width: 100%; max-width: 100%; height: 100%; max-height: 100%; margin: 0;
+  }
+  dialog#detail::backdrop { background: rgba(12,15,20,0.55); }
+  @media (min-width: 700px) {
+    dialog#detail {
+      width: 620px; max-width: calc(100vw - 40px);
+      height: auto; max-height: calc(100vh - 80px);
+      margin: auto; border-radius: 10px; overflow: hidden;
+    }
+  }
+  .sheet { display: flex; flex-direction: column; height: 100%; max-height: inherit; }
+  .sheet:focus { outline: none; }   /* it's focused on open only to park focus inside */
+
+  .sheet > header { padding: 12px 14px 12px; border-bottom: 1px solid var(--line); flex: none; }
+  .sheet .top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .sheet .kicker { font-size: 10px; font-weight: 700; letter-spacing: 0.9px; text-transform: uppercase; color: var(--mute); }
+  .sheet .kicker.live { color: var(--red); }
+  .sheet .close {
+    margin-left: auto; width: 32px; height: 32px; border-radius: 6px;
+    border: 1px solid var(--line); background: var(--card); color: var(--mid);
+    font-size: 17px; line-height: 1; cursor: pointer;
+  }
+  .sheet .side { display: grid; grid-template-columns: 16px 1fr auto; gap: 10px; align-items: center; }
+  .sheet .side + .side { margin-top: 5px; }
+  .sheet .side .nm { font-size: 17px; font-weight: 500; color: var(--mid); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sheet .side .sc { font-family: "Barlow Condensed", Barlow, sans-serif; font-weight: 700; font-size: 27px; line-height: 1; color: var(--mid); font-variant-numeric: tabular-nums; }
+  .sheet .side.w .nm { color: var(--ink); font-weight: 600; }
+  .sheet .side.w .sc { color: var(--ink); }
+
+  .sheet .body { overflow-y: auto; padding: 4px 14px 22px; -webkit-overflow-scrolling: touch; }
+  .sheet h3 {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--mute); margin: 20px 0 8px;
+  }
+
+  table.line { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  table.line th, table.line td { padding: 5px 4px; text-align: center; font-size: 13px; }
+  table.line th { font-size: 10px; letter-spacing: 0.7px; color: var(--mute); font-weight: 700; }
+  table.line th:first-child, table.line td:first-child { text-align: left; }
+  table.line td.tot { font-weight: 700; color: var(--ink); }
+  table.line tbody tr + tr td { border-top: 1px solid var(--hair); }
+
+  .plays { display: grid; gap: 0; }
+  .qhead { font-size: 11px; font-weight: 700; color: var(--mid); padding: 9px 0 5px; border-bottom: 1px solid var(--hair); }
+  .play { display: grid; grid-template-columns: 14px 40px 1fr; gap: 9px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--hair); font-size: 13px; }
+  .play .clock { color: var(--mute); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .play .txt { color: var(--mid); }
+  .play .sw { width: 10px; height: 10px; border-radius: 2px; align-self: center; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.18); }
+
+  table.cmp { width: 100%; border-collapse: collapse; }
+  table.cmp td { padding: 7px 4px; font-size: 13px; border-top: 1px solid var(--hair); font-variant-numeric: tabular-nums; }
+  table.cmp td.lbl { text-align: center; color: var(--mute); font-size: 11px; }
+  table.cmp td.a { text-align: left; font-weight: 600; }
+  table.cmp td.h { text-align: right; font-weight: 600; }
+
+  .leaders { display: grid; gap: 14px; }
+  @media (min-width: 560px) { .leaders { grid-template-columns: 1fr 1fr; } }
+  .ldr .who { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; margin-bottom: 6px; }
+  .ldr .row { display: grid; grid-template-columns: 54px 1fr; gap: 8px; font-size: 13px; padding: 4px 0; border-top: 1px solid var(--hair); }
+  .ldr .cat { color: var(--mute); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; padding-top: 2px; }
+  .ldr .val { color: var(--mid); }
+  .ldr .val b { color: var(--ink); font-weight: 600; }
+  .note { font-size: 12px; color: var(--mute); margin: 8px 0 0; }
+
+  .game { cursor: pointer; }
+  @media (hover: hover) { .game:hover { border-color: #b9c1cc; } }
+
   .msg { background: var(--card); border: 1px solid var(--line); border-radius: 7px; padding: 32px 18px; text-align: center; color: var(--mid); margin-top: 20px; }
   .msg b { color: var(--ink); font-weight: 600; }
   .msg .hint { display: block; margin-top: 6px; font-size: 13px; color: var(--mute); }
@@ -141,18 +211,20 @@
 <main id="board"><p class="msg">Loading scores…</p></main>
 <footer id="foot"></footer>
 
+<dialog id="detail" aria-label="Game detail"></dialog>
+
 <script src="teams.js"></script>
 <script>
 // ---------------------------------------------------------------------------
 // Where to get the data.
 //
-// On the real site we call our own proxy with a relative path. When opening
-// this file from a local server for testing, that path doesn't exist, so we
-// fall back to the deployed proxy — which works because it sends
-// Access-Control-Allow-Origin: *.
+// On the real site we call our own proxy with a relative path. Locally we call
+// the dev server on port 8000, which runs the same api/*.js handlers, so local
+// testing exercises the real code rather than a stand-in.
 // ---------------------------------------------------------------------------
 const LOCAL = ["localhost", "127.0.0.1", ""].includes(location.hostname);
-const API = LOCAL ? "https://d3scores.vercel.app/api/scoreboard" : "/api/scoreboard";
+const API = LOCAL ? "http://localhost:8000/api/scoreboard" : "/api/scoreboard";
+const GAME_API = LOCAL ? "http://localhost:8000/api/game" : "/api/game";
 
 // The API only gives us slugs like "landmark". These are the display names.
 // Not from the API — conferenceName comes back empty on every team.
@@ -299,7 +371,9 @@ function gameCard(g, { showDay = false } = {}) {
   const side = showDay
     ? shortDayOf(g)
     : (seoOf(g.home) && seoOf(g.home) === seoOf(g.away) ? confName(seoOf(g.home)) : "");
-  return `<article class="game ${s.live ? "is-live" : ""}">
+  return `<article class="game ${s.live ? "is-live" : ""}" data-game="${esc(g.gameID)}"
+      tabindex="0" role="button"
+      aria-label="${esc(g.away.names.short)} at ${esc(g.home.names.short)}, open box score">
     <div class="head ${s.live ? "live" : ""}">
       ${s.live ? '<span class="dot"></span>' : ""}<span>${esc(s.text)}</span>
       ${side ? `<span class="side">${esc(side)}</span>` : ""}
@@ -355,6 +429,245 @@ function render() {
     (pinned.length ? section("Your teams", pinned, { pinned: true, showDay: true }) : "") +
     [...byDay].map(([day, list]) => section(day, list)).join("");
 }
+
+// ---------------------------------------------------------------------------
+// Game detail: line score, scoring plays, team stats, leaders.
+// ---------------------------------------------------------------------------
+const dlg = document.getElementById("detail");
+
+// Points per scoring type, used to rebuild a quarter-by-quarter line score.
+// The API's own running-score fields are all zeroes, so the line score has to
+// be derived. TPC is a two-point conversion.
+const POINTS = { TD: 6, XP: 1, FG: 3, SAF: 2, TPC: 2, "2PT": 2, "2XP": 2 };
+
+const num = (v) => { const n = Number(v); return Number.isFinite(n) ? n : 0; };
+
+function periodLabel(title, i) {
+  const m = String(title).match(/^(\d)/);
+  if (m) return m[1];
+  return /ot|overtime/i.test(title) ? "OT" : String(i + 1);
+}
+
+// Rebuild each team's points per quarter. Returns valid:false when the rebuilt
+// total disagrees with the real final — which happens, because some games are
+// missing a scoring play entirely (Trine, week 1: six points unaccounted for).
+function lineScore(summary) {
+  if (!summary || !summary.periods || !summary.teams) return null;
+  const rows = {};
+  for (const t of summary.teams) rows[String(t.teamId)] = { team: t, cells: [], total: num(t.score) };
+  summary.periods.forEach((p, i) => {
+    for (const k in rows) rows[k].cells[i] = 0;
+    for (const s of p.summary || []) {
+      const r = rows[String(s.teamId)];
+      if (r) r.cells[i] += POINTS[s.scoreType] ?? 0;
+    }
+  });
+  const valid = Object.values(rows).every(r => r.cells.reduce((a, b) => a + b, 0) === r.total);
+  const labels = summary.periods.map((p, i) => periodLabel(p.title, i));
+  return { rows, labels, valid };
+}
+
+function sideOf(list, home) {
+  return (list || []).find(t => Boolean(t.isHome) === home);
+}
+
+function lineScoreHTML(ls) {
+  if (!ls) return "";
+  const away = sideOf(Object.values(ls.rows).map(r => r.team), false);
+  const home = sideOf(Object.values(ls.rows).map(r => r.team), true);
+  const order = [away, home].filter(Boolean);
+  if (order.length !== 2) return "";
+
+  if (!ls.valid) {
+    return `<h3>Score</h3>
+      <table class="line"><tbody>
+        ${order.map(t => `<tr><td>${esc(t.nameShort)}</td><td class="tot">${num(t.score)}</td></tr>`).join("")}
+      </tbody></table>
+      <p class="note">Quarter-by-quarter detail isn't available for this game — the scoring feed is missing at least one play, so the quarters wouldn't add up to the final.</p>`;
+  }
+
+  return `<h3>Line score</h3>
+    <table class="line">
+      <thead><tr><th></th>${ls.labels.map(l => `<th>${esc(l)}</th>`).join("")}<th>T</th></tr></thead>
+      <tbody>
+        ${order.map(t => {
+          const r = ls.rows[String(t.teamId)];
+          return `<tr><td>${esc(t.nameShort)}</td>${r.cells.map(c => `<td>${c}</td>`).join("")}<td class="tot">${r.total}</td></tr>`;
+        }).join("")}
+      </tbody>
+    </table>`;
+}
+
+function playsHTML(summary) {
+  if (!summary || !summary.periods) return "";
+  const colorFor = {};
+  for (const t of summary.teams || []) colorFor[String(t.teamId)] = teamColor(t.seoname);
+  const chunks = summary.periods.map(p => {
+    const list = (p.summary || []).filter(s => s.scoreType !== "XP" && s.scoreType !== "TPC");
+    if (!list.length) return "";
+    return `<div class="qhead">${esc(p.title)}</div>` + list.map(s => `
+      <div class="play">
+        <span class="sw" style="background:${esc(colorFor[String(s.teamId)] || FALLBACK_COLOR)}"></span>
+        <span class="clock">${esc(s.time || "—")}</span>
+        <span class="txt">${esc(s.scoreText)}</span>
+      </div>`).join("");
+  }).filter(Boolean);
+  if (!chunks.length) return "";
+  return `<h3>Scoring</h3><div class="plays">${chunks.join("")}</div>`;
+}
+
+function statsHTML(box) {
+  const teams = box.teams || [];
+  const away = sideOf(teams, false), home = sideOf(teams, true);
+  if (!away || !home) return "";
+  const statFor = (t) => (box.teamBoxscore || []).find(b => String(b.teamId) === String(t.teamId));
+  const a = statFor(away), h = statFor(home);
+  if (!a || !h || !a.teamStats || !h.teamStats) return "";
+
+  const rows = [
+    ["First downs", s => s.firstDowns],
+    ["Total yards", s => s.teamYards],
+    ["Passing yards", s => s.TeamPassingStats && s.TeamPassingStats.passingYards],
+    ["Rushing yards", s => s.TeamRushingStats && s.TeamRushingStats.rushingYards],
+    ["Third downs", s => `${num(s.thirdDowns)}/${num(s.thirdDownAttempts)}`],
+    ["Penalties", s => `${num(s.penalty)}–${num(s.penaltyYards)} yds`],
+    ["Turnovers", s => num(s.fumblesLost) + num(s.TeamPassingStats && s.TeamPassingStats.passingInterceptions)],
+    ["Sacks", s => s.TeamDefenseStats && s.TeamDefenseStats.sacks],
+  ];
+
+  return `<h3>Team stats</h3>
+    <table class="cmp"><tbody>
+      <tr><td class="a">${esc(away.nameShort)}</td><td class="lbl"></td><td class="h">${esc(home.nameShort)}</td></tr>
+      ${rows.map(([label, get]) => {
+        const av = get(a.teamStats), hv = get(h.teamStats);
+        if (av === undefined || av === null || hv === undefined || hv === null) return "";
+        return `<tr><td class="a">${esc(av)}</td><td class="lbl">${esc(label)}</td><td class="h">${esc(hv)}</td></tr>`;
+      }).join("")}
+    </tbody></table>`;
+}
+
+// Best passer / rusher / receiver per team, by yards.
+function leadersHTML(box) {
+  const teams = box.teams || [];
+  const away = sideOf(teams, false), home = sideOf(teams, true);
+  if (!away || !home) return "";
+
+  const best = (players, cat, yardKey) => {
+    const list = (players || []).filter(p => p.category === cat);
+    if (!list.length) return null;
+    return list.reduce((a, b) => (num(b[yardKey]) > num(a[yardKey]) ? b : a));
+  };
+  const who = (p) => `${(p.firstName || "").charAt(0)}. ${titleCase(p.lastName || "")}`.trim();
+
+  const block = (t) => {
+    const tb = (box.teamBoxscore || []).find(b => String(b.teamId) === String(t.teamId));
+    if (!tb) return "";
+    const ps = tb.playerStats || [];
+    const pass = best(ps, "passing", "passingYards");
+    const rush = best(ps, "rushing", "rushingYards");
+    const rec = best(ps, "receiving", "receivingYards");
+    const lines = [];
+    if (pass && num(pass.passingYards)) {
+      const att = num(pass.passingAttempts);
+      const cmp = num(pass.passingCompletions);
+      const split = att ? `${cmp}/${att}, ` : `${cmp} comp, `;
+      lines.push(["Pass", `${who(pass)} — ${split}<b>${num(pass.passingYards)} yds</b>${num(pass.passingTDs) ? `, ${num(pass.passingTDs)} TD` : ""}`]);
+    }
+    if (rush && num(rush.rushingYards)) {
+      lines.push(["Rush", `${who(rush)} — ${num(rush.rushingAttempts)} car, <b>${num(rush.rushingYards)} yds</b>${num(rush.rushingTDs) ? `, ${num(rush.rushingTDs)} TD` : ""}`]);
+    }
+    if (rec && num(rec.receivingYards)) {
+      lines.push(["Rec", `${who(rec)} — ${num(rec.receivingReceptions)} rec, <b>${num(rec.receivingYards)} yds</b>${num(rec.receivingTDs) ? `, ${num(rec.receivingTDs)} TD` : ""}`]);
+    }
+    if (!lines.length) return "";
+    return `<div class="ldr">
+      <div class="who"><span class="sw" style="background:${esc(teamColor(t.seoname))};width:12px;height:12px;border-radius:2px;display:inline-block"></span>${esc(t.nameShort)}</div>
+      ${lines.map(([c, v]) => `<div class="row"><span class="cat">${c}</span><span class="val">${v}</span></div>`).join("")}
+    </div>`;
+  };
+
+  const inner = [block(away), block(home)].filter(Boolean).join("");
+  if (!inner) return "";
+  return `<h3>Leaders</h3><div class="leaders">${inner}</div>`;
+}
+
+// Player names arrive shouted ("DELANEY"). Title-case them, keeping the
+// hyphen and apostrophe pieces capitalised (O'Brien, Parks-Gill).
+function titleCase(s) {
+  return String(s).toLowerCase().replace(/(^|[\s'’-])([a-z])/g, (_, sep, ch) => sep + ch.toUpperCase());
+}
+
+function sheetHeader(g, statusText, live) {
+  const decided = hasScore(g);
+  const row = (team, opponent) => {
+    const won = decided && team.winner;
+    const lost = decided && opponent.winner && !team.winner;
+    return `<div class="side ${won ? "w" : ""} ${lost ? "l" : ""}">
+      <span class="swatch" style="background:${esc(teamColor(team.names.seo))}"></span>
+      <span class="nm">${esc(team.names.short)}</span>
+      <span class="sc">${esc(team.score)}</span>
+    </div>`;
+  };
+  return `<header>
+    <div class="top">
+      <span class="kicker ${live ? "live" : ""}">${esc(statusText)}</span>
+      <span class="kicker" style="letter-spacing:.3px;text-transform:none">${esc(shortDayOf(g))}</span>
+      <button class="close" id="closeDetail" aria-label="Close">✕</button>
+    </div>
+    ${row(g.away, g.home)}
+    ${row(g.home, g.away)}
+  </header>`;
+}
+
+async function openGame(g) {
+  const s = statusOf(g);
+  dlg.innerHTML = `<div class="sheet" tabindex="-1">${sheetHeader(g, s.text, s.live)}
+    <div class="body"><p class="note" style="padding:18px 0">Loading box score…</p></div></div>`;
+  if (!dlg.open) dlg.showModal();
+  // Park focus on the sheet rather than letting it land on the close button,
+  // which would show a focus ring that reads like an error state.
+  dlg.querySelector(".sheet").focus();
+
+  if (!hasScore(g)) {
+    dlg.querySelector(".body").innerHTML =
+      `<p class="note" style="padding:18px 0">This game hasn't started. Kickoff ${esc(g.startTime || "TBA")}.</p>`;
+    return;
+  }
+
+  const get = async (resource) => {
+    const r = await fetch(`${GAME_API}?id=${encodeURIComponent(g.gameID)}&resource=${resource}`);
+    if (!r.ok) throw new Error(resource + " " + r.status);
+    return r.json();
+  };
+
+  const [box, summary] = await Promise.all([
+    get("boxscore").catch(() => null),
+    get("scoring-summary").catch(() => null),
+  ]);
+
+  if (!box && !summary) {
+    dlg.querySelector(".body").innerHTML =
+      `<p class="note" style="padding:18px 0">The box score for this game isn't available yet.</p>`;
+    return;
+  }
+
+  const parts = [
+    summary ? lineScoreHTML(lineScore(summary)) : "",
+    summary ? playsHTML(summary) : "",
+    box ? statsHTML(box) : "",
+    box ? leadersHTML(box) : "",
+  ].filter(Boolean);
+
+  dlg.querySelector(".body").innerHTML = parts.length
+    ? parts.join("")
+    : `<p class="note" style="padding:18px 0">No box score detail was published for this game.</p>`;
+}
+
+dlg.addEventListener("click", (e) => {
+  if (e.target.closest("#closeDetail")) { dlg.close(); return; }
+  // Clicking the backdrop closes: the dialog element itself is the backdrop area.
+  if (e.target === dlg) dlg.close();
+});
 
 // The week tabs are built once and then only re-flagged. Rebuilding them on
 // every refresh would also re-run scrollIntoView, sliding the strip sideways
@@ -416,12 +729,29 @@ document.getElementById("weeks").addEventListener("click", e => {
 
 document.getElementById("board").addEventListener("click", e => {
   const btn = e.target.closest("button.fav");
-  if (!btn) return;
-  const seo = btn.dataset.seo;
-  if (favs.has(seo)) favs.delete(seo); else favs.add(seo);
-  saveFavs();
-  buildConfMenu();
-  render();
+  if (btn) {
+    const seo = btn.dataset.seo;
+    if (favs.has(seo)) favs.delete(seo); else favs.add(seo);
+    saveFavs();
+    buildConfMenu();
+    render();
+    return;
+  }
+  const card = e.target.closest(".game[data-game]");
+  if (card) {
+    const g = games.find(x => String(x.gameID) === card.dataset.game);
+    if (g) openGame(g);
+  }
+});
+
+// Cards are divs with role=button, so Enter and Space have to be wired by hand.
+document.getElementById("board").addEventListener("keydown", e => {
+  if (e.key !== "Enter" && e.key !== " ") return;
+  const card = e.target.closest(".game[data-game]");
+  if (!card || e.target.closest("button.fav")) return;
+  e.preventDefault();
+  const g = games.find(x => String(x.gameID) === card.dataset.game);
+  if (g) openGame(g);
 });
 
 buildWeeks();
