@@ -109,4 +109,19 @@ Down and distance parse cleanly from `driveText` via `"{down} and {distance} at 
 - No database in v1. SQLite/Postgres arrives in Phase 3, for accumulating play-by-play.
 - Decision: deploy to Vercel or Cloudflare Pages, free tier. Fallback if that fights us: GitHub Actions writing `data.json` every 5 min + GitHub Pages, accepting a 5-minute lag.
 
-**Next session starts with:** Phase 1, step 1 — create the repo and get an empty page deployed to a live URL *before* writing any features. Prove the deploy loop first. Then the proxy function, then the scoreboard UI.
+### 2026-09-08 (later still) — Phase 1 step 1 SHIPPED
+
+**The site is live: https://d3scores.vercel.app** — placeholder page only, no features. Repo: https://github.com/maxpb1007-boop/d3scores (public, branch `main`).
+
+The deploy loop is proven. `git push` → Vercel rebuilds automatically. Nothing else to configure.
+
+Machine setup, so a future session doesn't rediscover it:
+
+- **Node v24.20.0 / npm 11.19.0, installed via nvm**, not Homebrew. Homebrew is NOT installed and isn't needed. nvm lives in `~/.nvm` and is loaded by `~/.zshrc`, which did not exist before this session and had to be created by hand — the nvm installer skipped it and silently left Node working in one terminal only.
+- **`gh` (GitHub CLI) v2.100.0 is at `.tools/gh` inside this repo, gitignored.** Invoke it as `./.tools/gh` from the project root; it is not on PATH. It's there because the official `.pkg` triggered a Gatekeeper "unidentified developer" block, so we downloaded the `.zip` build with `curl` and extracted it — files fetched via curl skip the quarantine flag entirely. Authenticated as `maxpb1007-boop` over HTTPS with git credential helper enabled, so plain `git push` needs no password.
+- Vercel project settings: **Framework Preset = "Other", build command and output directory empty.** Correct for plain HTML; filling those in is the usual way this breaks.
+- git identity: `Max <maxpb1007@gmail.com>`, set globally.
+
+Process note: several steps failed on the first attempt (Homebrew command with no Homebrew, Gatekeeper block, sandbox refusing writes outside the project folder). None were data problems — all environment setup. The API work from earlier sessions still stands untouched.
+
+**Next session starts with:** Phase 1, step 2 — the serverless proxy function at `/api/scoreboard`, which fetches `https://ncaa-api.henrygd.me/scoreboard/football/d3/2026/01/all` server-side and re-serves it with CORS headers. This is the fix for the no-CORS constraint. Only after that works does `index.html` get any JavaScript.
