@@ -166,4 +166,14 @@ Things the data forced, which are not obvious from reading the code:
 
 **Testing without a browser:** the loopback network is blocked in the agent sandbox, so local servers can't be previewed. Instead the `<script>` is extracted from `index.html` and run in `node:vm` against a fake `document` and a stubbed `fetch` reading saved JSON. That caught both real bugs above. Worth redoing whenever the render logic changes.
 
+### 2026-09-08 (final) — ESPN-style rebuild, real colours, favourite teams
+
+The dark theme was rejected twice as looking generic. Rebuilt light, ESPN-shaped: white cards in a responsive grid (1 / 2 / 3 columns), Barlow + Barlow Condensed, week tabs across the top, winner marked with a caret, red used only for live games and the active week.
+
+**Favourite teams shipped.** Star on every team row. Stored in `localStorage` under `d3scores.favourites` as an array of `seoname` — browser-only, no accounts, no server, guarded in try/catch because private browsing makes `localStorage` throw. Favourited games are pinned into a "Your teams" group at the top **and removed from the day groups below**, so no game renders twice. The conference dropdown gains a "Your teams (n)" option when at least one team is followed.
+
+Verified in a real browser: favourites survive reload, the pinned group counts match, totals stay at 117 with no duplication, and both empty states render with a way forward.
+
+**Preview tooling note:** the local server *does* work — the first attempt failed only because the server hadn't finished starting. `preview_start` + navigating the browser to `http://localhost:8000` allows real screenshots and DOM inspection. This is the single biggest workflow improvement of the session; design work without it was guesswork. Known limitation: `preview_click` does not reach elements inside a horizontally scrolling container (the week tabs) — use `element.click()` in `preview_eval` instead.
+
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.

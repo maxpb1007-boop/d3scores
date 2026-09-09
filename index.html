@@ -7,171 +7,132 @@
 <title>D3 Scores — NCAA Division III Football</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --page:   #eef0f3;
-    --card:   #ffffff;
-    --line:   #d7dce3;
-    --hair:   #e8ebef;
-    --ink:    #16191d;
-    --mid:    #5d6570;
-    --mute:   #939ba6;
-    --red:    #ce1126;
-    --shell:  #ffffff;
+    --page:  #eceef1;
+    --card:  #ffffff;
+    --line:  #d5dae1;
+    --hair:  #eaedf1;
+    --ink:   #14171b;
+    --mid:   #4f5762;
+    --mute:  #8b939e;
+    --red:   #c8102e;
+    --gold:  #e8a33d;
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html { -webkit-text-size-adjust: 100%; }
   body {
-    margin: 0;
-    background: var(--page);
-    color: var(--ink);
+    margin: 0; background: var(--page); color: var(--ink);
     font: 400 15px/1.4 Barlow, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
+  :focus-visible { outline: 2px solid var(--red); outline-offset: 2px; border-radius: 3px; }
 
-  /* ---------- masthead ---------- */
-  .shell {
-    position: sticky; top: 0; z-index: 10;
-    background: var(--shell);
-    border-bottom: 1px solid var(--line);
+  /* ---------------- masthead ---------------- */
+  .shell { position: sticky; top: 0; z-index: 10; background: var(--card); border-bottom: 1px solid var(--line); }
+  .bar { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 10px 16px 9px; }
+
+  .mark { margin: 0; display: flex; align-items: center; gap: 8px; flex: none; }
+  .mark .d3 {
+    background: var(--red); color: #fff;
+    font-family: "Barlow Condensed", Barlow, sans-serif; font-weight: 700;
+    font-size: 17px; line-height: 1; letter-spacing: 0.5px;
+    padding: 6px 7px 5px; border-radius: 4px;
   }
-  .bar {
-    max-width: 1040px; margin: 0 auto;
-    display: flex; align-items: center; gap: 12px;
-    padding: 11px 16px 10px;
-  }
-  .mark {
+  .mark .word {
     font-family: "Barlow Condensed", Barlow, sans-serif;
-    font-weight: 700; font-size: 25px; line-height: 1;
-    letter-spacing: 0.2px; margin: 0;
-    display: flex; align-items: baseline; gap: 7px;
-    white-space: nowrap; flex: none;
-  }
-  .mark i {
-    font-style: normal; font-family: Barlow, sans-serif;
-    font-size: 10px; font-weight: 600; letter-spacing: 1.4px;
-    color: var(--mute); text-transform: uppercase;
-  }
-  /* The tagline is the first thing to go when the bar gets tight. */
-  @media (max-width: 460px) { .mark i { display: none; } }
-  select {
-    margin-left: auto;
-    font: 500 13px Barlow, sans-serif; color: var(--ink);
-    background: var(--card); border: 1px solid var(--line);
-    border-radius: 5px; height: 32px; padding: 0 26px 0 9px;
-    min-width: 0; max-width: 200px;
-    appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'><path d='M2 4.5l4 4 4-4' fill='none' stroke='%235d6570' stroke-width='1.7' stroke-linecap='round'/></svg>");
-    background-repeat: no-repeat; background-position: right 8px center;
+    font-weight: 700; font-size: 24px; line-height: 1; letter-spacing: 0.3px;
   }
 
-  /* Week strip, scrolled horizontally like a date rail. */
-  .weeks {
-    max-width: 1040px; margin: 0 auto;
-    display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none;
-    padding: 0 10px;
+  select {
+    margin-left: auto; min-width: 0; max-width: 210px;
+    font: 500 13px Barlow, sans-serif; color: var(--ink);
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    height: 33px; padding: 0 27px 0 10px; appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'><path d='M2 4.5l4 4 4-4' fill='none' stroke='%234f5762' stroke-width='1.7' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat; background-position: right 9px center;
   }
+
+  .weeks { max-width: 1080px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; padding: 0 8px; }
   .weeks::-webkit-scrollbar { display: none; }
   .weeks button {
     flex: none; background: none; border: 0; cursor: pointer;
     font: 600 13px Barlow, sans-serif; color: var(--mid);
-    padding: 7px 11px 9px; position: relative; white-space: nowrap;
+    padding: 8px 12px 10px; position: relative; white-space: nowrap;
   }
   .weeks button[aria-current="true"] { color: var(--ink); }
   .weeks button[aria-current="true"]::after {
-    content: ""; position: absolute; left: 8px; right: 8px; bottom: 0;
-    height: 3px; background: var(--red); border-radius: 2px 2px 0 0;
+    content: ""; position: absolute; left: 9px; right: 9px; bottom: 0;
+    height: 3px; background: var(--red);
   }
 
-  /* ---------- board ---------- */
-  main { max-width: 1040px; margin: 0 auto; padding: 0 16px 48px; }
+  /* ---------------- board ---------------- */
+  main { max-width: 1080px; margin: 0 auto; padding: 0 16px 48px; }
 
-  .day {
-    display: flex; align-items: center; gap: 12px;
-    margin: 22px 0 11px;
-  }
-  .day h2 {
+  .group { margin-top: 20px; }
+  .group > header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 9px; }
+  .group h2 {
     font-family: "Barlow Condensed", Barlow, sans-serif;
-    font-weight: 700; font-size: 19px; letter-spacing: 0.2px;
-    margin: 0; color: var(--ink);
+    font-weight: 700; font-size: 20px; letter-spacing: 0.2px; margin: 0;
   }
-  .day .count { font-size: 12px; color: var(--mute); font-weight: 500; }
-  .day .rule { flex: 1; height: 1px; background: var(--line); }
+  .group .n { font-size: 12px; color: var(--mute); font-weight: 500; }
+  .group .rule { flex: 1; height: 1px; background: var(--line); align-self: center; }
+  .group.pinned h2 { color: var(--red); }
 
-  .grid { display: grid; gap: 9px; grid-template-columns: 1fr; }
-  @media (min-width: 620px) { .grid { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 940px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+  .grid { display: grid; gap: 8px; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 960px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
 
-  .game {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 7px 12px 8px;
-  }
-  .game.is-live { border-color: rgba(206,17,38,0.45); }
+  .game { background: var(--card); border: 1px solid var(--line); border-radius: 7px; padding: 8px 6px 8px 12px; }
+  .game.is-live { border-color: var(--red); }
 
   .head {
     display: flex; align-items: center; gap: 6px;
-    font-size: 11px; font-weight: 600; color: var(--mute);
-    letter-spacing: 0.5px; text-transform: uppercase;
-    padding-bottom: 6px; margin-bottom: 5px;
-    border-bottom: 1px solid var(--hair);
+    font-size: 10px; font-weight: 700; color: var(--mute);
+    letter-spacing: 0.9px; text-transform: uppercase;
+    padding: 0 6px 7px 0; margin-bottom: 6px; border-bottom: 1px solid var(--hair);
   }
-  .head .when { margin-left: auto; letter-spacing: 0.2px; text-transform: none; font-weight: 500; }
+  .head .side { margin-left: auto; font-weight: 500; letter-spacing: 0.3px; text-transform: none; font-size: 11px; }
   .head.live { color: var(--red); }
-  .head .dot {
-    width: 6px; height: 6px; border-radius: 50%; background: var(--red);
-    animation: pulse 1.6s ease-in-out infinite;
-  }
+  .head .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 1.6s ease-in-out infinite; }
   @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .2 } }
   @media (prefers-reduced-motion: reduce) { .head .dot { animation: none } }
 
-  .team {
-    display: grid; grid-template-columns: 16px 1fr auto 9px;
-    align-items: center; gap: 10px;
-    padding: 1px 0;
-  }
-  /* Stands in for the logo ESPN would show. The colour is the school's own,
-     so the inset ring keeps very pale schools from vanishing on white. */
-  .swatch {
-    width: 16px; height: 16px; border-radius: 3px;
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.16);
-  }
-  .name {
-    min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    font-size: 15px; font-weight: 500; color: var(--mid);
-  }
+  .team { display: grid; grid-template-columns: 14px 1fr auto 10px 26px; align-items: center; gap: 9px; }
+  .swatch { width: 14px; height: 14px; border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.18); }
+  .name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; font-weight: 500; color: var(--mid); }
   .pts {
-    font-family: "Barlow Condensed", Barlow, sans-serif;
-    font-weight: 700; font-size: 21px; line-height: 1;
-    font-variant-numeric: tabular-nums; color: var(--mid);
+    font-family: "Barlow Condensed", Barlow, sans-serif; font-weight: 700;
+    font-size: 23px; line-height: 1.05; font-variant-numeric: tabular-nums; color: var(--mid);
   }
-  .caret { width: 9px; }
+  .caret { width: 10px; }
   .won .name { color: var(--ink); font-weight: 600; }
   .won .pts { color: var(--ink); }
-  .won .caret::before {
-    content: ""; display: block;
-    border: 4.5px solid transparent; border-right-color: var(--ink);
-    margin-left: -1px;
-  }
+  .won .caret::before { content: ""; display: block; border: 5px solid transparent; border-right-color: var(--ink); margin-left: -2px; }
   /* Text dims for the losing side, but the swatch does not — dimming a real
-     school colour misreports it (Catholic's red turns pink). */
+     school colour misreports it (Catholic's red would read as pink). */
   .lost .name, .lost .pts { color: var(--mute); }
 
-  .msg {
-    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
-    padding: 34px 18px; text-align: center; color: var(--mid); margin-top: 20px;
+  .fav {
+    width: 26px; height: 26px; padding: 0; border: 0; background: none; cursor: pointer;
+    display: grid; place-items: center; color: #ccd2da;
   }
-  .msg b { color: var(--ink); }
-  footer { max-width: 1040px; margin: 0 auto; padding: 0 16px 34px; font-size: 12px; color: var(--mute); }
+  .fav svg { display: block; }
+  .fav[aria-pressed="true"] { color: var(--gold); }
+  @media (hover: hover) { .fav:hover { color: var(--mid); } .fav[aria-pressed="true"]:hover { color: var(--gold); } }
+
+  .msg { background: var(--card); border: 1px solid var(--line); border-radius: 7px; padding: 32px 18px; text-align: center; color: var(--mid); margin-top: 20px; }
+  .msg b { color: var(--ink); font-weight: 600; }
+  .msg .hint { display: block; margin-top: 6px; font-size: 13px; color: var(--mute); }
+  footer { max-width: 1080px; margin: 0 auto; padding: 4px 16px 34px; font-size: 12px; color: var(--mute); }
 </style>
 </head>
 <body>
 
 <div class="shell">
   <div class="bar">
-    <h1 class="mark">D3 Scores <i>NCAA Division III</i></h1>
+    <h1 class="mark"><span class="d3">D3</span><span class="word">Scores</span></h1>
     <select id="conf" aria-label="Filter by conference"></select>
   </div>
   <nav class="weeks" id="weeks" aria-label="Week"></nav>
@@ -240,6 +201,24 @@ let week = currentWeek();
 let conf = "landmark";     // PLAN.md: default the view to Landmark
 let games = [];
 
+// --- favourite teams -------------------------------------------------------
+// Stored in the browser only. No accounts, no server, nothing to leak. Private
+// browsing can make localStorage throw, so every access is guarded.
+const FAV_KEY = "d3scores.favourites";
+
+function loadFavs() {
+  try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY)) || []); }
+  catch { return new Set(); }
+}
+function saveFavs() {
+  try { localStorage.setItem(FAV_KEY, JSON.stringify([...favs])); }
+  catch { /* storage unavailable; favourites just won't survive a reload */ }
+}
+let favs = loadFavs();
+
+const isFavTeam = (seo) => favs.has(seo);
+const isFavGame = (g) => isFavTeam(g.home.names.seo) || isFavTeam(g.away.names.seo);
+
 // Turn text from the API into text that is safe to put in the page.
 // Without this, a team name containing < or & could break the markup.
 function esc(s) {
@@ -247,50 +226,12 @@ function esc(s) {
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 }
 
-function confName(seo) {
-  return CONFERENCES[seo] || seo || "Unknown";
-}
+function confName(seo) { return CONFERENCES[seo] || seo || "Unknown"; }
 
 // A team can list more than one conference; take the first non-empty slug.
 function seoOf(side) {
-  const list = side.conferences || [];
-  for (const c of list) if (c.conferenceSeo) return c.conferenceSeo;
+  for (const c of side.conferences || []) if (c.conferenceSeo) return c.conferenceSeo;
   return "";
-}
-
-// Games are grouped under the day they're played. startDate arrives as
-// "09/03/2026"; this turns it into "Thursday, Sep 3".
-const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-function groupOf(g) {
-  const [m, d, y] = String(g.startDate).split("/").map(Number);
-  if (!m || !d || !y) return "Date TBA";
-  const dt = new Date(y, m - 1, d);
-  return `${DAYS[dt.getDay()]}, ${MONTHS[m - 1]} ${d}`;
-}
-
-function hasScore(g) {
-  return g.home.score !== "" || g.away.score !== "";
-}
-
-// Working out whether a game is done, live, or upcoming is fiddly, because
-// gameState lies: some played games still say "pre". Two rules keep it honest:
-//   - only treat a game as FINAL when it actually says FINAL
-//   - otherwise, if there are scores on the board, it is live
-function statusOf(g) {
-  const isFinal = g.gameState === "final" ||
-                  g.finalMessage === "FINAL" ||
-                  g.currentPeriod === "FINAL";
-  if (isFinal) return { text: "Final", live: false };
-
-  if (g.gameState === "live" || hasScore(g)) {
-    // contestClock is often "0:00" or "00:00" between plays — that's noise, not time.
-    const clock = /^0?0:00$/.test(g.contestClock) ? "" : g.contestClock;
-    const bits = [g.currentPeriod, clock].filter(Boolean).join(" ");
-    return { text: bits || "In progress", live: true };
-  }
-  return { text: g.startTime || "Scheduled", live: false };
 }
 
 // Real school colours, from teams.js. Teams we couldn't harvest (mostly
@@ -300,64 +241,119 @@ function teamColor(seo) {
   return (window.TEAM_COLORS && window.TEAM_COLORS[seo]) || FALLBACK_COLOR;
 }
 
+// Games are grouped under the day they're played. startDate arrives as
+// "09/03/2026"; this turns it into "Thursday, Sep 3".
+const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+function dayOf(g) {
+  const [m, d, y] = String(g.startDate).split("/").map(Number);
+  if (!m || !d || !y) return "Date TBA";
+  return `${DAYS[new Date(y, m - 1, d).getDay()]}, ${MONTHS[m - 1]} ${d}`;
+}
+function shortDayOf(g) {
+  const [m, d, y] = String(g.startDate).split("/").map(Number);
+  if (!m || !d || !y) return "";
+  return `${DAYS[new Date(y, m - 1, d).getDay()].slice(0, 3)} ${MONTHS[m - 1]} ${d}`;
+}
+
+function hasScore(g) { return g.home.score !== "" || g.away.score !== ""; }
+
+// Working out whether a game is done, live, or upcoming is fiddly, because
+// gameState lies: some played games still say "pre". Two rules keep it honest:
+//   - only treat a game as FINAL when it actually says FINAL
+//   - otherwise, if there are scores on the board, it is live
+function statusOf(g) {
+  const isFinal = g.gameState === "final" || g.finalMessage === "FINAL" || g.currentPeriod === "FINAL";
+  if (isFinal) return { text: "Final", live: false };
+  if (g.gameState === "live" || hasScore(g)) {
+    // contestClock is often "0:00" or "00:00" between plays — noise, not time.
+    const clock = /^0?0:00$/.test(g.contestClock) ? "" : g.contestClock;
+    return { text: [g.currentPeriod, clock].filter(Boolean).join(" ") || "In progress", live: true };
+  }
+  return { text: g.startTime || "Scheduled", live: false };
+}
+
+const STAR = `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 3.9l2.47 5.01 5.53.8-4 3.9.94 5.5L12 16.51 7.06 19.1l.94-5.5-4-3.9 5.53-.8z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+const STAR_OFF = `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 3.9l2.47 5.01 5.53.8-4 3.9.94 5.5L12 16.51 7.06 19.1l.94-5.5-4-3.9 5.53-.8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>`;
+
 function teamRow(team, opponent, decided) {
+  const seo = team.names.seo;
   const won = decided && team.winner;
   const lost = decided && opponent.winner && !team.winner;
+  const fav = isFavTeam(seo);
   return `<div class="team ${won ? "won" : ""} ${lost ? "lost" : ""}">
-    <span class="swatch" style="background:${esc(teamColor(team.names.seo))}"></span>
+    <span class="swatch" style="background:${esc(teamColor(seo))}"></span>
     <span class="name">${esc(team.names.short)}</span>
     <span class="pts">${esc(team.score)}</span>
     <span class="caret"></span>
+    <button class="fav" data-seo="${esc(seo)}" aria-pressed="${fav}"
+      aria-label="${fav ? "Remove" : "Add"} ${esc(team.names.short)} ${fav ? "from" : "to"} your teams"
+      title="${fav ? "Remove from" : "Add to"} your teams">${fav ? STAR : STAR_OFF}</button>
   </div>`;
 }
 
-function gameCard(g) {
+function gameCard(g, { showDay = false } = {}) {
   const s = statusOf(g);
   const decided = hasScore(g);
-  const conference = seoOf(g.home) && seoOf(g.home) === seoOf(g.away)
-    ? confName(seoOf(g.home)) : "";
+  const side = showDay
+    ? shortDayOf(g)
+    : (seoOf(g.home) && seoOf(g.home) === seoOf(g.away) ? confName(seoOf(g.home)) : "");
   return `<article class="game ${s.live ? "is-live" : ""}">
     <div class="head ${s.live ? "live" : ""}">
       ${s.live ? '<span class="dot"></span>' : ""}<span>${esc(s.text)}</span>
-      ${conference ? `<span class="when">${esc(conference)}</span>` : ""}
+      ${side ? `<span class="side">${esc(side)}</span>` : ""}
     </div>
     ${teamRow(g.away, g.home, decided)}
     ${teamRow(g.home, g.away, decided)}
   </article>`;
 }
 
+function section(title, list, { pinned = false, showDay = false } = {}) {
+  return `<section class="group ${pinned ? "pinned" : ""}">
+    <header>
+      <h2>${esc(title)}</h2>
+      <span class="n">${list.length} game${list.length === 1 ? "" : "s"}</span>
+      <span class="rule"></span>
+    </header>
+    <div class="grid">${list.map(g => gameCard(g, { showDay })).join("")}</div>
+  </section>`;
+}
+
 function render() {
   const board = document.getElementById("board");
-
-  const shown = conf === "all"
-    ? games
-    : games.filter(g => seoOf(g.home) === conf || seoOf(g.away) === conf);
-
   markWeek();
 
+  let shown = games;
+  if (conf === "favourites") shown = games.filter(isFavGame);
+  else if (conf !== "all") shown = games.filter(g => seoOf(g.home) === conf || seoOf(g.away) === conf);
+
   if (!shown.length) {
-    board.innerHTML = `<p class="msg">No <b>${esc(conf === "all" ? "Division III" : confName(conf))}</b> games scheduled in week ${week}.</p>`;
+    board.innerHTML = conf === "favourites"
+      ? `<p class="msg">None of <b>your teams</b> play in week ${week}.
+           <span class="hint">Pick another week above, or choose a conference to follow more teams.</span></p>`
+      : `<p class="msg">No <b>${esc(conf === "all" ? "Division III" : confName(conf))}</b> games in week ${week}.
+           <span class="hint">Try another week above.</span></p>`;
     return;
   }
 
-  // Bucket the games by day. `shown` is already in kickoff order, and a Map
-  // keeps insertion order, so the days come out chronologically for free.
-  const buckets = new Map();
-  for (const g of shown) {
-    const k = groupOf(g);
-    if (!buckets.has(k)) buckets.set(k, []);
-    buckets.get(k).push(g);
+  // Favourites ride at the top, and are taken out of the day groups below so
+  // no game appears twice.
+  const pinned = conf === "favourites" ? [] : shown.filter(isFavGame);
+  const rest = pinned.length ? shown.filter(g => !isFavGame(g)) : shown;
+
+  // `rest` is already in kickoff order and a Map keeps insertion order, so the
+  // days come out chronologically for free.
+  const byDay = new Map();
+  for (const g of rest) {
+    const k = dayOf(g);
+    if (!byDay.has(k)) byDay.set(k, []);
+    byDay.get(k).push(g);
   }
 
-  board.innerHTML = [...buckets].map(([day, list]) => `
-    <section>
-      <div class="day">
-        <h2>${esc(day)}</h2>
-        <span class="count">${list.length} game${list.length === 1 ? "" : "s"}</span>
-        <span class="rule"></span>
-      </div>
-      <div class="grid">${list.map(gameCard).join("")}</div>
-    </section>`).join("");
+  board.innerHTML =
+    (pinned.length ? section("Your teams", pinned, { pinned: true, showDay: true }) : "") +
+    [...byDay].map(([day, list]) => section(day, list)).join("");
 }
 
 // The week tabs are built once and then only re-flagged. Rebuilding them on
@@ -368,7 +364,6 @@ function buildWeeks() {
     Array.from({ length: MAX_WEEK }, (_, i) => i + 1).map(w =>
       `<button data-week="${w}" aria-current="${w === week}">Week ${w}</button>`).join("");
 }
-
 function markWeek({ scroll = false } = {}) {
   for (const b of document.querySelectorAll("#weeks button")) {
     const on = Number(b.dataset.week) === week;
@@ -379,13 +374,14 @@ function markWeek({ scroll = false } = {}) {
 
 function buildConfMenu() {
   const seen = new Set();
-  for (const g of games) {
-    for (const s of [seoOf(g.home), seoOf(g.away)]) if (s) seen.add(s);
-  }
+  for (const g of games) for (const s of [seoOf(g.home), seoOf(g.away)]) if (s) seen.add(s);
   const opts = [...seen].sort((a, b) => confName(a).localeCompare(confName(b)));
   const sel = document.getElementById("conf");
-  sel.innerHTML = `<option value="all">All of Division III</option>` +
+  sel.innerHTML =
+    (favs.size ? `<option value="favourites">Your teams (${favs.size})</option>` : "") +
+    `<option value="all">All of Division III</option>` +
     opts.map(s => `<option value="${esc(s)}">${esc(confName(s))}</option>`).join("");
+  if (conf === "favourites" && !favs.size) conf = "all";
   sel.value = conf;
 }
 
@@ -395,30 +391,37 @@ async function load() {
     if (!res.ok) throw new Error("HTTP " + res.status);
     const data = await res.json();
     games = (data.games || []).map(x => x.game);
-    // The API returns games in no useful order. Sort by kickoff time so the
-    // list reads chronologically. startTimeEpoch is seconds, as a string.
+    // The API returns games in no useful order. Sort by kickoff time.
     games.sort((a, b) => Number(a.startTimeEpoch) - Number(b.startTimeEpoch));
     buildConfMenu();
     render();
     document.getElementById("foot").textContent =
-      "Scores update every minute. Last checked " +
+      "Scores refresh every minute. Last checked " +
       new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) + ".";
   } catch (err) {
     document.getElementById("board").innerHTML =
-      `<p class="msg">Scores aren't loading right now.<br>Check your connection and try again. <b>${esc(err.message)}</b></p>`;
+      `<p class="msg">Scores aren't loading.<span class="hint">Check your connection, then reload. (${esc(err.message)})</span></p>`;
   }
 }
 
-document.getElementById("conf").addEventListener("change", e => {
-  conf = e.target.value;
-  render();
-});
+document.getElementById("conf").addEventListener("change", e => { conf = e.target.value; render(); });
+
 document.getElementById("weeks").addEventListener("click", e => {
   const btn = e.target.closest("button[data-week]");
   if (!btn) return;
   week = Number(btn.dataset.week);
   markWeek();
   load();
+});
+
+document.getElementById("board").addEventListener("click", e => {
+  const btn = e.target.closest("button.fav");
+  if (!btn) return;
+  const seo = btn.dataset.seo;
+  if (favs.has(seo)) favs.delete(seo); else favs.add(seo);
+  saveFavs();
+  buildConfMenu();
+  render();
 });
 
 buildWeeks();
