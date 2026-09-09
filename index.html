@@ -67,62 +67,63 @@
   }
 
   /* ---------- board ---------- */
-  main { padding: 6px 16px 44px; max-width: 680px; margin: 0 auto; }
-  .meta { color: var(--faint); font-size: 12px; padding: 10px 2px 2px; }
+  main { padding: 0 0 44px; max-width: 680px; margin: 0 auto; }
+  .meta { color: var(--faint); font-size: 12px; padding: 12px 16px 2px; }
 
+  /* Day heading. Games are grouped by the day they're played, which is what
+     you actually scan for — conference is the filter instead. */
   h2 {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 11px; text-transform: uppercase; letter-spacing: 1.1px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px;
     color: var(--dim); font-weight: 700;
-    margin: 24px 0 10px;
+    margin: 0; padding: 18px 16px 8px;
+    position: sticky; top: 92px; z-index: 1;
+    background: var(--bg);
   }
-  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
+  /* One game = one compact two-line row, not a fat card. */
   .game {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 12px 14px 10px;
-    margin-bottom: 9px;
+    display: grid;
+    grid-template-columns: 1fr 74px;   /* fixed status column keeps everything aligned */
+    column-gap: 10px;
+    align-items: center;
+    padding: 9px 16px;
+    border-top: 1px solid var(--line);
+    position: relative;
   }
-  .game.is-live { border-color: rgba(255,77,77,0.42); }
+  .game:last-child { border-bottom: 1px solid var(--line); }
+  .game.is-live::before {
+    content: ""; position: absolute; left: 0; top: -1px; bottom: 0;
+    width: 3px; background: var(--live);
+  }
 
-  .team { display: flex; align-items: center; gap: 10px; }
-  .team + .team { margin-top: 7px; }
-  .tag {
-    flex: none; width: 42px; height: 24px; border-radius: 6px;
-    display: grid; place-items: center;
-    font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
-    letter-spacing: 0.4px;
-    color: #fff;
+  .teams { min-width: 0; }
+  .team { display: flex; align-items: baseline; gap: 8px; }
+  .team + .team { margin-top: 3px; }
+  .name {
+    flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis;
+    white-space: nowrap; font-size: 15px; color: var(--dim);
   }
-  .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; }
-  .score { font-variant-numeric: tabular-nums; font-size: 19px; font-weight: 600; min-width: 30px; text-align: right; }
-  .winner .name { font-weight: 700; }
-  .winner .score { font-weight: 800; }
-  .loser .name, .loser .score, .loser .tag { opacity: 0.45; }
+  .score {
+    font-variant-numeric: tabular-nums; font-size: 16px; font-weight: 600;
+    color: var(--dim); min-width: 24px; text-align: right;
+  }
+  .winner .name, .winner .score { color: var(--text); font-weight: 700; }
+  .loser .name, .loser .score { color: var(--faint); font-weight: 400; }
 
-  .status {
-    margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--line);
-    display: flex; justify-content: space-between; align-items: center; gap: 10px;
-    font-size: 12px; color: var(--faint);
-  }
-  .pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-weight: 600; color: var(--dim);
-  }
-  .pill.final { color: var(--dim); }
-  .pill.live { color: var(--live); }
-  .dot {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--live);
+  /* Right-hand column: one short status, aligned down the page. */
+  .state { text-align: right; font-size: 11.5px; color: var(--faint); white-space: nowrap; }
+  .state.live { color: var(--live); font-weight: 700; }
+  .state .dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--live); margin-right: 5px; vertical-align: middle;
     animation: pulse 1.6s ease-in-out infinite;
   }
   @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
-  @media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .state .dot { animation: none; } }
 
-  .msg { color: var(--dim); padding: 44px 10px; text-align: center; font-size: 15px; }
+  .msg { color: var(--dim); padding: 44px 16px; text-align: center; font-size: 15px; }
   .msg b { color: var(--text); }
-  footer { color: var(--faint); font-size: 11px; text-align: center; padding: 0 16px 32px; }
+  footer { color: var(--faint); font-size: 11px; text-align: center; padding: 18px 16px 32px; }
 </style>
 </head>
 <body>
@@ -222,21 +223,16 @@ function seoOf(side) {
   return "";
 }
 
-// A stable colour per school. The API gives no logos or team colours, so this
-// derives a hue from the team's own slug: same school always gets the same
-// colour, and neighbouring schools get different ones. These are NOT official
-// school colours — they exist so the eye can tell rows apart.
-function teamColor(seo) {
-  let h = 0;
-  for (let i = 0; i < seo.length; i++) h = (h * 31 + seo.charCodeAt(i)) % 360;
-  return `hsl(${h} 42% 34%)`;
-}
+// Games are grouped under the day they're played. startDate arrives as
+// "09/03/2026"; this turns it into "Thu, Sep 3".
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-// Which conference heading a game belongs under. If both teams are in the
-// same conference it's a conference game; otherwise it's non-conference.
 function groupOf(g) {
-  const h = seoOf(g.home), a = seoOf(g.away);
-  return h && h === a ? confName(h) : "Non-conference";
+  const [m, d, y] = String(g.startDate).split("/").map(Number);
+  if (!m || !d || !y) return "Date TBA";
+  const dt = new Date(y, m - 1, d);
+  return `${DAYS[dt.getDay()]}, ${MONTHS[m - 1]} ${d}`;
 }
 
 function hasScore(g) {
@@ -264,9 +260,7 @@ function statusOf(g) {
 
 function teamRow(team, opponent, decided) {
   const lost = decided && opponent.winner && !team.winner;
-  const seo = team.names.seo || team.names.char6 || "";
   return `<div class="team ${team.winner ? "winner" : ""} ${lost ? "loser" : ""}">
-    <span class="tag" style="background:${teamColor(seo)}">${esc(team.names.char6)}</span>
     <span class="name">${esc(team.names.short)}</span>
     <span class="score">${esc(team.score)}</span>
   </div>`;
@@ -276,14 +270,11 @@ function gameCard(g) {
   const s = statusOf(g);
   const decided = hasScore(g);
   return `<article class="game ${s.live ? "is-live" : ""}">
-    ${teamRow(g.away, g.home, decided)}
-    ${teamRow(g.home, g.away, decided)}
-    <div class="status">
-      <span class="pill ${s.live ? "live" : "final"}">
-        ${s.live ? '<span class="dot"></span>' : ""}${esc(s.text)}
-      </span>
-      <span>${esc(g.startDate)}</span>
+    <div class="teams">
+      ${teamRow(g.away, g.home, decided)}
+      ${teamRow(g.home, g.away, decided)}
     </div>
+    <div class="state ${s.live ? "live" : ""}">${s.live ? '<span class="dot"></span>' : ""}${esc(s.text)}</div>
   </article>`;
 }
 
@@ -303,19 +294,15 @@ function render() {
     return;
   }
 
-  // Bucket the games by conference heading, then sort headings A-Z with
-  // non-conference games last.
+  // Bucket the games by day. `shown` is already in kickoff order, and a Map
+  // keeps insertion order, so the days come out chronologically for free.
   const buckets = new Map();
   for (const g of shown) {
     const k = groupOf(g);
     if (!buckets.has(k)) buckets.set(k, []);
     buckets.get(k).push(g);
   }
-  const keys = [...buckets.keys()].sort((a, b) => {
-    if (a === "Non-conference") return 1;
-    if (b === "Non-conference") return -1;
-    return a.localeCompare(b);
-  });
+  const keys = [...buckets.keys()];
 
   const liveCount = shown.filter(g => statusOf(g).live).length;
   const meta = `<p class="meta">${shown.length} game${shown.length === 1 ? "" : "s"}` +

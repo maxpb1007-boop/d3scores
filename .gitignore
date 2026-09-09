@@ -2,3 +2,6 @@
 
 # Local command-line tools, installed per-machine. Not part of the site.
 .tools/
+
+# Local agent config, contains machine-specific absolute paths.
+.claude/
