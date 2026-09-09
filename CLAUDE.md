@@ -244,4 +244,21 @@ A `LIVE n` button in the masthead switches to a one-screen view of every game in
 
 **Untested, and it is the important part:** this has never been seen with several games genuinely in progress. Week 1's data contains exactly one stuck-live game, and the `+7` badge was verified by faking a previous poll in the console. **Saturday is the real test** — specifically whether `contestClock` is populated often enough to be worth showing, and whether deltas appear at a useful rate on a 60s poll.
 
+### 2026-09-09 — strength of schedule shipped
+
+Third view in the nav, at `?view=sos`. Backed by **`api/season.js`**, which walks every week's scoreboard and computes records, because `/standings` returns 500.
+
+Formula: `SoS = (2×OWP + OOWP) / 3`, the usual RPI weighting. **Games against you are removed from your opponents' records** — without that, beating a team lowers their record and so lowers your own schedule strength, which is backwards.
+
+Four things this shook out, all of which produced *confidently wrong* numbers before they were fixed:
+
+1. **Sixteen parallel fetches get throttled upstream, and the failures were silent.** The first version counted 421 games across 5 weeks of 2025 and looked entirely healthy; the real figures are **1,255 games across 16 weeks**. Now fetched four at a time with one retry, and `weeksFailed` is returned so the page can admit when data is missing. **Any future fan-out to this API needs the same treatment.**
+2. **Non-D3 opponents pollute everything.** Bucknell, Buffalo, ULM and Delaware St. appear in the D3 feed carrying only the single game they played against D3, so they looked like perfect teams and inflated their opponents' ratings. Teams are now filtered by conference slug against a D3 whitelist, and out-of-division opponents are excluded from the maths — which is also what the NCAA does.
+3. **SoS is undefined, not zero, early in a season.** With one week played, every opponent has no games left once the head-to-head is removed. The page says so plainly instead of printing `.000` for 224 teams.
+4. **`[hidden]` loses to an explicit `display` rule.** Setting `weeks.hidden = true` did nothing because `.weeks` is `display:flex`. Added a global `[hidden] { display: none !important }`.
+
+**Validation, and worth repeating for any future rating work:** run it against a completed season. Mean SoS came out **0.496 for 2025 and 0.497 for 2024** — a closed system must average ~.500. And the hardest schedules were UW-River Falls, Wis.-Oshkosh, Wis.-La Crosse, Wis.-Platteville and Wis.-Whitewater: the model independently rediscovered that the WIAC is the toughest league in D3 football. That agreement with known reality is the real test, not the arithmetic.
+
+Performance: the function stops early once a whole batch of weeks comes back empty, so the in-season case doesn't fetch all 16. Runs 3–5s, inside Vercel's 10s limit, cached 15 minutes.
+
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.

@@ -37,6 +37,9 @@
     -webkit-font-smoothing: antialiased;
   }
   :focus-visible { outline: 2px solid var(--red); outline-offset: 2px; border-radius: 3px; }
+  /* An explicit display rule beats the browser's default for [hidden], so any
+     flex container would ignore the attribute without this. */
+  [hidden] { display: none !important; }
 
   /* ---------------- masthead ---------------- */
   .shell { position: sticky; top: 0; z-index: 10; background: var(--card); border-bottom: 1px solid var(--line); }
@@ -63,20 +66,50 @@
     background-repeat: no-repeat; background-position: right 9px center;
   }
 
-  /* Live toggle in the masthead. Red only when something is actually on. */
-  .livebtn {
-    display: inline-flex; align-items: center; gap: 6px; flex: none;
-    height: 33px; padding: 0 11px; cursor: pointer;
-    font: 700 12px Barlow, sans-serif; letter-spacing: 0.6px; text-transform: uppercase;
-    color: var(--mid); background: var(--card);
-    border: 1px solid var(--line); border-radius: 6px;
+  /* Primary view nav. Sits above the week strip so the masthead stays uncrowded. */
+  .views {
+    max-width: 1080px; margin: 0 auto; display: flex; gap: 2px;
+    padding: 0 8px; overflow-x: auto; scrollbar-width: none;
+    border-bottom: 1px solid var(--hair);
   }
-  .livebtn .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mute); }
-  .livebtn.hot { color: var(--red); border-color: rgba(206,17,38,0.45); }
-  .livebtn.hot .dot { background: var(--red); animation: pulse 1.6s ease-in-out infinite; }
-  .livebtn[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff; }
-  .livebtn[aria-pressed="true"] .dot { background: #fff; }
-  @media (prefers-reduced-motion: reduce) { .livebtn .dot { animation: none; } }
+  .views::-webkit-scrollbar { display: none; }
+  .views button {
+    flex: none; background: none; border: 0; cursor: pointer; white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 6px;
+    font: 700 12px Barlow, sans-serif; letter-spacing: 0.5px; text-transform: uppercase;
+    color: var(--mute); padding: 9px 11px 10px; position: relative;
+  }
+  .views button[aria-current="true"] { color: var(--ink); }
+  .views button[aria-current="true"]::after {
+    content: ""; position: absolute; left: 8px; right: 8px; bottom: -1px; height: 2px; background: var(--ink);
+  }
+  .views button.hot { color: var(--red); }
+  .views .livedot { width: 7px; height: 7px; border-radius: 50%; background: var(--mute); }
+  .views button.hot .livedot { background: var(--red); animation: pulse 1.6s ease-in-out infinite; }
+  .views button[data-view="live"][aria-current="true"]::after { background: var(--red); }
+  @media (prefers-reduced-motion: reduce) { .views .livedot { animation: none; } }
+
+  /* ---------------- schedule strength ---------------- */
+  .sostools { display: flex; align-items: center; gap: 8px; margin: 16px 0 0; flex-wrap: wrap; }
+  .sostools select { max-width: 150px; }
+  table.sos { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  table.sos th {
+    font-size: 10px; letter-spacing: 0.8px; text-transform: uppercase; color: var(--mute);
+    font-weight: 700; text-align: right; padding: 0 6px 7px;
+  }
+  table.sos th:nth-child(1), table.sos th:nth-child(2) { text-align: left; }
+  table.sos td { padding: 8px 6px; border-top: 1px solid var(--hair); font-size: 14px; text-align: right; font-variant-numeric: tabular-nums; }
+  table.sos td:nth-child(1) { text-align: left; color: var(--mute); font-size: 12px; width: 32px; }
+  table.sos td:nth-child(2) { text-align: left; }
+  table.sos .tm { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  table.sos .tm .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+  table.sos .tm .cf { color: var(--mute); font-size: 11px; }
+  table.sos .val { font-weight: 700; }
+  .warn {
+    background: #fff8e6; border: 1px solid #f0dca8; color: #6b5416;
+    border-radius: 7px; padding: 11px 13px; font-size: 13px; margin-top: 14px;
+  }
+  .warn b { font-weight: 700; }
 
   /* ---------------- redzone ---------------- */
   .rz { display: grid; gap: 10px; grid-template-columns: 1fr; margin-top: 16px; }
@@ -280,11 +313,13 @@
 <div class="shell">
   <div class="bar">
     <h1 class="mark"><span class="d3">D3</span><span class="word">Scores</span></h1>
-    <button class="livebtn" id="liveBtn" aria-pressed="false" style="margin-left:auto">
-      <span class="dot"></span><span id="liveLabel">Live</span>
-    </button>
     <select id="conf" aria-label="Filter by conference"></select>
   </div>
+  <nav class="views" id="views" aria-label="View">
+    <button data-view="scores" aria-current="true">Scores</button>
+    <button data-view="live"><span class="livedot"></span><span id="liveLabel">Live</span></button>
+    <button data-view="sos">Schedule strength</button>
+  </nav>
   <nav class="weeks" id="weeks" aria-label="Week"></nav>
 </div>
 
@@ -308,6 +343,7 @@
 const LOCAL = ["localhost", "127.0.0.1", ""].includes(location.hostname);
 const API = LOCAL ? "http://localhost:8000/api/scoreboard" : "/api/scoreboard";
 const GAME_API = LOCAL ? "http://localhost:8000/api/game" : "/api/game";
+const SEASON_API = LOCAL ? "http://localhost:8000/api/season" : "/api/season";
 
 // The API only gives us slugs like "landmark". These are the display names.
 // Not from the API — conferenceName comes back empty on every team.
@@ -376,13 +412,16 @@ let pendingGame = startParams.get("game");          // opened once games have lo
 // specific week, fall back once to the last week that actually has results.
 let weekWasChosen = startParams.has("week");
 let triedFallback = false;
-let redzone = startParams.get("view") === "live";
+const VIEWS = ["scores", "live", "sos"];
+let view = VIEWS.includes(startParams.get("view")) ? startParams.get("view") : "scores";
+let sosYear = startParams.get("season") || "2026";
 
 function viewUrl(gameID) {
   const p = new URLSearchParams();
   p.set("week", String(week));
   if (conf && conf !== "favourites") p.set("conf", conf);
-  if (redzone) p.set("view", "live");
+  if (view !== "scores") p.set("view", view);
+  if (view === "sos" && sosYear !== "2026") p.set("season", sosYear);
   if (gameID) p.set("game", String(gameID));
   return location.pathname + "?" + p.toString();
 }
@@ -535,9 +574,10 @@ function section(title, list, { pinned = false, showDay = false } = {}) {
 function render() {
   const board = document.getElementById("board");
   markWeek();
-  markLiveButton();
+  updateNav();
 
-  if (redzone) { renderRedzone(); return; }
+  if (view === "sos") { renderSos(); return; }
+  if (view === "live") { renderRedzone(); return; }
 
   let shown = games;
   if (conf === "favourites") shown = games.filter(isFavGame);
@@ -672,15 +712,100 @@ function renderRedzone() {
     </section>`;
 }
 
-function markLiveButton() {
+function updateNav() {
   const n = games.filter(isLive).length;
-  const btn = document.getElementById("liveBtn");
-  btn.classList.toggle("hot", n > 0 && !redzone);
-  btn.setAttribute("aria-pressed", String(redzone));
+  for (const b of document.querySelectorAll("#views button")) {
+    b.setAttribute("aria-current", String(b.dataset.view === view));
+    if (b.dataset.view === "live") b.classList.toggle("hot", n > 0);
+  }
   document.getElementById("liveLabel").textContent = n ? `Live ${n}` : "Live";
-  // The conference filter doesn't apply in RedZone — it shows every live game
-  // in the division — so hide it rather than leave it looking active.
-  document.getElementById("conf").hidden = redzone;
+  // Week tabs are meaningless on a season-long table; the conference filter
+  // doesn't apply to RedZone, which deliberately shows the whole division.
+  document.getElementById("weeks").hidden = view === "sos";
+  document.getElementById("conf").hidden = view === "live";
+}
+
+// ---------------------------------------------------------------------------
+// Strength of schedule. Computed by api/season.js from every result of the
+// season, because the upstream /standings endpoint returns 500.
+// ---------------------------------------------------------------------------
+const seasonCache = new Map();
+
+function getSeason(year) {
+  if (!seasonCache.has(year)) {
+    seasonCache.set(year, fetch(`${SEASON_API}?year=${encodeURIComponent(year)}`)
+      .then(r => (r.ok ? r.json() : null))
+      .catch(() => null));
+  }
+  return seasonCache.get(year);
+}
+
+const fmt3 = (n) => n.toFixed(3).replace(/^0\./, ".");
+
+async function renderSos() {
+  const board = document.getElementById("board");
+  document.getElementById("players").innerHTML = "";
+
+  const tools = `<div class="sostools">
+      <select id="sosYear" aria-label="Season">
+        ${["2026", "2025", "2024"].map(y =>
+          `<option value="${y}"${y === sosYear ? " selected" : ""}>${y}${y === "2026" ? " (current)" : ""}</option>`).join("")}
+      </select>
+    </div>`;
+
+  board.innerHTML = tools + `<p class="msg">Working out every team's schedule…</p>`;
+
+  const season = await getSeason(sosYear);
+  if (!season || !season.data) {
+    board.innerHTML = tools + `<p class="msg">Couldn't build the schedule table.<span class="hint">Try again in a moment.</span></p>`;
+    return;
+  }
+
+  let rows = season.data;
+  if (conf === "favourites") rows = rows.filter(t => favs.has(t.seo));
+  else if (conf !== "all") rows = rows.filter(t => t.conf === conf);
+
+  // With only a week or two played, every opponent's record outside the head-to-head
+  // is empty, so the number is genuinely undefined rather than low.
+  const usable = rows.filter(t => t.sos > 0).length;
+  const notes = [];
+  if (season.weeksFailed) {
+    notes.push(`<div class="warn"><b>Incomplete.</b> ${season.weeksFailed} week${season.weeksFailed === 1 ? "" : "s"} of results failed to load, so these records are missing games.</div>`);
+  }
+  if (!usable) {
+    notes.push(`<div class="warn"><b>Too early to mean anything.</b> Strength of schedule compares your opponents' records against everyone <em>else</em> they played. After ${season.weeksWithResults} week${season.weeksWithResults === 1 ? "" : "s"}, nobody has played anyone else yet, so there is nothing to compare. It starts working around week 4 — until then, try a past season below.</div>`);
+  } else if (season.weeksWithResults < 4) {
+    notes.push(`<div class="warn"><b>Early days.</b> Based on ${season.weeksWithResults} week${season.weeksWithResults === 1 ? "" : "s"} of results, so expect these to move a lot.</div>`);
+  }
+
+  const table = !usable ? "" : `
+    <table class="sos">
+      <thead><tr><th></th><th>Team</th><th>Rec</th><th>SoS</th><th>Opp&nbsp;W%</th></tr></thead>
+      <tbody>
+        ${rows.map((t, i) => `<tr>
+          <td>${i + 1}</td>
+          <td><span class="tm">
+            <span class="swatch" style="background:${esc(teamColor(t.seo))}"></span>
+            <span class="nm">${esc(t.name)}</span>
+          </span><span class="cf">${esc(confName(t.conf))}</span></td>
+          <td>${t.w}-${t.l}${t.t ? "-" + t.t : ""}</td>
+          <td class="val">${fmt3(t.sos)}</td>
+          <td>${fmt3(t.owp)}</td>
+        </tr>`).join("")}
+      </tbody>
+    </table>`;
+
+  const heading = `<section class="group">
+      <header>
+        <h2>Schedule strength</h2>
+        <span class="n">${rows.length} team${rows.length === 1 ? "" : "s"} · ${season.gamesCounted} games</span>
+        <span class="rule"></span>
+      </header>
+    </section>`;
+
+  board.innerHTML = tools + heading + notes.join("") +
+    (rows.length ? table : `<p class="msg">No teams match that filter.</p>`) +
+    `<p class="note" style="padding:16px 2px 0">Hardest schedule first. SoS weights your opponents' records twice as heavily as their opponents' records, and ignores games against teams outside Division III. Games against you are taken out of your opponents' records, so beating someone doesn't drag your own number down.</p>`;
 }
 
 // ---------------------------------------------------------------------------
@@ -1212,7 +1337,7 @@ async function load() {
     trackScores(games);
     buildConfMenu();
     render();
-    if (!redzone) renderPlayers();
+    if (view === "scores") renderPlayers();
     // A shared ?game= link can only be opened once the week's games are in.
     if (pendingGame) {
       const g = games.find(x => String(x.gameID) === pendingGame);
@@ -1252,11 +1377,20 @@ document.getElementById("players").addEventListener("click", e => {
   renderPlayers();
 });
 
-document.getElementById("liveBtn").addEventListener("click", () => {
-  redzone = !redzone;
+document.getElementById("views").addEventListener("click", e => {
+  const btn = e.target.closest("button[data-view]");
+  if (!btn || btn.dataset.view === view) return;
+  view = btn.dataset.view;
   syncUrl();
   render();
-  if (!redzone) renderPlayers();
+  if (view === "scores") renderPlayers();
+});
+
+document.getElementById("board").addEventListener("change", e => {
+  if (e.target.id !== "sosYear") return;
+  sosYear = e.target.value;
+  syncUrl();
+  renderSos();
 });
 
 document.getElementById("board").addEventListener("click", e => {
