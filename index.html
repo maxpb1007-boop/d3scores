@@ -3,147 +3,178 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b0d11">
+<meta name="theme-color" content="#ffffff">
 <title>D3 Scores — NCAA Division III Football</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:      #0b0d11;
-    --raise:   #14181f;
-    --card:    #161b23;
-    --line:    #242b36;
-    --text:    #eef1f5;
-    --dim:     #8d97a8;
-    --faint:   #5b6577;
-    --live:    #ff4d4d;
-    --accent:  #4da3ff;
-    --radius:  12px;
+    --page:   #eef0f3;
+    --card:   #ffffff;
+    --line:   #d7dce3;
+    --hair:   #e8ebef;
+    --ink:    #16191d;
+    --mid:    #5d6570;
+    --mute:   #939ba6;
+    --red:    #ce1126;
+    --shell:  #ffffff;
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
-    -webkit-text-size-adjust: 100%;
+    background: var(--page);
+    color: var(--ink);
+    font: 400 15px/1.4 Barlow, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ---------- header ---------- */
-  header {
-    position: sticky; top: 0; z-index: 5;
-    background: rgba(11,13,17,0.86);
-    backdrop-filter: saturate(140%) blur(12px);
+  /* ---------- masthead ---------- */
+  .shell {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--shell);
     border-bottom: 1px solid var(--line);
-    padding: 12px 16px 10px;
   }
-  .brand { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
-  .brand h1 { margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.3px; }
-  .brand span { font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: 1px; }
-
-  .controls { display: flex; gap: 8px; align-items: stretch; }
-  .weeknav {
-    display: flex; align-items: center;
-    background: var(--raise); border: 1px solid var(--line); border-radius: 10px;
-    overflow: hidden; flex: none;
+  .bar {
+    max-width: 1040px; margin: 0 auto;
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 16px 10px;
   }
-  .weeknav button {
-    background: none; border: 0; color: var(--text);
-    font-size: 18px; line-height: 1; width: 34px; height: 38px; cursor: pointer;
+  .mark {
+    font-family: "Barlow Condensed", Barlow, sans-serif;
+    font-weight: 700; font-size: 25px; line-height: 1;
+    letter-spacing: 0.2px; margin: 0;
+    display: flex; align-items: baseline; gap: 7px;
+    white-space: nowrap; flex: none;
   }
-  .weeknav button:disabled { color: var(--faint); cursor: default; }
-  .weeknav .label {
-    font-size: 13px; font-weight: 600; color: var(--dim);
-    min-width: 58px; text-align: center; font-variant-numeric: tabular-nums;
+  .mark i {
+    font-style: normal; font-family: Barlow, sans-serif;
+    font-size: 10px; font-weight: 600; letter-spacing: 1.4px;
+    color: var(--mute); text-transform: uppercase;
   }
+  /* The tagline is the first thing to go when the bar gets tight. */
+  @media (max-width: 460px) { .mark i { display: none; } }
   select {
-    flex: 1; min-width: 0; height: 38px;
-    font: inherit; font-size: 14px; color: var(--text);
-    background: var(--raise); border: 1px solid var(--line);
-    border-radius: 10px; padding: 0 10px;
+    margin-left: auto;
+    font: 500 13px Barlow, sans-serif; color: var(--ink);
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 5px; height: 32px; padding: 0 26px 0 9px;
+    min-width: 0; max-width: 200px;
     appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%238d97a8' stroke-width='1.6' stroke-linecap='round'/></svg>");
-    background-repeat: no-repeat; background-position: right 10px center;
-    padding-right: 28px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'><path d='M2 4.5l4 4 4-4' fill='none' stroke='%235d6570' stroke-width='1.7' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat; background-position: right 8px center;
+  }
+
+  /* Week strip, scrolled horizontally like a date rail. */
+  .weeks {
+    max-width: 1040px; margin: 0 auto;
+    display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none;
+    padding: 0 10px;
+  }
+  .weeks::-webkit-scrollbar { display: none; }
+  .weeks button {
+    flex: none; background: none; border: 0; cursor: pointer;
+    font: 600 13px Barlow, sans-serif; color: var(--mid);
+    padding: 7px 11px 9px; position: relative; white-space: nowrap;
+  }
+  .weeks button[aria-current="true"] { color: var(--ink); }
+  .weeks button[aria-current="true"]::after {
+    content: ""; position: absolute; left: 8px; right: 8px; bottom: 0;
+    height: 3px; background: var(--red); border-radius: 2px 2px 0 0;
   }
 
   /* ---------- board ---------- */
-  main { padding: 0 0 44px; max-width: 680px; margin: 0 auto; }
-  .meta { color: var(--faint); font-size: 12px; padding: 12px 16px 2px; }
+  main { max-width: 1040px; margin: 0 auto; padding: 0 16px 48px; }
 
-  /* Day heading. Games are grouped by the day they're played, which is what
-     you actually scan for — conference is the filter instead. */
-  h2 {
-    font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px;
-    color: var(--dim); font-weight: 700;
-    margin: 0; padding: 18px 16px 8px;
-    position: sticky; top: 92px; z-index: 1;
-    background: var(--bg);
+  .day {
+    display: flex; align-items: center; gap: 12px;
+    margin: 22px 0 11px;
   }
+  .day h2 {
+    font-family: "Barlow Condensed", Barlow, sans-serif;
+    font-weight: 700; font-size: 19px; letter-spacing: 0.2px;
+    margin: 0; color: var(--ink);
+  }
+  .day .count { font-size: 12px; color: var(--mute); font-weight: 500; }
+  .day .rule { flex: 1; height: 1px; background: var(--line); }
 
-  /* One game = one compact two-line row, not a fat card. */
+  .grid { display: grid; gap: 9px; grid-template-columns: 1fr; }
+  @media (min-width: 620px) { .grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 940px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+
   .game {
-    display: grid;
-    grid-template-columns: 1fr 74px;   /* fixed status column keeps everything aligned */
-    column-gap: 10px;
-    align-items: center;
-    padding: 9px 16px;
-    border-top: 1px solid var(--line);
-    position: relative;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 12px 8px;
   }
-  .game:last-child { border-bottom: 1px solid var(--line); }
-  .game.is-live::before {
-    content: ""; position: absolute; left: 0; top: -1px; bottom: 0;
-    width: 3px; background: var(--live);
-  }
+  .game.is-live { border-color: rgba(206,17,38,0.45); }
 
-  .teams { min-width: 0; }
-  .team { display: flex; align-items: baseline; gap: 8px; }
-  .team + .team { margin-top: 3px; }
-  .name {
-    flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis;
-    white-space: nowrap; font-size: 15px; color: var(--dim);
+  .head {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600; color: var(--mute);
+    letter-spacing: 0.5px; text-transform: uppercase;
+    padding-bottom: 6px; margin-bottom: 5px;
+    border-bottom: 1px solid var(--hair);
   }
-  .score {
-    font-variant-numeric: tabular-nums; font-size: 16px; font-weight: 600;
-    color: var(--dim); min-width: 24px; text-align: right;
-  }
-  .winner .name, .winner .score { color: var(--text); font-weight: 700; }
-  .loser .name, .loser .score { color: var(--faint); font-weight: 400; }
-
-  /* Right-hand column: one short status, aligned down the page. */
-  .state { text-align: right; font-size: 11.5px; color: var(--faint); white-space: nowrap; }
-  .state.live { color: var(--live); font-weight: 700; }
-  .state .dot {
-    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--live); margin-right: 5px; vertical-align: middle;
+  .head .when { margin-left: auto; letter-spacing: 0.2px; text-transform: none; font-weight: 500; }
+  .head.live { color: var(--red); }
+  .head .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--red);
     animation: pulse 1.6s ease-in-out infinite;
   }
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
-  @media (prefers-reduced-motion: reduce) { .state .dot { animation: none; } }
+  @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .2 } }
+  @media (prefers-reduced-motion: reduce) { .head .dot { animation: none } }
 
-  .msg { color: var(--dim); padding: 44px 16px; text-align: center; font-size: 15px; }
-  .msg b { color: var(--text); }
-  footer { color: var(--faint); font-size: 11px; text-align: center; padding: 18px 16px 32px; }
+  .team {
+    display: grid; grid-template-columns: 34px 1fr auto 9px;
+    align-items: center; gap: 9px;
+    padding: 1px 0;
+  }
+  .abbr {
+    font-family: "Barlow Condensed", Barlow, sans-serif;
+    font-weight: 700; font-size: 13px; letter-spacing: 0.3px;
+    color: var(--mute);
+  }
+  .name {
+    min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    font-size: 15px; font-weight: 500; color: var(--mid);
+  }
+  .pts {
+    font-family: "Barlow Condensed", Barlow, sans-serif;
+    font-weight: 700; font-size: 21px; line-height: 1;
+    font-variant-numeric: tabular-nums; color: var(--mid);
+  }
+  .caret { width: 9px; }
+  .won .name { color: var(--ink); font-weight: 600; }
+  .won .pts, .won .abbr { color: var(--ink); }
+  .won .caret::before {
+    content: ""; display: block;
+    border: 4.5px solid transparent; border-right-color: var(--ink);
+    margin-left: -1px;
+  }
+  .lost .name, .lost .pts, .lost .abbr { color: var(--mute); }
+
+  .msg {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 34px 18px; text-align: center; color: var(--mid); margin-top: 20px;
+  }
+  .msg b { color: var(--ink); }
+  footer { max-width: 1040px; margin: 0 auto; padding: 0 16px 34px; font-size: 12px; color: var(--mute); }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="brand">
-    <h1>D3 Scores</h1>
-    <span>NCAA Division III</span>
-  </div>
-  <div class="controls">
-    <div class="weeknav">
-      <button id="prev" aria-label="Previous week">&lsaquo;</button>
-      <span class="label" id="weekLabel">Week 1</span>
-      <button id="next" aria-label="Next week">&rsaquo;</button>
-    </div>
+<div class="shell">
+  <div class="bar">
+    <h1 class="mark">D3 Scores <i>NCAA Division III</i></h1>
     <select id="conf" aria-label="Filter by conference"></select>
   </div>
-</header>
+  <nav class="weeks" id="weeks" aria-label="Week"></nav>
+</div>
 
-<main id="board"><p class="msg">Loading…</p></main>
+<main id="board"><p class="msg">Loading scores…</p></main>
 <footer id="foot"></footer>
 
 <script>
@@ -224,8 +255,8 @@ function seoOf(side) {
 }
 
 // Games are grouped under the day they're played. startDate arrives as
-// "09/03/2026"; this turns it into "Thu, Sep 3".
-const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+// "09/03/2026"; this turns it into "Thursday, Sep 3".
+const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function groupOf(g) {
@@ -259,22 +290,28 @@ function statusOf(g) {
 }
 
 function teamRow(team, opponent, decided) {
+  const won = decided && team.winner;
   const lost = decided && opponent.winner && !team.winner;
-  return `<div class="team ${team.winner ? "winner" : ""} ${lost ? "loser" : ""}">
+  return `<div class="team ${won ? "won" : ""} ${lost ? "lost" : ""}">
+    <span class="abbr">${esc(team.names.char6)}</span>
     <span class="name">${esc(team.names.short)}</span>
-    <span class="score">${esc(team.score)}</span>
+    <span class="pts">${esc(team.score)}</span>
+    <span class="caret"></span>
   </div>`;
 }
 
 function gameCard(g) {
   const s = statusOf(g);
   const decided = hasScore(g);
+  const conference = seoOf(g.home) && seoOf(g.home) === seoOf(g.away)
+    ? confName(seoOf(g.home)) : "";
   return `<article class="game ${s.live ? "is-live" : ""}">
-    <div class="teams">
-      ${teamRow(g.away, g.home, decided)}
-      ${teamRow(g.home, g.away, decided)}
+    <div class="head ${s.live ? "live" : ""}">
+      ${s.live ? '<span class="dot"></span>' : ""}<span>${esc(s.text)}</span>
+      ${conference ? `<span class="when">${esc(conference)}</span>` : ""}
     </div>
-    <div class="state ${s.live ? "live" : ""}">${s.live ? '<span class="dot"></span>' : ""}${esc(s.text)}</div>
+    ${teamRow(g.away, g.home, decided)}
+    ${teamRow(g.home, g.away, decided)}
   </article>`;
 }
 
@@ -285,12 +322,10 @@ function render() {
     ? games
     : games.filter(g => seoOf(g.home) === conf || seoOf(g.away) === conf);
 
-  document.getElementById("weekLabel").textContent = "Week " + week;
-  document.getElementById("prev").disabled = week <= 1;
-  document.getElementById("next").disabled = week >= MAX_WEEK;
+  markWeek();
 
   if (!shown.length) {
-    board.innerHTML = `<p class="msg">No <b>${esc(conf === "all" ? "D3" : confName(conf))}</b> games in week ${week}.</p>`;
+    board.innerHTML = `<p class="msg">No <b>${esc(conf === "all" ? "Division III" : confName(conf))}</b> games scheduled in week ${week}.</p>`;
     return;
   }
 
@@ -302,15 +337,33 @@ function render() {
     if (!buckets.has(k)) buckets.set(k, []);
     buckets.get(k).push(g);
   }
-  const keys = [...buckets.keys()];
 
-  const liveCount = shown.filter(g => statusOf(g).live).length;
-  const meta = `<p class="meta">${shown.length} game${shown.length === 1 ? "" : "s"}` +
-               `${liveCount ? ` · ${liveCount} live now` : ""}</p>`;
+  board.innerHTML = [...buckets].map(([day, list]) => `
+    <section>
+      <div class="day">
+        <h2>${esc(day)}</h2>
+        <span class="count">${list.length} game${list.length === 1 ? "" : "s"}</span>
+        <span class="rule"></span>
+      </div>
+      <div class="grid">${list.map(gameCard).join("")}</div>
+    </section>`).join("");
+}
 
-  board.innerHTML = meta + keys.map(k =>
-    `<h2>${esc(k)}</h2>` + buckets.get(k).map(gameCard).join("")
-  ).join("");
+// The week tabs are built once and then only re-flagged. Rebuilding them on
+// every refresh would also re-run scrollIntoView, sliding the strip sideways
+// under the reader's finger once a minute.
+function buildWeeks() {
+  document.getElementById("weeks").innerHTML =
+    Array.from({ length: MAX_WEEK }, (_, i) => i + 1).map(w =>
+      `<button data-week="${w}" aria-current="${w === week}">Week ${w}</button>`).join("");
+}
+
+function markWeek({ scroll = false } = {}) {
+  for (const b of document.querySelectorAll("#weeks button")) {
+    const on = Number(b.dataset.week) === week;
+    b.setAttribute("aria-current", String(on));
+    if (on && scroll) b.scrollIntoView({ block: "nearest", inline: "center" });
+  }
 }
 
 function buildConfMenu() {
@@ -320,7 +373,7 @@ function buildConfMenu() {
   }
   const opts = [...seen].sort((a, b) => confName(a).localeCompare(confName(b)));
   const sel = document.getElementById("conf");
-  sel.innerHTML = `<option value="all">All of D3</option>` +
+  sel.innerHTML = `<option value="all">All of Division III</option>` +
     opts.map(s => `<option value="${esc(s)}">${esc(confName(s))}</option>`).join("");
   sel.value = conf;
 }
@@ -337,10 +390,11 @@ async function load() {
     buildConfMenu();
     render();
     document.getElementById("foot").textContent =
-      "Updated " + new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+      "Scores update every minute. Last checked " +
+      new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) + ".";
   } catch (err) {
     document.getElementById("board").innerHTML =
-      `<p class="msg">Couldn't load scores.<br>${esc(err.message)}</p>`;
+      `<p class="msg">Scores aren't loading right now.<br>Check your connection and try again. <b>${esc(err.message)}</b></p>`;
   }
 }
 
@@ -348,9 +402,16 @@ document.getElementById("conf").addEventListener("change", e => {
   conf = e.target.value;
   render();
 });
-document.getElementById("prev").addEventListener("click", () => { week--; load(); });
-document.getElementById("next").addEventListener("click", () => { week++; load(); });
+document.getElementById("weeks").addEventListener("click", e => {
+  const btn = e.target.closest("button[data-week]");
+  if (!btn) return;
+  week = Number(btn.dataset.week);
+  markWeek();
+  load();
+});
 
+buildWeeks();
+markWeek({ scroll: true });
 load();
 setInterval(load, 60000);   // upstream caches for 60s, so refreshing faster is pointless
 </script>
