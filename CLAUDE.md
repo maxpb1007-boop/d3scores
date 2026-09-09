@@ -203,4 +203,15 @@ How it works, and the traps:
 - **Store raw data, format at render.** The first version stored the already-title-cased name, so "RJ" was frozen as "Rj" even after the formatter was fixed. Now `firstName`/`lastName` are stored as the API sends them and formatted every render, so fixing the rules retroactively fixes followed players.
 - Name formatting: shouted names are title-cased, but short vowel-less words stay capitalised (`RJ`, `JT`, `CJ`) while real two-letter names are left alone (`Bo`, `Ty`, `Al`), and `Mc` prefixes are handled (`McDaniel`). Tested against a list of awkward cases.
 
+### 2026-09-09 — the site opened on an empty scoreboard
+
+Caught by loading the deployed site cold, as a stranger would. **On a Wednesday, `currentWeek()` returns the upcoming week, whose games are Thu–Sat and therefore all scoreless.** So a first-time visitor saw a scores site with no scores on it — technically correct, completely useless, and it looked broken.
+
+Fix: after loading, if no game in the week has a score, fall back once to the previous week. Guarded by two flags so it can't loop and can't override the reader:
+
+- `weekWasChosen` — true if `?week=` was in the URL or the reader clicked a week tab. Their choice always wins, so clicking an empty future week stays there.
+- `triedFallback` — the fallback runs at most once per page load.
+
+**The lesson worth keeping: verify by opening the deployed site with no parameters, on a phone-sized screen, with `localStorage` cleared.** Every earlier check used `?week=1` or a seeded state, which hid this completely. The default path is the one every new visitor takes and it was the only one never tested.
+
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.

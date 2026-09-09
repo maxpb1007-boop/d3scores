@@ -330,6 +330,12 @@ let conf = startParams.get("conf") || "landmark";   // PLAN.md: default to Landm
 let games = [];
 let pendingGame = startParams.get("game");          // opened once games have loaded
 
+// Midweek, the current week's games haven't been played, so opening the site
+// shows a scoreboard with no scores on it. Unless the reader asked for a
+// specific week, fall back once to the last week that actually has results.
+let weekWasChosen = startParams.has("week");
+let triedFallback = false;
+
 function viewUrl(gameID) {
   const p = new URLSearchParams();
   p.set("week", String(week));
@@ -1035,6 +1041,16 @@ async function load() {
     games = (data.games || []).map(x => x.game);
     // The API returns games in no useful order. Sort by kickoff time.
     games.sort((a, b) => Number(a.startTimeEpoch) - Number(b.startTimeEpoch));
+
+    // Nothing has been played yet this week — show last week's results instead.
+    if (!weekWasChosen && !triedFallback && week > 1 && !games.some(hasScore)) {
+      triedFallback = true;
+      week -= 1;
+      markWeek({ scroll: true });
+      syncUrl();
+      return load();
+    }
+
     buildConfMenu();
     render();
     renderPlayers();
@@ -1063,6 +1079,7 @@ document.getElementById("weeks").addEventListener("click", e => {
   const btn = e.target.closest("button[data-week]");
   if (!btn) return;
   week = Number(btn.dataset.week);
+  weekWasChosen = true;      // never override a week the reader picked
   markWeek();
   syncUrl();
   load();
