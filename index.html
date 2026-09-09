@@ -1,12 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>D3 Scores</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D3 Scores</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --card: #181b22;
+    --line: #262b35;
+    --text: #e8eaed;
+    --dim: #9aa3b2;
+    --live: #ff5c5c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  header {
+    position: sticky; top: 0; z-index: 2;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 16px;
+  }
+  h1 { margin: 0 0 10px; font-size: 20px; letter-spacing: -0.2px; }
+  .controls { display: flex; gap: 8px; align-items: center; }
+  select, button {
+    font: inherit;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  select { flex: 1; min-width: 0; }
+  button { width: 40px; text-align: center; cursor: pointer; }
+  button:disabled { opacity: 0.35; cursor: default; }
+  .week { color: var(--dim); font-size: 14px; min-width: 62px; text-align: center; }
+
+  main { padding: 8px 16px 40px; max-width: 720px; margin: 0 auto; }
+  h2 {
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.6px;
+    color: var(--dim); margin: 22px 0 8px; font-weight: 600;
+  }
+  .game {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+  .team { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .team + .team { margin-top: 4px; }
+  .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .score { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .winner { font-weight: 700; }
+  .loser .name, .loser .score { color: var(--dim); }
+  .status {
+    margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--dim);
+    display: flex; justify-content: space-between; gap: 10px;
+  }
+  .status .live { color: var(--live); font-weight: 600; }
+  .msg { color: var(--dim); padding: 30px 0; text-align: center; }
+  footer { color: var(--dim); font-size: 12px; text-align: center; padding: 0 16px 30px; }
+</style>
 </head>
 <body>
+
+<header>
   <h1>D3 Scores</h1>
-  <p>Live NCAA Division III football scores. Nothing here yet.</p>
+  <div class="controls">
+    <button id="prev" aria-label="Previous week">&lsaquo;</button>
+    <span class="week" id="weekLabel">Week 1</span>
+    <button id="next" aria-label="Next week">&rsaquo;</button>
+    <select id="conf" aria-label="Filter by conference"></select>
+  </div>
+</header>
+
+<main id="board"><p class="msg">Loading…</p></main>
+<footer id="foot"></footer>
+
+<script>
+// ---------------------------------------------------------------------------
+// Where to get the data.
+//
+// On the real site we call our own proxy with a relative path. When opening
+// this file from a local server for testing, that path doesn't exist, so we
+// fall back to the deployed proxy — which works because it sends
+// Access-Control-Allow-Origin: *.
+// ---------------------------------------------------------------------------
+const LOCAL = ["localhost", "127.0.0.1", ""].includes(location.hostname);
+const API = LOCAL ? "https://d3scores.vercel.app/api/scoreboard" : "/api/scoreboard";
+
+// The API only gives us slugs like "landmark". These are the display names.
+// Not from the API — conferenceName comes back empty on every team.
+const CONFERENCES = {
+  "american-rivers": "American Rivers",
+  "asc": "American Southwest",
+  "cciw": "CCIW",
+  "centennial": "Centennial",
+  "cne": "Conference of New England",
+  "diii-independent": "Independent",
+  "empire-8": "Empire 8",
+  "hcac": "HCAC",
+  "landmark": "Landmark",
+  "liberty-league": "Liberty League",
+  "mascac": "MASCAC",
+  "miac": "MIAC",
+  "michigan-intercol. ath. assn.": "MIAA",
+  "middle-atlantic": "Middle Atlantic",
+  "mwc": "Midwest Conference",
+  "nacc": "NACC",
+  "ncac": "NCAC",
+  "newmac": "NEWMAC",
+  "njac": "NJAC",
+  "nwc": "Northwest Conference",
+  "oac": "OAC",
+  "odac": "ODAC",
+  "pac": "PAC",
+  "saa": "SAA",
+  "scac": "SCAC",
+  "sciac": "SCIAC",
+  "umac": "UMAC",
+  "usa-south": "USA South",
+  "wiac": "WIAC",
+};
+
+// The 2026 season's week 1 games were played Sep 3-6, so weeks start Aug 31.
+const SEASON_START = Date.UTC(2026, 7, 31);   // month 7 = August
+const MAX_WEEK = 16;
+
+function currentWeek() {
+  const days = Math.floor((Date.now() - SEASON_START) / 86400000);
+  return Math.min(MAX_WEEK, Math.max(1, Math.floor(days / 7) + 1));
+}
+
+let week = currentWeek();
+let conf = "landmark";     // PLAN.md: default the view to Landmark
+let games = [];
+
+// Turn text from the API into text that is safe to put in the page.
+// Without this, a team name containing < or & could break the markup.
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"]/g, c =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+
+function confName(seo) {
+  return CONFERENCES[seo] || seo || "Unknown";
+}
+
+// A team can list more than one conference; take the first non-empty slug.
+function seoOf(side) {
+  const list = side.conferences || [];
+  for (const c of list) if (c.conferenceSeo) return c.conferenceSeo;
+  return "";
+}
+
+// Which conference heading a game belongs under. If both teams are in the
+// same conference it's a conference game; otherwise it's non-conference.
+function groupOf(g) {
+  const h = seoOf(g.home), a = seoOf(g.away);
+  return h && h === a ? confName(h) : "Non-conference";
+}
+
+function hasScore(g) {
+  return g.home.score !== "" || g.away.score !== "";
+}
+
+// Working out whether a game is done, live, or upcoming is fiddly, because
+// gameState lies: some played games still say "pre". Two rules keep it honest:
+//   - only treat a game as FINAL when it actually says FINAL
+//   - otherwise, if there are scores on the board, it is live
+function statusOf(g) {
+  const isFinal = g.gameState === "final" ||
+                  g.finalMessage === "FINAL" ||
+                  g.currentPeriod === "FINAL";
+  if (isFinal) return { text: "Final", live: false };
+
+  if (g.gameState === "live" || hasScore(g)) {
+    // contestClock is often "0:00" or "00:00" between plays — that's noise, not time.
+    const clock = /^0?0:00$/.test(g.contestClock) ? "" : g.contestClock;
+    const bits = [g.currentPeriod, clock].filter(Boolean).join(" ");
+    return { text: bits || "In progress", live: true };
+  }
+  return { text: g.startTime || "Scheduled", live: false };
+}
+
+function teamRow(team, opponent, decided) {
+  const lost = decided && opponent.winner && !team.winner;
+  return `<div class="team ${team.winner ? "winner" : ""} ${lost ? "loser" : ""}">
+    <span class="name">${esc(team.names.short)}</span>
+    <span class="score">${esc(team.score)}</span>
+  </div>`;
+}
+
+function gameCard(g) {
+  const s = statusOf(g);
+  const decided = hasScore(g);
+  const away = teamRow(g.away, g.home, decided);
+  const home = teamRow(g.home, g.away, decided);
+  return `<article class="game">
+    ${away}${home}
+    <div class="status">
+      <span class="${s.live ? "live" : ""}">${esc(s.text)}</span>
+      <span>${esc(g.startDate)}</span>
+    </div>
+  </article>`;
+}
+
+function render() {
+  const board = document.getElementById("board");
+
+  const shown = conf === "all"
+    ? games
+    : games.filter(g => seoOf(g.home) === conf || seoOf(g.away) === conf);
+
+  document.getElementById("weekLabel").textContent = "Week " + week;
+  document.getElementById("prev").disabled = week <= 1;
+  document.getElementById("next").disabled = week >= MAX_WEEK;
+
+  if (!shown.length) {
+    board.innerHTML = `<p class="msg">No ${conf === "all" ? "" : confName(conf) + " "}games in week ${week}.</p>`;
+    return;
+  }
+
+  // Bucket the games by conference heading, then sort headings A-Z with
+  // non-conference games last.
+  const buckets = new Map();
+  for (const g of shown) {
+    const k = groupOf(g);
+    if (!buckets.has(k)) buckets.set(k, []);
+    buckets.get(k).push(g);
+  }
+  const keys = [...buckets.keys()].sort((a, b) => {
+    if (a === "Non-conference") return 1;
+    if (b === "Non-conference") return -1;
+    return a.localeCompare(b);
+  });
+
+  board.innerHTML = keys.map(k =>
+    `<h2>${esc(k)}</h2>` + buckets.get(k).map(gameCard).join("")
+  ).join("");
+}
+
+function buildConfMenu() {
+  const seen = new Set();
+  for (const g of games) {
+    for (const s of [seoOf(g.home), seoOf(g.away)]) if (s) seen.add(s);
+  }
+  const opts = [...seen].sort((a, b) => confName(a).localeCompare(confName(b)));
+  const sel = document.getElementById("conf");
+  sel.innerHTML = `<option value="all">All of D3</option>` +
+    opts.map(s => `<option value="${esc(s)}">${esc(confName(s))}</option>`).join("");
+  sel.value = conf;
+}
+
+async function load() {
+  try {
+    const res = await fetch(`${API}?year=2026&week=${String(week).padStart(2, "0")}`);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    games = (data.games || []).map(x => x.game);
+    // The API returns games in no useful order. Sort by kickoff time so the
+    // list reads chronologically. startTimeEpoch is seconds, as a string.
+    games.sort((a, b) => Number(a.startTimeEpoch) - Number(b.startTimeEpoch));
+    buildConfMenu();
+    render();
+    document.getElementById("foot").textContent =
+      "Updated " + new Date().toLocaleTimeString();
+  } catch (err) {
+    document.getElementById("board").innerHTML =
+      `<p class="msg">Couldn't load scores.<br>${esc(err.message)}</p>`;
+  }
+}
+
+document.getElementById("conf").addEventListener("change", e => {
+  conf = e.target.value;
+  render();
+});
+document.getElementById("prev").addEventListener("click", () => { week--; load(); });
+document.getElementById("next").addEventListener("click", () => { week++; load(); });
+
+load();
+setInterval(load, 60000);   // upstream caches for 60s, so refreshing faster is pointless
+</script>
 </body>
 </html>
