@@ -1688,6 +1688,12 @@ async function load() {
       if (g) openGame(g, { fromHistory: true });
     }
     lastGoodLoad = Date.now();
+    // When upstream is down, Vercel keeps serving the last good scoreboard for
+    // up to ten minutes rather than failing. That is the right call, but it
+    // means a successful fetch no longer proves the scores are current, so the
+    // server stamps when it actually reached the NCAA and the footer reports
+    // whichever is worse.
+    dataFetchedAt = Number(data.fetchedAt) || 0;
     showFreshness();
   } catch (err) {
     // Never wipe scores that are already on screen. A dropped poll on stadium
@@ -1704,12 +1710,21 @@ async function load() {
 // How old the scores on screen actually are. A frozen page should say so
 // rather than quietly show minute-old numbers as though they were current.
 let lastGoodLoad = 0;
+// When the server last actually reached the NCAA, as opposed to when this
+// browser last got a reply. The two differ whenever a cached copy is served.
+let dataFetchedAt = 0;
 
 function showFreshness() {
   const foot = document.getElementById("foot");
   if (!lastGoodLoad) { foot.textContent = "Loading scores…"; return; }
-  const secs = Math.round((Date.now() - lastGoodLoad) / 1000);
-  const when = new Date(lastGoodLoad).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+
+  // Age of the scores themselves: the older of "when we last fetched" and
+  // "when the server last reached upstream". Reporting only the first would
+  // call ten-minute-old cached scores current.
+  const stamp = dataFetchedAt ? Math.min(lastGoodLoad, dataFetchedAt) : lastGoodLoad;
+  const secs = Math.round((Date.now() - stamp) / 1000);
+  const when = new Date(stamp).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+
   if (secs < 90) foot.textContent = `Scores refresh every minute. Updated ${when}.`;
   else {
     const mins = Math.round(secs / 60);

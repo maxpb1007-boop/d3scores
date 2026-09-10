@@ -358,4 +358,33 @@ New find: **`/history/football/d3` works** (200) and returns championship histor
 
 **The dev server now lives at `tools/dev-server.js`, in the repo.** It was in the agent scratchpad and was deleted three times, each time silently breaking every preview tool. `.claude/launch.json` points at the repo copy.
 
+### 2026-09-10 (later) — will it hold up on a Saturday? Measured, not assumed
+
+Max asked how we know the site stays up while games are being played. Most of it is now measured against the deployed site rather than hoped for.
+
+| Question | Measurement |
+|---|---|
+| Page weight on a phone | **25 KB** gzipped (84 KB raw), `teams.js` 2.8 KB |
+| Cost of one 60s poll | **9 KB** gzipped, not the 88 KB raw figure |
+| 40 concurrent scoreboard requests | **40/40 cache HIT, 0 failures**, 65 ms median |
+| 8 different team pages at once | 8/8 → 200, ~250 ms each, `weeksFailed: 0` |
+| Upstream API, 20 requests over 20 s | **20/20 ok**, 34 ms median |
+
+**The edge cache genuinely shields upstream.** Forty simultaneous scoreboard requests produced *zero* upstream calls. However many people watch, the NCAA sees roughly one request a minute per week viewed. Bandwidth is a non-issue too: a three-hour session is about 1.7 MB, so the free tier's 100 GB is on the order of tens of thousands of sessions.
+
+**The 8-teams-at-once test passed for a reason worth knowing:** they all landed on a warm instance and reused the module-level cache added earlier today, so each cost ~250 ms instead of a 3.3 s walk. The genuinely cold case — first visitor of the morning — is still ~5 s. Acceptable, but it is the untested corner.
+
+**Two real gaps found in `api/scoreboard.js`, both fixed:**
+
+1. **It had no retry.** `season`, `team` and `roster` all retry twice; the one endpoint the entire site polls every 60 seconds gave up after a single failure. Now two attempts, with 4xx breaking out early since retrying a bad request is pointless.
+2. **`stale-while-revalidate` was 120 s**, so an upstream outage longer than two minutes became a user-facing failure. Now **600 s** — Vercel keeps serving the last good scoreboard for ten minutes while retrying.
+
+**That second fix is only safe because of a third change.** Serving a cached scoreboard means a *successful* fetch no longer proves the scores are current, and the footer would have cheerfully said "Updated now" over ten-minute-old numbers — the same "quietly stuck" failure fixed on 09-09, reintroduced by the cache. So the function now stamps `fetchedAt` (when it actually reached the NCAA) into the payload, and the footer reports **whichever of the two timestamps is older**.
+
+Verified by stubbing a successful response carrying a 7-minute-old `fetchedAt`: the footer read *"Not updating — last reached the scores 7 minutes ago (12:43 PM)"* despite the fetch succeeding, the 8 cards stayed on screen, and it recovered on the next good poll.
+
+**The generalisable rule: any caching layer added between the site and the truth has to carry the age of the truth with it.** Otherwise the cache converts an honest failure into a confident lie.
+
+**What is still not known, and cannot be from here:** whether `contestClock` is populated often enough to be worth showing, whether 60 seconds feels live, and whether RedZone works with forty games instead of the zero it has ever been tested with. Those need a Saturday.
+
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.
