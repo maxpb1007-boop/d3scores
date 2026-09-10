@@ -325,4 +325,37 @@ Neither "Final" nor "live" is honest for these — `7-0` is a real first-quarter
 
 Because `isLive()` derives from `statusOf()`, the LIVE badge and RedZone both corrected themselves — the badge went from `Live 1` to `Live`, and 0 cards now carry the red treatment. Which also means **RedZone has still never been seen with a genuinely live game.** The one game that made it look populated was this broken record.
 
+### 2026-09-10 — team pages, and the API's real route list
+
+Max asked for rosters and stadium pages, on the reasoning that both are public information. They are — but public and *fetchable* are different problems, and asking the API settled it in one request.
+
+**The API published its own route list in a 422 body.** Requesting `/rosters/...` returns:
+
+```
+Invalid type: Expected ("standings" | "rankings" | "history" | "stats") but received "rosters"
+```
+
+That is the complete set of top-level routes, alongside `/scoreboard/...` and `/game/{id}/...`. **There is no roster endpoint and no team endpoint, and there never was — this is now settled rather than assumed.** Probing five spellings first would have been slower than reading one error body; prefer a deliberately-invalid request to guessing valid ones.
+
+New find: **`/history/football/d3` works** (200) and returns championship history — year, champion, coach, score, runner-up, site. Not used yet. It is the only endpoint that carries a venue at all, and only for title games.
+
+**Stadiums are genuinely unavailable.** Every key in a box score was dumped and searched: no venue, city, capacity, or attendance. Wikidata was then tested as an outside source and the result is clean — the same SPARQL query returns **15 stadiums with capacities for Ohio State / Alabama / Michigan and 0 rows for Juniata, Gettysburg, Susquehanna, Muhlenberg and Wabash.** D3 simply is not in there. That leaves hand-entry or scraping 232 sites. **Decision: skipped**, per PLAN.md item G.
+
+**What shipped instead: team pages at `?team=<seo>`.** Header with record and colour, full season schedule, and every player who has appeared, jersey-ordered with season totals and a star to follow.
+
+- **The roster is participation, not a squad.** Players who haven't played don't appear, and `position` is `null` on every line (54 of 54 sampled), as are class year, height, weight and hometown. The page says this in plain words under the list rather than implying completeness.
+- **It had to be split across two endpoints.** `api/team.js` walks the season for the schedule; `api/roster.js` takes the resulting game ids and reads one box score each. Measured against a finished season: the week walk is 3.3s and sixteen box scores are 6.8s — **10.1s together, past Vercel's 10s limit.** Split, they are 5.2s and 4.5s. The page paints the schedule and fills the roster in behind it.
+- **Concurrency was re-tested and the old warning held.** Week scoreboards: 4 parallel → 3.3s, 0 failures; 8 → 2.0s but **6 weeks lost**; 16 → **11 lost**. Box scores behave identically: 4 → 6.8s clean, 8 → 5 lost, 16 → 11 lost. The failures are silent. **Four, everywhere, forever.**
+- `api/team.js` and `api/roster.js` keep a module-level cache of upstream responses. Vercel reuses a warm instance, so a second team page costs ~0s instead of repeating the same 3.3s walk. Failures are deliberately not cached.
+
+**Three bugs found by building this, two of them pre-existing:**
+
+1. **"Your players" showed the wrong game.** It took the *first* game a team appeared in that week. Juniata's week 1 contains both the Gettysburg game it played and the abandoned Keystone record, so a followed Juniata player showed "at Keystone · 12:00 PM ET" and no stat line. Now prefers a game with a score, then a genuinely future kickoff.
+2. **The team schedule advertised a kickoff for the abandoned game**, same as the scoreboard did yesterday.
+3. A team page reached from the 2025 schedule-strength table dropped `season` from the URL, so sharing that link loaded 2026.
+
+**That is the third and fourth time `!hasScore(g)` has been read as "upcoming".** The rule is now explicit: *absence of a result is not evidence of the future.* Anywhere this code branches on a missing score, it must also look at the clock.
+
+**The dev server now lives at `tools/dev-server.js`, in the repo.** It was in the agent scratchpad and was deleted three times, each time silently breaking every preview tool. `.claude/launch.json` points at the repo copy.
+
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.

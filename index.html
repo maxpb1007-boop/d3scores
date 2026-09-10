@@ -105,6 +105,46 @@
   table.sos .tm .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
   table.sos .tm .cf { color: var(--mute); font-size: 11px; }
   table.sos .val { font-weight: 700; }
+  /* --- team page --- */
+  .teamhead { display: flex; align-items: center; gap: 12px; margin: 18px 0 4px; }
+  .teamhead .tbar { width: 6px; align-self: stretch; min-height: 46px; border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.18); }
+  .teamhead .tinfo { min-width: 0; flex: 1; }
+  .teamhead h2 { font-family: "Barlow Condensed", Barlow, sans-serif; font-size: 30px; font-weight: 700; line-height: 1.05; letter-spacing: -0.2px; }
+  .teamhead p { font-size: 12px; color: var(--mute); margin-top: 2px; }
+  .favbig {
+    display: flex; align-items: center; gap: 5px; flex-shrink: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+    padding: 6px 11px; font: inherit; font-size: 12px; font-weight: 600;
+    color: var(--mid); cursor: pointer;
+  }
+  .favbig.on { color: var(--red); border-color: var(--red); }
+
+  .sched { background: var(--card); border: 1px solid var(--line); border-radius: 7px; overflow: hidden; margin-top: 10px; }
+  .trow { display: grid; grid-template-columns: 42px 20px 1fr auto auto; align-items: center; gap: 8px; padding: 9px 12px; border-top: 1px solid var(--hair); font-size: 14px; }
+  .trow:first-child { border-top: 0; }
+  .trow[data-game] { cursor: pointer; }
+  .trow[data-game]:hover { background: var(--bg); }
+  .trow .tdate { color: var(--mute); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .trow .tvs { color: var(--mute); font-size: 11px; }
+  .trow .tname { display: flex; align-items: center; gap: 7px; font-weight: 500; }
+  .trow .tres { font-size: 11px; font-weight: 700; letter-spacing: .5px; }
+  .trow .tres.w { color: var(--red); }
+  .trow .tres.l { color: var(--mute); }
+  .trow .tres.none { color: var(--mute); }
+  .trow .tsc { font-variant-numeric: tabular-nums; font-weight: 600; min-width: 44px; text-align: right; }
+  .trow .tsc.up { font-weight: 400; color: var(--mute); font-size: 12px; }
+
+  .roster { background: var(--card); border: 1px solid var(--line); border-radius: 7px; overflow: hidden; margin-top: 10px; }
+  .rp { display: grid; grid-template-columns: 30px 1fr 26px; align-items: center; gap: 10px; padding: 9px 12px; border-top: 1px solid var(--hair); }
+  .rp:first-child { border-top: 0; }
+  .rnum {
+    font-family: "Barlow Condensed", Barlow, sans-serif; font-weight: 700; font-size: 17px;
+    color: var(--mute); text-align: right; font-variant-numeric: tabular-nums;
+  }
+  .rmeta { min-width: 0; }
+  .rname { display: block; font-size: 14px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rblurb { display: block; font-size: 11px; color: var(--mute); margin-top: 1px; }
+
   .warn {
     background: #fff8e6; border: 1px solid #f0dca8; color: #6b5416;
     border-radius: 7px; padding: 11px 13px; font-size: 13px; margin-top: 14px;
@@ -182,6 +222,16 @@
   .team { display: grid; grid-template-columns: 14px 1fr auto 10px 26px; align-items: center; gap: 9px; }
   .swatch { width: 14px; height: 14px; border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.18); }
   .name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; font-weight: 500; color: var(--mid); }
+
+  /* Team names open the team page. Styled to look like the text they replaced —
+     a button here should read as a name, not as a control, or every card grows
+     five pieces of chrome. The underline on hover is the only affordance. */
+  button.tname {
+    appearance: none; background: none; border: 0; padding: 0; margin: 0;
+    font: inherit; color: inherit; text-align: left; cursor: pointer;
+    min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  button.tname:hover, button.tname:focus-visible { text-decoration: underline; text-underline-offset: 2px; }
   .pts {
     font-family: "Barlow Condensed", Barlow, sans-serif; font-weight: 700;
     font-size: 23px; line-height: 1.05; font-variant-numeric: tabular-nums; color: var(--mid);
@@ -344,6 +394,8 @@ const LOCAL = ["localhost", "127.0.0.1", ""].includes(location.hostname);
 const API = LOCAL ? "http://localhost:8000/api/scoreboard" : "/api/scoreboard";
 const GAME_API = LOCAL ? "http://localhost:8000/api/game" : "/api/game";
 const SEASON_API = LOCAL ? "http://localhost:8000/api/season" : "/api/season";
+const TEAM_API = LOCAL ? "http://localhost:8000/api/team" : "/api/team";
+const ROSTER_API = LOCAL ? "http://localhost:8000/api/roster" : "/api/roster";
 
 // The API only gives us slugs like "landmark". These are the display names.
 // Not from the API — conferenceName comes back empty on every team.
@@ -412,16 +464,27 @@ let pendingGame = startParams.get("game");          // opened once games have lo
 // specific week, fall back once to the last week that actually has results.
 let weekWasChosen = startParams.has("week");
 let triedFallback = false;
-const VIEWS = ["scores", "live", "sos"];
+const VIEWS = ["scores", "live", "sos", "team"];
 let view = VIEWS.includes(startParams.get("view")) ? startParams.get("view") : "scores";
 let sosYear = startParams.get("season") || "2026";
+
+// Which team page is open. A `?team=` in the URL implies the team view, so a
+// link can be pasted without also carrying `view=team`.
+let teamSeo = (startParams.get("team") || "").toLowerCase();
+if (!/^[a-z0-9-]{2,40}$/.test(teamSeo)) teamSeo = "";
+if (teamSeo) view = "team";
+else if (view === "team") view = "scores";
 
 function viewUrl(gameID) {
   const p = new URLSearchParams();
   p.set("week", String(week));
   if (conf && conf !== "favourites") p.set("conf", conf);
   if (view !== "scores") p.set("view", view);
-  if (view === "sos" && sosYear !== "2026") p.set("season", sosYear);
+  // The season applies to both the table and a team page reached from it, so a
+  // link to a 2025 team page still loads 2025 rather than silently the current
+  // year.
+  if ((view === "sos" || view === "team") && sosYear !== "2026") p.set("season", sosYear);
+  if (view === "team" && teamSeo) p.set("team", teamSeo);
   if (gameID) p.set("game", String(gameID));
   return location.pathname + "?" + p.toString();
 }
@@ -556,7 +619,8 @@ function teamRow(team, opponent, decided) {
   const fav = isFavTeam(seo);
   return `<div class="team ${won ? "won" : ""} ${lost ? "lost" : ""}">
     <span class="swatch" style="background:${esc(teamColor(seo))}"></span>
-    <span class="name">${esc(team.names.short)}</span>
+    <button class="tname name" data-seo="${esc(seo)}"
+      title="${esc(team.names.short)} team page">${esc(team.names.short)}</button>
     <span class="pts">${esc(team.score)}</span>
     <span class="caret"></span>
     <button class="fav" data-seo="${esc(seo)}" aria-pressed="${fav}"
@@ -599,6 +663,7 @@ function render() {
   markWeek();
   updateNav();
 
+  if (view === "team") { renderTeam(); return; }
   if (view === "sos") { renderSos(); return; }
   if (view === "live") { renderRedzone(); return; }
 
@@ -748,9 +813,233 @@ function updateNav() {
   }
   document.getElementById("liveLabel").textContent = n ? `Live ${n}` : "Live";
   // Week tabs are meaningless on a season-long table; the conference filter
-  // doesn't apply to RedZone, which deliberately shows the whole division.
-  document.getElementById("weeks").hidden = view === "sos";
-  document.getElementById("conf").hidden = view === "live";
+  // doesn't apply to RedZone, which deliberately shows the whole division, nor
+  // to a single team's page.
+  document.getElementById("weeks").hidden = view === "sos" || view === "team";
+  document.getElementById("conf").hidden = view === "live" || view === "team";
+}
+
+// ---------------------------------------------------------------------------
+// Team pages.
+//
+// Loaded in two halves on purpose. /api/team walks the season for the schedule;
+// /api/roster then reads one box score per game played. Each is a few seconds
+// and together they exceed Vercel's 10s function limit, so the schedule paints
+// first and the roster arrives behind it. See the note at the top of api/team.js.
+//
+// The roster is everyone who has *appeared*, because this API has no roster
+// endpoint at all. The page says so rather than implying it is a full squad.
+// ---------------------------------------------------------------------------
+const teamCache = new Map();
+const rosterCache = new Map();
+
+function getTeam(seo) {
+  const k = `${seo}|${sosYear}`;
+  if (!teamCache.has(k)) {
+    teamCache.set(k, fetch(`${TEAM_API}?seo=${encodeURIComponent(seo)}&year=${encodeURIComponent(sosYear)}`)
+      .then(r => (r.ok ? r.json() : null))
+      .catch(() => null));
+  }
+  return teamCache.get(k);
+}
+
+function getRoster(seo, ids) {
+  const k = `${seo}|${ids.join(",")}`;
+  if (!rosterCache.has(k)) {
+    rosterCache.set(k, fetch(`${ROSTER_API}?seo=${encodeURIComponent(seo)}&games=${encodeURIComponent(ids.join(","))}`)
+      .then(r => (r.ok ? r.json() : null))
+      .catch(() => null));
+  }
+  return rosterCache.get(k);
+}
+
+// The team payload currently on screen, so the schedule rows can open a box
+// score for a game in a week the scoreboard hasn't loaded.
+let currentTeam = null;
+
+function openTeam(seo) {
+  if (!seo) return;
+  teamSeo = seo;
+  view = "team";
+  history.pushState({ team: seo }, "", viewUrl(null));
+  render();
+}
+
+// A team's schedule spans the whole season, but `games` only holds the week on
+// screen, so these games usually aren't in it. The sheet fetches its own box
+// score by id; all it needs from here is a scoreboard-shaped object for the
+// header, which the schedule row already has the parts for.
+function syntheticGame(t, g) {
+  const me = {
+    score: g.score === null ? "" : String(g.score),
+    names: { short: t.name, seo: t.seo },
+    winner: g.result === "w",
+    conferences: [{ conferenceSeo: t.conf }],
+  };
+  const them = {
+    score: g.oppScore === null ? "" : String(g.oppScore),
+    names: { short: g.opponent.name, seo: g.opponent.seo },
+    winner: g.result === "l",
+    conferences: [],
+  };
+  return {
+    gameID: g.gameID,
+    startDate: g.startDate,
+    startTime: g.startTime,
+    startTimeEpoch: g.startTimeEpoch,
+    // Left deliberately un-final when the feed never finished the game, so the
+    // stale check reaches the same verdict here as on the scoreboard.
+    gameState: g.final ? "final" : "pre",
+    finalMessage: g.final ? "FINAL" : "",
+    currentPeriod: g.final ? "FINAL" : "",
+    contestClock: "",
+    home: g.home ? me : them,
+    away: g.home ? them : me,
+  };
+}
+
+function openGameById(id) {
+  const known = games.find(x => String(x.gameID) === String(id));
+  if (known) { openGame(known); return; }
+  if (!currentTeam) return;
+  const g = currentTeam.games.find(x => String(x.gameID) === String(id));
+  if (g) openGame(syntheticGame(currentTeam, g));
+}
+
+const NUMF = (n) => Number(n).toLocaleString("en-US");
+
+// One short line describing what a player actually does, chosen from whichever
+// of his totals is the most telling. Without it the roster is a list of names
+// with no meaning attached.
+function playerBlurb(p) {
+  const s = p.stats || {};
+  const plural = (n, one, many) => `${NUMF(n)} ${n === 1 ? one : many}`;
+  // A trailing "· 0 TD" on every line is noise, so scoring is only mentioned
+  // when there is some.
+  const tds = (n, label) => (n ? ` · ${n} ${label}` : "");
+
+  if (s.passingYards)   return `${NUMF(s.passingYards)} pass yds${tds(s.passingTDs, "TD")}`;
+  if (s.rushingYards)   return `${NUMF(s.rushingYards)} rush yds${tds(s.rushingTDs, "TD")}`;
+  if (s.receivingYards) return `${plural(s.receivingReceptions || 0, "catch", "catches")}, ${NUMF(s.receivingYards)} yds${tds(s.receivingTDs, "TD")}`;
+  if (s.totalTackles)   return `${plural(s.totalTackles, "tackle", "tackles")}${tds(s.sacks, s.sacks === 1 ? "sack" : "sacks")}`;
+  if (s.kickingPts)     return `${NUMF(s.kickingPts)} pts · ${s.fieldGoalsMade || 0}/${s.fieldGoalsAttempted || 0} FG`;
+  if (s.puntingPunts)   return `${plural(s.puntingPunts, "punt", "punts")} · ${Math.round((s.puntingYards || 0) / s.puntingPunts)} avg`;
+  if (s.kickReturns)    return `${plural(s.kickReturns, "kick return", "kick returns")} · ${NUMF(s.kickReturnYards || 0)} yds`;
+  if (s.puntReturns)    return `${plural(s.puntReturns, "punt return", "punt returns")} · ${NUMF(s.puntReturnYards || 0)} yds`;
+  // Appeared in a box score without a counting stat — a real case, not a bug.
+  return plural(p.games, "game", "games");
+}
+
+function teamScheduleHTML(t) {
+  return t.games.map(g => {
+    const played = g.score !== null;
+    const res = g.result ? g.result.toUpperCase() : "";
+    // Same trap as on the scoreboard: a game with no score looks identical to
+    // one that hasn't kicked off. Juniata's week-1 game against Keystone has no
+    // result and never will, and offering its kickoff time reads as upcoming.
+    const stale = !g.final && num(g.startTimeEpoch) * 1000 + STALE_AFTER < Date.now();
+    const right = played
+      ? `<span class="tres ${g.result || "none"}">${res || "—"}</span><span class="tsc">${g.score}-${g.oppScore}</span>`
+      : stale
+        ? `<span class="tsc up">No result</span>`
+        : `<span class="tsc up">${esc(g.startTime || "")}</span>`;
+    return `<div class="trow" ${played ? `data-game="${esc(g.gameID)}" role="button" tabindex="0"` : ""}>
+      <span class="tdate">${esc(g.startDate ? g.startDate.slice(0, 5) : "")}</span>
+      <span class="tvs">${g.home ? "vs" : "at"}</span>
+      <button class="tname" data-seo="${esc(g.opponent.seo)}">
+        <span class="swatch" style="background:${esc(teamColor(g.opponent.seo))}"></span>${esc(g.opponent.name)}
+      </button>
+      ${right}
+    </div>`;
+  }).join("");
+}
+
+function rosterHTML(r, rosterTeamName) {
+  if (!r || !r.players) {
+    return `<p class="msg">Couldn't load the roster.<span class="hint">The schedule above is still accurate.</span></p>`;
+  }
+  if (!r.players.length) {
+    return `<p class="msg">No player stats yet.<span class="hint">Player lines appear once this team has finished a game.</span></p>`;
+  }
+  const short = r.gamesFailed
+    ? `<div class="warn"><b>Incomplete.</b> ${r.gamesFailed} box score${r.gamesFailed === 1 ? "" : "s"} failed to load, so these totals are short.</div>`
+    : "";
+  return short + `<div class="roster">` + r.players.map(p => {
+    const following = players.has(p.key);
+    const nm = `${titleCase(p.firstName)} ${titleCase(p.lastName)}`.trim();
+    // The same data the box-score follow button writes, so a player starred
+    // here is indistinguishable from one starred there — same key, same shape,
+    // and raw names so the formatter can be improved retroactively.
+    return `<div class="rp">
+      <span class="rnum">${p.number == null ? "" : esc(String(p.number))}</span>
+      <span class="rmeta"><span class="rname">${esc(nm)}</span><span class="rblurb">${esc(playerBlurb(p))}</span></span>
+      <button class="fav rfav" data-follow="${esc(p.key)}"
+        data-team="${esc(r.seo)}" data-teamname="${esc(rosterTeamName)}"
+        data-number="${p.number == null ? "" : esc(String(p.number))}"
+        data-first="${esc(p.firstName)}" data-last="${esc(p.lastName)}"
+        aria-pressed="${following}"
+        aria-label="${following ? "Unfollow" : "Follow"} ${esc(nm)}"
+        title="${following ? "Unfollow" : "Follow"} ${esc(nm)}">${following ? STAR : STAR_OFF}</button>
+    </div>`;
+  }).join("") + `</div>`;
+}
+
+async function renderTeam() {
+  const board = document.getElementById("board");
+  document.getElementById("players").innerHTML = "";
+
+  const seo = teamSeo;
+  const fallbackName = confName("") && seo ? seo.replace(/-/g, " ") : seo;
+  board.innerHTML = `<p class="msg">Loading ${esc(fallbackName)}…</p>`;
+
+  const t = await getTeam(seo);
+  if (view !== "team" || teamSeo !== seo) return;      // reader moved on while loading
+  currentTeam = t;
+
+  if (!t || !t.games) {
+    board.innerHTML = `<p class="msg">Couldn't find that team.
+      <span class="hint">It may not have played a Division III game this season.</span></p>`;
+    return;
+  }
+
+  const rec = `${t.record.w}-${t.record.l}${t.record.t ? "-" + t.record.t : ""}`;
+  const head = `<section class="teamhead">
+      <span class="tbar" style="background:${esc(teamColor(seo))}"></span>
+      <div class="tinfo">
+        <h2>${esc(t.name)}</h2>
+        <p>${esc(confName(t.conf))} · ${rec} · ${t.year}</p>
+      </div>
+      <button class="favbig ${isFavTeam(seo) ? "on" : ""}" data-seo="${esc(seo)}"
+        aria-pressed="${isFavTeam(seo)}">${isFavTeam(seo) ? STAR : STAR_OFF}<span>${isFavTeam(seo) ? "Following" : "Follow"}</span></button>
+    </section>`;
+
+  const warn = t.weeksFailed
+    ? `<div class="warn"><b>Incomplete.</b> ${t.weeksFailed} week${t.weeksFailed === 1 ? "" : "s"} failed to load, so a game may be missing.</div>`
+    : "";
+
+  board.innerHTML = head + warn +
+    `<section class="group"><header><h2>Schedule</h2>
+       <span class="n">${t.games.length} game${t.games.length === 1 ? "" : "s"}</span><span class="rule"></span></header></section>
+     <div class="sched">${teamScheduleHTML(t)}</div>
+     <section class="group"><header><h2>Players</h2>
+       <span class="n" id="rcount">loading…</span><span class="rule"></span></header></section>
+     <div id="rosterbox"><p class="msg">Reading ${t.played.length} box score${t.played.length === 1 ? "" : "s"}…</p></div>
+     <p class="note" style="padding:14px 2px 0">This is everyone who has recorded a stat in a completed game — it is
+       not the full squad. The NCAA feed this site uses publishes no roster, so players who haven't appeared, and
+       positions, class years and hometowns, aren't available anywhere in it.</p>`;
+
+  if (!t.played.length) {
+    document.getElementById("rcount").textContent = "none yet";
+    document.getElementById("rosterbox").innerHTML =
+      `<p class="msg">No games played yet.<span class="hint">Players appear here once ${esc(t.name)} has finished a game.</span></p>`;
+    return;
+  }
+
+  const r = await getRoster(seo, t.played);
+  if (view !== "team" || teamSeo !== seo) return;
+  document.getElementById("rcount").textContent =
+    r && r.players ? `${r.players.length} appeared` : "unavailable";
+  document.getElementById("rosterbox").innerHTML = rosterHTML(r, t.name);
 }
 
 // ---------------------------------------------------------------------------
@@ -814,7 +1103,7 @@ async function renderSos() {
           <td>${i + 1}</td>
           <td><span class="tm">
             <span class="swatch" style="background:${esc(teamColor(t.seo))}"></span>
-            <span class="nm">${esc(t.name)}</span>
+            <button class="tname nm" data-seo="${esc(t.seo)}">${esc(t.name)}</button>
           </span><span class="cf">${esc(confName(t.conf))}</span></td>
           <td>${t.w}-${t.l}${t.t ? "-" + t.t : ""}</td>
           <td class="val">${fmt3(t.sos)}</td>
@@ -1209,7 +1498,18 @@ dlg.addEventListener("close", () => {
 
 // Keep the sheet in step with the URL when the user presses Back or Forward.
 window.addEventListener("popstate", () => {
-  const id = new URLSearchParams(location.search).get("game");
+  const p = new URLSearchParams(location.search);
+  const id = p.get("game");
+
+  // Back out of a team page as well as out of a game sheet — both push history.
+  const wantTeam = (p.get("team") || "").toLowerCase();
+  const wantView = wantTeam ? "team" : (VIEWS.includes(p.get("view")) ? p.get("view") : "scores");
+  if (wantView !== view || wantTeam !== teamSeo) {
+    view = wantView === "team" && !wantTeam ? "scores" : wantView;
+    teamSeo = wantTeam;
+    render();
+  }
+
   if (!id) {
     if (dlg.open) {
       closingFromHistory = true;
@@ -1279,11 +1579,24 @@ async function renderPlayers() {
   const host = document.getElementById("players");
   if (!players.size) { host.innerHTML = ""; return; }
 
-  // Which game is each followed player's team in this week?
-  const entries = [...players].map(([key, meta]) => {
-    const g = games.find(x => x.home.names.seo === meta.team || x.away.names.seo === meta.team);
-    return { key, meta, game: g };
-  });
+  // Which game is each followed player's team in this week? A team can appear
+  // more than once — Juniata's week 1 holds both the Gettysburg game it played
+  // and a Keystone game the feed never gave a result for. Taking the first
+  // match showed the abandoned one and no stat line, so prefer a game that was
+  // actually played, then a genuine upcoming kickoff, and only then whatever is
+  // left.
+  const pickGame = (teamSeo) => {
+    const mine = games.filter(x => x.home.names.seo === teamSeo || x.away.names.seo === teamSeo);
+    if (!mine.length) return undefined;
+    const played = mine.filter(hasScore);
+    if (played.length) return played[played.length - 1];
+    const upcoming = mine.filter(x => num(x.startTimeEpoch) * 1000 > Date.now());
+    return upcoming[0] || mine[0];
+  };
+
+  const entries = [...players].map(([key, meta]) => ({
+    key, meta, game: pickGame(meta.team),
+  }));
 
   const shell = (body) => `<section class="group pinned">
       <header><h2>Your players</h2><span class="n">${entries.length}</span><span class="rule"></span></header>
@@ -1296,7 +1609,9 @@ async function renderPlayers() {
     const opp = game.home.names.seo === meta.team ? game.away : game.home;
     const at = game.home.names.seo === meta.team ? "vs" : "at";
     if (!hasScore(game)) {
-      return playerCard(meta, key, `<p class="ctx">${at} ${esc(opp.names.short)} · ${esc(game.startTime || "TBA")}</p>`, true);
+      // statusOf rather than startTime, so a game the feed abandoned reads
+      // "No result" instead of advertising a kickoff that already passed.
+      return playerCard(meta, key, `<p class="ctx">${at} ${esc(opp.names.short)} · ${esc(statusOf(game).text)}</p>`, true);
     }
     return playerCard(meta, key,
       `<p class="ctx">${at} ${esc(opp.names.short)} · ${esc(statusOf(game).text)}</p>
@@ -1430,6 +1745,8 @@ document.getElementById("views").addEventListener("click", e => {
   const btn = e.target.closest("button[data-view]");
   if (!btn || btn.dataset.view === view) return;
   view = btn.dataset.view;
+  teamSeo = "";                       // leaving a team page for a top-level view
+  currentTeam = null;
   syncUrl();
   render();
   if (view === "scores") renderPlayers();
@@ -1443,13 +1760,39 @@ document.getElementById("board").addEventListener("change", e => {
 });
 
 document.getElementById("board").addEventListener("click", e => {
+  // Team names open the team page. Checked before the card handler below, or
+  // tapping a name inside a game card would open the box score instead.
+  const tn = e.target.closest("button.tname");
+  if (tn) { openTeam(tn.dataset.seo); return; }
+
+  // Following a player from the roster writes exactly what the box-score
+  // button writes, so "Your players" treats them identically.
+  const follow = e.target.closest("button[data-follow]");
+  if (follow) {
+    const key = follow.dataset.follow;
+    if (players.has(key)) players.delete(key);
+    else players.set(key, {
+      team: follow.dataset.team,
+      teamName: follow.dataset.teamname,
+      number: follow.dataset.number,
+      first: follow.dataset.first,
+      last: follow.dataset.last,
+    });
+    savePlayers();
+    const on = players.has(key);
+    follow.setAttribute("aria-pressed", String(on));
+    follow.innerHTML = on ? STAR : STAR_OFF;
+    follow.title = on ? "Unfollow" : "Follow";
+    return;
+  }
+
   const rz = e.target.closest(".rzg[data-game]");
   if (rz) {
     const g = games.find(x => String(x.gameID) === rz.dataset.game);
     if (g) openGame(g);
     return;
   }
-  const btn = e.target.closest("button.fav");
+  const btn = e.target.closest("button.fav, button.favbig");
   if (btn) {
     const seo = btn.dataset.seo;
     if (favs.has(seo)) favs.delete(seo); else favs.add(seo);
@@ -1458,6 +1801,11 @@ document.getElementById("board").addEventListener("click", e => {
     render();
     return;
   }
+
+  // A row in a team's schedule opens that game's box score. The game may not be
+  // in `games`, which only holds the week on screen, so fetch it by id.
+  const trow = e.target.closest(".trow[data-game]");
+  if (trow) { openGameById(trow.dataset.game); return; }
   const card = e.target.closest(".game[data-game]");
   if (card) {
     const g = games.find(x => String(x.gameID) === card.dataset.game);

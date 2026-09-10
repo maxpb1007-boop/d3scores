@@ -131,8 +131,10 @@ Everything needed already works: `gameState`, `currentPeriod`, `contestClock`, b
 **B. Stat leaders — now CHEAP, previously mis-scoped.**
 `/stats/football/d3/current/individual/{id}` publishes them already, 50 per page. **No database, no per-game aggregation.** See CLAUDE.md for category ids. This moved from "Phase 3" to "an afternoon."
 
-**C. Player pages — half buildable now.**
+**C. Player pages — half buildable now. Team pages SHIPPED 2026-09-10.**
 Position and class year come from the stats leaderboards; per-game lines come from box scores. A game log across a season still needs accumulation, so *that* part is Phase 3. Height, weight, hometown, awards and recruiting are **not in this API at all** and would mean scraping 232 school sites — the dead Plan B. Don't.
+
+Team pages now exist at `?team=<seo>`: record, colour, full schedule, and every player who has appeared with season totals and a star to follow. **The roster is participation, not a squad** — there is no roster endpoint in this API, confirmed from its own 422 body listing every route it has. Players who haven't played are absent, and `position` is `null` on every box-score line. The page states that limitation instead of hiding it. An individual player page is the obvious next step and needs no new data source, only a route.
 
 **D. Standings → strength of schedule → power rankings → bubble watch. ONE project, in that order, in OCTOBER.**
 All four need the same base: every result of the season tallied into records, computed locally because `/standings` returns 500. SoS is then nearly free. Power rankings are a real modelling job and are genuinely differentiating — rankings start arguments and arguments spread links. Bubble watch is the hardest thing on the list and its difficulty is *not technical*: it requires correctly modelling NCAA D3 selection (Pool A automatic bids, Pool B, Pool C at-large), which exists in no API. Get it subtly wrong and the site confidently misinforms a school about its season.
@@ -144,8 +146,10 @@ These are 19-year-olds who are not public figures. Their *stats* are facts and a
 **F. Accounts — skip; there's a cheaper 90%.**
 Following already works via `localStorage`. Accounts buy exactly one thing, cross-device sync, and cost passwords, email, reset flows, a database and responsibility for other people's data. **Cheaper middle ground: a transfer link that encodes your follows in a URL.** An afternoon's work. Build real accounts only once someone actually asks for sync.
 
-**G. Stadium pages — not possible from this API.**
+**G. Stadium pages — not possible from this API. CONFIRMED AND DECLINED 2026-09-10.**
 Checked explicitly: no venue, city, capacity or attendance field exists anywhere in the scoreboard or box score. Photos add a licensing problem on top. This is a manual research project across 232 schools, and it is the least valuable item here — nobody opens a scores site to learn a stadium's capacity.
+
+Re-examined 2026-09-10 when Max asked for it directly, and **Wikidata was tested rather than assumed unusable.** The same SPARQL query returns 15 stadiums with capacities for Ohio State, Alabama and Michigan, and **zero rows for Juniata, Gettysburg, Susquehanna, Muhlenberg and Wabash.** Wikipedia coverage follows public attention and D3 has none. The only remaining routes are hand-entering 232 schools or scraping 232 athletics sites. **Decision: skip.** If it comes back, start with the eight Landmark schools as a test rather than all 232.
 
 ---
 
