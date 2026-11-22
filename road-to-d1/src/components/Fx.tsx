@@ -35,7 +35,7 @@ export const FxLayer: React.FC<{ fx: Fx[]; frame: number; shotStart: number }> =
           const wob = Math.sin(k * 0.6) * 6;
           return (
             <AbsoluteFill key={i}>
-              <AbsoluteFill style={{ boxShadow: `inset 0 0 ${160 + wob * 5}px ${30 + wob * 3}px rgba(200,215,255,0.7)` }} />
+              <AbsoluteFill style={{ boxShadow: `inset 0 0 ${160 + wob * 5}px ${30 + wob * 3}px rgba(200,215,255,0.5)` }} />
             </AbsoluteFill>
           );
         }

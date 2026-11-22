@@ -111,3 +111,31 @@ See "What we learned" below.
 ---
 
 ## What we learned
+
+### 2026-11-22 — Episode 1 pipeline built from scratch (cloud VM, no GPU)
+
+**Render settings that work (do not rediscover):**
+- `--gl=swangle` works first try on the GPU-less VM (set in `remotion.config.ts`). angle/swiftshader never needed.
+- **Chrome download host `remotion.media` is blocked.** Remotion uses the VM's Playwright headless shell:
+  `/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`
+  via `Config.setBrowserExecutable` (override with `REMOTION_BROWSER` if the path moves).
+- **The render browser cannot reach Google Fonts** (it bypasses the proxy), so `@remotion/google-fonts` hangs
+  with "Fetching Montserrat font" until timeout. Montserrat (variable woff2, 38 KB, OFL) is in
+  `public/fonts/` and loaded with `FontFace` + `delayRender` in `src/lib/fonts.ts`.
+- Stills: `node scripts/stills.mjs Comp:frame:out.jpg … --scale=0.5` bundles once; ~1–2 s per still.
+- Foreground `sleep` is blocked by the harness: wait on renders with the Monitor tool on the log.
+
+**Three.js / R3F gotchas found the hard way:**
+- `@remotion/three` only redraws when the frame number changes. A `CanvasTexture` drawn after an async font
+  load stays BLACK in the captured frame. `useCanvasTexture` draws immediately, redraws when the font is
+  ready, calls R3F `advance()`, then `continueRender`. Use it for every poster/screen/sky texture.
+- Camera: set it in `useLayoutEffect` (`CameraRig`) — it runs before @remotion/three's `advance()` (a plain effect).
+- Elbows use Euler order `YXZ`: x bends the forearm forward, then y swings it across the body. With the default
+  XYZ the y rotation does nothing to a hanging forearm and "arms crossed" can't be posed.
+- A coloured point light near Tre's face (phone glow) washes his skin out until he reads as light-skinned.
+  Keep face fills dim (`intensity ≈ 0.35 × screen light`) and re-check skin tone on every night shot.
+- Close-ups: `frame(head, width)` with width ≥ 1.1 (Gus) / 1.15 (Tre) and `headAt` 0.385, or the hair/twists
+  get cropped and the caption band (55–62 %) lands on the mouth.
+
+**Audio:** voices are generated per sentence (Kokoro on CPU, ~30 s for a whole episode). Music and all SFX
+are synthesized in `scripts/sfx_synth.py`. The two-pass loudnorm lands at −14.2 LUFS / −1.5 dB peak.

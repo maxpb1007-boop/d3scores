@@ -298,7 +298,7 @@ export const SHOTS: Shot[] = [
   },
   {
     id: "09b", start: 1262, end: 1300, set: "Field", light: "golden", lightTarget: [0, 1, 0],
-    cam: { pos: [1.7, 0.55, 2.3], target: [0, 0.45, -0.1], fov: 38 }, push: 0.04,
+    cam: { pos: [3.4, 1.0, 0.7], target: [0, 0.55, -0.3], fov: 40 }, push: 0.04,
     actors: [gus({ pos: [0, 0, 0], yaw: Math.PI, poses: [{ f: 0, pose: "snap" }], mouth: "none" })],
     extra: snapBall,
   },
@@ -315,7 +315,7 @@ export const SHOTS: Shot[] = [
   },
   {
     id: "09d", start: 1345, end: 1410, set: "Field", light: "golden", lightTarget: [0, 1, PUNT_Z],
-    cam: { pos: [1.3, 2.5, PUNT_Z + 3.8], target: [-0.2, 0.8, PUNT_Z - 5], fov: 40 }, push: 0.04,
+    cam: { pos: [1.35, 2.4, PUNT_Z + 5.4], target: [0.15, 0.9, PUNT_Z - 6], fov: 40 }, push: 0.04,
     actors: [
       gus({ pos: [0, 0, 0], yaw: Math.PI, poses: [{ f: 0, pose: "snap" }, { f: 1372, pose: "idle", blend: 12 }], mouth: "none", turn: { f0: 1380, f1: 1400, to: 0 } }),
       { who: PUNTER, pos: [0, 0, PUNT_Z], yaw: Math.PI, poses: [{ f: 0, pose: "phoneShow" }, { f: 1362, pose: "idle", blend: 10 }], expr: [{ f: 0, e: "neutral" }], rHand: { kind: "football" } },

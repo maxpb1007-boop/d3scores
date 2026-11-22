@@ -29,41 +29,36 @@ export const buildPages = (words: CaptionWord[], highlights: Record<string, stri
   }
   for (const [k, ws] of groups) {
     const line = k.split("|")[0];
-    const { pages: tp } = createTikTokStyleCaptions({ captions: ws, combineTokensWithinMilliseconds: 1400 });
-    for (const p of tp) {
-      // split into chunks: break after punctuation, max 4 words (3 if they'd be wide)
-      let chunk: typeof p.tokens = [];
-      const flush = () => {
-        if (!chunk.length) return;
-        const toks = chunk.map((t, i) => ({ ...t, text: i === 0 ? t.text.trimStart() : t.text }));
+    // Whole sentence as one TikTok-style page, then split it ourselves: break at punctuation, then
+    // share each segment evenly into chunks of <= 4 words (<= 3 if wide) so no word is left orphaned.
+    const { pages: tp } = createTikTokStyleCaptions({ captions: ws, combineTokensWithinMilliseconds: 60000 });
+    const toks = tp.flatMap((p) => p.tokens);
+    const segs: (typeof toks)[] = [[]];
+    toks.forEach((t, i) => {
+      segs[segs.length - 1].push(t);
+      if (/[,.!?]$/.test(t.text.trim()) && i < toks.length - 1) segs.push([]);
+    });
+    for (const seg of segs) {
+      if (!seg.length) continue;
+      const chars = seg.reduce((n, t) => n + t.text.trim().length + 1, 0);
+      const perChunk = chars / seg.length > 6 ? 3 : 4;
+      const n = Math.ceil(seg.length / perChunk);
+      for (let c = 0; c < n; c++) {
+        const chunk = seg.slice(Math.round((c * seg.length) / n), Math.round(((c + 1) * seg.length) / n));
+        const ct = chunk.map((t, i) => ({ ...t, text: i === 0 ? t.text.trimStart() : t.text }));
         const list = (highlights[line] ?? []).map((h) => h.toLowerCase());
-        let hi = toks.findIndex((t) => list.includes(norm(t.text)));
+        let hi = ct.findIndex((t) => list.includes(norm(t.text)));
         if (hi < 0) {
           let best = -1;
-          toks.forEach((t, i) => {
-            const n = norm(t.text);
-            if (STOP.has(n)) return;
-            if (best < 0 || n.length > norm(toks[best].text).length) best = i;
+          ct.forEach((t, i) => {
+            const w = norm(t.text);
+            if (STOP.has(w)) return;
+            if (best < 0 || w.length > norm(ct[best].text).length) best = i;
           });
           hi = best < 0 ? 0 : best;
         }
-        pages.push({
-          text: toks.map((t) => t.text).join(""),
-          startMs: toks[0].fromMs,
-          endMs: toks[toks.length - 1].toMs,
-          tokens: toks,
-          key: pages.length,
-          line,
-          hi,
-        });
-        chunk = [];
-      };
-      for (const t of p.tokens) {
-        chunk.push(t);
-        const chars = chunk.reduce((s, x) => s + x.text.trim().length, 0);
-        if (/[,.!?]$|\.\.\.$/.test(t.text.trim()) || chunk.length >= 4 || (chunk.length >= 3 && chars > 16)) flush();
+        pages.push({ text: ct.map((t) => t.text).join(""), startMs: ct[0].fromMs, endMs: ct[ct.length - 1].toMs, tokens: ct, key: pages.length, line, hi });
       }
-      flush();
     }
   }
   pages.sort((a, b) => a.startMs - b.startMs);
