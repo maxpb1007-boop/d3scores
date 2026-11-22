@@ -30,3 +30,18 @@ Each entry: what was ambiguous, what was chosen, why.
    Playwright headless shell via `Config.setBrowserExecutable` in remotion.config.ts.
 9. **Captions are stored with script casing and uppercased by CSS**, so the caption data diffs
    exactly against the script while the screen shows bold all-caps.
+10. **No helmets or pads at practice.** Faces are the whole show; helmets would hide them. Practice-field
+    scenes use the punter extra in a plain practice top.
+11. **Bedroom: Tre sits up in bed** (instead of lying down) so his face stays readable under the phone glow.
+    The phone fill light is kept dim — a brighter one washed out his skin tone, which is a design violation.
+12. **Montage spots:** bed → bathroom mirror → lunch line (the three spots in the script), 15–18 frames each,
+    with a 3-frame white flash + click on each cut.
+13. **Caption paging:** a page never crosses a sentence; it breaks at punctuation, then each segment is split
+    evenly into ≤4-word pages (≤3 when the words are long) so there are no orphan single words. Every page
+    gets exactly one yellow word: the line's listed highlight if present, else its longest non-filler word.
+14. **Final encode:** Remotion renders JPEG frames, which come out full-range `yuvj420p`. Chunks render at
+    CRF 14, then one ffmpeg pass converts to TV-range `yuv420p` at CRF 20 (QA requires yuv420p).
+15. **Loudnorm runs in dynamic mode** (the synthesized SFX peaks are too hot for linear mode). The result
+    measures −14.2 LUFS and −1.4 dBTP after AAC.
+16. **Fictional on-screen text only:** "coach_gradasst", "Coach Briggs", a generic "T" letter patch,
+    "GO TEAM!", "SPIRIT WEEK". No real schools, apps or logos.

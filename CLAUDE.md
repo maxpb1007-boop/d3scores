@@ -388,3 +388,10 @@ Verified by stubbing a successful response carrying a 7-minute-old `fetchedAt`: 
 **What is still not known, and cannot be from here:** whether `contestClock` is populated often enough to be worth showing, whether 60 seconds feels live, and whether RedZone works with forty games instead of the zero it has ever been tested with. Those need a Saturday.
 
 **Next session starts with:** looking at the live site on a phone during an actual game weekend before building anything else. Phase 1 step 6 is "ship it, send the link to one person" — that is the remaining work, and it is not code. Phase 2 (game detail: box score + scoring summary) does not start until a real game weekend has been watched on this thing.
+
+### 2026-11-22 — side project: "Road to D1" animated series lives in `road-to-d1/`
+
+Not part of the website. `.vercelignore` excludes it, and it has its own `package.json`, so the root still has
+none (the `api/*.js` CommonJS rule above is untouched). Its own `road-to-d1/CLAUDE.md` holds the series bible
+and pipeline. Episode 1 is rendered and QA-passed in `road-to-d1/renders/ep01/`. To make the next episode, use
+the `new-episode` skill in `.claude/skills/new-episode/`. The scores-site roadmap is unchanged.

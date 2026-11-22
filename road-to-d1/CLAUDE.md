@@ -139,3 +139,13 @@ See "What we learned" below.
 
 **Audio:** voices are generated per sentence (Kokoro on CPU, ~30 s for a whole episode). Music and all SFX
 are synthesized in `scripts/sfx_synth.py`. The two-pass loudnorm lands at −14.2 LUFS / −1.5 dB peak.
+
+**Render times (4 vCPU, swangle):** ~0.35 s/frame at BOTH half and full scale (R3F clamps the WebGL buffer, so
+`--scale=0.5` saves little) → a 74 s episode renders in ~13 min in 4 chunks of 600 frames, plus ~1 min for the
+final x264 encode. Disk stayed under 12 GB used. Output ~25 MB per MP4 at CRF 20.
+
+**QA results Ep 1:** 12/12 on both files (1080x1920, 30 fps, h264 yuv420p, AAC 48 kHz, 74.37 s, only black is
+the intentional smash cut, no freezes, −14.2 LUFS, −1.4 dBTP, A/V diff 1 ms, 172/172 caption words exact).
+
+**GitHub push was blocked (403)** for this whole session: the Claude GitHub App has read but not write access
+to the repo. Everything is committed locally on `claude/road-to-d1-ep01-aoxozi`; see `BLOCKERS.md`.
