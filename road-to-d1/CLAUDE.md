@@ -35,7 +35,7 @@ real name, school, team or location in a video or a committed file.
 | Bottom | gray sweatpants `#8A8F96` | black joggers `#1C1C22` |
 | Shoes | white-and-gray sneakers | bright white sneakers |
 | Default face | `neutral` = unimpressed, half-lidded | `hyped` = raised brows |
-| Voice | Kokoro `am_michael` (calm, dry) — see DECISIONS.md | Kokoro `am_puck` (energetic) — see DECISIONS.md |
+| Voice | Kokoro `am_michael` (calm, dry) — see DECISIONS.md | Kokoro `am_fenrir` (energetic, higher) — see DECISIONS.md |
 
 **Extras** (same rig, `src/characters/extras.ts`): `freshman` (big backpack), `lunchLady`
 (hairnet, apron), `coach` (cap + whistle), `punter`, `kid` (generic student).

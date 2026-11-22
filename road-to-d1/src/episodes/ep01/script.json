@@ -1,0 +1,74 @@
+{
+  "episode": "ep01",
+  "title": "Three Stars",
+  "voices": {
+    "gus": { "voice": "am_michael", "speed": 1.12 },
+    "tre": { "voice": "am_fenrir", "speed": 1.14 }
+  },
+  "sentenceGap": 0.16,
+  "endBlack": 0.5,
+  "endCard": 1.8,
+  "lines": [
+    { "id": "01", "speaker": "gus", "pre": 0.25, "highlights": ["three-star", "snapper", "famous"],
+      "sentences": [
+        { "text": "My best friend is a three-star receiver." },
+        { "text": "I'm the long snapper." },
+        { "text": "Guess which one of us thinks he's famous.", "pre": 0.3 } ] },
+    { "id": "02", "speaker": "gus", "pre": 0.3, "highlights": ["Tre", "phone", "hundred", "girls", "coaches"],
+      "sentences": [
+        { "text": "This is Tre." },
+        { "text": "Tre checks his phone like four hundred times a day." },
+        { "text": "Not for girls.", "pre": 0.2 },
+        { "text": "For coaches.", "pre": 0.35 } ] },
+    { "id": "03", "speaker": "tre", "pre": 0.35, "speed": 1.0, "gain": 0.7, "highlights": ["Bro", "coach", "story"],
+      "sentences": [
+        { "text": "Bro." },
+        { "text": "A coach looked at my story.", "pre": 0.25 } ] },
+    { "id": "04", "speaker": "gus", "pre": 0.4, "highlights": ["grad", "football"],
+      "sentences": [
+        { "text": "It was a grad assistant." },
+        { "text": "From a school with no football team.", "pre": 0.3 } ], "post": 0.5 },
+    { "id": "05", "speaker": "gus", "pre": 0.2, "highlights": ["routes", "classes", "ball"],
+      "sentences": [
+        { "text": "Tre runs routes in the hallway." },
+        { "text": "Between classes.", "pre": 0.15 },
+        { "text": "With no ball.", "pre": 0.3 } ], "post": 0.6 },
+    { "id": "06", "speaker": "gus", "pre": 0.2, "highlights": ["undefeated", "freshmen"],
+      "sentences": [ { "text": "He's undefeated against freshmen." } ], "post": 0.5 },
+    { "id": "07", "speaker": "gus", "pre": 0.25, "highlights": ["highlight", "two", "Eleven", "catch"],
+      "sentences": [
+        { "text": "He posted his own highlight tape at two in the morning." },
+        { "text": "Eleven slow-mo replays of the same catch." } ] },
+    { "id": "08", "speaker": "gus", "pre": 0.35, "highlights": ["Four", "mom", "me", "accident"],
+      "sentences": [
+        { "text": "Four likes." },
+        { "text": "One was his mom.", "pre": 0.2 },
+        { "text": "One was me." },
+        { "text": "By accident.", "pre": 0.4 } ], "post": 0.6 },
+    { "id": "09", "speaker": "gus", "pre": 0.3, "highlights": ["Meanwhile", "fifteen", "backwards", "legs", "spiral", "day", "Nobody"],
+      "sentences": [
+        { "text": "Meanwhile, I snap a ball fifteen yards backwards, between my legs, perfect spiral, every single day." },
+        { "text": "Nobody claps.", "pre": 0.4 } ], "post": 1.4 },
+    { "id": "10", "speaker": "gus", "pre": 0.2, "highlights": ["job", "name", "once"],
+      "sentences": [
+        { "text": "If I do my job, nobody knows my name." },
+        { "text": "If I mess up once...", "pre": 0.2 } ], "post": 1.1 },
+    { "id": "11", "speaker": "gus", "pre": 0.0, "highlights": ["everybody"],
+      "sentences": [ { "text": "...everybody knows my name.", "tts": "Everybody knows my name." } ], "post": 0.4 },
+    { "id": "12", "speaker": "tre", "pre": 0.3, "speed": 1.22, "gain": 1.15, "highlights": ["FOUR-STAR", "four-seven"],
+      "sentences": [
+        { "text": "They moved a FOUR-STAR ahead of me!", "tts": "They moved a four-star ahead of me!" },
+        { "text": "He runs a four-seven!", "tts": "He runs a four seven!" } ] },
+    { "id": "13", "speaker": "gus", "pre": 0.35, "highlights": ["ranked", "snappers", "six"],
+      "sentences": [
+        { "text": "I'm not even ranked." },
+        { "text": "There's no ranking for long snappers." },
+        { "text": "There's like six of us.", "pre": 0.3 } ], "post": 0.7 },
+    { "id": "14", "speaker": "gus", "pre": 0.2, "highlights": ["buzzed"],
+      "sentences": [ { "text": "Then my phone buzzed." } ], "post": 1.2 },
+    { "id": "15a", "speaker": "gus", "pre": 0.2, "highlights": ["Briggs"],
+      "sentences": [ { "text": "...Who's Coach Briggs?", "tts": "Who's Coach Briggs?" } ] },
+    { "id": "15b", "speaker": "tre", "pre": 0.55, "speed": 0.86, "highlights": ["WHO'S"],
+      "sentences": [ { "text": "...WHO'S Coach Briggs?", "tts": "Who's Coach Briggs?" } ], "post": 0.35 }
+  ]
+}
