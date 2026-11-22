@@ -28,7 +28,7 @@ export const Lights: React.FC<{ preset: LightPreset; keyPos?: V3; target?: V3 }>
     classroom: { sky: "#CFDFFF", ground: "#E9D2B2", hemi: 1.15, key: "#FFE2BC", keyI: 2.6, kp: [-5, 6, 4], amb: 0.3 },
     hallway: { sky: "#D6E4FF", ground: "#D9CFC2", hemi: 1.25, key: "#FFF1DC", keyI: 2.2, kp: [2, 7, 4], amb: 0.3 },
     cafeteria: { sky: "#D8E6FF", ground: "#F0DDC4", hemi: 1.25, key: "#FFE6C4", keyI: 2.4, kp: [-4, 7, 5], amb: 0.3 },
-    bedroom: { sky: "#3B4C8A", ground: "#1A1630", hemi: 0.55, key: "#8FB4FF", keyI: 0.7, kp: [-4, 5, 3], amb: 0.12 },
+    bedroom: { sky: "#6F7FC8", ground: "#3A3060", hemi: 1.1, key: "#9DBBFF", keyI: 1.3, kp: [-4, 5, 3], amb: 0.25 },
     golden: { sky: "#FFD6A0", ground: "#7FA05A", hemi: 1.0, key: "#FFB866", keyI: 3.0, kp: [-8, 4, -2], amb: 0.25 },
   };
   const p = P[preset];
