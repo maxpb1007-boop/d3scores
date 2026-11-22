@@ -4,4 +4,21 @@
 .tools/
 
 # Local agent config, contains machine-specific absolute paths.
-.claude/
+# Exception: committed skills (e.g. the Road to D1 new-episode skill).
+.claude/*
+!.claude/skills/
+
+# --- Road to D1 animation pipeline (road-to-d1/) ---
+# Never commit installs, model weights, temp bundles, logs or frame dumps.
+node_modules/
+out/
+tmp/
+.remotion/
+models/
+*.onnx
+*.bin
+whisper.cpp/
+logs/
+frames/
+.venv/
+__pycache__/
