@@ -60,3 +60,34 @@ export const Backpack: React.FC<P & { color?: string }> = ({ position, rotation,
     <mesh geometry={box(0.26, 0.16, 0.06)} material={mat("#2C2C34")} position={[0, -0.08, 0.12]} />
   </group>
 );
+
+export const Pencil: React.FC<P> = ({ position, rotation, scale = 1 }) => (
+  <group position={position} rotation={rotation} scale={scale}>
+    <mesh geometry={cyl(0.012, 0.012, 0.17, 6)} material={mat("#F2C230")} castShadow />
+    <mesh geometry={cyl(0.013, 0.013, 0.03, 6)} material={mat("#E58A9A")} position={[0, 0.095, 0]} />
+    <mesh geometry={cyl(0.0, 0.012, 0.03, 6)} material={mat("#E9C9A0")} position={[0, -0.1, 0]} />
+  </group>
+);
+
+/** Generic skincare bottle (no brand). */
+export const Bottle: React.FC<P & { color?: string }> = ({ position, rotation, scale = 1, color = "#9FD8D0" }) => (
+  <group position={position} rotation={rotation} scale={scale}>
+    <mesh geometry={cyl(0.035, 0.035, 0.13, 8)} material={mat(color)} castShadow />
+    <mesh geometry={cyl(0.018, 0.018, 0.04, 8)} material={mat("#F4F4F4")} position={[0, 0.085, 0]} />
+    <mesh geometry={box(0.05, 0.05, 0.004)} material={mat("#FFFFFF")} position={[0, 0, 0.035]} />
+  </group>
+);
+
+/** Small quad-copter for the over-the-top homecoming ask. Rotors spin with the frame. */
+export const Drone: React.FC<P & { frame: number }> = ({ position, rotation, scale = 1, frame }) => (
+  <group position={position} rotation={rotation} scale={scale}>
+    <mesh geometry={rbox(0.22, 0.07, 0.22, 0.02)} material={mat("#2B2F36")} castShadow />
+    <mesh geometry={box(0.06, 0.03, 0.02)} material={mat("#7FD4FF")} position={[0, 0, 0.115]} />
+    {[[1, 1], [1, -1], [-1, 1], [-1, -1]].map(([x, z], i) => (
+      <group key={i} position={[x * 0.17, 0.03, z * 0.17]}>
+        <mesh geometry={box(0.2, 0.02, 0.02)} material={mat("#2B2F36")} position={[-x * 0.08, -0.02, -z * 0.08]} rotation={[0, x * z * Math.PI / 4, 0]} />
+        <mesh geometry={box(0.2, 0.006, 0.03)} material={mat("#C9CED6")} position={[0, 0.02, 0]} rotation={[0, frame * 1.3 + i, 0]} />
+      </group>
+    ))}
+  </group>
+);

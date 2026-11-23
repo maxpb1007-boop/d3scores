@@ -11,7 +11,9 @@ export type HandProp =
   | { kind: "phone"; screen: Screen; light?: number }
   | { kind: "football" }
   | { kind: "sandwich" }
-  | { kind: "books" };
+  | { kind: "books" }
+  | { kind: "pencil" }
+  | { kind: "bottle" };
 
 export type ExprKey = { f: number; e: Expression };
 export type LookKey = { f: number; yaw: number; pitch?: number; dur?: number };
@@ -37,7 +39,11 @@ export type Fx =
   | { kind: "flash"; f: number; color?: string; len?: number }
   | { kind: "dream" }
   | { kind: "tint"; color: string; opacity: number }
-  | { kind: "vignette"; strength?: number };
+  | { kind: "vignette"; strength?: number }
+  // on-screen sticker text (e.g. "DAY 41"); x/y are % of the frame, keep inside the safe zone
+  | { kind: "label"; f: number; text: string; x?: number; y?: number; color?: string }
+  // counting sticker: "{n}" in template counts from `from` to `to` between f0 and f1
+  | { kind: "counter"; f0: number; f1: number; from: number; to: number; template: string; x?: number; y?: number };
 
 export type Shot = {
   id: string;

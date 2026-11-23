@@ -1,0 +1,298 @@
+{
+ "fps": 30,
+ "lines": [
+  {
+   "id": "01",
+   "speaker": "gus",
+   "start": 0.15,
+   "sentences": [
+    {
+     "text": "Tre has been planning his homecoming ask for three weeks.",
+     "start": 0.15,
+     "end": 3.14,
+     "words": [
+      {
+       "text": "Tre",
+       "start": 0.19,
+       "end": 0.414,
+       "frame": 6
+      },
+      {
+       "text": "has",
+       "start": 0.414,
+       "end": 0.639,
+       "frame": 12
+      },
+      {
+       "text": "been",
+       "start": 0.639,
+       "end": 0.863,
+       "frame": 19
+      },
+      {
+       "text": "planning",
+       "start": 0.863,
+       "end": 1.254,
+       "frame": 26
+      },
+      {
+       "text": "his",
+       "start": 1.254,
+       "end": 1.479,
+       "frame": 38
+      },
+      {
+       "text": "homecoming",
+       "start": 1.479,
+       "end": 2.202,
+       "frame": 44
+      },
+      {
+       "text": "ask",
+       "start": 2.202,
+       "end": 2.427,
+       "frame": 66
+      },
+      {
+       "text": "for",
+       "start": 2.427,
+       "end": 2.651,
+       "frame": 73
+      },
+      {
+       "text": "three",
+       "start": 2.651,
+       "end": 2.876,
+       "frame": 80
+      },
+      {
+       "text": "weeks.",
+       "start": 2.876,
+       "end": 3.1,
+       "frame": 86
+      }
+     ]
+    }
+   ],
+   "end": 3.14,
+   "startFrame": 4,
+   "endFrame": 94,
+   "postEndFrame": 94
+  },
+  {
+   "id": "02",
+   "speaker": "gus",
+   "start": 3.29,
+   "sentences": [
+    {
+     "text": "Speech.",
+     "start": 3.29,
+     "end": 3.99,
+     "words": [
+      {
+       "text": "Speech.",
+       "start": 3.33,
+       "end": 3.95,
+       "frame": 100
+      }
+     ]
+    },
+    {
+     "text": "Choreography.",
+     "start": 4.13,
+     "end": 5.07,
+     "words": [
+      {
+       "text": "Choreography.",
+       "start": 4.17,
+       "end": 5.03,
+       "frame": 125
+      }
+     ]
+    },
+    {
+     "text": "A drone.",
+     "start": 5.21,
+     "end": 5.905,
+     "words": [
+      {
+       "text": "A",
+       "start": 5.25,
+       "end": 5.558,
+       "frame": 158
+      },
+      {
+       "text": "drone.",
+       "start": 5.558,
+       "end": 5.865,
+       "frame": 167
+      }
+     ]
+    }
+   ],
+   "end": 5.905,
+   "startFrame": 99,
+   "endFrame": 177,
+   "postEndFrame": 186
+  },
+  {
+   "id": "03",
+   "speaker": "gus",
+   "start": 6.405,
+   "sentences": [
+    {
+     "text": "I asked someone if I could borrow a pencil.",
+     "start": 6.405,
+     "end": 8.665,
+     "words": [
+      {
+       "text": "I",
+       "start": 6.445,
+       "end": 6.627,
+       "frame": 193
+      },
+      {
+       "text": "asked",
+       "start": 6.627,
+       "end": 6.944,
+       "frame": 199
+      },
+      {
+       "text": "someone",
+       "start": 6.944,
+       "end": 7.262,
+       "frame": 208
+      },
+      {
+       "text": "if",
+       "start": 7.262,
+       "end": 7.444,
+       "frame": 218
+      },
+      {
+       "text": "I",
+       "start": 7.444,
+       "end": 7.626,
+       "frame": 223
+      },
+      {
+       "text": "could",
+       "start": 7.626,
+       "end": 7.808,
+       "frame": 229
+      },
+      {
+       "text": "borrow",
+       "start": 7.808,
+       "end": 8.126,
+       "frame": 234
+      },
+      {
+       "text": "a",
+       "start": 8.126,
+       "end": 8.308,
+       "frame": 244
+      },
+      {
+       "text": "pencil.",
+       "start": 8.308,
+       "end": 8.625,
+       "frame": 249
+      }
+     ]
+    }
+   ],
+   "end": 8.665,
+   "startFrame": 192,
+   "endFrame": 260,
+   "postEndFrame": 275
+  },
+  {
+   "id": "04",
+   "speaker": "gus",
+   "start": 9.264999999999999,
+   "sentences": [
+    {
+     "text": "Now I have a date to homecoming.",
+     "start": 9.264999999999999,
+     "end": 10.964999999999998,
+     "words": [
+      {
+       "text": "Now",
+       "start": 9.305,
+       "end": 9.481,
+       "frame": 279
+      },
+      {
+       "text": "I",
+       "start": 9.481,
+       "end": 9.656,
+       "frame": 284
+      },
+      {
+       "text": "have",
+       "start": 9.656,
+       "end": 9.832,
+       "frame": 290
+      },
+      {
+       "text": "a",
+       "start": 9.832,
+       "end": 10.008,
+       "frame": 295
+      },
+      {
+       "text": "date",
+       "start": 10.008,
+       "end": 10.183,
+       "frame": 300
+      },
+      {
+       "text": "to",
+       "start": 10.183,
+       "end": 10.359,
+       "frame": 305
+      },
+      {
+       "text": "homecoming.",
+       "start": 10.359,
+       "end": 10.925,
+       "frame": 311
+      }
+     ]
+    }
+   ],
+   "end": 10.964999999999998,
+   "startFrame": 278,
+   "endFrame": 329,
+   "postEndFrame": 339
+  },
+  {
+   "id": "05",
+   "speaker": "tre",
+   "start": 11.464999999999998,
+   "sentences": [
+    {
+     "text": "HOW?!",
+     "start": 11.464999999999998,
+     "end": 11.919999999999998,
+     "words": [
+      {
+       "text": "HOW?!",
+       "start": 11.505,
+       "end": 11.88,
+       "frame": 345
+      }
+     ]
+    }
+   ],
+   "end": 11.919999999999998,
+   "startFrame": 344,
+   "endFrame": 358,
+   "postEndFrame": 371
+  }
+ ],
+ "blackStart": 371,
+ "endCardStart": 380,
+ "durationInFrames": 422
+}

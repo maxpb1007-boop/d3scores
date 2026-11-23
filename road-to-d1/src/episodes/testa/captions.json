@@ -1,0 +1,281 @@
+[
+{
+"text": "Tre",
+"startMs": 190,
+"endMs": 414,
+"timestampMs": 302,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " has",
+"startMs": 414,
+"endMs": 639,
+"timestampMs": 527,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " been",
+"startMs": 639,
+"endMs": 863,
+"timestampMs": 751,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " planning",
+"startMs": 863,
+"endMs": 1254,
+"timestampMs": 1059,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " his",
+"startMs": 1254,
+"endMs": 1479,
+"timestampMs": 1366,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " homecoming",
+"startMs": 1479,
+"endMs": 2202,
+"timestampMs": 1840,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " ask",
+"startMs": 2202,
+"endMs": 2427,
+"timestampMs": 2314,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " for",
+"startMs": 2427,
+"endMs": 2651,
+"timestampMs": 2539,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " three",
+"startMs": 2651,
+"endMs": 2876,
+"timestampMs": 2763,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " weeks.",
+"startMs": 2876,
+"endMs": 3100,
+"timestampMs": 2988,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": "Speech.",
+"startMs": 3330,
+"endMs": 3950,
+"timestampMs": 3640,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": "Choreography.",
+"startMs": 4170,
+"endMs": 5030,
+"timestampMs": 4600,
+"confidence": null,
+"line": "02",
+"sentence": 1
+},
+{
+"text": "A",
+"startMs": 5250,
+"endMs": 5558,
+"timestampMs": 5404,
+"confidence": null,
+"line": "02",
+"sentence": 2
+},
+{
+"text": " drone.",
+"startMs": 5558,
+"endMs": 5865,
+"timestampMs": 5711,
+"confidence": null,
+"line": "02",
+"sentence": 2
+},
+{
+"text": "I",
+"startMs": 6445,
+"endMs": 6627,
+"timestampMs": 6536,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " asked",
+"startMs": 6627,
+"endMs": 6944,
+"timestampMs": 6786,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " someone",
+"startMs": 6944,
+"endMs": 7262,
+"timestampMs": 7103,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " if",
+"startMs": 7262,
+"endMs": 7444,
+"timestampMs": 7353,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " I",
+"startMs": 7444,
+"endMs": 7626,
+"timestampMs": 7535,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " could",
+"startMs": 7626,
+"endMs": 7808,
+"timestampMs": 7717,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " borrow",
+"startMs": 7808,
+"endMs": 8126,
+"timestampMs": 7967,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " a",
+"startMs": 8126,
+"endMs": 8308,
+"timestampMs": 8217,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " pencil.",
+"startMs": 8308,
+"endMs": 8625,
+"timestampMs": 8466,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": "Now",
+"startMs": 9305,
+"endMs": 9481,
+"timestampMs": 9393,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " I",
+"startMs": 9481,
+"endMs": 9656,
+"timestampMs": 9568,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " have",
+"startMs": 9656,
+"endMs": 9832,
+"timestampMs": 9744,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " a",
+"startMs": 9832,
+"endMs": 10008,
+"timestampMs": 9920,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " date",
+"startMs": 10008,
+"endMs": 10183,
+"timestampMs": 10095,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " to",
+"startMs": 10183,
+"endMs": 10359,
+"timestampMs": 10271,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " homecoming.",
+"startMs": 10359,
+"endMs": 10925,
+"timestampMs": 10642,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": "HOW?!",
+"startMs": 11505,
+"endMs": 11880,
+"timestampMs": 11692,
+"confidence": null,
+"line": "05",
+"sentence": 0
+}
+]

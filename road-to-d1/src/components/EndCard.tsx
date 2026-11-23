@@ -4,7 +4,7 @@ import { FONT } from "../lib/fonts";
 import { SafeZoneOverlay } from "./Captions";
 
 /** Series end card. Everything sits inside the TikTok safe zone (x 5-86 %, y 10-78 %). */
-export const EndCard: React.FC<{ episode: number; start: number; safeZoneDebug?: boolean }> = ({ episode, start, safeZoneDebug }) => {
+export const EndCard: React.FC<{ episode: number; start: number; safeZoneDebug?: boolean; title?: string; cta?: string }> = ({ episode, start, safeZoneDebug, title, cta }) => {
   const frame = useCurrentFrame() - start;
   const { fps } = useVideoConfig();
   const pop = spring({ frame, fps, config: { damping: 11, stiffness: 180 } });
@@ -22,7 +22,7 @@ export const EndCard: React.FC<{ episode: number; start: number; safeZoneDebug?:
       />
       <div style={{ position: "absolute", left: "-10%", right: "-10%", top: "58%", height: "44%", background: "#7A1F2B", transform: "rotate(-8deg)" }} />
       <div style={{ position: "absolute", left: "5%", right: "14%", top: "24%", display: "flex", flexDirection: "column", alignItems: "center", gap: 26 }}>
-        <div style={{ ...text, fontSize: 70, color: "#FFD21F", transform: `scale(${pop2})` }}>EP. {episode}</div>
+        <div style={{ ...text, fontSize: 70, color: "#FFD21F", transform: `scale(${pop2})` }}>{title ?? `EP. ${episode}`}</div>
         <div style={{ ...text, fontSize: 158, lineHeight: 0.95, transform: `scale(${pop}) rotate(-3deg)` }}>
           ROAD<br />TO D1
         </div>
@@ -32,7 +32,7 @@ export const EndCard: React.FC<{ episode: number; start: number; safeZoneDebug?:
             background: "#000", padding: "18px 34px", borderRadius: 18,
           }}
         >
-          <span style={{ color: "#FFD21F" }}>Follow</span> for Ep. {episode + 1}
+          <span style={{ color: "#FFD21F" }}>Follow</span> {cta ?? `for Ep. ${episode + 1}`}
         </div>
       </div>
       {safeZoneDebug && <SafeZoneOverlay />}

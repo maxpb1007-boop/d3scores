@@ -8,7 +8,7 @@ import { CameraRig, Lights } from "../lib/Stage";
 import { SETS } from "../sets/Sets";
 import { lerp, smooth, kick, clamp } from "../lib/anim";
 import { Phone } from "../props/Phone";
-import { Football, Sandwich, Books } from "../props/Props";
+import { Football, Sandwich, Books, Pencil, Bottle } from "../props/Props";
 import { Actor, HandProp, Shot } from "./types";
 import { MouthTrack } from "./ep01/mouth";
 import { mouthAt } from "./mouth";
@@ -26,6 +26,10 @@ const handNode = (p: HandProp | undefined, frame: number): React.ReactNode => {
       return <Football position={[0, -0.04, 0.09]} rotation={[0.3, 0, 0]} />;
     case "sandwich":
       return <Sandwich position={[0, -0.05, 0.08]} rotation={[1.2, 0, 0]} scale={0.9} />;
+    case "pencil":
+      return <Pencil position={[0, -0.06, 0.07]} rotation={[0.3, 0, 1.2]} scale={1.3} />;
+    case "bottle":
+      return <Bottle position={[0, -0.05, 0.08]} rotation={[0.2, 0, 0]} scale={1.2} />;
     case "books":
       return <Books position={[0, -0.1, 0.12]} rotation={[0.2, 0, 0]} scale={0.8} />;
   }
@@ -137,16 +141,18 @@ export type EpisodeProps = {
   blackStart: number;
   endCardStart: number;
   episodeNumber: number;
+  endTitle?: string; // end-card overrides for one-off clips
+  endCta?: string;
   safeZoneDebug?: boolean;
   shotFrame?: (videoFrame: number) => number; // retime map (see retime.ts); identity if omitted
 };
 
-export const Episode: React.FC<EpisodeProps> = ({ shots, mouth, captions, highlights, blackStart, endCardStart, episodeNumber, safeZoneDebug, shotFrame }) => {
+export const Episode: React.FC<EpisodeProps> = ({ shots, mouth, captions, highlights, blackStart, endCardStart, episodeNumber, safeZoneDebug, shotFrame, endTitle, endCta }) => {
   const frame = useCurrentFrame();
   const sf = shotFrame ? shotFrame(frame) : frame;
   const { width, height } = useVideoConfig();
   const shot = shots.find((s) => sf >= s.start && sf < s.end) ?? shots[shots.length - 1];
-  if (frame >= endCardStart) return <EndCard episode={episodeNumber} start={endCardStart} safeZoneDebug={safeZoneDebug} />;
+  if (frame >= endCardStart) return <EndCard episode={episodeNumber} start={endCardStart} safeZoneDebug={safeZoneDebug} title={endTitle} cta={endCta} />;
   if (frame >= blackStart) return <AbsoluteFill style={{ background: "#000" }} />;
   return (
     <AbsoluteFill style={{ background: "#000" }}>

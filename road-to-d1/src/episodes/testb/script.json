@@ -1,0 +1,20 @@
+{
+  "episode": "testb",
+  "title": "Test B - Looksmaxxing",
+  "voices": { "gus": { "voice": "am_michael", "speed": 1.17 }, "tre": { "voice": "am_fenrir", "speed": 1.19 } },
+  "sentenceGap": 0.14,
+  "endBlack": 0.3,
+  "endCard": 1.4,
+  "lines": [
+    { "id": "01", "speaker": "gus", "pre": 0.15, "highlights": ["mewing", "forty-one"],
+      "sentences": [ { "text": "Tre has been mewing for forty-one days." } ], "post": 0.2 },
+    { "id": "02", "speaker": "gus", "pre": 0.1, "highlights": ["Fourteen-step", "night"],
+      "sentences": [ { "text": "Fourteen-step skincare routine." }, { "text": "Every night." } ] },
+    { "id": "03", "speaker": "gus", "pre": 0.2, "highlights": ["glow-up"],
+      "sentences": [ { "text": "He calls it his glow-up." } ], "post": 0.35 },
+    { "id": "04", "speaker": "gus", "pre": 0.2, "highlights": ["soap", "pretty"],
+      "sentences": [ { "text": "I washed my face with hand soap once." }, { "text": "Somebody called me the pretty one.", "pre": 0.3 } ], "post": 0.5 },
+    { "id": "05", "speaker": "tre", "pre": 0.15, "speed": 1.0, "highlights": ["forty-two"],
+      "sentences": [ { "text": "Day forty-two.", "tts": "Day forty two." } ], "post": 0.45 }
+  ]
+}

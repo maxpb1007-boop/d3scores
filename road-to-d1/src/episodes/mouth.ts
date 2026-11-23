@@ -1,4 +1,4 @@
-import { MouthTrack } from "./ep01/mouth";
+import type { MouthTrack } from "./ep01/mouth";
 
 /** Mouth openness for a speaker at a global frame (0 when that speaker isn't talking). */
 export const mouthAt = (tracks: MouthTrack[], speaker: string, frame: number) => {

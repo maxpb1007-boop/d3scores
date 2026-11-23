@@ -16,6 +16,8 @@ import json, re, subprocess, sys, os, random
 
 mp4 = sys.argv[1]; ep = sys.argv[2] if len(sys.argv) > 2 else "ep01"
 sheet = sys.argv[sys.argv.index("--sync-sheet") + 1] if "--sync-sheet" in sys.argv else None
+# duration window: episodes 60-78 s by default; short test clips pass e.g. --dur 10 30
+DMIN, DMAX = (float(sys.argv[sys.argv.index("--dur") + 1]), float(sys.argv[sys.argv.index("--dur") + 2])) if "--dur" in sys.argv else (60, 78)
 base = f"src/episodes/{ep}"
 tl = json.load(open(f"{base}/timeline.json")); FPS = tl["fps"]
 results = []
@@ -34,7 +36,7 @@ check("video 1080x1920", v["width"] == 1080 and v["height"] == 1920, f'{v["width
 check("30 fps", abs(num / den - 30) < 0.01, v["r_frame_rate"])
 check("H.264 yuv420p", v["codec_name"] == "h264" and v["pix_fmt"] == "yuv420p", f'{v["codec_name"]} {v["pix_fmt"]}')
 check("AAC 48 kHz", a is not None and a["codec_name"] == "aac" and a["sample_rate"] == "48000", f'{a and a["codec_name"]} {a and a["sample_rate"]}')
-check("duration 60-78 s", 60 <= dur <= 78, f"{dur:.2f}s")
+check(f"duration {DMIN:g}-{DMAX:g} s", DMIN <= dur <= DMAX, f"{dur:.2f}s")
 
 # 2. black frames -----------------------------------------------------------------
 bd = run(["ffmpeg", "-hide_banner", "-i", mp4, "-vf", "blackdetect=d=0.1:pix_th=0.08", "-an", "-f", "null", "-"]).stderr

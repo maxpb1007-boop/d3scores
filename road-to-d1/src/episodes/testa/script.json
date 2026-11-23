@@ -1,0 +1,20 @@
+{
+  "episode": "testa",
+  "title": "Test A - Popular vs Loner (homecoming)",
+  "voices": { "gus": { "voice": "am_michael", "speed": 1.17 }, "tre": { "voice": "am_fenrir", "speed": 1.19 } },
+  "sentenceGap": 0.14,
+  "endBlack": 0.3,
+  "endCard": 1.4,
+  "lines": [
+    { "id": "01", "speaker": "gus", "pre": 0.15, "highlights": ["three", "homecoming"],
+      "sentences": [ { "text": "Tre has been planning his homecoming ask for three weeks." } ] },
+    { "id": "02", "speaker": "gus", "pre": 0.15, "highlights": ["Speech", "Choreography", "drone"],
+      "sentences": [ { "text": "Speech." }, { "text": "Choreography." }, { "text": "A drone." } ], "post": 0.3 },
+    { "id": "03", "speaker": "gus", "pre": 0.2, "highlights": ["pencil"],
+      "sentences": [ { "text": "I asked someone if I could borrow a pencil." } ], "post": 0.5 },
+    { "id": "04", "speaker": "gus", "pre": 0.1, "highlights": ["homecoming"],
+      "sentences": [ { "text": "Now I have a date to homecoming." } ], "post": 0.35 },
+    { "id": "05", "speaker": "tre", "pre": 0.15, "speed": 1.27, "gain": 1.15, "highlights": ["HOW"],
+      "sentences": [ { "text": "HOW?!", "tts": "How?!" } ], "post": 0.45 }
+  ]
+}

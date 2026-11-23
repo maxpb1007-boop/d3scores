@@ -1,0 +1,299 @@
+[
+{
+"text": "Tre",
+"startMs": 190,
+"endMs": 425,
+"timestampMs": 307,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " has",
+"startMs": 425,
+"endMs": 660,
+"timestampMs": 542,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " been",
+"startMs": 660,
+"endMs": 894,
+"timestampMs": 777,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " mewing",
+"startMs": 894,
+"endMs": 1303,
+"timestampMs": 1099,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " for",
+"startMs": 1303,
+"endMs": 1538,
+"timestampMs": 1420,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " forty-one",
+"startMs": 1538,
+"endMs": 2120,
+"timestampMs": 1829,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " days.",
+"startMs": 2120,
+"endMs": 2355,
+"timestampMs": 2238,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": "Fourteen-step",
+"startMs": 2735,
+"endMs": 3432,
+"timestampMs": 3084,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " skincare",
+"startMs": 3432,
+"endMs": 3921,
+"timestampMs": 3677,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " routine.",
+"startMs": 3921,
+"endMs": 4410,
+"timestampMs": 4166,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": "Every",
+"startMs": 4630,
+"endMs": 5108,
+"timestampMs": 4869,
+"confidence": null,
+"line": "02",
+"sentence": 1
+},
+{
+"text": " night.",
+"startMs": 5108,
+"endMs": 5300,
+"timestampMs": 5204,
+"confidence": null,
+"line": "02",
+"sentence": 1
+},
+{
+"text": "He",
+"startMs": 5580,
+"endMs": 5808,
+"timestampMs": 5694,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " calls",
+"startMs": 5808,
+"endMs": 6036,
+"timestampMs": 5922,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " it",
+"startMs": 6036,
+"endMs": 6265,
+"timestampMs": 6150,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " his",
+"startMs": 6265,
+"endMs": 6493,
+"timestampMs": 6379,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " glow-up.",
+"startMs": 6493,
+"endMs": 6890,
+"timestampMs": 6691,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": "I",
+"startMs": 7520,
+"endMs": 7757,
+"timestampMs": 7639,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " washed",
+"startMs": 7757,
+"endMs": 8171,
+"timestampMs": 7964,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " my",
+"startMs": 8171,
+"endMs": 8408,
+"timestampMs": 8289,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " face",
+"startMs": 8408,
+"endMs": 8645,
+"timestampMs": 8527,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " with",
+"startMs": 8645,
+"endMs": 8883,
+"timestampMs": 8764,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " hand",
+"startMs": 8883,
+"endMs": 9120,
+"timestampMs": 9002,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " soap",
+"startMs": 9120,
+"endMs": 9358,
+"timestampMs": 9239,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " once.",
+"startMs": 9358,
+"endMs": 9595,
+"timestampMs": 9476,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": "Somebody",
+"startMs": 10115,
+"endMs": 10631,
+"timestampMs": 10373,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " called",
+"startMs": 10631,
+"endMs": 10910,
+"timestampMs": 10771,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " me",
+"startMs": 10910,
+"endMs": 11071,
+"timestampMs": 10990,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " the",
+"startMs": 11071,
+"endMs": 11231,
+"timestampMs": 11151,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " pretty",
+"startMs": 11231,
+"endMs": 11510,
+"timestampMs": 11370,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " one.",
+"startMs": 11510,
+"endMs": 11670,
+"timestampMs": 11590,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": "Day",
+"startMs": 12400,
+"endMs": 12653,
+"timestampMs": 12526,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": " forty-two.",
+"startMs": 12653,
+"endMs": 13280,
+"timestampMs": 12966,
+"confidence": null,
+"line": "05",
+"sentence": 0
+}
+]

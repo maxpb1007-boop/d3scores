@@ -1,5 +1,15 @@
 import React from "react";
 import { AbsoluteFill, interpolate } from "remotion";
+import { FONT } from "../lib/fonts";
+
+const sticker = (text: string, k: number, x = 30, y = 15.5, color = "#FFD21F"): React.ReactNode => {
+  const s = interpolate(k, [0, 3, 6], [0.6, 1.12, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  return (
+    <div style={{ position: "absolute", left: `${x}%`, top: `${y}%`, transform: `translate(-50%,-50%) scale(${s}) rotate(-4deg)`, fontFamily: FONT, fontWeight: 900, fontSize: 76, color: "#111", background: color, padding: "10px 30px", borderRadius: 18, border: "6px solid #111", whiteSpace: "nowrap" }}>
+      {text}
+    </div>
+  );
+};
 import { Fx } from "../episodes/types";
 
 /** 2D overlays drawn over the 3D frame (under captions). All driven by the frame number. */
@@ -41,6 +51,13 @@ export const FxLayer: React.FC<{ fx: Fx[]; frame: number; shotStart: number }> =
         }
         case "tint":
           return <AbsoluteFill key={i} style={{ background: f.color, opacity: f.opacity, mixBlendMode: "multiply" }} />;
+        case "label":
+          return frame < f.f ? null : <React.Fragment key={i}>{sticker(f.text, frame - f.f, f.x, f.y, f.color)}</React.Fragment>;
+        case "counter": {
+          if (frame < f.f0) return null;
+          const n = Math.round(interpolate(frame, [f.f0, f.f1], [f.from, f.to], { extrapolateRight: "clamp" }));
+          return <React.Fragment key={i}>{sticker(f.template.replace("{n}", String(n)), frame - f.f0, f.x, f.y)}</React.Fragment>;
+        }
         case "vignette":
           return <AbsoluteFill key={i} style={{ boxShadow: `inset 0 0 260px 60px rgba(0,0,0,${f.strength ?? 0.45})` }} />;
       }

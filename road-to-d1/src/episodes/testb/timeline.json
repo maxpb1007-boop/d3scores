@@ -1,0 +1,310 @@
+{
+ "fps": 30,
+ "lines": [
+  {
+   "id": "01",
+   "speaker": "gus",
+   "start": 0.15,
+   "sentences": [
+    {
+     "text": "Tre has been mewing for forty-one days.",
+     "start": 0.15,
+     "end": 2.395,
+     "words": [
+      {
+       "text": "Tre",
+       "start": 0.19,
+       "end": 0.425,
+       "frame": 6
+      },
+      {
+       "text": "has",
+       "start": 0.425,
+       "end": 0.66,
+       "frame": 13
+      },
+      {
+       "text": "been",
+       "start": 0.66,
+       "end": 0.894,
+       "frame": 20
+      },
+      {
+       "text": "mewing",
+       "start": 0.894,
+       "end": 1.303,
+       "frame": 27
+      },
+      {
+       "text": "for",
+       "start": 1.303,
+       "end": 1.538,
+       "frame": 39
+      },
+      {
+       "text": "forty-one",
+       "start": 1.538,
+       "end": 2.12,
+       "frame": 46
+      },
+      {
+       "text": "days.",
+       "start": 2.12,
+       "end": 2.355,
+       "frame": 64
+      }
+     ]
+    }
+   ],
+   "end": 2.395,
+   "startFrame": 4,
+   "endFrame": 72,
+   "postEndFrame": 78
+  },
+  {
+   "id": "02",
+   "speaker": "gus",
+   "start": 2.6950000000000003,
+   "sentences": [
+    {
+     "text": "Fourteen-step skincare routine.",
+     "start": 2.6950000000000003,
+     "end": 4.45,
+     "words": [
+      {
+       "text": "Fourteen-step",
+       "start": 2.735,
+       "end": 3.432,
+       "frame": 82
+      },
+      {
+       "text": "skincare",
+       "start": 3.432,
+       "end": 3.921,
+       "frame": 103
+      },
+      {
+       "text": "routine.",
+       "start": 3.921,
+       "end": 4.41,
+       "frame": 118
+      }
+     ]
+    },
+    {
+     "text": "Every night.",
+     "start": 4.59,
+     "end": 5.34,
+     "words": [
+      {
+       "text": "Every",
+       "start": 4.63,
+       "end": 5.108,
+       "frame": 139
+      },
+      {
+       "text": "night.",
+       "start": 5.108,
+       "end": 5.3,
+       "frame": 153
+      }
+     ]
+    }
+   ],
+   "end": 5.34,
+   "startFrame": 81,
+   "endFrame": 160,
+   "postEndFrame": 160
+  },
+  {
+   "id": "03",
+   "speaker": "gus",
+   "start": 5.54,
+   "sentences": [
+    {
+     "text": "He calls it his glow-up.",
+     "start": 5.54,
+     "end": 6.93,
+     "words": [
+      {
+       "text": "He",
+       "start": 5.58,
+       "end": 5.808,
+       "frame": 167
+      },
+      {
+       "text": "calls",
+       "start": 5.808,
+       "end": 6.036,
+       "frame": 174
+      },
+      {
+       "text": "it",
+       "start": 6.036,
+       "end": 6.265,
+       "frame": 181
+      },
+      {
+       "text": "his",
+       "start": 6.265,
+       "end": 6.493,
+       "frame": 188
+      },
+      {
+       "text": "glow-up.",
+       "start": 6.493,
+       "end": 6.89,
+       "frame": 195
+      }
+     ]
+    }
+   ],
+   "end": 6.93,
+   "startFrame": 166,
+   "endFrame": 208,
+   "postEndFrame": 218
+  },
+  {
+   "id": "04",
+   "speaker": "gus",
+   "start": 7.4799999999999995,
+   "sentences": [
+    {
+     "text": "I washed my face with hand soap once.",
+     "start": 7.4799999999999995,
+     "end": 9.635,
+     "words": [
+      {
+       "text": "I",
+       "start": 7.52,
+       "end": 7.757,
+       "frame": 226
+      },
+      {
+       "text": "washed",
+       "start": 7.757,
+       "end": 8.171,
+       "frame": 233
+      },
+      {
+       "text": "my",
+       "start": 8.171,
+       "end": 8.408,
+       "frame": 245
+      },
+      {
+       "text": "face",
+       "start": 8.408,
+       "end": 8.645,
+       "frame": 252
+      },
+      {
+       "text": "with",
+       "start": 8.645,
+       "end": 8.883,
+       "frame": 259
+      },
+      {
+       "text": "hand",
+       "start": 8.883,
+       "end": 9.12,
+       "frame": 266
+      },
+      {
+       "text": "soap",
+       "start": 9.12,
+       "end": 9.358,
+       "frame": 274
+      },
+      {
+       "text": "once.",
+       "start": 9.358,
+       "end": 9.595,
+       "frame": 281
+      }
+     ]
+    },
+    {
+     "text": "Somebody called me the pretty one.",
+     "start": 10.075,
+     "end": 11.709999999999999,
+     "words": [
+      {
+       "text": "Somebody",
+       "start": 10.115,
+       "end": 10.631,
+       "frame": 303
+      },
+      {
+       "text": "called",
+       "start": 10.631,
+       "end": 10.91,
+       "frame": 319
+      },
+      {
+       "text": "me",
+       "start": 10.91,
+       "end": 11.071,
+       "frame": 327
+      },
+      {
+       "text": "the",
+       "start": 11.071,
+       "end": 11.231,
+       "frame": 332
+      },
+      {
+       "text": "pretty",
+       "start": 11.231,
+       "end": 11.51,
+       "frame": 337
+      },
+      {
+       "text": "one.",
+       "start": 11.51,
+       "end": 11.67,
+       "frame": 345
+      }
+     ]
+    }
+   ],
+   "end": 11.709999999999999,
+   "startFrame": 224,
+   "endFrame": 351,
+   "postEndFrame": 366
+  },
+  {
+   "id": "05",
+   "speaker": "tre",
+   "start": 12.36,
+   "sentences": [
+    {
+     "text": "Day forty-two.",
+     "start": 12.36,
+     "end": 13.32,
+     "words": [
+      {
+       "text": "Day",
+       "start": 12.4,
+       "end": 12.653,
+       "frame": 372
+      },
+      {
+       "text": "forty-two.",
+       "start": 12.653,
+       "end": 13.28,
+       "frame": 380
+      }
+     ]
+    }
+   ],
+   "end": 13.32,
+   "startFrame": 371,
+   "endFrame": 400,
+   "postEndFrame": 413
+  }
+ ],
+ "blackStart": 413,
+ "endCardStart": 422,
+ "durationInFrames": 464
+}
