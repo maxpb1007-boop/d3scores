@@ -149,3 +149,14 @@ the intentional smash cut, no freezes, −14.2 LUFS, −1.4 dBTP, A/V diff 1 ms,
 
 **GitHub push was blocked (403)** for this whole session: the Claude GitHub App has read but not write access
 to the repo. Everything is committed locally on `claude/road-to-d1-ep01-aoxozi`; see `BLOCKERS.md`.
+
+### 2026-11-23 — faster voice, retime layer, research
+
+- Voices bumped ~4% at the owner's request (Gus 1.17, Tre 1.19). Ep 1 is now 72.6 s; QA 12/12 again.
+- **Retime layer (`src/episodes/retime.ts`):** shots stay cut against `timeline_shots.json` (the edit timeline);
+  the current voice timeline is mapped onto it with every word onset as an anchor. `make_audio.py` remaps SFX
+  cues the same way. So a voice change never needs the shot list re-cut. Word counts must match.
+- **Safe zone is too generous at the bottom** (research, `reports/Road to D1 concepts and platforms.md`):
+  Reels/Shorts overlays cover roughly the bottom 35% (≈672 px) and top ≈290 px. Ep 1 is fine because captions
+  sit at 58%, but from Ep 2 keep every important thing (captions, phone screens, tallies) inside
+  x 120–880, y 290–1250 and update `SAFE` in `Captions.tsx` + the SafeZoneDebug overlay to match.
