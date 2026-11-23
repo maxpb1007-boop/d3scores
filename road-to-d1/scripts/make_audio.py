@@ -18,6 +18,23 @@ voice, sr = sf.read(f"out/{ep}/voice.wav"); assert sr == SR
 voice = np.pad(voice, (0, max(0, N - len(voice))))[:N]
 db = lambda x: 10 ** (x / 20)
 
+# Cue frames are written against the edit timeline (timeline_shots.json, if present). Map them onto
+# the current voice timeline with the same word anchors as src/episodes/retime.ts.
+import os
+def anchors(t):
+    a = [0]
+    for L in t["lines"]:
+        a.append(L["startFrame"]); a += [w["frame"] for s in L["sentences"] for w in s["words"]]; a += [L["endFrame"], L["postEndFrame"]]
+    return a + [t["blackStart"], t["endCardStart"], t["durationInFrames"]]
+edit_path = f"{base}/timeline_shots.json"
+if os.path.exists(edit_path):
+    ea, na = anchors(json.load(open(edit_path))), anchors(tl)
+    remap = lambda f: float(np.interp(f, ea, na))
+else:
+    remap = lambda f: f
+for c in cues["cues"]: c["f"] = remap(c["f"])
+cues["musicOff"] = [[remap(a), remap(b)] for a, b in cues["musicOff"]]
+
 # --- SFX bus ------------------------------------------------------------
 sfx = np.zeros(N)
 for c in cues["cues"]:

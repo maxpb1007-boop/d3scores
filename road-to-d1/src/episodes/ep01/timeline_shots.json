@@ -1,0 +1,1454 @@
+{
+ "fps": 30,
+ "lines": [
+  {
+   "id": "01",
+   "speaker": "gus",
+   "start": 0.25,
+   "sentences": [
+    {
+     "text": "My best friend is a three-star receiver.",
+     "start": 0.25,
+     "end": 2.615,
+     "words": [
+      {
+       "text": "My",
+       "start": 0.29,
+       "end": 0.538,
+       "frame": 9
+      },
+      {
+       "text": "best",
+       "start": 0.538,
+       "end": 0.786,
+       "frame": 16
+      },
+      {
+       "text": "friend",
+       "start": 0.786,
+       "end": 1.033,
+       "frame": 24
+      },
+      {
+       "text": "is",
+       "start": 1.033,
+       "end": 1.281,
+       "frame": 31
+      },
+      {
+       "text": "a",
+       "start": 1.281,
+       "end": 1.529,
+       "frame": 38
+      },
+      {
+       "text": "three-star",
+       "start": 1.529,
+       "end": 1.96,
+       "frame": 46
+      },
+      {
+       "text": "receiver.",
+       "start": 1.96,
+       "end": 2.575,
+       "frame": 59
+      }
+     ]
+    },
+    {
+     "text": "I'm the long snapper.",
+     "start": 2.7750000000000004,
+     "end": 3.955,
+     "words": [
+      {
+       "text": "I'm",
+       "start": 2.815,
+       "end": 3.047,
+       "frame": 84
+      },
+      {
+       "text": "the",
+       "start": 3.047,
+       "end": 3.279,
+       "frame": 91
+      },
+      {
+       "text": "long",
+       "start": 3.279,
+       "end": 3.511,
+       "frame": 98
+      },
+      {
+       "text": "snapper.",
+       "start": 3.511,
+       "end": 3.915,
+       "frame": 105
+      }
+     ]
+    },
+    {
+     "text": "Guess which one of us thinks he's famous.",
+     "start": 4.415,
+     "end": 6.38,
+     "words": [
+      {
+       "text": "Guess",
+       "start": 4.455,
+       "end": 4.671,
+       "frame": 134
+      },
+      {
+       "text": "which",
+       "start": 4.671,
+       "end": 4.886,
+       "frame": 140
+      },
+      {
+       "text": "one",
+       "start": 4.886,
+       "end": 5.102,
+       "frame": 147
+      },
+      {
+       "text": "of",
+       "start": 5.102,
+       "end": 5.318,
+       "frame": 153
+      },
+      {
+       "text": "us",
+       "start": 5.318,
+       "end": 5.533,
+       "frame": 160
+      },
+      {
+       "text": "thinks",
+       "start": 5.533,
+       "end": 5.749,
+       "frame": 166
+      },
+      {
+       "text": "he's",
+       "start": 5.749,
+       "end": 5.965,
+       "frame": 172
+      },
+      {
+       "text": "famous.",
+       "start": 5.965,
+       "end": 6.34,
+       "frame": 179
+      }
+     ]
+    }
+   ],
+   "end": 6.38,
+   "startFrame": 8,
+   "endFrame": 191,
+   "postEndFrame": 191
+  },
+  {
+   "id": "02",
+   "speaker": "gus",
+   "start": 6.68,
+   "sentences": [
+    {
+     "text": "This is Tre.",
+     "start": 6.68,
+     "end": 7.585,
+     "words": [
+      {
+       "text": "This",
+       "start": 6.72,
+       "end": 6.995,
+       "frame": 202
+      },
+      {
+       "text": "is",
+       "start": 6.995,
+       "end": 7.27,
+       "frame": 210
+      },
+      {
+       "text": "Tre.",
+       "start": 7.27,
+       "end": 7.545,
+       "frame": 218
+      }
+     ]
+    },
+    {
+     "text": "Tre checks his phone like four hundred times a day.",
+     "start": 7.745,
+     "end": 10.46,
+     "words": [
+      {
+       "text": "Tre",
+       "start": 7.785,
+       "end": 8.014,
+       "frame": 234
+      },
+      {
+       "text": "checks",
+       "start": 8.014,
+       "end": 8.244,
+       "frame": 240
+      },
+      {
+       "text": "his",
+       "start": 8.244,
+       "end": 8.474,
+       "frame": 247
+      },
+      {
+       "text": "phone",
+       "start": 8.474,
+       "end": 8.703,
+       "frame": 254
+      },
+      {
+       "text": "like",
+       "start": 8.703,
+       "end": 8.933,
+       "frame": 261
+      },
+      {
+       "text": "four",
+       "start": 8.933,
+       "end": 9.162,
+       "frame": 268
+      },
+      {
+       "text": "hundred",
+       "start": 9.162,
+       "end": 9.562,
+       "frame": 275
+      },
+      {
+       "text": "times",
+       "start": 9.562,
+       "end": 9.961,
+       "frame": 287
+      },
+      {
+       "text": "a",
+       "start": 9.961,
+       "end": 10.191,
+       "frame": 299
+      },
+      {
+       "text": "day.",
+       "start": 10.191,
+       "end": 10.42,
+       "frame": 306
+      }
+     ]
+    },
+    {
+     "text": "Not for girls.",
+     "start": 10.82,
+     "end": 11.83,
+     "words": [
+      {
+       "text": "Not",
+       "start": 10.86,
+       "end": 11.17,
+       "frame": 326
+      },
+      {
+       "text": "for",
+       "start": 11.17,
+       "end": 11.48,
+       "frame": 335
+      },
+      {
+       "text": "girls.",
+       "start": 11.48,
+       "end": 11.79,
+       "frame": 344
+      }
+     ]
+    },
+    {
+     "text": "For coaches.",
+     "start": 12.34,
+     "end": 13.2,
+     "words": [
+      {
+       "text": "For",
+       "start": 12.38,
+       "end": 12.665,
+       "frame": 371
+      },
+      {
+       "text": "coaches.",
+       "start": 12.665,
+       "end": 13.16,
+       "frame": 380
+      }
+     ]
+    }
+   ],
+   "end": 13.2,
+   "startFrame": 200,
+   "endFrame": 396,
+   "postEndFrame": 396
+  },
+  {
+   "id": "03",
+   "speaker": "tre",
+   "start": 13.549999999999999,
+   "sentences": [
+    {
+     "text": "Bro.",
+     "start": 13.549999999999999,
+     "end": 14.104999999999999,
+     "words": [
+      {
+       "text": "Bro.",
+       "start": 13.59,
+       "end": 14.065,
+       "frame": 408
+      }
+     ]
+    },
+    {
+     "text": "A coach looked at my story.",
+     "start": 14.514999999999999,
+     "end": 15.969999999999999,
+     "words": [
+      {
+       "text": "A",
+       "start": 14.555,
+       "end": 14.739,
+       "frame": 437
+      },
+      {
+       "text": "coach",
+       "start": 14.739,
+       "end": 14.923,
+       "frame": 442
+      },
+      {
+       "text": "looked",
+       "start": 14.923,
+       "end": 15.242,
+       "frame": 448
+      },
+      {
+       "text": "at",
+       "start": 15.242,
+       "end": 15.426,
+       "frame": 457
+      },
+      {
+       "text": "my",
+       "start": 15.426,
+       "end": 15.61,
+       "frame": 463
+      },
+      {
+       "text": "story.",
+       "start": 15.61,
+       "end": 15.93,
+       "frame": 468
+      }
+     ]
+    }
+   ],
+   "end": 15.969999999999999,
+   "startFrame": 406,
+   "endFrame": 479,
+   "postEndFrame": 479
+  },
+  {
+   "id": "04",
+   "speaker": "gus",
+   "start": 16.369999999999997,
+   "sentences": [
+    {
+     "text": "It was a grad assistant.",
+     "start": 16.369999999999997,
+     "end": 17.639999999999997,
+     "words": [
+      {
+       "text": "It",
+       "start": 16.41,
+       "end": 16.594,
+       "frame": 492
+      },
+      {
+       "text": "was",
+       "start": 16.594,
+       "end": 16.777,
+       "frame": 498
+      },
+      {
+       "text": "a",
+       "start": 16.777,
+       "end": 16.961,
+       "frame": 503
+      },
+      {
+       "text": "grad",
+       "start": 16.961,
+       "end": 17.144,
+       "frame": 509
+      },
+      {
+       "text": "assistant.",
+       "start": 17.144,
+       "end": 17.6,
+       "frame": 514
+      }
+     ]
+    },
+    {
+     "text": "From a school with no football team.",
+     "start": 18.099999999999998,
+     "end": 20.134999999999998,
+     "words": [
+      {
+       "text": "From",
+       "start": 18.14,
+       "end": 18.393,
+       "frame": 544
+      },
+      {
+       "text": "a",
+       "start": 18.393,
+       "end": 18.645,
+       "frame": 552
+      },
+      {
+       "text": "school",
+       "start": 18.645,
+       "end": 18.898,
+       "frame": 559
+      },
+      {
+       "text": "with",
+       "start": 18.898,
+       "end": 19.15,
+       "frame": 567
+      },
+      {
+       "text": "no",
+       "start": 19.15,
+       "end": 19.403,
+       "frame": 575
+      },
+      {
+       "text": "football",
+       "start": 19.403,
+       "end": 19.842,
+       "frame": 582
+      },
+      {
+       "text": "team.",
+       "start": 19.842,
+       "end": 20.095,
+       "frame": 595
+      }
+     ]
+    }
+   ],
+   "end": 20.134999999999998,
+   "startFrame": 491,
+   "endFrame": 604,
+   "postEndFrame": 619
+  },
+  {
+   "id": "05",
+   "speaker": "gus",
+   "start": 20.834999999999997,
+   "sentences": [
+    {
+     "text": "Tre runs routes in the hallway.",
+     "start": 20.834999999999997,
+     "end": 22.54,
+     "words": [
+      {
+       "text": "Tre",
+       "start": 20.875,
+       "end": 21.092,
+       "frame": 626
+      },
+      {
+       "text": "runs",
+       "start": 21.092,
+       "end": 21.309,
+       "frame": 633
+      },
+      {
+       "text": "routes",
+       "start": 21.309,
+       "end": 21.688,
+       "frame": 639
+      },
+      {
+       "text": "in",
+       "start": 21.688,
+       "end": 21.905,
+       "frame": 651
+      },
+      {
+       "text": "the",
+       "start": 21.905,
+       "end": 22.122,
+       "frame": 657
+      },
+      {
+       "text": "hallway.",
+       "start": 22.122,
+       "end": 22.5,
+       "frame": 664
+      }
+     ]
+    },
+    {
+     "text": "Between classes.",
+     "start": 22.849999999999998,
+     "end": 23.959999999999997,
+     "words": [
+      {
+       "text": "Between",
+       "start": 22.89,
+       "end": 23.405,
+       "frame": 687
+      },
+      {
+       "text": "classes.",
+       "start": 23.405,
+       "end": 23.92,
+       "frame": 702
+      }
+     ]
+    },
+    {
+     "text": "With no ball.",
+     "start": 24.419999999999998,
+     "end": 25.325,
+     "words": [
+      {
+       "text": "With",
+       "start": 24.46,
+       "end": 24.735,
+       "frame": 734
+      },
+      {
+       "text": "no",
+       "start": 24.735,
+       "end": 25.01,
+       "frame": 742
+      },
+      {
+       "text": "ball.",
+       "start": 25.01,
+       "end": 25.285,
+       "frame": 750
+      }
+     ]
+    }
+   ],
+   "end": 25.325,
+   "startFrame": 625,
+   "endFrame": 760,
+   "postEndFrame": 778
+  },
+  {
+   "id": "06",
+   "speaker": "gus",
+   "start": 26.125,
+   "sentences": [
+    {
+     "text": "He's undefeated against freshmen.",
+     "start": 26.125,
+     "end": 27.955,
+     "words": [
+      {
+       "text": "He's",
+       "start": 26.165,
+       "end": 26.392,
+       "frame": 785
+      },
+      {
+       "text": "undefeated",
+       "start": 26.392,
+       "end": 27.124,
+       "frame": 792
+      },
+      {
+       "text": "against",
+       "start": 27.124,
+       "end": 27.52,
+       "frame": 814
+      },
+      {
+       "text": "freshmen.",
+       "start": 27.52,
+       "end": 27.915,
+       "frame": 826
+      }
+     ]
+    }
+   ],
+   "end": 27.955,
+   "startFrame": 784,
+   "endFrame": 839,
+   "postEndFrame": 854
+  },
+  {
+   "id": "07",
+   "speaker": "gus",
+   "start": 28.705,
+   "sentences": [
+    {
+     "text": "He posted his own highlight tape at two in the morning.",
+     "start": 28.705,
+     "end": 31.474999999999998,
+     "words": [
+      {
+       "text": "He",
+       "start": 28.745,
+       "end": 28.948,
+       "frame": 862
+      },
+      {
+       "text": "posted",
+       "start": 28.948,
+       "end": 29.303,
+       "frame": 868
+      },
+      {
+       "text": "his",
+       "start": 29.303,
+       "end": 29.506,
+       "frame": 879
+      },
+      {
+       "text": "own",
+       "start": 29.506,
+       "end": 29.709,
+       "frame": 885
+      },
+      {
+       "text": "highlight",
+       "start": 29.709,
+       "end": 30.064,
+       "frame": 891
+      },
+      {
+       "text": "tape",
+       "start": 30.064,
+       "end": 30.267,
+       "frame": 902
+      },
+      {
+       "text": "at",
+       "start": 30.267,
+       "end": 30.471,
+       "frame": 908
+      },
+      {
+       "text": "two",
+       "start": 30.471,
+       "end": 30.674,
+       "frame": 914
+      },
+      {
+       "text": "in",
+       "start": 30.674,
+       "end": 30.877,
+       "frame": 920
+      },
+      {
+       "text": "the",
+       "start": 30.877,
+       "end": 31.081,
+       "frame": 926
+      },
+      {
+       "text": "morning.",
+       "start": 31.081,
+       "end": 31.435,
+       "frame": 932
+      }
+     ]
+    },
+    {
+     "text": "Eleven slow-mo replays of the same catch.",
+     "start": 31.634999999999998,
+     "end": 34.16,
+     "words": [
+      {
+       "text": "Eleven",
+       "start": 31.675,
+       "end": 32.284,
+       "frame": 950
+      },
+      {
+       "text": "slow-mo",
+       "start": 32.284,
+       "end": 32.711,
+       "frame": 969
+      },
+      {
+       "text": "replays",
+       "start": 32.711,
+       "end": 33.138,
+       "frame": 981
+      },
+      {
+       "text": "of",
+       "start": 33.138,
+       "end": 33.384,
+       "frame": 994
+      },
+      {
+       "text": "the",
+       "start": 33.384,
+       "end": 33.629,
+       "frame": 1002
+      },
+      {
+       "text": "same",
+       "start": 33.629,
+       "end": 33.875,
+       "frame": 1009
+      },
+      {
+       "text": "catch.",
+       "start": 33.875,
+       "end": 34.12,
+       "frame": 1016
+      }
+     ]
+    }
+   ],
+   "end": 34.16,
+   "startFrame": 861,
+   "endFrame": 1025,
+   "postEndFrame": 1025
+  },
+  {
+   "id": "08",
+   "speaker": "gus",
+   "start": 34.51,
+   "sentences": [
+    {
+     "text": "Four likes.",
+     "start": 34.51,
+     "end": 35.39,
+     "words": [
+      {
+       "text": "Four",
+       "start": 34.55,
+       "end": 34.842,
+       "frame": 1036
+      },
+      {
+       "text": "likes.",
+       "start": 34.842,
+       "end": 35.35,
+       "frame": 1045
+      }
+     ]
+    },
+    {
+     "text": "One was his mom.",
+     "start": 35.75,
+     "end": 36.875,
+     "words": [
+      {
+       "text": "One",
+       "start": 35.79,
+       "end": 36.051,
+       "frame": 1074
+      },
+      {
+       "text": "was",
+       "start": 36.051,
+       "end": 36.312,
+       "frame": 1082
+      },
+      {
+       "text": "his",
+       "start": 36.312,
+       "end": 36.574,
+       "frame": 1089
+      },
+      {
+       "text": "mom.",
+       "start": 36.574,
+       "end": 36.835,
+       "frame": 1097
+      }
+     ]
+    },
+    {
+     "text": "One was me.",
+     "start": 37.035,
+     "end": 37.91,
+     "words": [
+      {
+       "text": "One",
+       "start": 37.075,
+       "end": 37.34,
+       "frame": 1112
+      },
+      {
+       "text": "was",
+       "start": 37.34,
+       "end": 37.605,
+       "frame": 1120
+      },
+      {
+       "text": "me.",
+       "start": 37.605,
+       "end": 37.87,
+       "frame": 1128
+      }
+     ]
+    },
+    {
+     "text": "By accident.",
+     "start": 38.47,
+     "end": 39.394999999999996,
+     "words": [
+      {
+       "text": "By",
+       "start": 38.51,
+       "end": 38.753,
+       "frame": 1155
+      },
+      {
+       "text": "accident.",
+       "start": 38.753,
+       "end": 39.355,
+       "frame": 1163
+      }
+     ]
+    }
+   ],
+   "end": 39.394999999999996,
+   "startFrame": 1035,
+   "endFrame": 1182,
+   "postEndFrame": 1200
+  },
+  {
+   "id": "09",
+   "speaker": "gus",
+   "start": 40.294999999999995,
+   "sentences": [
+    {
+     "text": "Meanwhile, I snap a ball fifteen yards backwards, between my legs, perfect spiral, every single day.",
+     "start": 40.294999999999995,
+     "end": 46.754999999999995,
+     "words": [
+      {
+       "text": "Meanwhile,",
+       "start": 40.335,
+       "end": 41.105,
+       "frame": 1210
+      },
+      {
+       "text": "I",
+       "start": 41.105,
+       "end": 41.35,
+       "frame": 1233
+      },
+      {
+       "text": "snap",
+       "start": 41.35,
+       "end": 41.595,
+       "frame": 1240
+      },
+      {
+       "text": "a",
+       "start": 41.595,
+       "end": 41.839,
+       "frame": 1248
+      },
+      {
+       "text": "ball",
+       "start": 41.839,
+       "end": 42.084,
+       "frame": 1255
+      },
+      {
+       "text": "fifteen",
+       "start": 42.084,
+       "end": 42.51,
+       "frame": 1263
+      },
+      {
+       "text": "yards",
+       "start": 42.51,
+       "end": 42.755,
+       "frame": 1275
+      },
+      {
+       "text": "backwards,",
+       "start": 42.755,
+       "end": 43.344,
+       "frame": 1283
+      },
+      {
+       "text": "between",
+       "start": 43.344,
+       "end": 43.77,
+       "frame": 1300
+      },
+      {
+       "text": "my",
+       "start": 43.77,
+       "end": 44.014,
+       "frame": 1313
+      },
+      {
+       "text": "legs,",
+       "start": 44.014,
+       "end": 44.422,
+       "frame": 1320
+      },
+      {
+       "text": "perfect",
+       "start": 44.422,
+       "end": 44.848,
+       "frame": 1333
+      },
+      {
+       "text": "spiral,",
+       "start": 44.848,
+       "end": 45.437,
+       "frame": 1345
+      },
+      {
+       "text": "every",
+       "start": 45.437,
+       "end": 46.044,
+       "frame": 1363
+      },
+      {
+       "text": "single",
+       "start": 46.044,
+       "end": 46.47,
+       "frame": 1381
+      },
+      {
+       "text": "day.",
+       "start": 46.47,
+       "end": 46.715,
+       "frame": 1394
+      }
+     ]
+    },
+    {
+     "text": "Nobody claps.",
+     "start": 47.315,
+     "end": 48.33,
+     "words": [
+      {
+       "text": "Nobody",
+       "start": 47.355,
+       "end": 48.021,
+       "frame": 1421
+      },
+      {
+       "text": "claps.",
+       "start": 48.021,
+       "end": 48.29,
+       "frame": 1441
+      }
+     ]
+    }
+   ],
+   "end": 48.33,
+   "startFrame": 1209,
+   "endFrame": 1450,
+   "postEndFrame": 1492
+  },
+  {
+   "id": "10",
+   "speaker": "gus",
+   "start": 49.93,
+   "sentences": [
+    {
+     "text": "If I do my job, nobody knows my name.",
+     "start": 49.93,
+     "end": 52.575,
+     "words": [
+      {
+       "text": "If",
+       "start": 49.97,
+       "end": 50.2,
+       "frame": 1499
+      },
+      {
+       "text": "I",
+       "start": 50.2,
+       "end": 50.43,
+       "frame": 1506
+      },
+      {
+       "text": "do",
+       "start": 50.43,
+       "end": 50.66,
+       "frame": 1513
+      },
+      {
+       "text": "my",
+       "start": 50.66,
+       "end": 50.89,
+       "frame": 1520
+      },
+      {
+       "text": "job,",
+       "start": 50.89,
+       "end": 51.274,
+       "frame": 1527
+      },
+      {
+       "text": "nobody",
+       "start": 51.274,
+       "end": 51.845,
+       "frame": 1538
+      },
+      {
+       "text": "knows",
+       "start": 51.845,
+       "end": 52.075,
+       "frame": 1555
+      },
+      {
+       "text": "my",
+       "start": 52.075,
+       "end": 52.305,
+       "frame": 1562
+      },
+      {
+       "text": "name.",
+       "start": 52.305,
+       "end": 52.535,
+       "frame": 1569
+      }
+     ]
+    },
+    {
+     "text": "If I mess up once...",
+     "start": 52.935,
+     "end": 54.150000000000006,
+     "words": [
+      {
+       "text": "If",
+       "start": 52.975,
+       "end": 53.168,
+       "frame": 1589
+      },
+      {
+       "text": "I",
+       "start": 53.168,
+       "end": 53.36,
+       "frame": 1595
+      },
+      {
+       "text": "mess",
+       "start": 53.36,
+       "end": 53.553,
+       "frame": 1601
+      },
+      {
+       "text": "up",
+       "start": 53.553,
+       "end": 53.746,
+       "frame": 1607
+      },
+      {
+       "text": "once...",
+       "start": 53.746,
+       "end": 54.11,
+       "frame": 1612
+      }
+     ]
+    }
+   ],
+   "end": 54.150000000000006,
+   "startFrame": 1498,
+   "endFrame": 1625,
+   "postEndFrame": 1658
+  },
+  {
+   "id": "11",
+   "speaker": "gus",
+   "start": 55.25000000000001,
+   "sentences": [
+    {
+     "text": "...everybody knows my name.",
+     "start": 55.25000000000001,
+     "end": 56.75000000000001,
+     "words": [
+      {
+       "text": "...everybody",
+       "start": 55.29,
+       "end": 56.098,
+       "frame": 1659
+      },
+      {
+       "text": "knows",
+       "start": 56.098,
+       "end": 56.302,
+       "frame": 1683
+      },
+      {
+       "text": "my",
+       "start": 56.302,
+       "end": 56.506,
+       "frame": 1689
+      },
+      {
+       "text": "name.",
+       "start": 56.506,
+       "end": 56.71,
+       "frame": 1695
+      }
+     ]
+    }
+   ],
+   "end": 56.75000000000001,
+   "startFrame": 1658,
+   "endFrame": 1703,
+   "postEndFrame": 1715
+  },
+  {
+   "id": "12",
+   "speaker": "tre",
+   "start": 57.45,
+   "sentences": [
+    {
+     "text": "They moved a FOUR-STAR ahead of me!",
+     "start": 57.45,
+     "end": 58.825,
+     "words": [
+      {
+       "text": "They",
+       "start": 57.49,
+       "end": 57.63,
+       "frame": 1725
+      },
+      {
+       "text": "moved",
+       "start": 57.63,
+       "end": 57.875,
+       "frame": 1729
+      },
+      {
+       "text": "a",
+       "start": 57.875,
+       "end": 58.015,
+       "frame": 1736
+      },
+      {
+       "text": "FOUR-STAR",
+       "start": 58.015,
+       "end": 58.26,
+       "frame": 1740
+      },
+      {
+       "text": "ahead",
+       "start": 58.26,
+       "end": 58.504,
+       "frame": 1748
+      },
+      {
+       "text": "of",
+       "start": 58.504,
+       "end": 58.645,
+       "frame": 1755
+      },
+      {
+       "text": "me!",
+       "start": 58.645,
+       "end": 58.785,
+       "frame": 1759
+      }
+     ]
+    },
+    {
+     "text": "He runs a four-seven!",
+     "start": 58.985,
+     "end": 60.04,
+     "words": [
+      {
+       "text": "He",
+       "start": 59.025,
+       "end": 59.203,
+       "frame": 1771
+      },
+      {
+       "text": "runs",
+       "start": 59.203,
+       "end": 59.381,
+       "frame": 1776
+      },
+      {
+       "text": "a",
+       "start": 59.381,
+       "end": 59.559,
+       "frame": 1781
+      },
+      {
+       "text": "four-seven!",
+       "start": 59.559,
+       "end": 60.0,
+       "frame": 1787
+      }
+     ]
+    }
+   ],
+   "end": 60.04,
+   "startFrame": 1724,
+   "endFrame": 1801,
+   "postEndFrame": 1801
+  },
+  {
+   "id": "13",
+   "speaker": "gus",
+   "start": 60.39,
+   "sentences": [
+    {
+     "text": "I'm not even ranked.",
+     "start": 60.39,
+     "end": 61.525,
+     "words": [
+      {
+       "text": "I'm",
+       "start": 60.43,
+       "end": 60.622,
+       "frame": 1813
+      },
+      {
+       "text": "not",
+       "start": 60.622,
+       "end": 60.815,
+       "frame": 1819
+      },
+      {
+       "text": "even",
+       "start": 60.815,
+       "end": 61.15,
+       "frame": 1824
+      },
+      {
+       "text": "ranked.",
+       "start": 61.15,
+       "end": 61.485,
+       "frame": 1834
+      }
+     ]
+    },
+    {
+     "text": "There's no ranking for long snappers.",
+     "start": 61.684999999999995,
+     "end": 63.67999999999999,
+     "words": [
+      {
+       "text": "There's",
+       "start": 61.725,
+       "end": 62.13,
+       "frame": 1852
+      },
+      {
+       "text": "no",
+       "start": 62.13,
+       "end": 62.363,
+       "frame": 1864
+      },
+      {
+       "text": "ranking",
+       "start": 62.363,
+       "end": 62.769,
+       "frame": 1871
+      },
+      {
+       "text": "for",
+       "start": 62.769,
+       "end": 63.002,
+       "frame": 1883
+      },
+      {
+       "text": "long",
+       "start": 63.002,
+       "end": 63.235,
+       "frame": 1890
+      },
+      {
+       "text": "snappers.",
+       "start": 63.235,
+       "end": 63.64,
+       "frame": 1897
+      }
+     ]
+    },
+    {
+     "text": "There's like six of us.",
+     "start": 64.13999999999999,
+     "end": 65.38999999999999,
+     "words": [
+      {
+       "text": "There's",
+       "start": 64.18,
+       "end": 64.535,
+       "frame": 1925
+      },
+      {
+       "text": "like",
+       "start": 64.535,
+       "end": 64.739,
+       "frame": 1936
+      },
+      {
+       "text": "six",
+       "start": 64.739,
+       "end": 64.942,
+       "frame": 1942
+      },
+      {
+       "text": "of",
+       "start": 64.942,
+       "end": 65.146,
+       "frame": 1948
+      },
+      {
+       "text": "us.",
+       "start": 65.146,
+       "end": 65.35,
+       "frame": 1954
+      }
+     ]
+    }
+   ],
+   "end": 65.38999999999999,
+   "startFrame": 1812,
+   "endFrame": 1962,
+   "postEndFrame": 1983
+  },
+  {
+   "id": "14",
+   "speaker": "gus",
+   "start": 66.28999999999999,
+   "sentences": [
+    {
+     "text": "Then my phone buzzed.",
+     "start": 66.28999999999999,
+     "end": 67.47,
+     "words": [
+      {
+       "text": "Then",
+       "start": 66.33,
+       "end": 66.562,
+       "frame": 1990
+      },
+      {
+       "text": "my",
+       "start": 66.562,
+       "end": 66.794,
+       "frame": 1997
+      },
+      {
+       "text": "phone",
+       "start": 66.794,
+       "end": 67.026,
+       "frame": 2004
+      },
+      {
+       "text": "buzzed.",
+       "start": 67.026,
+       "end": 67.43,
+       "frame": 2011
+      }
+     ]
+    }
+   ],
+   "end": 67.47,
+   "startFrame": 1989,
+   "endFrame": 2024,
+   "postEndFrame": 2060
+  },
+  {
+   "id": "15a",
+   "speaker": "gus",
+   "start": 68.87,
+   "sentences": [
+    {
+     "text": "...Who's Coach Briggs?",
+     "start": 68.87,
+     "end": 69.97500000000001,
+     "words": [
+      {
+       "text": "...Who's",
+       "start": 68.91,
+       "end": 69.252,
+       "frame": 2067
+      },
+      {
+       "text": "Coach",
+       "start": 69.252,
+       "end": 69.593,
+       "frame": 2078
+      },
+      {
+       "text": "Briggs?",
+       "start": 69.593,
+       "end": 69.935,
+       "frame": 2088
+      }
+     ]
+    }
+   ],
+   "end": 69.97500000000001,
+   "startFrame": 2066,
+   "endFrame": 2099,
+   "postEndFrame": 2099
+  },
+  {
+   "id": "15b",
+   "speaker": "tre",
+   "start": 70.525,
+   "sentences": [
+    {
+     "text": "...WHO'S Coach Briggs?",
+     "start": 70.525,
+     "end": 71.70500000000001,
+     "words": [
+      {
+       "text": "...WHO'S",
+       "start": 70.565,
+       "end": 70.932,
+       "frame": 2117
+      },
+      {
+       "text": "Coach",
+       "start": 70.932,
+       "end": 71.298,
+       "frame": 2128
+      },
+      {
+       "text": "Briggs?",
+       "start": 71.298,
+       "end": 71.665,
+       "frame": 2139
+      }
+     ]
+    }
+   ],
+   "end": 71.70500000000001,
+   "startFrame": 2116,
+   "endFrame": 2151,
+   "postEndFrame": 2162
+  }
+ ],
+ "blackStart": 2162,
+ "endCardStart": 2177,
+ "durationInFrames": 2231
+}

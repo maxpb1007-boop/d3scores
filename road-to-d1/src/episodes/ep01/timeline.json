@@ -9,1446 +9,1446 @@
     {
      "text": "My best friend is a three-star receiver.",
      "start": 0.25,
-     "end": 2.615,
+     "end": 2.53,
      "words": [
       {
        "text": "My",
        "start": 0.29,
-       "end": 0.538,
+       "end": 0.529,
        "frame": 9
       },
       {
        "text": "best",
-       "start": 0.538,
-       "end": 0.786,
+       "start": 0.529,
+       "end": 0.767,
        "frame": 16
       },
       {
        "text": "friend",
-       "start": 0.786,
-       "end": 1.033,
-       "frame": 24
+       "start": 0.767,
+       "end": 1.006,
+       "frame": 23
       },
       {
        "text": "is",
-       "start": 1.033,
-       "end": 1.281,
-       "frame": 31
+       "start": 1.006,
+       "end": 1.244,
+       "frame": 30
       },
       {
        "text": "a",
-       "start": 1.281,
-       "end": 1.529,
-       "frame": 38
+       "start": 1.244,
+       "end": 1.483,
+       "frame": 37
       },
       {
        "text": "three-star",
-       "start": 1.529,
-       "end": 1.96,
-       "frame": 46
+       "start": 1.483,
+       "end": 1.898,
+       "frame": 44
       },
       {
        "text": "receiver.",
-       "start": 1.96,
-       "end": 2.575,
-       "frame": 59
+       "start": 1.898,
+       "end": 2.49,
+       "frame": 57
       }
      ]
     },
     {
      "text": "I'm the long snapper.",
-     "start": 2.7750000000000004,
-     "end": 3.955,
+     "start": 2.69,
+     "end": 3.81,
      "words": [
       {
        "text": "I'm",
-       "start": 2.815,
-       "end": 3.047,
-       "frame": 84
+       "start": 2.73,
+       "end": 2.949,
+       "frame": 82
       },
       {
        "text": "the",
-       "start": 3.047,
-       "end": 3.279,
-       "frame": 91
+       "start": 2.949,
+       "end": 3.169,
+       "frame": 88
       },
       {
        "text": "long",
-       "start": 3.279,
-       "end": 3.511,
-       "frame": 98
+       "start": 3.169,
+       "end": 3.388,
+       "frame": 95
       },
       {
        "text": "snapper.",
-       "start": 3.511,
-       "end": 3.915,
-       "frame": 105
+       "start": 3.388,
+       "end": 3.77,
+       "frame": 102
       }
      ]
     },
     {
      "text": "Guess which one of us thinks he's famous.",
-     "start": 4.415,
-     "end": 6.38,
+     "start": 4.27,
+     "end": 6.209999999999999,
      "words": [
       {
        "text": "Guess",
-       "start": 4.455,
-       "end": 4.671,
-       "frame": 134
+       "start": 4.31,
+       "end": 4.523,
+       "frame": 129
       },
       {
        "text": "which",
-       "start": 4.671,
-       "end": 4.886,
-       "frame": 140
+       "start": 4.523,
+       "end": 4.736,
+       "frame": 136
       },
       {
        "text": "one",
-       "start": 4.886,
-       "end": 5.102,
-       "frame": 147
+       "start": 4.736,
+       "end": 4.948,
+       "frame": 142
       },
       {
        "text": "of",
-       "start": 5.102,
-       "end": 5.318,
-       "frame": 153
+       "start": 4.948,
+       "end": 5.161,
+       "frame": 148
       },
       {
        "text": "us",
-       "start": 5.318,
-       "end": 5.533,
-       "frame": 160
+       "start": 5.161,
+       "end": 5.374,
+       "frame": 155
       },
       {
        "text": "thinks",
-       "start": 5.533,
-       "end": 5.749,
-       "frame": 166
+       "start": 5.374,
+       "end": 5.587,
+       "frame": 161
       },
       {
        "text": "he's",
-       "start": 5.749,
-       "end": 5.965,
-       "frame": 172
+       "start": 5.587,
+       "end": 5.8,
+       "frame": 168
       },
       {
        "text": "famous.",
-       "start": 5.965,
-       "end": 6.34,
-       "frame": 179
+       "start": 5.8,
+       "end": 6.17,
+       "frame": 174
       }
      ]
     }
    ],
-   "end": 6.38,
+   "end": 6.209999999999999,
    "startFrame": 8,
-   "endFrame": 191,
-   "postEndFrame": 191
+   "endFrame": 186,
+   "postEndFrame": 186
   },
   {
    "id": "02",
    "speaker": "gus",
-   "start": 6.68,
+   "start": 6.509999999999999,
    "sentences": [
     {
      "text": "This is Tre.",
-     "start": 6.68,
-     "end": 7.585,
+     "start": 6.509999999999999,
+     "end": 7.384999999999999,
      "words": [
       {
        "text": "This",
-       "start": 6.72,
-       "end": 6.995,
-       "frame": 202
+       "start": 6.55,
+       "end": 6.815,
+       "frame": 196
       },
       {
        "text": "is",
-       "start": 6.995,
-       "end": 7.27,
-       "frame": 210
+       "start": 6.815,
+       "end": 7.08,
+       "frame": 204
       },
       {
        "text": "Tre.",
-       "start": 7.27,
-       "end": 7.545,
-       "frame": 218
+       "start": 7.08,
+       "end": 7.345,
+       "frame": 212
       }
      ]
     },
     {
      "text": "Tre checks his phone like four hundred times a day.",
-     "start": 7.745,
-     "end": 10.46,
+     "start": 7.544999999999999,
+     "end": 10.184999999999999,
      "words": [
       {
        "text": "Tre",
-       "start": 7.785,
-       "end": 8.014,
-       "frame": 234
+       "start": 7.585,
+       "end": 7.808,
+       "frame": 228
       },
       {
        "text": "checks",
-       "start": 8.014,
-       "end": 8.244,
-       "frame": 240
+       "start": 7.808,
+       "end": 8.031,
+       "frame": 234
       },
       {
        "text": "his",
-       "start": 8.244,
-       "end": 8.474,
-       "frame": 247
+       "start": 8.031,
+       "end": 8.254,
+       "frame": 241
       },
       {
        "text": "phone",
-       "start": 8.474,
-       "end": 8.703,
-       "frame": 254
+       "start": 8.254,
+       "end": 8.477,
+       "frame": 248
       },
       {
        "text": "like",
-       "start": 8.703,
-       "end": 8.933,
-       "frame": 261
+       "start": 8.477,
+       "end": 8.7,
+       "frame": 254
       },
       {
        "text": "four",
-       "start": 8.933,
-       "end": 9.162,
-       "frame": 268
+       "start": 8.7,
+       "end": 8.923,
+       "frame": 261
       },
       {
        "text": "hundred",
-       "start": 9.162,
-       "end": 9.562,
-       "frame": 275
+       "start": 8.923,
+       "end": 9.311,
+       "frame": 268
       },
       {
        "text": "times",
-       "start": 9.562,
-       "end": 9.961,
-       "frame": 287
+       "start": 9.311,
+       "end": 9.699,
+       "frame": 279
       },
       {
        "text": "a",
-       "start": 9.961,
-       "end": 10.191,
-       "frame": 299
+       "start": 9.699,
+       "end": 9.922,
+       "frame": 291
       },
       {
        "text": "day.",
-       "start": 10.191,
-       "end": 10.42,
-       "frame": 306
+       "start": 9.922,
+       "end": 10.145,
+       "frame": 298
       }
      ]
     },
     {
      "text": "Not for girls.",
-     "start": 10.82,
-     "end": 11.83,
+     "start": 10.544999999999998,
+     "end": 11.539999999999997,
      "words": [
       {
        "text": "Not",
-       "start": 10.86,
-       "end": 11.17,
-       "frame": 326
+       "start": 10.585,
+       "end": 10.89,
+       "frame": 318
       },
       {
        "text": "for",
-       "start": 11.17,
-       "end": 11.48,
-       "frame": 335
+       "start": 10.89,
+       "end": 11.195,
+       "frame": 327
       },
       {
        "text": "girls.",
-       "start": 11.48,
-       "end": 11.79,
-       "frame": 344
+       "start": 11.195,
+       "end": 11.5,
+       "frame": 336
       }
      ]
     },
     {
      "text": "For coaches.",
-     "start": 12.34,
-     "end": 13.2,
+     "start": 12.049999999999997,
+     "end": 12.894999999999998,
      "words": [
       {
        "text": "For",
-       "start": 12.38,
-       "end": 12.665,
-       "frame": 371
+       "start": 12.09,
+       "end": 12.369,
+       "frame": 363
       },
       {
        "text": "coaches.",
-       "start": 12.665,
-       "end": 13.16,
-       "frame": 380
+       "start": 12.369,
+       "end": 12.855,
+       "frame": 371
       }
      ]
     }
    ],
-   "end": 13.2,
-   "startFrame": 200,
-   "endFrame": 396,
-   "postEndFrame": 396
+   "end": 12.894999999999998,
+   "startFrame": 195,
+   "endFrame": 387,
+   "postEndFrame": 387
   },
   {
    "id": "03",
    "speaker": "tre",
-   "start": 13.549999999999999,
+   "start": 13.244999999999997,
    "sentences": [
     {
      "text": "Bro.",
-     "start": 13.549999999999999,
-     "end": 14.104999999999999,
+     "start": 13.244999999999997,
+     "end": 13.779999999999998,
      "words": [
       {
        "text": "Bro.",
-       "start": 13.59,
-       "end": 14.065,
-       "frame": 408
+       "start": 13.285,
+       "end": 13.74,
+       "frame": 399
       }
      ]
     },
     {
      "text": "A coach looked at my story.",
-     "start": 14.514999999999999,
-     "end": 15.969999999999999,
+     "start": 14.189999999999998,
+     "end": 15.629999999999997,
      "words": [
       {
        "text": "A",
-       "start": 14.555,
-       "end": 14.739,
-       "frame": 437
+       "start": 14.23,
+       "end": 14.412,
+       "frame": 427
       },
       {
        "text": "coach",
-       "start": 14.739,
-       "end": 14.923,
-       "frame": 442
+       "start": 14.412,
+       "end": 14.594,
+       "frame": 432
       },
       {
        "text": "looked",
-       "start": 14.923,
-       "end": 15.242,
-       "frame": 448
+       "start": 14.594,
+       "end": 14.91,
+       "frame": 438
       },
       {
        "text": "at",
-       "start": 15.242,
-       "end": 15.426,
-       "frame": 457
+       "start": 14.91,
+       "end": 15.092,
+       "frame": 447
       },
       {
        "text": "my",
-       "start": 15.426,
-       "end": 15.61,
-       "frame": 463
+       "start": 15.092,
+       "end": 15.274,
+       "frame": 453
       },
       {
        "text": "story.",
-       "start": 15.61,
-       "end": 15.93,
-       "frame": 468
+       "start": 15.274,
+       "end": 15.59,
+       "frame": 458
       }
      ]
     }
    ],
-   "end": 15.969999999999999,
-   "startFrame": 406,
-   "endFrame": 479,
-   "postEndFrame": 479
+   "end": 15.629999999999997,
+   "startFrame": 397,
+   "endFrame": 469,
+   "postEndFrame": 469
   },
   {
    "id": "04",
    "speaker": "gus",
-   "start": 16.369999999999997,
+   "start": 16.029999999999998,
    "sentences": [
     {
      "text": "It was a grad assistant.",
-     "start": 16.369999999999997,
-     "end": 17.639999999999997,
+     "start": 16.029999999999998,
+     "end": 17.314999999999998,
      "words": [
       {
        "text": "It",
-       "start": 16.41,
-       "end": 16.594,
-       "frame": 492
+       "start": 16.07,
+       "end": 16.256,
+       "frame": 482
       },
       {
        "text": "was",
-       "start": 16.594,
-       "end": 16.777,
-       "frame": 498
+       "start": 16.256,
+       "end": 16.442,
+       "frame": 488
       },
       {
        "text": "a",
-       "start": 16.777,
-       "end": 16.961,
-       "frame": 503
+       "start": 16.442,
+       "end": 16.628,
+       "frame": 493
       },
       {
        "text": "grad",
-       "start": 16.961,
-       "end": 17.144,
-       "frame": 509
+       "start": 16.628,
+       "end": 16.814,
+       "frame": 499
       },
       {
        "text": "assistant.",
-       "start": 17.144,
-       "end": 17.6,
-       "frame": 514
+       "start": 16.814,
+       "end": 17.275,
+       "frame": 504
       }
      ]
     },
     {
      "text": "From a school with no football team.",
-     "start": 18.099999999999998,
-     "end": 20.134999999999998,
+     "start": 17.775,
+     "end": 19.705,
      "words": [
       {
        "text": "From",
-       "start": 18.14,
-       "end": 18.393,
-       "frame": 544
+       "start": 17.815,
+       "end": 18.054,
+       "frame": 534
       },
       {
        "text": "a",
-       "start": 18.393,
-       "end": 18.645,
-       "frame": 552
+       "start": 18.054,
+       "end": 18.293,
+       "frame": 542
       },
       {
        "text": "school",
-       "start": 18.645,
-       "end": 18.898,
-       "frame": 559
+       "start": 18.293,
+       "end": 18.532,
+       "frame": 549
       },
       {
        "text": "with",
-       "start": 18.898,
-       "end": 19.15,
-       "frame": 567
+       "start": 18.532,
+       "end": 18.771,
+       "frame": 556
       },
       {
        "text": "no",
-       "start": 19.15,
-       "end": 19.403,
-       "frame": 575
+       "start": 18.771,
+       "end": 19.01,
+       "frame": 563
       },
       {
        "text": "football",
-       "start": 19.403,
-       "end": 19.842,
-       "frame": 582
+       "start": 19.01,
+       "end": 19.426,
+       "frame": 570
       },
       {
        "text": "team.",
-       "start": 19.842,
-       "end": 20.095,
-       "frame": 595
+       "start": 19.426,
+       "end": 19.665,
+       "frame": 583
       }
      ]
     }
    ],
-   "end": 20.134999999999998,
-   "startFrame": 491,
-   "endFrame": 604,
-   "postEndFrame": 619
+   "end": 19.705,
+   "startFrame": 481,
+   "endFrame": 591,
+   "postEndFrame": 606
   },
   {
    "id": "05",
    "speaker": "gus",
-   "start": 20.834999999999997,
+   "start": 20.404999999999998,
    "sentences": [
     {
      "text": "Tre runs routes in the hallway.",
-     "start": 20.834999999999997,
-     "end": 22.54,
+     "start": 20.404999999999998,
+     "end": 22.054999999999996,
      "words": [
       {
        "text": "Tre",
-       "start": 20.875,
-       "end": 21.092,
-       "frame": 626
+       "start": 20.445,
+       "end": 20.655,
+       "frame": 613
       },
       {
        "text": "runs",
-       "start": 21.092,
-       "end": 21.309,
-       "frame": 633
+       "start": 20.655,
+       "end": 20.865,
+       "frame": 620
       },
       {
        "text": "routes",
-       "start": 21.309,
-       "end": 21.688,
-       "frame": 639
+       "start": 20.865,
+       "end": 21.23,
+       "frame": 626
       },
       {
        "text": "in",
-       "start": 21.688,
-       "end": 21.905,
-       "frame": 651
+       "start": 21.23,
+       "end": 21.44,
+       "frame": 637
       },
       {
        "text": "the",
-       "start": 21.905,
-       "end": 22.122,
-       "frame": 657
+       "start": 21.44,
+       "end": 21.65,
+       "frame": 643
       },
       {
        "text": "hallway.",
-       "start": 22.122,
-       "end": 22.5,
-       "frame": 664
+       "start": 21.65,
+       "end": 22.015,
+       "frame": 649
       }
      ]
     },
     {
      "text": "Between classes.",
-     "start": 22.849999999999998,
-     "end": 23.959999999999997,
+     "start": 22.364999999999995,
+     "end": 23.444999999999993,
      "words": [
       {
        "text": "Between",
-       "start": 22.89,
-       "end": 23.405,
-       "frame": 687
+       "start": 22.405,
+       "end": 22.905,
+       "frame": 672
       },
       {
        "text": "classes.",
-       "start": 23.405,
-       "end": 23.92,
-       "frame": 702
+       "start": 22.905,
+       "end": 23.405,
+       "frame": 687
       }
      ]
     },
     {
      "text": "With no ball.",
-     "start": 24.419999999999998,
-     "end": 25.325,
+     "start": 23.904999999999994,
+     "end": 24.779999999999994,
      "words": [
       {
        "text": "With",
-       "start": 24.46,
-       "end": 24.735,
-       "frame": 734
+       "start": 23.945,
+       "end": 24.21,
+       "frame": 718
       },
       {
        "text": "no",
-       "start": 24.735,
-       "end": 25.01,
-       "frame": 742
+       "start": 24.21,
+       "end": 24.475,
+       "frame": 726
       },
       {
        "text": "ball.",
-       "start": 25.01,
-       "end": 25.285,
-       "frame": 750
+       "start": 24.475,
+       "end": 24.74,
+       "frame": 734
       }
      ]
     }
    ],
-   "end": 25.325,
-   "startFrame": 625,
-   "endFrame": 760,
-   "postEndFrame": 778
+   "end": 24.779999999999994,
+   "startFrame": 612,
+   "endFrame": 743,
+   "postEndFrame": 761
   },
   {
    "id": "06",
    "speaker": "gus",
-   "start": 26.125,
+   "start": 25.579999999999995,
    "sentences": [
     {
      "text": "He's undefeated against freshmen.",
-     "start": 26.125,
-     "end": 27.955,
+     "start": 25.579999999999995,
+     "end": 27.329999999999995,
      "words": [
       {
        "text": "He's",
-       "start": 26.165,
-       "end": 26.392,
-       "frame": 785
+       "start": 25.62,
+       "end": 25.837,
+       "frame": 769
       },
       {
        "text": "undefeated",
-       "start": 26.392,
-       "end": 27.124,
-       "frame": 792
+       "start": 25.837,
+       "end": 26.535,
+       "frame": 775
       },
       {
        "text": "against",
-       "start": 27.124,
-       "end": 27.52,
-       "frame": 814
+       "start": 26.535,
+       "end": 26.913,
+       "frame": 796
       },
       {
        "text": "freshmen.",
-       "start": 27.52,
-       "end": 27.915,
-       "frame": 826
+       "start": 26.913,
+       "end": 27.29,
+       "frame": 807
       }
      ]
     }
    ],
-   "end": 27.955,
-   "startFrame": 784,
-   "endFrame": 839,
-   "postEndFrame": 854
+   "end": 27.329999999999995,
+   "startFrame": 767,
+   "endFrame": 820,
+   "postEndFrame": 835
   },
   {
    "id": "07",
    "speaker": "gus",
-   "start": 28.705,
+   "start": 28.079999999999995,
    "sentences": [
     {
      "text": "He posted his own highlight tape at two in the morning.",
-     "start": 28.705,
-     "end": 31.474999999999998,
+     "start": 28.079999999999995,
+     "end": 30.744999999999994,
      "words": [
       {
        "text": "He",
-       "start": 28.745,
-       "end": 28.948,
-       "frame": 862
+       "start": 28.12,
+       "end": 28.316,
+       "frame": 844
       },
       {
        "text": "posted",
-       "start": 28.948,
-       "end": 29.303,
-       "frame": 868
+       "start": 28.316,
+       "end": 28.656,
+       "frame": 849
       },
       {
        "text": "his",
-       "start": 29.303,
-       "end": 29.506,
-       "frame": 879
+       "start": 28.656,
+       "end": 28.851,
+       "frame": 860
       },
       {
        "text": "own",
-       "start": 29.506,
-       "end": 29.709,
-       "frame": 885
+       "start": 28.851,
+       "end": 29.047,
+       "frame": 866
       },
       {
        "text": "highlight",
-       "start": 29.709,
-       "end": 30.064,
-       "frame": 891
+       "start": 29.047,
+       "end": 29.387,
+       "frame": 871
       },
       {
        "text": "tape",
-       "start": 30.064,
-       "end": 30.267,
-       "frame": 902
+       "start": 29.387,
+       "end": 29.583,
+       "frame": 882
       },
       {
        "text": "at",
-       "start": 30.267,
-       "end": 30.471,
-       "frame": 908
+       "start": 29.583,
+       "end": 29.778,
+       "frame": 887
       },
       {
        "text": "two",
-       "start": 30.471,
-       "end": 30.674,
-       "frame": 914
+       "start": 29.778,
+       "end": 29.974,
+       "frame": 893
       },
       {
        "text": "in",
-       "start": 30.674,
-       "end": 30.877,
-       "frame": 920
+       "start": 29.974,
+       "end": 30.169,
+       "frame": 899
       },
       {
        "text": "the",
-       "start": 30.877,
-       "end": 31.081,
-       "frame": 926
+       "start": 30.169,
+       "end": 30.365,
+       "frame": 905
       },
       {
        "text": "morning.",
-       "start": 31.081,
-       "end": 31.435,
-       "frame": 932
+       "start": 30.365,
+       "end": 30.705,
+       "frame": 911
       }
      ]
     },
     {
      "text": "Eleven slow-mo replays of the same catch.",
-     "start": 31.634999999999998,
-     "end": 34.16,
+     "start": 30.904999999999994,
+     "end": 33.24999999999999,
      "words": [
       {
        "text": "Eleven",
-       "start": 31.675,
-       "end": 32.284,
-       "frame": 950
+       "start": 30.945,
+       "end": 31.509,
+       "frame": 928
       },
       {
        "text": "slow-mo",
-       "start": 32.284,
-       "end": 32.711,
-       "frame": 969
+       "start": 31.509,
+       "end": 31.905,
+       "frame": 945
       },
       {
        "text": "replays",
-       "start": 32.711,
-       "end": 33.138,
-       "frame": 981
+       "start": 31.905,
+       "end": 32.301,
+       "frame": 957
       },
       {
        "text": "of",
-       "start": 33.138,
-       "end": 33.384,
-       "frame": 994
+       "start": 32.301,
+       "end": 32.528,
+       "frame": 969
       },
       {
        "text": "the",
-       "start": 33.384,
-       "end": 33.629,
-       "frame": 1002
+       "start": 32.528,
+       "end": 32.755,
+       "frame": 976
       },
       {
        "text": "same",
-       "start": 33.629,
-       "end": 33.875,
-       "frame": 1009
+       "start": 32.755,
+       "end": 32.983,
+       "frame": 983
       },
       {
        "text": "catch.",
-       "start": 33.875,
-       "end": 34.12,
-       "frame": 1016
+       "start": 32.983,
+       "end": 33.21,
+       "frame": 989
       }
      ]
     }
    ],
-   "end": 34.16,
-   "startFrame": 861,
-   "endFrame": 1025,
-   "postEndFrame": 1025
+   "end": 33.24999999999999,
+   "startFrame": 842,
+   "endFrame": 997,
+   "postEndFrame": 997
   },
   {
    "id": "08",
    "speaker": "gus",
-   "start": 34.51,
+   "start": 33.599999999999994,
    "sentences": [
     {
      "text": "Four likes.",
-     "start": 34.51,
-     "end": 35.39,
+     "start": 33.599999999999994,
+     "end": 34.37,
      "words": [
       {
        "text": "Four",
-       "start": 34.55,
-       "end": 34.842,
-       "frame": 1036
+       "start": 33.64,
+       "end": 33.892,
+       "frame": 1009
       },
       {
        "text": "likes.",
-       "start": 34.842,
-       "end": 35.35,
-       "frame": 1045
+       "start": 33.892,
+       "end": 34.33,
+       "frame": 1017
       }
      ]
     },
     {
      "text": "One was his mom.",
-     "start": 35.75,
-     "end": 36.875,
+     "start": 34.73,
+     "end": 35.794999999999995,
      "words": [
       {
        "text": "One",
-       "start": 35.79,
-       "end": 36.051,
-       "frame": 1074
+       "start": 34.77,
+       "end": 35.016,
+       "frame": 1043
       },
       {
        "text": "was",
-       "start": 36.051,
-       "end": 36.312,
-       "frame": 1082
+       "start": 35.016,
+       "end": 35.262,
+       "frame": 1050
       },
       {
        "text": "his",
-       "start": 36.312,
-       "end": 36.574,
-       "frame": 1089
+       "start": 35.262,
+       "end": 35.509,
+       "frame": 1058
       },
       {
        "text": "mom.",
-       "start": 36.574,
-       "end": 36.835,
-       "frame": 1097
+       "start": 35.509,
+       "end": 35.755,
+       "frame": 1065
       }
      ]
     },
     {
      "text": "One was me.",
-     "start": 37.035,
-     "end": 37.91,
+     "start": 35.95499999999999,
+     "end": 36.76499999999999,
      "words": [
       {
        "text": "One",
-       "start": 37.075,
-       "end": 37.34,
-       "frame": 1112
+       "start": 35.995,
+       "end": 36.238,
+       "frame": 1080
       },
       {
        "text": "was",
-       "start": 37.34,
-       "end": 37.605,
-       "frame": 1120
+       "start": 36.238,
+       "end": 36.482,
+       "frame": 1087
       },
       {
        "text": "me.",
-       "start": 37.605,
-       "end": 37.87,
-       "frame": 1128
+       "start": 36.482,
+       "end": 36.725,
+       "frame": 1094
       }
      ]
     },
     {
      "text": "By accident.",
-     "start": 38.47,
-     "end": 39.394999999999996,
+     "start": 37.324999999999996,
+     "end": 38.224999999999994,
      "words": [
       {
        "text": "By",
-       "start": 38.51,
-       "end": 38.753,
-       "frame": 1155
+       "start": 37.365,
+       "end": 37.601,
+       "frame": 1121
       },
       {
        "text": "accident.",
-       "start": 38.753,
-       "end": 39.355,
-       "frame": 1163
+       "start": 37.601,
+       "end": 38.185,
+       "frame": 1128
       }
      ]
     }
    ],
-   "end": 39.394999999999996,
-   "startFrame": 1035,
-   "endFrame": 1182,
-   "postEndFrame": 1200
+   "end": 38.224999999999994,
+   "startFrame": 1008,
+   "endFrame": 1147,
+   "postEndFrame": 1165
   },
   {
    "id": "09",
    "speaker": "gus",
-   "start": 40.294999999999995,
+   "start": 39.12499999999999,
    "sentences": [
     {
      "text": "Meanwhile, I snap a ball fifteen yards backwards, between my legs, perfect spiral, every single day.",
-     "start": 40.294999999999995,
-     "end": 46.754999999999995,
+     "start": 39.12499999999999,
+     "end": 45.36999999999999,
      "words": [
       {
        "text": "Meanwhile,",
-       "start": 40.335,
-       "end": 41.105,
-       "frame": 1210
+       "start": 39.165,
+       "end": 39.909,
+       "frame": 1175
       },
       {
        "text": "I",
-       "start": 41.105,
-       "end": 41.35,
-       "frame": 1233
+       "start": 39.909,
+       "end": 40.146,
+       "frame": 1197
       },
       {
        "text": "snap",
-       "start": 41.35,
-       "end": 41.595,
-       "frame": 1240
+       "start": 40.146,
+       "end": 40.382,
+       "frame": 1204
       },
       {
        "text": "a",
-       "start": 41.595,
-       "end": 41.839,
-       "frame": 1248
+       "start": 40.382,
+       "end": 40.619,
+       "frame": 1211
       },
       {
        "text": "ball",
-       "start": 41.839,
-       "end": 42.084,
-       "frame": 1255
+       "start": 40.619,
+       "end": 40.855,
+       "frame": 1219
       },
       {
        "text": "fifteen",
-       "start": 42.084,
-       "end": 42.51,
-       "frame": 1263
+       "start": 40.855,
+       "end": 41.267,
+       "frame": 1226
       },
       {
        "text": "yards",
-       "start": 42.51,
-       "end": 42.755,
-       "frame": 1275
+       "start": 41.267,
+       "end": 41.503,
+       "frame": 1238
       },
       {
        "text": "backwards,",
-       "start": 42.755,
-       "end": 43.344,
-       "frame": 1283
+       "start": 41.503,
+       "end": 42.072,
+       "frame": 1245
       },
       {
        "text": "between",
-       "start": 43.344,
-       "end": 43.77,
-       "frame": 1300
+       "start": 42.072,
+       "end": 42.484,
+       "frame": 1262
       },
       {
        "text": "my",
-       "start": 43.77,
-       "end": 44.014,
-       "frame": 1313
+       "start": 42.484,
+       "end": 42.72,
+       "frame": 1275
       },
       {
        "text": "legs,",
-       "start": 44.014,
-       "end": 44.422,
-       "frame": 1320
+       "start": 42.72,
+       "end": 43.114,
+       "frame": 1282
       },
       {
        "text": "perfect",
-       "start": 44.422,
-       "end": 44.848,
-       "frame": 1333
+       "start": 43.114,
+       "end": 43.526,
+       "frame": 1293
       },
       {
        "text": "spiral,",
-       "start": 44.848,
-       "end": 45.437,
-       "frame": 1345
+       "start": 43.526,
+       "end": 44.095,
+       "frame": 1306
       },
       {
        "text": "every",
-       "start": 45.437,
-       "end": 46.044,
-       "frame": 1363
+       "start": 44.095,
+       "end": 44.682,
+       "frame": 1323
       },
       {
        "text": "single",
-       "start": 46.044,
-       "end": 46.47,
-       "frame": 1381
+       "start": 44.682,
+       "end": 45.094,
+       "frame": 1340
       },
       {
        "text": "day.",
-       "start": 46.47,
-       "end": 46.715,
-       "frame": 1394
+       "start": 45.094,
+       "end": 45.33,
+       "frame": 1353
       }
      ]
     },
     {
      "text": "Nobody claps.",
-     "start": 47.315,
-     "end": 48.33,
+     "start": 45.92999999999999,
+     "end": 46.93999999999999,
      "words": [
       {
        "text": "Nobody",
-       "start": 47.355,
-       "end": 48.021,
-       "frame": 1421
+       "start": 45.97,
+       "end": 46.633,
+       "frame": 1379
       },
       {
        "text": "claps.",
-       "start": 48.021,
-       "end": 48.29,
-       "frame": 1441
+       "start": 46.633,
+       "end": 46.9,
+       "frame": 1399
       }
      ]
     }
    ],
-   "end": 48.33,
-   "startFrame": 1209,
-   "endFrame": 1450,
-   "postEndFrame": 1492
+   "end": 46.93999999999999,
+   "startFrame": 1174,
+   "endFrame": 1408,
+   "postEndFrame": 1450
   },
   {
    "id": "10",
    "speaker": "gus",
-   "start": 49.93,
+   "start": 48.53999999999999,
    "sentences": [
     {
      "text": "If I do my job, nobody knows my name.",
-     "start": 49.93,
-     "end": 52.575,
+     "start": 48.53999999999999,
+     "end": 51.15999999999999,
      "words": [
       {
        "text": "If",
-       "start": 49.97,
-       "end": 50.2,
-       "frame": 1499
+       "start": 48.58,
+       "end": 48.808,
+       "frame": 1457
       },
       {
        "text": "I",
-       "start": 50.2,
-       "end": 50.43,
-       "frame": 1506
+       "start": 48.808,
+       "end": 49.036,
+       "frame": 1464
       },
       {
        "text": "do",
-       "start": 50.43,
-       "end": 50.66,
+       "start": 49.036,
+       "end": 49.264,
+       "frame": 1471
+      },
+      {
+       "text": "my",
+       "start": 49.264,
+       "end": 49.491,
+       "frame": 1478
+      },
+      {
+       "text": "job,",
+       "start": 49.491,
+       "end": 49.871,
+       "frame": 1485
+      },
+      {
+       "text": "nobody",
+       "start": 49.871,
+       "end": 50.436,
+       "frame": 1496
+      },
+      {
+       "text": "knows",
+       "start": 50.436,
+       "end": 50.664,
        "frame": 1513
       },
       {
        "text": "my",
-       "start": 50.66,
-       "end": 50.89,
+       "start": 50.664,
+       "end": 50.892,
        "frame": 1520
       },
       {
-       "text": "job,",
-       "start": 50.89,
-       "end": 51.274,
-       "frame": 1527
-      },
-      {
-       "text": "nobody",
-       "start": 51.274,
-       "end": 51.845,
-       "frame": 1538
-      },
-      {
-       "text": "knows",
-       "start": 51.845,
-       "end": 52.075,
-       "frame": 1555
-      },
-      {
-       "text": "my",
-       "start": 52.075,
-       "end": 52.305,
-       "frame": 1562
-      },
-      {
        "text": "name.",
-       "start": 52.305,
-       "end": 52.535,
-       "frame": 1569
+       "start": 50.892,
+       "end": 51.12,
+       "frame": 1527
       }
      ]
     },
     {
      "text": "If I mess up once...",
-     "start": 52.935,
-     "end": 54.150000000000006,
+     "start": 51.51999999999999,
+     "end": 52.69999999999999,
      "words": [
       {
        "text": "If",
-       "start": 52.975,
-       "end": 53.168,
-       "frame": 1589
+       "start": 51.56,
+       "end": 51.747,
+       "frame": 1547
       },
       {
        "text": "I",
-       "start": 53.168,
-       "end": 53.36,
-       "frame": 1595
+       "start": 51.747,
+       "end": 51.934,
+       "frame": 1552
       },
       {
        "text": "mess",
-       "start": 53.36,
-       "end": 53.553,
-       "frame": 1601
+       "start": 51.934,
+       "end": 52.12,
+       "frame": 1558
       },
       {
        "text": "up",
-       "start": 53.553,
-       "end": 53.746,
-       "frame": 1607
+       "start": 52.12,
+       "end": 52.307,
+       "frame": 1564
       },
       {
        "text": "once...",
-       "start": 53.746,
-       "end": 54.11,
-       "frame": 1612
+       "start": 52.307,
+       "end": 52.66,
+       "frame": 1569
       }
      ]
     }
    ],
-   "end": 54.150000000000006,
-   "startFrame": 1498,
-   "endFrame": 1625,
-   "postEndFrame": 1658
+   "end": 52.69999999999999,
+   "startFrame": 1456,
+   "endFrame": 1581,
+   "postEndFrame": 1614
   },
   {
    "id": "11",
    "speaker": "gus",
-   "start": 55.25000000000001,
+   "start": 53.79999999999999,
    "sentences": [
     {
      "text": "...everybody knows my name.",
-     "start": 55.25000000000001,
-     "end": 56.75000000000001,
+     "start": 53.79999999999999,
+     "end": 55.26999999999999,
      "words": [
       {
        "text": "...everybody",
-       "start": 55.29,
-       "end": 56.098,
-       "frame": 1659
+       "start": 53.84,
+       "end": 54.631,
+       "frame": 1615
       },
       {
        "text": "knows",
-       "start": 56.098,
-       "end": 56.302,
-       "frame": 1683
+       "start": 54.631,
+       "end": 54.831,
+       "frame": 1639
       },
       {
        "text": "my",
-       "start": 56.302,
-       "end": 56.506,
-       "frame": 1689
+       "start": 54.831,
+       "end": 55.03,
+       "frame": 1645
       },
       {
        "text": "name.",
-       "start": 56.506,
-       "end": 56.71,
-       "frame": 1695
+       "start": 55.03,
+       "end": 55.23,
+       "frame": 1651
       }
      ]
     }
    ],
-   "end": 56.75000000000001,
-   "startFrame": 1658,
-   "endFrame": 1703,
-   "postEndFrame": 1715
+   "end": 55.26999999999999,
+   "startFrame": 1614,
+   "endFrame": 1658,
+   "postEndFrame": 1670
   },
   {
    "id": "12",
    "speaker": "tre",
-   "start": 57.45,
+   "start": 55.969999999999985,
    "sentences": [
     {
      "text": "They moved a FOUR-STAR ahead of me!",
-     "start": 57.45,
-     "end": 58.825,
+     "start": 55.969999999999985,
+     "end": 57.29999999999998,
      "words": [
       {
        "text": "They",
-       "start": 57.49,
-       "end": 57.63,
-       "frame": 1725
+       "start": 56.01,
+       "end": 56.146,
+       "frame": 1680
       },
       {
        "text": "moved",
-       "start": 57.63,
-       "end": 57.875,
-       "frame": 1729
+       "start": 56.146,
+       "end": 56.381,
+       "frame": 1684
       },
       {
        "text": "a",
-       "start": 57.875,
-       "end": 58.015,
-       "frame": 1736
+       "start": 56.381,
+       "end": 56.517,
+       "frame": 1691
       },
       {
        "text": "FOUR-STAR",
-       "start": 58.015,
-       "end": 58.26,
-       "frame": 1740
+       "start": 56.517,
+       "end": 56.753,
+       "frame": 1696
       },
       {
        "text": "ahead",
-       "start": 58.26,
-       "end": 58.504,
-       "frame": 1748
+       "start": 56.753,
+       "end": 56.989,
+       "frame": 1703
       },
       {
        "text": "of",
-       "start": 58.504,
-       "end": 58.645,
-       "frame": 1755
+       "start": 56.989,
+       "end": 57.124,
+       "frame": 1710
       },
       {
        "text": "me!",
-       "start": 58.645,
-       "end": 58.785,
-       "frame": 1759
+       "start": 57.124,
+       "end": 57.26,
+       "frame": 1714
       }
      ]
     },
     {
      "text": "He runs a four-seven!",
-     "start": 58.985,
-     "end": 60.04,
+     "start": 57.45999999999998,
+     "end": 58.49999999999998,
      "words": [
       {
        "text": "He",
-       "start": 59.025,
-       "end": 59.203,
-       "frame": 1771
+       "start": 57.5,
+       "end": 57.675,
+       "frame": 1725
       },
       {
        "text": "runs",
-       "start": 59.203,
-       "end": 59.381,
-       "frame": 1776
+       "start": 57.675,
+       "end": 57.85,
+       "frame": 1730
       },
       {
        "text": "a",
-       "start": 59.381,
-       "end": 59.559,
-       "frame": 1781
+       "start": 57.85,
+       "end": 58.025,
+       "frame": 1736
       },
       {
        "text": "four-seven!",
-       "start": 59.559,
-       "end": 60.0,
-       "frame": 1787
+       "start": 58.025,
+       "end": 58.46,
+       "frame": 1741
       }
      ]
     }
    ],
-   "end": 60.04,
-   "startFrame": 1724,
-   "endFrame": 1801,
-   "postEndFrame": 1801
+   "end": 58.49999999999998,
+   "startFrame": 1679,
+   "endFrame": 1755,
+   "postEndFrame": 1755
   },
   {
    "id": "13",
    "speaker": "gus",
-   "start": 60.39,
+   "start": 58.84999999999998,
    "sentences": [
     {
      "text": "I'm not even ranked.",
-     "start": 60.39,
-     "end": 61.525,
+     "start": 58.84999999999998,
+     "end": 59.96999999999998,
      "words": [
       {
        "text": "I'm",
-       "start": 60.43,
-       "end": 60.622,
-       "frame": 1813
+       "start": 58.89,
+       "end": 59.08,
+       "frame": 1767
       },
       {
        "text": "not",
-       "start": 60.622,
-       "end": 60.815,
-       "frame": 1819
+       "start": 59.08,
+       "end": 59.269,
+       "frame": 1772
       },
       {
        "text": "even",
-       "start": 60.815,
-       "end": 61.15,
-       "frame": 1824
+       "start": 59.269,
+       "end": 59.6,
+       "frame": 1778
       },
       {
        "text": "ranked.",
-       "start": 61.15,
-       "end": 61.485,
-       "frame": 1834
+       "start": 59.6,
+       "end": 59.93,
+       "frame": 1788
       }
      ]
     },
     {
      "text": "There's no ranking for long snappers.",
-     "start": 61.684999999999995,
-     "end": 63.67999999999999,
+     "start": 60.129999999999974,
+     "end": 62.049999999999976,
      "words": [
       {
        "text": "There's",
-       "start": 61.725,
-       "end": 62.13,
-       "frame": 1852
+       "start": 60.17,
+       "end": 60.56,
+       "frame": 1805
       },
       {
        "text": "no",
-       "start": 62.13,
-       "end": 62.363,
-       "frame": 1864
+       "start": 60.56,
+       "end": 60.783,
+       "frame": 1817
       },
       {
        "text": "ranking",
-       "start": 62.363,
-       "end": 62.769,
-       "frame": 1871
+       "start": 60.783,
+       "end": 61.173,
+       "frame": 1823
       },
       {
        "text": "for",
-       "start": 62.769,
-       "end": 63.002,
-       "frame": 1883
+       "start": 61.173,
+       "end": 61.397,
+       "frame": 1835
       },
       {
        "text": "long",
-       "start": 63.002,
-       "end": 63.235,
-       "frame": 1890
+       "start": 61.397,
+       "end": 61.62,
+       "frame": 1842
       },
       {
        "text": "snappers.",
-       "start": 63.235,
-       "end": 63.64,
-       "frame": 1897
+       "start": 61.62,
+       "end": 62.01,
+       "frame": 1849
       }
      ]
     },
     {
      "text": "There's like six of us.",
-     "start": 64.13999999999999,
-     "end": 65.38999999999999,
+     "start": 62.50999999999998,
+     "end": 63.699999999999974,
      "words": [
       {
        "text": "There's",
-       "start": 64.18,
-       "end": 64.535,
-       "frame": 1925
+       "start": 62.55,
+       "end": 62.887,
+       "frame": 1876
       },
       {
        "text": "like",
-       "start": 64.535,
-       "end": 64.739,
-       "frame": 1936
+       "start": 62.887,
+       "end": 63.08,
+       "frame": 1887
       },
       {
        "text": "six",
-       "start": 64.739,
-       "end": 64.942,
-       "frame": 1942
+       "start": 63.08,
+       "end": 63.273,
+       "frame": 1892
       },
       {
        "text": "of",
-       "start": 64.942,
-       "end": 65.146,
-       "frame": 1948
+       "start": 63.273,
+       "end": 63.467,
+       "frame": 1898
       },
       {
        "text": "us.",
-       "start": 65.146,
-       "end": 65.35,
-       "frame": 1954
+       "start": 63.467,
+       "end": 63.66,
+       "frame": 1904
       }
      ]
     }
    ],
-   "end": 65.38999999999999,
-   "startFrame": 1812,
-   "endFrame": 1962,
-   "postEndFrame": 1983
+   "end": 63.699999999999974,
+   "startFrame": 1765,
+   "endFrame": 1911,
+   "postEndFrame": 1932
   },
   {
    "id": "14",
    "speaker": "gus",
-   "start": 66.28999999999999,
+   "start": 64.59999999999998,
    "sentences": [
     {
      "text": "Then my phone buzzed.",
-     "start": 66.28999999999999,
-     "end": 67.47,
+     "start": 64.59999999999998,
+     "end": 65.75499999999998,
      "words": [
       {
        "text": "Then",
-       "start": 66.33,
-       "end": 66.562,
-       "frame": 1990
+       "start": 64.64,
+       "end": 64.867,
+       "frame": 1939
       },
       {
        "text": "my",
-       "start": 66.562,
-       "end": 66.794,
-       "frame": 1997
+       "start": 64.867,
+       "end": 65.094,
+       "frame": 1946
       },
       {
        "text": "phone",
-       "start": 66.794,
-       "end": 67.026,
-       "frame": 2004
+       "start": 65.094,
+       "end": 65.32,
+       "frame": 1953
       },
       {
        "text": "buzzed.",
-       "start": 67.026,
-       "end": 67.43,
-       "frame": 2011
+       "start": 65.32,
+       "end": 65.715,
+       "frame": 1960
       }
      ]
     }
    ],
-   "end": 67.47,
-   "startFrame": 1989,
-   "endFrame": 2024,
-   "postEndFrame": 2060
+   "end": 65.75499999999998,
+   "startFrame": 1938,
+   "endFrame": 1973,
+   "postEndFrame": 2009
   },
   {
    "id": "15a",
    "speaker": "gus",
-   "start": 68.87,
+   "start": 67.15499999999999,
    "sentences": [
     {
      "text": "...Who's Coach Briggs?",
-     "start": 68.87,
-     "end": 69.97500000000001,
+     "start": 67.15499999999999,
+     "end": 68.23999999999998,
      "words": [
       {
        "text": "...Who's",
-       "start": 68.91,
-       "end": 69.252,
-       "frame": 2067
+       "start": 67.195,
+       "end": 67.53,
+       "frame": 2016
       },
       {
        "text": "Coach",
-       "start": 69.252,
-       "end": 69.593,
-       "frame": 2078
+       "start": 67.53,
+       "end": 67.865,
+       "frame": 2026
       },
       {
        "text": "Briggs?",
-       "start": 69.593,
-       "end": 69.935,
-       "frame": 2088
+       "start": 67.865,
+       "end": 68.2,
+       "frame": 2036
       }
      ]
     }
    ],
-   "end": 69.97500000000001,
-   "startFrame": 2066,
-   "endFrame": 2099,
-   "postEndFrame": 2099
+   "end": 68.23999999999998,
+   "startFrame": 2015,
+   "endFrame": 2047,
+   "postEndFrame": 2047
   },
   {
    "id": "15b",
    "speaker": "tre",
-   "start": 70.525,
+   "start": 68.78999999999998,
    "sentences": [
     {
      "text": "...WHO'S Coach Briggs?",
-     "start": 70.525,
-     "end": 71.70500000000001,
+     "start": 68.78999999999998,
+     "end": 69.93999999999998,
      "words": [
       {
        "text": "...WHO'S",
-       "start": 70.565,
-       "end": 70.932,
-       "frame": 2117
+       "start": 68.83,
+       "end": 69.187,
+       "frame": 2065
       },
       {
        "text": "Coach",
-       "start": 70.932,
-       "end": 71.298,
-       "frame": 2128
+       "start": 69.187,
+       "end": 69.543,
+       "frame": 2076
       },
       {
        "text": "Briggs?",
-       "start": 71.298,
-       "end": 71.665,
-       "frame": 2139
+       "start": 69.543,
+       "end": 69.9,
+       "frame": 2086
       }
      ]
     }
    ],
-   "end": 71.70500000000001,
-   "startFrame": 2116,
-   "endFrame": 2151,
-   "postEndFrame": 2162
+   "end": 69.93999999999998,
+   "startFrame": 2064,
+   "endFrame": 2098,
+   "postEndFrame": 2109
   }
  ],
- "blackStart": 2162,
- "endCardStart": 2177,
- "durationInFrames": 2231
+ "blackStart": 2109,
+ "endCardStart": 2124,
+ "durationInFrames": 2178
 }

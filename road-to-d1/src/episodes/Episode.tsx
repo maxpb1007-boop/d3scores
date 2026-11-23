@@ -38,7 +38,7 @@ const lastKey = <T extends { f: number }>(keys: T[] | undefined, f: number): T |
   return k;
 };
 
-const ActorView: React.FC<{ a: Actor; frame: number; mouth: MouthTrack[] }> = ({ a, frame, mouth }) => {
+const ActorView: React.FC<{ a: Actor; frame: number; real: number; mouth: MouthTrack[] }> = ({ a, frame, real, mouth }) => {
   const joints = poseAt(a.poses, frame);
   const e = (lastKey(a.expr, frame)?.e ?? a.who.defaultExpression) as Expression;
   // head look: ease from the previous key to the current one over `dur` frames
@@ -59,7 +59,7 @@ const ActorView: React.FC<{ a: Actor; frame: number; mouth: MouthTrack[] }> = ({
   }
   let yaw = a.yaw ?? 0;
   if (a.turn) yaw = lerp(yaw, a.turn.to, smooth((frame - a.turn.f0) / (a.turn.f1 - a.turn.f0)));
-  const speech = a.mouth === "none" ? 0 : mouthAt(mouth, a.who.id, frame);
+  const speech = a.mouth === "none" ? 0 : mouthAt(mouth, a.who.id, real);
   const chew = a.mouth === "chew" && speech < 0.05;
   let blink: number | undefined;
   for (const b of a.blinks ?? []) {
@@ -98,7 +98,8 @@ const ActorView: React.FC<{ a: Actor; frame: number; mouth: MouthTrack[] }> = ({
   );
 };
 
-const ShotView: React.FC<{ shot: Shot; frame: number; mouth: MouthTrack[] }> = ({ shot, frame, mouth }) => {
+// `frame` = position on the edit timeline (drives the shot); `real` = actual video frame (drives lip sync).
+const ShotView: React.FC<{ shot: Shot; frame: number; real: number; mouth: MouthTrack[] }> = ({ shot, frame, real, mouth }) => {
   const S = SETS[shot.set] as React.FC<{ mode?: "field" | "bleachers" }>;
   const p = clamp((frame - shot.start) / Math.max(1, shot.end - shot.start));
   const end = shot.camEnd ?? shot.cam;
@@ -121,7 +122,7 @@ const ShotView: React.FC<{ shot: Shot; frame: number; mouth: MouthTrack[] }> = (
       <Lights preset={shot.light} target={shot.lightTarget ?? [0, 1, 0]} />
       <S mode={shot.setMode} />
       {shot.actors.map((a, i) => (
-        <ActorView key={`${shot.id}-${i}`} a={a} frame={frame} mouth={mouth} />
+        <ActorView key={`${shot.id}-${i}`} a={a} frame={frame} real={real} mouth={mouth} />
       ))}
       {shot.extra?.(frame)}
     </>
@@ -137,20 +138,22 @@ export type EpisodeProps = {
   endCardStart: number;
   episodeNumber: number;
   safeZoneDebug?: boolean;
+  shotFrame?: (videoFrame: number) => number; // retime map (see retime.ts); identity if omitted
 };
 
-export const Episode: React.FC<EpisodeProps> = ({ shots, mouth, captions, highlights, blackStart, endCardStart, episodeNumber, safeZoneDebug }) => {
+export const Episode: React.FC<EpisodeProps> = ({ shots, mouth, captions, highlights, blackStart, endCardStart, episodeNumber, safeZoneDebug, shotFrame }) => {
   const frame = useCurrentFrame();
+  const sf = shotFrame ? shotFrame(frame) : frame;
   const { width, height } = useVideoConfig();
-  const shot = shots.find((s) => frame >= s.start && frame < s.end) ?? shots[shots.length - 1];
+  const shot = shots.find((s) => sf >= s.start && sf < s.end) ?? shots[shots.length - 1];
   if (frame >= endCardStart) return <EndCard episode={episodeNumber} start={endCardStart} safeZoneDebug={safeZoneDebug} />;
   if (frame >= blackStart) return <AbsoluteFill style={{ background: "#000" }} />;
   return (
     <AbsoluteFill style={{ background: "#000" }}>
       <ThreeCanvas key={shot.set + (shot.setMode ?? "")} width={width} height={height} shadows gl={{ antialias: true, preserveDrawingBuffer: true }}>
-        <ShotView shot={shot} frame={frame} mouth={mouth} />
+        <ShotView shot={shot} frame={sf} real={frame} mouth={mouth} />
       </ThreeCanvas>
-      <FxLayer fx={shot.fx ?? []} frame={frame} shotStart={shot.start} />
+      <FxLayer fx={shot.fx ?? []} frame={sf} shotStart={shot.start} />
       <Captions words={captions} highlights={highlights} hideFrom={blackStart} debug={safeZoneDebug} />
     </AbsoluteFill>
   );
