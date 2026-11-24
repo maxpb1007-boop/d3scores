@@ -66,6 +66,21 @@ export const poseJoints = (pose: Pose, t: number): Joints => {
       j.neck = [-0.15, 0, 0];
       break;
     }
+    case "walk": {
+      // calm, purposeful walk (the coach): small stride, arms swing gently
+      const c = S(t * 0.28);
+      j.root = [0, Math.abs(c) * 0.025, 0];
+      j.lHip = [-c * 0.38, 0, 0.03];
+      j.rHip = [c * 0.38, 0, -0.03];
+      j.lKnee = 0.08 + Math.max(0, c) * 0.35;
+      j.rKnee = 0.08 + Math.max(0, -c) * 0.35;
+      j.lSh = [c * 0.3, 0, 0.1];
+      j.rSh = [-c * 0.3, 0, -0.1];
+      j.lEl = [-0.3, 0, 0];
+      j.rEl = [-0.3, 0, 0];
+      j.spine = [0.04, 0, 0];
+      break;
+    }
     case "celebrate": {
       const p = S(t * 0.6);
       j.root = [0, Math.max(0, p) * 0.12, 0];

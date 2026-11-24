@@ -40,8 +40,12 @@ export const Paper: React.FC<P & { color?: string }> = ({ position, rotation, sc
   <mesh geometry={box(0.21, 0.004, 0.28)} material={mat(color)} position={position} rotation={rotation} scale={scale} castShadow />
 );
 
-export const Tray: React.FC<P & { food?: boolean }> = ({ position, rotation, scale = 1, food = true }) => (
+export const Tray: React.FC<P & { food?: boolean; fries?: number }> = ({ position, rotation, scale = 1, food = true, fries = 0 }) => (
   <group position={position} rotation={rotation} scale={scale}>
+    {Array.from({ length: Math.floor(fries) }).map((_, i) => (
+      <mesh key={`f${i}`} geometry={box(0.022, 0.022, 0.14)} material={mat(i % 3 ? "#F2C230" : "#E8B020")}
+        position={[((i * 37) % 13) / 13 * 0.3 - 0.15, 0.03 + Math.floor(i / 9) * 0.022, ((i * 53) % 11) / 11 * 0.2 - 0.1]} rotation={[0.1 * (i % 3), (i * 0.7) % 3.1, 0.15 * ((i % 5) - 2)]} />
+    ))}
     <mesh geometry={rbox(0.46, 0.03, 0.34, 0.01)} material={mat("#F08A24")} receiveShadow castShadow />
     {food && (
       <>
@@ -89,5 +93,12 @@ export const Drone: React.FC<P & { frame: number }> = ({ position, rotation, sca
         <mesh geometry={box(0.2, 0.006, 0.03)} material={mat("#C9CED6")} position={[0, 0.02, 0]} rotation={[0, frame * 1.3 + i, 0]} />
       </group>
     ))}
+  </group>
+);
+
+export const Spoon: React.FC<P> = ({ position, rotation, scale = 1 }) => (
+  <group position={position} rotation={rotation} scale={scale}>
+    <mesh geometry={box(0.025, 0.17, 0.012)} material={mat("#C9CED6")} position={[0, -0.06, 0]} />
+    <mesh geometry={sphere(0.045, 8, 6)} material={mat("#E4E8EE")} position={[0, 0.05, 0]} scale={[1, 1.4, 0.35]} />
   </group>
 );

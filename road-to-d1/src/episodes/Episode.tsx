@@ -8,7 +8,8 @@ import { CameraRig, Lights } from "../lib/Stage";
 import { SETS } from "../sets/Sets";
 import { lerp, smooth, kick, clamp } from "../lib/anim";
 import { Phone } from "../props/Phone";
-import { Football, Sandwich, Books, Pencil, Bottle } from "../props/Props";
+import { Football, Sandwich, Books, Pencil, Bottle, Spoon } from "../props/Props";
+import { StarBadge, CamPos } from "../props/StarBadge";
 import { Actor, HandProp, Shot } from "./types";
 import { MouthTrack } from "./ep01/mouth";
 import { mouthAt } from "./mouth";
@@ -30,6 +31,8 @@ const handNode = (p: HandProp | undefined, frame: number): React.ReactNode => {
       return <Pencil position={[0, -0.06, 0.07]} rotation={[0.3, 0, 1.2]} scale={1.3} />;
     case "bottle":
       return <Bottle position={[0, -0.05, 0.08]} rotation={[0.2, 0, 0]} scale={1.2} />;
+    case "spoon":
+      return <Spoon position={[0, -0.04, 0.06]} rotation={[-0.3, 0, 0]} scale={1.4} />;
     case "books":
       return <Books position={[0, -0.1, 0.12]} rotation={[0.2, 0, 0]} scale={0.8} />;
   }
@@ -73,8 +76,12 @@ const ActorView: React.FC<{ a: Actor; frame: number; real: number; mouth: MouthT
   // A phone with its screen lit also lights the holder's face (needed in the night bedroom).
   const ph = a.rHand?.kind === "phone" ? a.rHand.light ?? 0 : 0;
   const hy = a.who.thigh + a.who.shin + 0.085 + a.who.torsoH + 0.06 + a.who.headH / 2;
+  // "In This Town" star badge over the head
+  const st = lastKey(a.stars, frame);
+  const glowK = a.glow && frame >= a.glow[0] && frame <= a.glow[1] ? 0.55 + 0.45 * Math.sin((frame - a.glow[0]) * 0.5) : 0;
   return (
     <>
+    {st && <StarBadge at={[pos[0], pos[1] + hy + 0.6, pos[2]]} n={st.n} glow={glowK} bob={Math.sin(frame * 0.08) * 0.015} />}
     {ph > 0 && (
       <pointLight
         position={[pos[0] + Math.sin(yaw) * 0.6, pos[1] + hy - 0.25, pos[2] + Math.cos(yaw) * 0.6]}
@@ -121,7 +128,7 @@ const ShotView: React.FC<{ shot: Shot; frame: number; real: number; mouth: Mouth
     roll += j * 0.02;
   }
   return (
-    <>
+    <CamPos.Provider value={pos}>
       <CameraRig pos={pos} target={target} fov={fov} roll={roll} />
       <Lights preset={shot.light} target={shot.lightTarget ?? [0, 1, 0]} />
       <S mode={shot.setMode} />
@@ -129,7 +136,7 @@ const ShotView: React.FC<{ shot: Shot; frame: number; real: number; mouth: Mouth
         <ActorView key={`${shot.id}-${i}`} a={a} frame={frame} real={real} mouth={mouth} />
       ))}
       {shot.extra?.(frame)}
-    </>
+    </CamPos.Provider>
   );
 };
 
@@ -143,11 +150,12 @@ export type EpisodeProps = {
   episodeNumber: number;
   endTitle?: string; // end-card overrides for one-off clips
   endCta?: string;
+  captionMode?: "phrase" | "word";
   safeZoneDebug?: boolean;
   shotFrame?: (videoFrame: number) => number; // retime map (see retime.ts); identity if omitted
 };
 
-export const Episode: React.FC<EpisodeProps> = ({ shots, mouth, captions, highlights, blackStart, endCardStart, episodeNumber, safeZoneDebug, shotFrame, endTitle, endCta }) => {
+export const Episode: React.FC<EpisodeProps> = ({ shots, mouth, captions, highlights, blackStart, endCardStart, episodeNumber, safeZoneDebug, shotFrame, endTitle, endCta, captionMode }) => {
   const frame = useCurrentFrame();
   const sf = shotFrame ? shotFrame(frame) : frame;
   const { width, height } = useVideoConfig();
@@ -160,7 +168,7 @@ export const Episode: React.FC<EpisodeProps> = ({ shots, mouth, captions, highli
         <ShotView shot={shot} frame={sf} real={frame} mouth={mouth} />
       </ThreeCanvas>
       <FxLayer fx={shot.fx ?? []} frame={sf} shotStart={shot.start} />
-      <Captions words={captions} highlights={highlights} hideFrom={blackStart} debug={safeZoneDebug} />
+      <Captions words={captions} highlights={highlights} hideFrom={blackStart} debug={safeZoneDebug} mode={captionMode} />
     </AbsoluteFill>
   );
 };

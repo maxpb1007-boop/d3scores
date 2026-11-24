@@ -19,11 +19,12 @@ export const CameraRig: React.FC<{ pos: V3; target: V3; fov: number; roll?: numb
   return null;
 };
 
-export type LightPreset = "classroom" | "hallway" | "cafeteria" | "bedroom" | "golden" | "studio";
+export type LightPreset = "classroom" | "hallway" | "cafeteria" | "bedroom" | "golden" | "studio" | "sunny";
 
 /** Warm key from the "window" side, cool fill, soft shadows. One preset per set. */
 export const Lights: React.FC<{ preset: LightPreset; keyPos?: V3; target?: V3 }> = ({ preset, keyPos, target = [0, 1, 0] }) => {
   const P: Record<LightPreset, { sky: string; ground: string; hemi: number; key: string; keyI: number; kp: V3; amb: number }> = {
+    sunny: { sky: "#BFE0FF", ground: "#9CD08A", hemi: 1.35, key: "#FFF2D6", keyI: 2.8, kp: [-5, 9, 6], amb: 0.3 },
     studio: { sky: "#CFE0FF", ground: "#E8D3B8", hemi: 1.2, key: "#FFE8CC", keyI: 2.6, kp: [3, 6, 5], amb: 0.25 },
     classroom: { sky: "#CFDFFF", ground: "#E9D2B2", hemi: 1.15, key: "#FFE2BC", keyI: 2.6, kp: [-5, 6, 4], amb: 0.3 },
     hallway: { sky: "#D6E4FF", ground: "#D9CFC2", hemi: 1.25, key: "#FFF1DC", keyI: 2.2, kp: [2, 7, 4], amb: 0.3 },

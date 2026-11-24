@@ -24,6 +24,6 @@ export const frame = (
 };
 
 // Head-centre heights (standing, origin at feet). Derived from the CharSpec proportions.
-export const HEAD = { gus: 1.445, tre: 1.695, freshman: 1.3, punter: 1.62, coach: 1.62, lunchLady: 1.45 };
+export const HEAD = { gus: 1.445, tre: 1.695, freshman: 1.3, punter: 1.62, coach: 1.67, lunchLady: 1.47 };
 // Bleacher sitting: root offsets put the hips on BLEACHER_SEAT_Y.
 export const SIT_Y = { gus: 1.31 - 0.505, tre: 1.31 - 0.685 };

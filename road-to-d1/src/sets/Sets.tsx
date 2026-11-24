@@ -2,7 +2,7 @@ import React from "react";
 import { B, Cyl, TileFloor, SkyDome, WallClock, Poster } from "./parts";
 import { Paper, Tray } from "../props/Props";
 import { FONT } from "../lib/fonts";
-import { cone, plane, circle } from "../lib/geometry";
+import { cone, plane, circle, sphere } from "../lib/geometry";
 import { mat, glow } from "../lib/materials";
 
 /*
@@ -190,7 +190,6 @@ export const Cafeteria: React.FC = () => {
       <group position={[5.2, 0, 0.5]}>
         <B s={[0.9, 0.95, 5]} p={[0, 0.475, 0]} c="#BCC3CB" />
         <B s={[1.1, 0.06, 5.1]} p={[0, 0.98, 0]} c="#DDE2E7" />
-        <B s={[0.05, 0.5, 5]} p={[-0.3, 1.35, 0]} c="#DFF2FF" emissive shadow={false} />
         {[-1.5, -0.5, 0.5, 1.5].map((z) => (
           <B key={z} s={[0.6, 0.08, 0.7]} p={[0.05, 1.02, z]} c={pick(["#F2D16B", "#8E5A3C", "#6DBE45", "#D9534F"], z * 2 + 3)} />
         ))}
@@ -380,4 +379,63 @@ export const Field: React.FC<{ mode?: "field" | "bleachers" }> = ({ mode = "fiel
   );
 };
 
-export const SETS = { Hallway, Classroom, Cafeteria, Bedroom, Bathroom, Field };
+
+// ---------------------------------------------------------------- TOWN STREET ("In this town")
+/** A bright toy-town street running along z: road, sidewalks, two rows of colourful houses, trees,
+ *  lamp posts. Characters stand on the sidewalk/road near the origin; aerials look down the street. */
+export const Town: React.FC = () => {
+  const HOUSE = ["#F2C14E", "#7FB7E6", "#E88D9B", "#9CD08A", "#C8A2E8", "#F4A261", "#EDEDED"];
+  const ROOF = ["#C0392B", "#2E5C8A", "#6B4F3A", "#3E6B4A", "#8A3A5C"];
+  const houses: React.ReactNode[] = [];
+  for (let i = -6; i <= 6; i++)
+    for (const side of [-1, 1]) {
+      const k = i * 7 + side * 3 + 50;
+      const z = i * 5.2;
+      const w = 3.4 + (k % 3) * 0.4, h = 2.6 + (k % 2) * 0.9;
+      const x = side * (6.4 + w / 2);
+      houses.push(
+        <group key={`${i}${side}`} position={[x, 0, z]} rotation={[0, side > 0 ? -Math.PI / 2 : Math.PI / 2, 0]}>
+          <B s={[w, h, 3.6]} p={[0, h / 2, 0]} c={pick(HOUSE, k)} />
+          <mesh geometry={cone(Math.max(w, 3.6) * 0.78, 1.6, 4)} material={mat(pick(ROOF, k))} position={[0, h + 0.8, 0]} rotation={[0, Math.PI / 4, 0]} castShadow />
+          <B s={[0.8, 1.5, 0.08]} p={[0, 0.75, 1.82]} c="#7A4E33" />
+          <B s={[0.7, 0.6, 0.06]} p={[-w * 0.3, h * 0.62, 1.82]} c="#CFEAFF" emissive shadow={false} />
+          <B s={[0.7, 0.6, 0.06]} p={[w * 0.3, h * 0.62, 1.82]} c="#CFEAFF" emissive shadow={false} />
+        </group>,
+      );
+      // tree + lamp in front of every other house
+      if (k % 2 === 0) {
+        houses.push(
+          <group key={`t${i}${side}`} position={[side * 4.6, 0, z + 2.2]}>
+            <Cyl r={0.12} h={1.2} p={[0, 0.6, 0]} c="#7A4E33" />
+            <mesh geometry={sphere(0.9, 6, 5)} material={mat(k % 4 === 0 ? "#4FA24A" : "#6ABF4B")} position={[0, 1.7, 0]} castShadow />
+          </group>,
+        );
+      } else {
+        houses.push(
+          <group key={`l${i}${side}`} position={[side * 4.7, 0, z]}>
+            <Cyl r={0.05} h={3.2} p={[0, 1.6, 0]} c="#3A3F48" />
+            <B s={[0.25, 0.18, 0.25]} p={[0, 3.25, 0]} c="#FFF3C4" emissive shadow={false} />
+          </group>,
+        );
+      }
+    }
+  return (
+    <group>
+      <SkyDome top="#5EA6F2" mid="#CFE8FF" bottom="#9CD08A" />
+      <fog attach="fog" args={["#CFE8FF", 30, 110]} />
+      <mesh geometry={plane(400, 400)} material={mat("#7CC35A")} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, 0]} receiveShadow />
+      <B s={[6, 0.02, 80]} p={[0, 0.0, 0]} c="#4A4E58" shadow={false} />
+      {Array.from({ length: 16 }).map((_, i) => (
+        <B key={i} s={[0.15, 0.025, 1.6]} p={[0, 0.012, -38 + i * 5]} c="#F2C230" shadow={false} />
+      ))}
+      <B s={[2.6, 0.12, 80]} p={[-4.3, 0.06, 0]} c="#D8D4CC" />
+      <B s={[2.6, 0.12, 80]} p={[4.3, 0.06, 0]} c="#D8D4CC" />
+      {[-1.1, -0.55, 0, 0.55, 1.1].map((x) => (
+        <B key={x} s={[0.35, 0.025, 2.2]} p={[x, 0.013, 6]} c="#F4F4F4" shadow={false} />
+      ))}
+      {houses}
+    </group>
+  );
+};
+
+export const SETS = { Hallway, Classroom, Cafeteria, Bedroom, Bathroom, Field, Town };

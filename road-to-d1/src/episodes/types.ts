@@ -5,7 +5,7 @@ import { Cam } from "../lib/camera";
 import { LightPreset } from "../lib/Stage";
 import { Screen } from "../props/Phone";
 
-export type SetName = "Hallway" | "Classroom" | "Cafeteria" | "Bedroom" | "Bathroom" | "Field";
+export type SetName = "Hallway" | "Classroom" | "Cafeteria" | "Bedroom" | "Bathroom" | "Field" | "Town";
 
 export type HandProp =
   | { kind: "phone"; screen: Screen; light?: number }
@@ -13,7 +13,8 @@ export type HandProp =
   | { kind: "sandwich" }
   | { kind: "books" }
   | { kind: "pencil" }
-  | { kind: "bottle" };
+  | { kind: "bottle" }
+  | { kind: "spoon" };
 
 export type ExprKey = { f: number; e: Expression };
 export type LookKey = { f: number; yaw: number; pitch?: number; dur?: number };
@@ -32,6 +33,8 @@ export type Actor = {
   move?: { f0: number; f1: number; to: V3 };       // slide position over a frame range
   turn?: { f0: number; f1: number; to: number };   // rotate yaw over a frame range
   blinks?: number[];                                // forced blinks at these frames
+  stars?: { f: number; n: number }[];               // "In This Town" badge over the head (star count keyed by frame)
+  glow?: [number, number];                          // frames over which the badge glows
 };
 
 export type Fx =

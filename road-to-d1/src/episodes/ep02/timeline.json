@@ -1,0 +1,1293 @@
+{
+ "fps": 30,
+ "lines": [
+  {
+   "id": "01",
+   "speaker": "gus",
+   "start": 0.15,
+   "sentences": [
+    {
+     "text": "In this town, everyone's recruiting rating floats above their head.",
+     "start": 0.15,
+     "end": 3.755,
+     "words": [
+      {
+       "text": "In",
+       "start": 0.19,
+       "end": 0.412,
+       "frame": 6
+      },
+      {
+       "text": "this",
+       "start": 0.412,
+       "end": 0.635,
+       "frame": 12
+      },
+      {
+       "text": "town,",
+       "start": 0.635,
+       "end": 1.005,
+       "frame": 19
+      },
+      {
+       "text": "everyone's",
+       "start": 1.005,
+       "end": 1.722,
+       "frame": 30
+      },
+      {
+       "text": "recruiting",
+       "start": 1.722,
+       "end": 2.274,
+       "frame": 52
+      },
+      {
+       "text": "rating",
+       "start": 2.274,
+       "end": 2.661,
+       "frame": 68
+      },
+      {
+       "text": "floats",
+       "start": 2.661,
+       "end": 2.883,
+       "frame": 80
+      },
+      {
+       "text": "above",
+       "start": 2.883,
+       "end": 3.27,
+       "frame": 86
+      },
+      {
+       "text": "their",
+       "start": 3.27,
+       "end": 3.493,
+       "frame": 98
+      },
+      {
+       "text": "head.",
+       "start": 3.493,
+       "end": 3.715,
+       "frame": 105
+      }
+     ]
+    },
+    {
+     "text": "Five stars? You're basically famous.",
+     "start": 3.875,
+     "end": 6.07,
+     "words": [
+      {
+       "text": "Five",
+       "start": 3.915,
+       "end": 4.181,
+       "frame": 117
+      },
+      {
+       "text": "stars?",
+       "start": 4.181,
+       "end": 4.446,
+       "frame": 125
+      },
+      {
+       "text": "You're",
+       "start": 4.446,
+       "end": 4.712,
+       "frame": 133
+      },
+      {
+       "text": "basically",
+       "start": 4.712,
+       "end": 5.568,
+       "frame": 141
+      },
+      {
+       "text": "famous.",
+       "start": 5.568,
+       "end": 6.03,
+       "frame": 167
+      }
+     ]
+    },
+    {
+     "text": "Three stars? You're Tre.",
+     "start": 6.390000000000001,
+     "end": 7.765000000000001,
+     "words": [
+      {
+       "text": "Three",
+       "start": 6.43,
+       "end": 6.754,
+       "frame": 193
+      },
+      {
+       "text": "stars?",
+       "start": 6.754,
+       "end": 7.078,
+       "frame": 203
+      },
+      {
+       "text": "You're",
+       "start": 7.078,
+       "end": 7.401,
+       "frame": 212
+      },
+      {
+       "text": "Tre.",
+       "start": 7.401,
+       "end": 7.725,
+       "frame": 222
+      }
+     ]
+    }
+   ],
+   "end": 7.765000000000001,
+   "startFrame": 4,
+   "endFrame": 233,
+   "postEndFrame": 233
+  },
+  {
+   "id": "02",
+   "speaker": "gus",
+   "start": 7.965000000000001,
+   "sentences": [
+    {
+     "text": "Tre checks his stars like four hundred times a day.",
+     "start": 7.965000000000001,
+     "end": 10.805,
+     "words": [
+      {
+       "text": "Tre",
+       "start": 8.005,
+       "end": 8.245,
+       "frame": 240
+      },
+      {
+       "text": "checks",
+       "start": 8.245,
+       "end": 8.486,
+       "frame": 247
+      },
+      {
+       "text": "his",
+       "start": 8.486,
+       "end": 8.726,
+       "frame": 255
+      },
+      {
+       "text": "stars",
+       "start": 8.726,
+       "end": 8.967,
+       "frame": 262
+      },
+      {
+       "text": "like",
+       "start": 8.967,
+       "end": 9.207,
+       "frame": 269
+      },
+      {
+       "text": "four",
+       "start": 9.207,
+       "end": 9.447,
+       "frame": 276
+      },
+      {
+       "text": "hundred",
+       "start": 9.447,
+       "end": 9.866,
+       "frame": 283
+      },
+      {
+       "text": "times",
+       "start": 9.866,
+       "end": 10.284,
+       "frame": 296
+      },
+      {
+       "text": "a",
+       "start": 10.284,
+       "end": 10.525,
+       "frame": 309
+      },
+      {
+       "text": "day.",
+       "start": 10.525,
+       "end": 10.765,
+       "frame": 316
+      }
+     ]
+    },
+    {
+     "text": "In mirrors.",
+     "start": 10.924999999999999,
+     "end": 11.704999999999998,
+     "words": [
+      {
+       "text": "In",
+       "start": 10.965,
+       "end": 11.22,
+       "frame": 329
+      },
+      {
+       "text": "mirrors.",
+       "start": 11.22,
+       "end": 11.665,
+       "frame": 337
+      }
+     ]
+    },
+    {
+     "text": "In windows.",
+     "start": 11.824999999999998,
+     "end": 12.649999999999997,
+     "words": [
+      {
+       "text": "In",
+       "start": 11.865,
+       "end": 12.137,
+       "frame": 356
+      },
+      {
+       "text": "windows.",
+       "start": 12.137,
+       "end": 12.61,
+       "frame": 364
+      }
+     ]
+    },
+    {
+     "text": "In spoons.",
+     "start": 12.919999999999996,
+     "end": 13.709999999999997,
+     "words": [
+      {
+       "text": "In",
+       "start": 12.96,
+       "end": 13.315,
+       "frame": 389
+      },
+      {
+       "text": "spoons.",
+       "start": 13.315,
+       "end": 13.67,
+       "frame": 399
+      }
+     ]
+    }
+   ],
+   "end": 13.709999999999997,
+   "startFrame": 239,
+   "endFrame": 411,
+   "postEndFrame": 420
+  },
+  {
+   "id": "03",
+   "speaker": "gus",
+   "start": 14.309999999999999,
+   "sentences": [
+    {
+     "text": "And me?",
+     "start": 14.309999999999999,
+     "end": 14.884999999999998,
+     "words": [
+      {
+       "text": "And",
+       "start": 14.35,
+       "end": 14.597,
+       "frame": 430
+      },
+      {
+       "text": "me?",
+       "start": 14.597,
+       "end": 14.845,
+       "frame": 438
+      }
+     ]
+    },
+    {
+     "text": "Zero stars.",
+     "start": 15.004999999999997,
+     "end": 16.049999999999997,
+     "words": [
+      {
+       "text": "Zero",
+       "start": 15.045,
+       "end": 15.658,
+       "frame": 451
+      },
+      {
+       "text": "stars.",
+       "start": 15.658,
+       "end": 16.01,
+       "frame": 470
+      }
+     ]
+    },
+    {
+     "text": "Just an empty gray circle.",
+     "start": 16.169999999999998,
+     "end": 17.775,
+     "words": [
+      {
+       "text": "Just",
+       "start": 16.21,
+       "end": 16.445,
+       "frame": 486
+      },
+      {
+       "text": "an",
+       "start": 16.445,
+       "end": 16.681,
+       "frame": 493
+      },
+      {
+       "text": "empty",
+       "start": 16.681,
+       "end": 17.09,
+       "frame": 500
+      },
+      {
+       "text": "gray",
+       "start": 17.09,
+       "end": 17.325,
+       "frame": 513
+      },
+      {
+       "text": "circle.",
+       "start": 17.325,
+       "end": 17.735,
+       "frame": 520
+      }
+     ]
+    },
+    {
+     "text": "The lunch lady gives me extra fries out of pity.",
+     "start": 18.095,
+     "end": 20.86,
+     "words": [
+      {
+       "text": "The",
+       "start": 18.135,
+       "end": 18.342,
+       "frame": 544
+      },
+      {
+       "text": "lunch",
+       "start": 18.342,
+       "end": 18.549,
+       "frame": 550
+      },
+      {
+       "text": "lady",
+       "start": 18.549,
+       "end": 18.91,
+       "frame": 556
+      },
+      {
+       "text": "gives",
+       "start": 18.91,
+       "end": 19.27,
+       "frame": 567
+      },
+      {
+       "text": "me",
+       "start": 19.27,
+       "end": 19.477,
+       "frame": 578
+      },
+      {
+       "text": "extra",
+       "start": 19.477,
+       "end": 19.838,
+       "frame": 584
+      },
+      {
+       "text": "fries",
+       "start": 19.838,
+       "end": 20.045,
+       "frame": 595
+      },
+      {
+       "text": "out",
+       "start": 20.045,
+       "end": 20.252,
+       "frame": 601
+      },
+      {
+       "text": "of",
+       "start": 20.252,
+       "end": 20.459,
+       "frame": 608
+      },
+      {
+       "text": "pity.",
+       "start": 20.459,
+       "end": 20.82,
+       "frame": 614
+      }
+     ]
+    }
+   ],
+   "end": 20.86,
+   "startFrame": 429,
+   "endFrame": 626,
+   "postEndFrame": 635
+  },
+  {
+   "id": "04",
+   "speaker": "gus",
+   "start": 21.36,
+   "sentences": [
+    {
+     "text": "Tre tried everything to get a fourth star.",
+     "start": 21.36,
+     "end": 23.58,
+     "words": [
+      {
+       "text": "Tre",
+       "start": 21.4,
+       "end": 21.609,
+       "frame": 642
+      },
+      {
+       "text": "tried",
+       "start": 21.609,
+       "end": 21.819,
+       "frame": 648
+      },
+      {
+       "text": "everything",
+       "start": 21.819,
+       "end": 22.493,
+       "frame": 655
+      },
+      {
+       "text": "to",
+       "start": 22.493,
+       "end": 22.703,
+       "frame": 675
+      },
+      {
+       "text": "get",
+       "start": 22.703,
+       "end": 22.912,
+       "frame": 681
+      },
+      {
+       "text": "a",
+       "start": 22.912,
+       "end": 23.121,
+       "frame": 687
+      },
+      {
+       "text": "fourth",
+       "start": 23.121,
+       "end": 23.331,
+       "frame": 694
+      },
+      {
+       "text": "star.",
+       "start": 23.331,
+       "end": 23.54,
+       "frame": 700
+      }
+     ]
+    },
+    {
+     "text": "He mewed for forty-one days.",
+     "start": 23.7,
+     "end": 25.43,
+     "words": [
+      {
+       "text": "He",
+       "start": 23.74,
+       "end": 23.968,
+       "frame": 712
+      },
+      {
+       "text": "mewed",
+       "start": 23.968,
+       "end": 24.366,
+       "frame": 719
+      },
+      {
+       "text": "for",
+       "start": 24.366,
+       "end": 24.595,
+       "frame": 731
+      },
+      {
+       "text": "forty-one",
+       "start": 24.595,
+       "end": 25.162,
+       "frame": 738
+      },
+      {
+       "text": "days.",
+       "start": 25.162,
+       "end": 25.39,
+       "frame": 755
+      }
+     ]
+    },
+    {
+     "text": "Fourteen-step skincare routine.",
+     "start": 25.55,
+     "end": 27.305,
+     "words": [
+      {
+       "text": "Fourteen-step",
+       "start": 25.59,
+       "end": 26.287,
+       "frame": 768
+      },
+      {
+       "text": "skincare",
+       "start": 26.287,
+       "end": 26.776,
+       "frame": 789
+      },
+      {
+       "text": "routine.",
+       "start": 26.776,
+       "end": 27.265,
+       "frame": 803
+      }
+     ]
+    },
+    {
+     "text": "Highlight tape at two in the morning.",
+     "start": 27.425,
+     "end": 29.14,
+     "words": [
+      {
+       "text": "Highlight",
+       "start": 27.465,
+       "end": 27.801,
+       "frame": 824
+      },
+      {
+       "text": "tape",
+       "start": 27.801,
+       "end": 27.993,
+       "frame": 834
+      },
+      {
+       "text": "at",
+       "start": 27.993,
+       "end": 28.186,
+       "frame": 840
+      },
+      {
+       "text": "two",
+       "start": 28.186,
+       "end": 28.379,
+       "frame": 846
+      },
+      {
+       "text": "in",
+       "start": 28.379,
+       "end": 28.572,
+       "frame": 851
+      },
+      {
+       "text": "the",
+       "start": 28.572,
+       "end": 28.764,
+       "frame": 857
+      },
+      {
+       "text": "morning.",
+       "start": 28.764,
+       "end": 29.1,
+       "frame": 863
+      }
+     ]
+    },
+    {
+     "text": "Nothing.",
+     "start": 29.560000000000002,
+     "end": 30.155,
+     "words": [
+      {
+       "text": "Nothing.",
+       "start": 29.6,
+       "end": 30.115,
+       "frame": 888
+      }
+     ]
+    }
+   ],
+   "end": 30.155,
+   "startFrame": 641,
+   "endFrame": 905,
+   "postEndFrame": 911
+  },
+  {
+   "id": "05",
+   "speaker": "tre",
+   "start": 30.505,
+   "sentences": [
+    {
+     "text": "Why is it still THREE?!",
+     "start": 30.505,
+     "end": 31.48,
+     "words": [
+      {
+       "text": "Why",
+       "start": 30.545,
+       "end": 30.724,
+       "frame": 916
+      },
+      {
+       "text": "is",
+       "start": 30.724,
+       "end": 30.903,
+       "frame": 922
+      },
+      {
+       "text": "it",
+       "start": 30.903,
+       "end": 31.082,
+       "frame": 927
+      },
+      {
+       "text": "still",
+       "start": 31.082,
+       "end": 31.261,
+       "frame": 932
+      },
+      {
+       "text": "THREE?!",
+       "start": 31.261,
+       "end": 31.44,
+       "frame": 938
+      }
+     ]
+    }
+   ],
+   "end": 31.48,
+   "startFrame": 915,
+   "endFrame": 944,
+   "postEndFrame": 962
+  },
+  {
+   "id": "06",
+   "speaker": "gus",
+   "start": 32.33,
+   "sentences": [
+    {
+     "text": "Then came recruiting day.",
+     "start": 32.33,
+     "end": 33.69,
+     "words": [
+      {
+       "text": "Then",
+       "start": 32.37,
+       "end": 32.604,
+       "frame": 971
+      },
+      {
+       "text": "came",
+       "start": 32.604,
+       "end": 32.837,
+       "frame": 978
+      },
+      {
+       "text": "recruiting",
+       "start": 32.837,
+       "end": 33.416,
+       "frame": 985
+      },
+      {
+       "text": "day.",
+       "start": 33.416,
+       "end": 33.65,
+       "frame": 1002
+      }
+     ]
+    },
+    {
+     "text": "Every coach in the state.",
+     "start": 33.809999999999995,
+     "end": 35.05499999999999,
+     "words": [
+      {
+       "text": "Every",
+       "start": 33.85,
+       "end": 34.296,
+       "frame": 1015
+      },
+      {
+       "text": "coach",
+       "start": 34.296,
+       "end": 34.476,
+       "frame": 1029
+      },
+      {
+       "text": "in",
+       "start": 34.476,
+       "end": 34.656,
+       "frame": 1034
+      },
+      {
+       "text": "the",
+       "start": 34.656,
+       "end": 34.835,
+       "frame": 1040
+      },
+      {
+       "text": "state.",
+       "start": 34.835,
+       "end": 35.015,
+       "frame": 1045
+      }
+     ]
+    },
+    {
+     "text": "Every five-star kid, lined up.",
+     "start": 35.17499999999999,
+     "end": 37.16999999999999,
+     "words": [
+      {
+       "text": "Every",
+       "start": 35.215,
+       "end": 35.766,
+       "frame": 1056
+      },
+      {
+       "text": "five-star",
+       "start": 35.766,
+       "end": 36.152,
+       "frame": 1073
+      },
+      {
+       "text": "kid,",
+       "start": 36.152,
+       "end": 36.522,
+       "frame": 1085
+      },
+      {
+       "text": "lined",
+       "start": 36.522,
+       "end": 36.908,
+       "frame": 1096
+      },
+      {
+       "text": "up.",
+       "start": 36.908,
+       "end": 37.13,
+       "frame": 1107
+      }
+     ]
+    }
+   ],
+   "end": 37.16999999999999,
+   "startFrame": 970,
+   "endFrame": 1115,
+   "postEndFrame": 1115
+  },
+  {
+   "id": "07",
+   "speaker": "gus",
+   "start": 37.36999999999999,
+   "sentences": [
+    {
+     "text": "One coach walked past all of them.",
+     "start": 37.36999999999999,
+     "end": 39.19999999999999,
+     "words": [
+      {
+       "text": "One",
+       "start": 37.41,
+       "end": 37.636,
+       "frame": 1122
+      },
+      {
+       "text": "coach",
+       "start": 37.636,
+       "end": 37.862,
+       "frame": 1129
+      },
+      {
+       "text": "walked",
+       "start": 37.862,
+       "end": 38.256,
+       "frame": 1136
+      },
+      {
+       "text": "past",
+       "start": 38.256,
+       "end": 38.482,
+       "frame": 1148
+      },
+      {
+       "text": "all",
+       "start": 38.482,
+       "end": 38.708,
+       "frame": 1154
+      },
+      {
+       "text": "of",
+       "start": 38.708,
+       "end": 38.934,
+       "frame": 1161
+      },
+      {
+       "text": "them.",
+       "start": 38.934,
+       "end": 39.16,
+       "frame": 1168
+      }
+     ]
+    },
+    {
+     "text": "Past the quarterback.",
+     "start": 39.319999999999986,
+     "end": 40.39499999999999,
+     "words": [
+      {
+       "text": "Past",
+       "start": 39.36,
+       "end": 39.582,
+       "frame": 1181
+      },
+      {
+       "text": "the",
+       "start": 39.582,
+       "end": 39.804,
+       "frame": 1187
+      },
+      {
+       "text": "quarterback.",
+       "start": 39.804,
+       "end": 40.355,
+       "frame": 1194
+      }
+     ]
+    },
+    {
+     "text": "Past the twins.",
+     "start": 40.514999999999986,
+     "end": 41.43499999999999,
+     "words": [
+      {
+       "text": "Past",
+       "start": 40.555,
+       "end": 40.835,
+       "frame": 1217
+      },
+      {
+       "text": "the",
+       "start": 40.835,
+       "end": 41.115,
+       "frame": 1225
+      },
+      {
+       "text": "twins.",
+       "start": 41.115,
+       "end": 41.395,
+       "frame": 1233
+      }
+     ]
+    },
+    {
+     "text": "Past Tre.",
+     "start": 41.554999999999986,
+     "end": 42.304999999999986,
+     "words": [
+      {
+       "text": "Past",
+       "start": 41.595,
+       "end": 41.93,
+       "frame": 1248
+      },
+      {
+       "text": "Tre.",
+       "start": 41.93,
+       "end": 42.265,
+       "frame": 1258
+      }
+     ]
+    },
+    {
+     "text": "And stopped at me.",
+     "start": 42.774999999999984,
+     "end": 43.734999999999985,
+     "words": [
+      {
+       "text": "And",
+       "start": 42.815,
+       "end": 43.001,
+       "frame": 1284
+      },
+      {
+       "text": "stopped",
+       "start": 43.001,
+       "end": 43.324,
+       "frame": 1290
+      },
+      {
+       "text": "at",
+       "start": 43.324,
+       "end": 43.509,
+       "frame": 1300
+      },
+      {
+       "text": "me.",
+       "start": 43.509,
+       "end": 43.695,
+       "frame": 1305
+      }
+     ]
+    }
+   ],
+   "end": 43.734999999999985,
+   "startFrame": 1121,
+   "endFrame": 1312,
+   "postEndFrame": 1327
+  },
+  {
+   "id": "08",
+   "speaker": "coach",
+   "start": 44.43499999999999,
+   "sentences": [
+    {
+     "text": "Son. Do you long snap?",
+     "start": 44.43499999999999,
+     "end": 46.219999999999985,
+     "words": [
+      {
+       "text": "Son.",
+       "start": 44.475,
+       "end": 44.816,
+       "frame": 1334
+      },
+      {
+       "text": "Do",
+       "start": 44.816,
+       "end": 45.157,
+       "frame": 1344
+      },
+      {
+       "text": "you",
+       "start": 45.157,
+       "end": 45.498,
+       "frame": 1355
+      },
+      {
+       "text": "long",
+       "start": 45.498,
+       "end": 45.839,
+       "frame": 1365
+      },
+      {
+       "text": "snap?",
+       "start": 45.839,
+       "end": 46.18,
+       "frame": 1375
+      }
+     ]
+    }
+   ],
+   "end": 46.219999999999985,
+   "startFrame": 1333,
+   "endFrame": 1387,
+   "postEndFrame": 1393
+  },
+  {
+   "id": "09",
+   "speaker": "gus",
+   "start": 46.51999999999999,
+   "sentences": [
+    {
+     "text": "...Yeah.",
+     "start": 46.51999999999999,
+     "end": 47.04499999999999,
+     "words": [
+      {
+       "text": "...Yeah.",
+       "start": 46.56,
+       "end": 47.005,
+       "frame": 1397
+      }
+     ]
+    }
+   ],
+   "end": 47.04499999999999,
+   "startFrame": 1396,
+   "endFrame": 1411,
+   "postEndFrame": 1417
+  },
+  {
+   "id": "10",
+   "speaker": "gus",
+   "start": 47.44499999999999,
+   "sentences": [
+    {
+     "text": "My circle started glowing.",
+     "start": 47.44499999999999,
+     "end": 48.93999999999999,
+     "words": [
+      {
+       "text": "My",
+       "start": 47.485,
+       "end": 47.712,
+       "frame": 1425
+      },
+      {
+       "text": "circle",
+       "start": 47.712,
+       "end": 48.108,
+       "frame": 1431
+      },
+      {
+       "text": "started",
+       "start": 48.108,
+       "end": 48.504,
+       "frame": 1443
+      },
+      {
+       "text": "glowing.",
+       "start": 48.504,
+       "end": 48.9,
+       "frame": 1455
+      }
+     ]
+    },
+    {
+     "text": "One star.",
+     "start": 49.05999999999999,
+     "end": 49.874999999999986,
+     "words": [
+      {
+       "text": "One",
+       "start": 49.1,
+       "end": 49.467,
+       "frame": 1473
+      },
+      {
+       "text": "star.",
+       "start": 49.467,
+       "end": 49.835,
+       "frame": 1484
+      }
+     ]
+    },
+    {
+     "text": "Two.",
+     "start": 49.99499999999998,
+     "end": 50.484999999999985,
+     "words": [
+      {
+       "text": "Two.",
+       "start": 50.035,
+       "end": 50.445,
+       "frame": 1501
+      }
+     ]
+    },
+    {
+     "text": "Three.",
+     "start": 50.60499999999998,
+     "end": 51.15499999999998,
+     "words": [
+      {
+       "text": "Three.",
+       "start": 50.645,
+       "end": 51.115,
+       "frame": 1519
+      }
+     ]
+    },
+    {
+     "text": "Four.",
+     "start": 51.27499999999998,
+     "end": 51.839999999999975,
+     "words": [
+      {
+       "text": "Four.",
+       "start": 51.315,
+       "end": 51.8,
+       "frame": 1539
+      }
+     ]
+    },
+    {
+     "text": "Five.",
+     "start": 52.559999999999974,
+     "end": 53.16499999999997,
+     "words": [
+      {
+       "text": "Five.",
+       "start": 52.6,
+       "end": 53.125,
+       "frame": 1578
+      }
+     ]
+    }
+   ],
+   "end": 53.16499999999997,
+   "startFrame": 1423,
+   "endFrame": 1595,
+   "postEndFrame": 1622
+  },
+  {
+   "id": "11",
+   "speaker": "tre",
+   "start": 54.16499999999997,
+   "sentences": [
+    {
+     "text": "HE DOESN'T EVEN HAVE A HIGHLIGHT TAPE!",
+     "start": 54.16499999999997,
+     "end": 55.64999999999997,
+     "words": [
+      {
+       "text": "HE",
+       "start": 54.205,
+       "end": 54.371,
+       "frame": 1626
+      },
+      {
+       "text": "DOESN'T",
+       "start": 54.371,
+       "end": 54.536,
+       "frame": 1631
+      },
+      {
+       "text": "EVEN",
+       "start": 54.536,
+       "end": 54.825,
+       "frame": 1636
+      },
+      {
+       "text": "HAVE",
+       "start": 54.825,
+       "end": 54.99,
+       "frame": 1645
+      },
+      {
+       "text": "A",
+       "start": 54.99,
+       "end": 55.156,
+       "frame": 1650
+      },
+      {
+       "text": "HIGHLIGHT",
+       "start": 55.156,
+       "end": 55.444,
+       "frame": 1655
+      },
+      {
+       "text": "TAPE!",
+       "start": 55.444,
+       "end": 55.61,
+       "frame": 1663
+      }
+     ]
+    }
+   ],
+   "end": 55.64999999999997,
+   "startFrame": 1625,
+   "endFrame": 1669,
+   "postEndFrame": 1687
+  },
+  {
+   "id": "12",
+   "speaker": "gus",
+   "start": 56.449999999999974,
+   "sentences": [
+    {
+     "text": "I don't.",
+     "start": 56.449999999999974,
+     "end": 57.089999999999975,
+     "words": [
+      {
+       "text": "I",
+       "start": 56.49,
+       "end": 56.77,
+       "frame": 1695
+      },
+      {
+       "text": "don't.",
+       "start": 56.77,
+       "end": 57.05,
+       "frame": 1703
+      }
+     ]
+    },
+    {
+     "text": "I just snap the ball.",
+     "start": 57.20999999999997,
+     "end": 58.39999999999997,
+     "words": [
+      {
+       "text": "I",
+       "start": 57.25,
+       "end": 57.472,
+       "frame": 1717
+      },
+      {
+       "text": "just",
+       "start": 57.472,
+       "end": 57.694,
+       "frame": 1724
+      },
+      {
+       "text": "snap",
+       "start": 57.694,
+       "end": 57.916,
+       "frame": 1731
+      },
+      {
+       "text": "the",
+       "start": 57.916,
+       "end": 58.138,
+       "frame": 1737
+      },
+      {
+       "text": "ball.",
+       "start": 58.138,
+       "end": 58.36,
+       "frame": 1744
+      }
+     ]
+    },
+    {
+     "text": "Every single day.",
+     "start": 58.71999999999997,
+     "end": 59.77999999999997,
+     "words": [
+      {
+       "text": "Every",
+       "start": 58.76,
+       "end": 59.226,
+       "frame": 1763
+      },
+      {
+       "text": "single",
+       "start": 59.226,
+       "end": 59.552,
+       "frame": 1777
+      },
+      {
+       "text": "day.",
+       "start": 59.552,
+       "end": 59.74,
+       "frame": 1787
+      }
+     ]
+    }
+   ],
+   "end": 59.77999999999997,
+   "startFrame": 1693,
+   "endFrame": 1793,
+   "postEndFrame": 1802
+  }
+ ],
+ "blackStart": 1802,
+ "endCardStart": 1814,
+ "durationInFrames": 1868
+}

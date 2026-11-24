@@ -1,0 +1,17 @@
+{ "bpm": 94, "musicOff": [[1300, 1400], [1798, 1814]],
+  "cues": [
+    {"f": 48, "kind": "whoosh", "gain": 0.5}, {"f": 80, "kind": "sparkle", "gain": 0.6}, {"f": 115, "kind": "whoosh", "gain": 0.6},
+    {"f": 167, "kind": "sparkle"}, {"f": 167, "kind": "pop"}, {"f": 222, "kind": "pop"},
+    {"f": 245, "kind": "click"}, {"f": 266, "kind": "click"}, {"f": 292, "kind": "click"}, {"f": 305, "kind": "click"}, {"f": 317, "kind": "click"},
+    {"f": 327, "kind": "whoosh", "gain": 0.5}, {"f": 354, "kind": "whoosh", "gain": 0.5}, {"f": 386, "kind": "whoosh", "gain": 0.5},
+    {"f": 451, "kind": "scratch", "gain": 0.7}, {"f": 520, "kind": "pop"}, {"f": 575, "kind": "bookdrop", "gain": 0.3}, {"f": 614, "kind": "pop"},
+    {"f": 640, "kind": "whoosh", "gain": 0.5}, {"f": 680, "kind": "click"}, {"f": 716, "kind": "click"}, {"f": 768, "kind": "click"}, {"f": 790, "kind": "click"}, {"f": 810, "kind": "click"},
+    {"f": 846, "kind": "notif"}, {"f": 888, "kind": "cricket"}, {"f": 938, "kind": "thump"},
+    {"f": 968, "kind": "whoosh"}, {"f": 1015, "kind": "whoosh", "gain": 0.5}, {"f": 1073, "kind": "sparkle", "gain": 0.6},
+    {"f": 1125, "kind": "step"}, {"f": 1140, "kind": "step"}, {"f": 1155, "kind": "step"}, {"f": 1170, "kind": "step"}, {"f": 1185, "kind": "step"}, {"f": 1200, "kind": "step"},
+    {"f": 1215, "kind": "step"}, {"f": 1230, "kind": "step"}, {"f": 1245, "kind": "step"}, {"f": 1260, "kind": "step"}, {"f": 1275, "kind": "step"},
+    {"f": 1262, "kind": "gasp", "gain": 0.35}, {"f": 1290, "kind": "thump", "gain": 0.6},
+    {"f": 1440, "kind": "sparkle", "gain": 0.7}, {"f": 1473, "kind": "ding", "gain": 0.6}, {"f": 1501, "kind": "ding", "gain": 0.65}, {"f": 1519, "kind": "ding", "gain": 0.7}, {"f": 1539, "kind": "ding", "gain": 0.75},
+    {"f": 1576, "kind": "whoosh"}, {"f": 1578, "kind": "sting", "gain": 0.8}, {"f": 1585, "kind": "gasp"},
+    {"f": 1655, "kind": "thump"}, {"f": 1731, "kind": "pop"}, {"f": 1814, "kind": "sting", "gain": 0.8}
+  ] }

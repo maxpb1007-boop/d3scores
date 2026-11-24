@@ -1,0 +1,1343 @@
+[
+{
+"text": "In",
+"startMs": 190,
+"endMs": 412,
+"timestampMs": 301,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " this",
+"startMs": 412,
+"endMs": 635,
+"timestampMs": 524,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " town,",
+"startMs": 635,
+"endMs": 1005,
+"timestampMs": 820,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " everyone's",
+"startMs": 1005,
+"endMs": 1722,
+"timestampMs": 1364,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " recruiting",
+"startMs": 1722,
+"endMs": 2274,
+"timestampMs": 1998,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " rating",
+"startMs": 2274,
+"endMs": 2661,
+"timestampMs": 2467,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " floats",
+"startMs": 2661,
+"endMs": 2883,
+"timestampMs": 2772,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " above",
+"startMs": 2883,
+"endMs": 3270,
+"timestampMs": 3077,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " their",
+"startMs": 3270,
+"endMs": 3493,
+"timestampMs": 3381,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " head.",
+"startMs": 3493,
+"endMs": 3715,
+"timestampMs": 3604,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": "Five",
+"startMs": 3915,
+"endMs": 4181,
+"timestampMs": 4048,
+"confidence": null,
+"line": "01",
+"sentence": 1
+},
+{
+"text": " stars?",
+"startMs": 4181,
+"endMs": 4446,
+"timestampMs": 4313,
+"confidence": null,
+"line": "01",
+"sentence": 1
+},
+{
+"text": " You're",
+"startMs": 4446,
+"endMs": 4712,
+"timestampMs": 4579,
+"confidence": null,
+"line": "01",
+"sentence": 1
+},
+{
+"text": " basically",
+"startMs": 4712,
+"endMs": 5568,
+"timestampMs": 5140,
+"confidence": null,
+"line": "01",
+"sentence": 1
+},
+{
+"text": " famous.",
+"startMs": 5568,
+"endMs": 6030,
+"timestampMs": 5799,
+"confidence": null,
+"line": "01",
+"sentence": 1
+},
+{
+"text": "Three",
+"startMs": 6430,
+"endMs": 6754,
+"timestampMs": 6592,
+"confidence": null,
+"line": "01",
+"sentence": 2
+},
+{
+"text": " stars?",
+"startMs": 6754,
+"endMs": 7078,
+"timestampMs": 6916,
+"confidence": null,
+"line": "01",
+"sentence": 2
+},
+{
+"text": " You're",
+"startMs": 7078,
+"endMs": 7401,
+"timestampMs": 7239,
+"confidence": null,
+"line": "01",
+"sentence": 2
+},
+{
+"text": " Tre.",
+"startMs": 7401,
+"endMs": 7725,
+"timestampMs": 7563,
+"confidence": null,
+"line": "01",
+"sentence": 2
+},
+{
+"text": "Tre",
+"startMs": 8005,
+"endMs": 8245,
+"timestampMs": 8125,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " checks",
+"startMs": 8245,
+"endMs": 8486,
+"timestampMs": 8366,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " his",
+"startMs": 8486,
+"endMs": 8726,
+"timestampMs": 8606,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " stars",
+"startMs": 8726,
+"endMs": 8967,
+"timestampMs": 8846,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " like",
+"startMs": 8967,
+"endMs": 9207,
+"timestampMs": 9087,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " four",
+"startMs": 9207,
+"endMs": 9447,
+"timestampMs": 9327,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " hundred",
+"startMs": 9447,
+"endMs": 9866,
+"timestampMs": 9657,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " times",
+"startMs": 9866,
+"endMs": 10284,
+"timestampMs": 10075,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " a",
+"startMs": 10284,
+"endMs": 10525,
+"timestampMs": 10404,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " day.",
+"startMs": 10525,
+"endMs": 10765,
+"timestampMs": 10645,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": "In",
+"startMs": 10965,
+"endMs": 11220,
+"timestampMs": 11093,
+"confidence": null,
+"line": "02",
+"sentence": 1
+},
+{
+"text": " mirrors.",
+"startMs": 11220,
+"endMs": 11665,
+"timestampMs": 11443,
+"confidence": null,
+"line": "02",
+"sentence": 1
+},
+{
+"text": "In",
+"startMs": 11865,
+"endMs": 12137,
+"timestampMs": 12001,
+"confidence": null,
+"line": "02",
+"sentence": 2
+},
+{
+"text": " windows.",
+"startMs": 12137,
+"endMs": 12610,
+"timestampMs": 12373,
+"confidence": null,
+"line": "02",
+"sentence": 2
+},
+{
+"text": "In",
+"startMs": 12960,
+"endMs": 13315,
+"timestampMs": 13137,
+"confidence": null,
+"line": "02",
+"sentence": 3
+},
+{
+"text": " spoons.",
+"startMs": 13315,
+"endMs": 13670,
+"timestampMs": 13492,
+"confidence": null,
+"line": "02",
+"sentence": 3
+},
+{
+"text": "And",
+"startMs": 14350,
+"endMs": 14597,
+"timestampMs": 14474,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " me?",
+"startMs": 14597,
+"endMs": 14845,
+"timestampMs": 14721,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": "Zero",
+"startMs": 15045,
+"endMs": 15658,
+"timestampMs": 15351,
+"confidence": null,
+"line": "03",
+"sentence": 1
+},
+{
+"text": " stars.",
+"startMs": 15658,
+"endMs": 16010,
+"timestampMs": 15834,
+"confidence": null,
+"line": "03",
+"sentence": 1
+},
+{
+"text": "Just",
+"startMs": 16210,
+"endMs": 16445,
+"timestampMs": 16328,
+"confidence": null,
+"line": "03",
+"sentence": 2
+},
+{
+"text": " an",
+"startMs": 16445,
+"endMs": 16681,
+"timestampMs": 16563,
+"confidence": null,
+"line": "03",
+"sentence": 2
+},
+{
+"text": " empty",
+"startMs": 16681,
+"endMs": 17090,
+"timestampMs": 16885,
+"confidence": null,
+"line": "03",
+"sentence": 2
+},
+{
+"text": " gray",
+"startMs": 17090,
+"endMs": 17325,
+"timestampMs": 17208,
+"confidence": null,
+"line": "03",
+"sentence": 2
+},
+{
+"text": " circle.",
+"startMs": 17325,
+"endMs": 17735,
+"timestampMs": 17530,
+"confidence": null,
+"line": "03",
+"sentence": 2
+},
+{
+"text": "The",
+"startMs": 18135,
+"endMs": 18342,
+"timestampMs": 18239,
+"confidence": null,
+"line": "03",
+"sentence": 3
+},
+{
+"text": " lunch",
+"startMs": 18342,
+"endMs": 18549,
+"timestampMs": 18446,
+"confidence": null,
+"line": "03",
+"sentence": 3
+},
+{
+"text": " lady",
+"startMs": 18549,
+"endMs": 18910,
+"timestampMs": 18730,
+"confidence": null,
+"line": "03",
+"sentence": 3
+},
+{
+"text": " gives",
+"startMs": 18910,
+"endMs": 19270,
+"timestampMs": 19090,
+"confidence": null,
+"line": "03",
+"sentence": 3
+},
+{
+"text": " me",
+"startMs": 19270,
+"endMs": 19478,
+"timestampMs": 19374,
+"confidence": null,
+"line": "03",
+"sentence": 3
+},
+{
+"text": " extra",
+"startMs": 19478,
+"endMs": 19838,
+"timestampMs": 19658,
+"confidence": null,
+"line": "03",
+"sentence": 3
+},
+{
+"text": " fries",
+"startMs": 19838,
+"endMs": 20045,
+"timestampMs": 19942,
+"confidence": null,
+"line": "03",
+"sentence": 3
+},
+{
+"text": " out",
+"startMs": 20045,
+"endMs": 20252,
+"timestampMs": 20149,
+"confidence": null,
+"line": "03",
+"sentence": 3
+},
+{
+"text": " of",
+"startMs": 20252,
+"endMs": 20459,
+"timestampMs": 20356,
+"confidence": null,
+"line": "03",
+"sentence": 3
+},
+{
+"text": " pity.",
+"startMs": 20459,
+"endMs": 20820,
+"timestampMs": 20640,
+"confidence": null,
+"line": "03",
+"sentence": 3
+},
+{
+"text": "Tre",
+"startMs": 21400,
+"endMs": 21609,
+"timestampMs": 21505,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " tried",
+"startMs": 21609,
+"endMs": 21819,
+"timestampMs": 21714,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " everything",
+"startMs": 21819,
+"endMs": 22493,
+"timestampMs": 22156,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " to",
+"startMs": 22493,
+"endMs": 22703,
+"timestampMs": 22598,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " get",
+"startMs": 22703,
+"endMs": 22912,
+"timestampMs": 22807,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " a",
+"startMs": 22912,
+"endMs": 23121,
+"timestampMs": 23017,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " fourth",
+"startMs": 23121,
+"endMs": 23331,
+"timestampMs": 23226,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " star.",
+"startMs": 23331,
+"endMs": 23540,
+"timestampMs": 23435,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": "He",
+"startMs": 23740,
+"endMs": 23968,
+"timestampMs": 23854,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " mewed",
+"startMs": 23968,
+"endMs": 24366,
+"timestampMs": 24167,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " for",
+"startMs": 24366,
+"endMs": 24595,
+"timestampMs": 24480,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " forty-one",
+"startMs": 24595,
+"endMs": 25162,
+"timestampMs": 24878,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " days.",
+"startMs": 25162,
+"endMs": 25390,
+"timestampMs": 25276,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": "Fourteen-step",
+"startMs": 25590,
+"endMs": 26287,
+"timestampMs": 25939,
+"confidence": null,
+"line": "04",
+"sentence": 2
+},
+{
+"text": " skincare",
+"startMs": 26287,
+"endMs": 26776,
+"timestampMs": 26532,
+"confidence": null,
+"line": "04",
+"sentence": 2
+},
+{
+"text": " routine.",
+"startMs": 26776,
+"endMs": 27265,
+"timestampMs": 27021,
+"confidence": null,
+"line": "04",
+"sentence": 2
+},
+{
+"text": "Highlight",
+"startMs": 27465,
+"endMs": 27801,
+"timestampMs": 27633,
+"confidence": null,
+"line": "04",
+"sentence": 3
+},
+{
+"text": " tape",
+"startMs": 27801,
+"endMs": 27993,
+"timestampMs": 27897,
+"confidence": null,
+"line": "04",
+"sentence": 3
+},
+{
+"text": " at",
+"startMs": 27993,
+"endMs": 28186,
+"timestampMs": 28090,
+"confidence": null,
+"line": "04",
+"sentence": 3
+},
+{
+"text": " two",
+"startMs": 28186,
+"endMs": 28379,
+"timestampMs": 28282,
+"confidence": null,
+"line": "04",
+"sentence": 3
+},
+{
+"text": " in",
+"startMs": 28379,
+"endMs": 28572,
+"timestampMs": 28475,
+"confidence": null,
+"line": "04",
+"sentence": 3
+},
+{
+"text": " the",
+"startMs": 28572,
+"endMs": 28764,
+"timestampMs": 28668,
+"confidence": null,
+"line": "04",
+"sentence": 3
+},
+{
+"text": " morning.",
+"startMs": 28764,
+"endMs": 29100,
+"timestampMs": 28932,
+"confidence": null,
+"line": "04",
+"sentence": 3
+},
+{
+"text": "Nothing.",
+"startMs": 29600,
+"endMs": 30115,
+"timestampMs": 29858,
+"confidence": null,
+"line": "04",
+"sentence": 4
+},
+{
+"text": "Why",
+"startMs": 30545,
+"endMs": 30724,
+"timestampMs": 30634,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": " is",
+"startMs": 30724,
+"endMs": 30903,
+"timestampMs": 30813,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": " it",
+"startMs": 30903,
+"endMs": 31082,
+"timestampMs": 30992,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": " still",
+"startMs": 31082,
+"endMs": 31261,
+"timestampMs": 31172,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": " THREE?!",
+"startMs": 31261,
+"endMs": 31440,
+"timestampMs": 31350,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": "Then",
+"startMs": 32370,
+"endMs": 32604,
+"timestampMs": 32487,
+"confidence": null,
+"line": "06",
+"sentence": 0
+},
+{
+"text": " came",
+"startMs": 32604,
+"endMs": 32837,
+"timestampMs": 32720,
+"confidence": null,
+"line": "06",
+"sentence": 0
+},
+{
+"text": " recruiting",
+"startMs": 32837,
+"endMs": 33416,
+"timestampMs": 33127,
+"confidence": null,
+"line": "06",
+"sentence": 0
+},
+{
+"text": " day.",
+"startMs": 33416,
+"endMs": 33650,
+"timestampMs": 33533,
+"confidence": null,
+"line": "06",
+"sentence": 0
+},
+{
+"text": "Every",
+"startMs": 33850,
+"endMs": 34296,
+"timestampMs": 34073,
+"confidence": null,
+"line": "06",
+"sentence": 1
+},
+{
+"text": " coach",
+"startMs": 34296,
+"endMs": 34476,
+"timestampMs": 34386,
+"confidence": null,
+"line": "06",
+"sentence": 1
+},
+{
+"text": " in",
+"startMs": 34476,
+"endMs": 34656,
+"timestampMs": 34566,
+"confidence": null,
+"line": "06",
+"sentence": 1
+},
+{
+"text": " the",
+"startMs": 34656,
+"endMs": 34835,
+"timestampMs": 34745,
+"confidence": null,
+"line": "06",
+"sentence": 1
+},
+{
+"text": " state.",
+"startMs": 34835,
+"endMs": 35015,
+"timestampMs": 34925,
+"confidence": null,
+"line": "06",
+"sentence": 1
+},
+{
+"text": "Every",
+"startMs": 35215,
+"endMs": 35766,
+"timestampMs": 35490,
+"confidence": null,
+"line": "06",
+"sentence": 2
+},
+{
+"text": " five-star",
+"startMs": 35766,
+"endMs": 36152,
+"timestampMs": 35959,
+"confidence": null,
+"line": "06",
+"sentence": 2
+},
+{
+"text": " kid,",
+"startMs": 36152,
+"endMs": 36522,
+"timestampMs": 36337,
+"confidence": null,
+"line": "06",
+"sentence": 2
+},
+{
+"text": " lined",
+"startMs": 36522,
+"endMs": 36908,
+"timestampMs": 36715,
+"confidence": null,
+"line": "06",
+"sentence": 2
+},
+{
+"text": " up.",
+"startMs": 36908,
+"endMs": 37130,
+"timestampMs": 37019,
+"confidence": null,
+"line": "06",
+"sentence": 2
+},
+{
+"text": "One",
+"startMs": 37410,
+"endMs": 37636,
+"timestampMs": 37523,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " coach",
+"startMs": 37636,
+"endMs": 37862,
+"timestampMs": 37749,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " walked",
+"startMs": 37862,
+"endMs": 38256,
+"timestampMs": 38059,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " past",
+"startMs": 38256,
+"endMs": 38482,
+"timestampMs": 38369,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " all",
+"startMs": 38482,
+"endMs": 38708,
+"timestampMs": 38595,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " of",
+"startMs": 38708,
+"endMs": 38934,
+"timestampMs": 38821,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " them.",
+"startMs": 38934,
+"endMs": 39160,
+"timestampMs": 39047,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": "Past",
+"startMs": 39360,
+"endMs": 39582,
+"timestampMs": 39471,
+"confidence": null,
+"line": "07",
+"sentence": 1
+},
+{
+"text": " the",
+"startMs": 39582,
+"endMs": 39804,
+"timestampMs": 39693,
+"confidence": null,
+"line": "07",
+"sentence": 1
+},
+{
+"text": " quarterback.",
+"startMs": 39804,
+"endMs": 40355,
+"timestampMs": 40080,
+"confidence": null,
+"line": "07",
+"sentence": 1
+},
+{
+"text": "Past",
+"startMs": 40555,
+"endMs": 40835,
+"timestampMs": 40695,
+"confidence": null,
+"line": "07",
+"sentence": 2
+},
+{
+"text": " the",
+"startMs": 40835,
+"endMs": 41115,
+"timestampMs": 40975,
+"confidence": null,
+"line": "07",
+"sentence": 2
+},
+{
+"text": " twins.",
+"startMs": 41115,
+"endMs": 41395,
+"timestampMs": 41255,
+"confidence": null,
+"line": "07",
+"sentence": 2
+},
+{
+"text": "Past",
+"startMs": 41595,
+"endMs": 41930,
+"timestampMs": 41762,
+"confidence": null,
+"line": "07",
+"sentence": 3
+},
+{
+"text": " Tre.",
+"startMs": 41930,
+"endMs": 42265,
+"timestampMs": 42097,
+"confidence": null,
+"line": "07",
+"sentence": 3
+},
+{
+"text": "And",
+"startMs": 42815,
+"endMs": 43001,
+"timestampMs": 42908,
+"confidence": null,
+"line": "07",
+"sentence": 4
+},
+{
+"text": " stopped",
+"startMs": 43001,
+"endMs": 43324,
+"timestampMs": 43162,
+"confidence": null,
+"line": "07",
+"sentence": 4
+},
+{
+"text": " at",
+"startMs": 43324,
+"endMs": 43509,
+"timestampMs": 43417,
+"confidence": null,
+"line": "07",
+"sentence": 4
+},
+{
+"text": " me.",
+"startMs": 43509,
+"endMs": 43695,
+"timestampMs": 43602,
+"confidence": null,
+"line": "07",
+"sentence": 4
+},
+{
+"text": "Son.",
+"startMs": 44475,
+"endMs": 44816,
+"timestampMs": 44645,
+"confidence": null,
+"line": "08",
+"sentence": 0
+},
+{
+"text": " Do",
+"startMs": 44816,
+"endMs": 45157,
+"timestampMs": 44986,
+"confidence": null,
+"line": "08",
+"sentence": 0
+},
+{
+"text": " you",
+"startMs": 45157,
+"endMs": 45498,
+"timestampMs": 45327,
+"confidence": null,
+"line": "08",
+"sentence": 0
+},
+{
+"text": " long",
+"startMs": 45498,
+"endMs": 45839,
+"timestampMs": 45668,
+"confidence": null,
+"line": "08",
+"sentence": 0
+},
+{
+"text": " snap?",
+"startMs": 45839,
+"endMs": 46180,
+"timestampMs": 46009,
+"confidence": null,
+"line": "08",
+"sentence": 0
+},
+{
+"text": "...Yeah.",
+"startMs": 46560,
+"endMs": 47005,
+"timestampMs": 46782,
+"confidence": null,
+"line": "09",
+"sentence": 0
+},
+{
+"text": "My",
+"startMs": 47485,
+"endMs": 47712,
+"timestampMs": 47599,
+"confidence": null,
+"line": "10",
+"sentence": 0
+},
+{
+"text": " circle",
+"startMs": 47712,
+"endMs": 48108,
+"timestampMs": 47910,
+"confidence": null,
+"line": "10",
+"sentence": 0
+},
+{
+"text": " started",
+"startMs": 48108,
+"endMs": 48504,
+"timestampMs": 48306,
+"confidence": null,
+"line": "10",
+"sentence": 0
+},
+{
+"text": " glowing.",
+"startMs": 48504,
+"endMs": 48900,
+"timestampMs": 48702,
+"confidence": null,
+"line": "10",
+"sentence": 0
+},
+{
+"text": "One",
+"startMs": 49100,
+"endMs": 49467,
+"timestampMs": 49284,
+"confidence": null,
+"line": "10",
+"sentence": 1
+},
+{
+"text": " star.",
+"startMs": 49467,
+"endMs": 49835,
+"timestampMs": 49651,
+"confidence": null,
+"line": "10",
+"sentence": 1
+},
+{
+"text": "Two.",
+"startMs": 50035,
+"endMs": 50445,
+"timestampMs": 50240,
+"confidence": null,
+"line": "10",
+"sentence": 2
+},
+{
+"text": "Three.",
+"startMs": 50645,
+"endMs": 51115,
+"timestampMs": 50880,
+"confidence": null,
+"line": "10",
+"sentence": 3
+},
+{
+"text": "Four.",
+"startMs": 51315,
+"endMs": 51800,
+"timestampMs": 51557,
+"confidence": null,
+"line": "10",
+"sentence": 4
+},
+{
+"text": "Five.",
+"startMs": 52600,
+"endMs": 53125,
+"timestampMs": 52862,
+"confidence": null,
+"line": "10",
+"sentence": 5
+},
+{
+"text": "HE",
+"startMs": 54205,
+"endMs": 54371,
+"timestampMs": 54288,
+"confidence": null,
+"line": "11",
+"sentence": 0
+},
+{
+"text": " DOESN'T",
+"startMs": 54371,
+"endMs": 54536,
+"timestampMs": 54453,
+"confidence": null,
+"line": "11",
+"sentence": 0
+},
+{
+"text": " EVEN",
+"startMs": 54536,
+"endMs": 54825,
+"timestampMs": 54680,
+"confidence": null,
+"line": "11",
+"sentence": 0
+},
+{
+"text": " HAVE",
+"startMs": 54825,
+"endMs": 54990,
+"timestampMs": 54907,
+"confidence": null,
+"line": "11",
+"sentence": 0
+},
+{
+"text": " A",
+"startMs": 54990,
+"endMs": 55156,
+"timestampMs": 55073,
+"confidence": null,
+"line": "11",
+"sentence": 0
+},
+{
+"text": " HIGHLIGHT",
+"startMs": 55156,
+"endMs": 55444,
+"timestampMs": 55300,
+"confidence": null,
+"line": "11",
+"sentence": 0
+},
+{
+"text": " TAPE!",
+"startMs": 55444,
+"endMs": 55610,
+"timestampMs": 55527,
+"confidence": null,
+"line": "11",
+"sentence": 0
+},
+{
+"text": "I",
+"startMs": 56490,
+"endMs": 56770,
+"timestampMs": 56630,
+"confidence": null,
+"line": "12",
+"sentence": 0
+},
+{
+"text": " don't.",
+"startMs": 56770,
+"endMs": 57050,
+"timestampMs": 56910,
+"confidence": null,
+"line": "12",
+"sentence": 0
+},
+{
+"text": "I",
+"startMs": 57250,
+"endMs": 57472,
+"timestampMs": 57361,
+"confidence": null,
+"line": "12",
+"sentence": 1
+},
+{
+"text": " just",
+"startMs": 57472,
+"endMs": 57694,
+"timestampMs": 57583,
+"confidence": null,
+"line": "12",
+"sentence": 1
+},
+{
+"text": " snap",
+"startMs": 57694,
+"endMs": 57916,
+"timestampMs": 57805,
+"confidence": null,
+"line": "12",
+"sentence": 1
+},
+{
+"text": " the",
+"startMs": 57916,
+"endMs": 58138,
+"timestampMs": 58027,
+"confidence": null,
+"line": "12",
+"sentence": 1
+},
+{
+"text": " ball.",
+"startMs": 58138,
+"endMs": 58360,
+"timestampMs": 58249,
+"confidence": null,
+"line": "12",
+"sentence": 1
+},
+{
+"text": "Every",
+"startMs": 58760,
+"endMs": 59226,
+"timestampMs": 58993,
+"confidence": null,
+"line": "12",
+"sentence": 2
+},
+{
+"text": " single",
+"startMs": 59226,
+"endMs": 59552,
+"timestampMs": 59389,
+"confidence": null,
+"line": "12",
+"sentence": 2
+},
+{
+"text": " day.",
+"startMs": 59552,
+"endMs": 59740,
+"timestampMs": 59646,
+"confidence": null,
+"line": "12",
+"sentence": 2
+}
+]

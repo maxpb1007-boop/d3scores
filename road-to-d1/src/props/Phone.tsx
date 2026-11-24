@@ -13,7 +13,7 @@ import { FONT } from "../lib/fonts";
  *   feed     : abstract scrolling cards (used in the refresh montage)
  *   glow     : plain bright screen (light source at night)
  */
-export type Screen = "lock" | "post" | "dm" | "feed" | "glow" | "off";
+export type Screen = "lock" | "post" | "dm" | "feed" | "glow" | "off" | "rank" | "search";
 
 const W = 540, H = 1080;
 const drawScreen = (c: CanvasRenderingContext2D, s: Screen, scroll: number) => {
@@ -139,6 +139,62 @@ const drawScreen = (c: CanvasRenderingContext2D, s: Screen, scroll: number) => {
     c.fillStyle = "#FFFFFF";
     c.font = `800 38px ${FONT}`;
     c.fillText("Open", W / 2, 818);
+    return;
+  }
+  if (s === "rank") {
+    // generic recruiting rankings list (fictional names, no real service)
+    c.textAlign = "left";
+    c.fillStyle = "#FFD21F";
+    c.font = `900 46px ${FONT}`;
+    c.fillText("TOP RECRUITS", 34, 110);
+    const rows: [string, string, number][] = [["1", "J. Hollis", 5], ["2", "M. Okafor", 5], ["3", "D. Reyes", 5], ["4", "T. Banks", 5]];
+    rows.forEach(([r, name, n], i) => {
+      const y = 170 + i * 120;
+      c.fillStyle = "rgba(255,255,255,0.1)";
+      roundRect(c, 24, y, W - 48, 100, 20);
+      c.fill();
+      c.fillStyle = "#FFFFFF";
+      c.font = `800 34px ${FONT}`;
+      c.fillText(`${r}. ${name}`, 46, y + 60);
+      c.fillStyle = "#FFD21F";
+      c.font = `900 30px ${FONT}`;
+      c.fillText("★".repeat(n), 330, y + 62);
+    });
+    c.fillStyle = "#AAB6D6";
+    c.font = `900 60px ${FONT}`;
+    c.textAlign = "center";
+    c.fillText("⋮", W / 2, 720);
+    c.fillStyle = "#1E8C8C";
+    roundRect(c, 24, 790, W - 48, 130, 22);
+    c.fill();
+    c.textAlign = "left";
+    c.fillStyle = "#FFFFFF";
+    c.font = `900 38px ${FONT}`;
+    c.fillText("4,812. Tre", 46, 870);
+    c.fillStyle = "#FFD21F";
+    c.font = `900 32px ${FONT}`;
+    c.fillText("★★★", 340, 870);
+    return;
+  }
+  if (s === "search") {
+    c.fillStyle = "#FFFFFF";
+    roundRect(c, 24, 90, W - 48, 90, 45);
+    c.fill();
+    c.fillStyle = "#222";
+    c.textAlign = "left";
+    c.font = `700 32px ${FONT}`;
+    c.fillText("how to get 4th star", 60, 148);
+    const res: [string, string][] = [["MEWING", "#E74C3C"], ["SKINCARE", "#F1C40F"], ["HIGHLIGHT TAPE", "#3D7BF2"], ["4TH STAR FAST", "#9B59B6"]];
+    res.forEach(([t, col], i) => {
+      const y = 230 + i * 190;
+      c.fillStyle = col;
+      roundRect(c, 24, y, W - 48, 160, 20);
+      c.fill();
+      c.fillStyle = "#FFFFFF";
+      c.textAlign = "center";
+      c.font = `900 44px ${FONT}`;
+      c.fillText(t, W / 2, y + 98);
+    });
     return;
   }
   // feed: abstract cards that scroll

@@ -3,10 +3,10 @@ export const EXPRESSIONS: Expression[] = ["neutral", "annoyed", "shocked", "smug
 
 export type Pose =
   | "idle" | "talk" | "phoneHold" | "phoneShow" | "run" | "celebrate" | "facepalm" | "armsCrossed"
-  | "lookOver" | "juke" | "snap" | "sit" | "chew" | "flex" | "stumble";
+  | "lookOver" | "juke" | "snap" | "sit" | "chew" | "flex" | "stumble" | "walk";
 export const POSES: Pose[] = [
   "idle", "talk", "phoneHold", "phoneShow", "run", "celebrate", "facepalm", "armsCrossed",
-  "lookOver", "juke", "snap", "sit", "chew", "flex", "stumble",
+  "lookOver", "juke", "snap", "sit", "chew", "flex", "stumble", "walk",
 ];
 
 export type V3 = [number, number, number];

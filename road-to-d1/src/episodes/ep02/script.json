@@ -1,0 +1,309 @@
+{
+  "episode": "ep02",
+  "title": "In This Town",
+  "voices": {
+    "gus": {
+      "voice": "am_michael",
+      "speed": 1.17
+    },
+    "tre": {
+      "voice": "am_fenrir",
+      "speed": 1.19
+    },
+    "coach": {
+      "voice": "am_onyx",
+      "speed": 0.95
+    }
+  },
+  "sentenceGap": 0.12,
+  "endBlack": 0.4,
+  "endCard": 1.8,
+  "lines": [
+    {
+      "id": "01",
+      "speaker": "gus",
+      "pre": 0.15,
+      "highlights": [
+        "town",
+        "rating",
+        "Five",
+        "famous",
+        "Three",
+        "Tre"
+      ],
+      "sentences": [
+        {
+          "text": "In this town, everyone's recruiting rating floats above their head."
+        },
+        {
+          "text": "Five stars? You're basically famous."
+        },
+        {
+          "text": "Three stars? You're Tre.",
+          "pre": 0.2
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "speaker": "gus",
+      "pre": 0.2,
+      "highlights": [
+        "Tre",
+        "hundred",
+        "mirrors",
+        "windows",
+        "spoons"
+      ],
+      "sentences": [
+        {
+          "text": "Tre checks his stars like four hundred times a day."
+        },
+        {
+          "text": "In mirrors."
+        },
+        {
+          "text": "In windows."
+        },
+        {
+          "text": "In spoons.",
+          "pre": 0.15
+        }
+      ],
+      "post": 0.3
+    },
+    {
+      "id": "03",
+      "speaker": "gus",
+      "pre": 0.3,
+      "highlights": [
+        "Zero",
+        "gray",
+        "fries",
+        "pity"
+      ],
+      "sentences": [
+        {
+          "text": "And me?"
+        },
+        {
+          "text": "Zero stars."
+        },
+        {
+          "text": "Just an empty gray circle."
+        },
+        {
+          "text": "The lunch lady gives me extra fries out of pity.",
+          "pre": 0.2
+        }
+      ],
+      "post": 0.3
+    },
+    {
+      "id": "04",
+      "speaker": "gus",
+      "pre": 0.2,
+      "highlights": [
+        "Tre",
+        "fourth",
+        "mewed",
+        "forty-one",
+        "Fourteen-step",
+        "two",
+        "Nothing"
+      ],
+      "sentences": [
+        {
+          "text": "Tre tried everything to get a fourth star."
+        },
+        {
+          "text": "He mewed for forty-one days."
+        },
+        {
+          "text": "Fourteen-step skincare routine."
+        },
+        {
+          "text": "Highlight tape at two in the morning."
+        },
+        {
+          "text": "Nothing.",
+          "pre": 0.3
+        }
+      ],
+      "post": 0.2
+    },
+    {
+      "id": "05",
+      "speaker": "tre",
+      "pre": 0.15,
+      "speed": 1.27,
+      "gain": 1.15,
+      "highlights": [
+        "THREE"
+      ],
+      "sentences": [
+        {
+          "text": "Why is it still THREE?!",
+          "tts": "Why is it still three?!"
+        }
+      ],
+      "post": 0.6
+    },
+    {
+      "id": "06",
+      "speaker": "gus",
+      "pre": 0.25,
+      "highlights": [
+        "recruiting",
+        "coach",
+        "five-star"
+      ],
+      "sentences": [
+        {
+          "text": "Then came recruiting day."
+        },
+        {
+          "text": "Every coach in the state."
+        },
+        {
+          "text": "Every five-star kid, lined up."
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "speaker": "gus",
+      "pre": 0.2,
+      "highlights": [
+        "walked",
+        "quarterback",
+        "twins",
+        "Tre",
+        "me"
+      ],
+      "sentences": [
+        {
+          "text": "One coach walked past all of them."
+        },
+        {
+          "text": "Past the quarterback."
+        },
+        {
+          "text": "Past the twins."
+        },
+        {
+          "text": "Past Tre."
+        },
+        {
+          "text": "And stopped at me.",
+          "pre": 0.35
+        }
+      ],
+      "post": 0.5
+    },
+    {
+      "id": "08",
+      "speaker": "coach",
+      "pre": 0.2,
+      "highlights": [
+        "snap"
+      ],
+      "sentences": [
+        {
+          "text": "Son. Do you long snap?"
+        }
+      ],
+      "post": 0.2
+    },
+    {
+      "id": "09",
+      "speaker": "gus",
+      "pre": 0.1,
+      "highlights": [
+        "Yeah"
+      ],
+      "sentences": [
+        {
+          "text": "...Yeah.",
+          "tts": "Yeah."
+        }
+      ],
+      "post": 0.2
+    },
+    {
+      "id": "10",
+      "speaker": "gus",
+      "pre": 0.2,
+      "highlights": [
+        "glowing",
+        "One",
+        "Two",
+        "Three",
+        "Four",
+        "Five"
+      ],
+      "sentences": [
+        {
+          "text": "My circle started glowing."
+        },
+        {
+          "text": "One star."
+        },
+        {
+          "text": "Two."
+        },
+        {
+          "text": "Three."
+        },
+        {
+          "text": "Four."
+        },
+        {
+          "text": "Five.",
+          "pre": 0.6
+        }
+      ],
+      "post": 0.9
+    },
+    {
+      "id": "11",
+      "speaker": "tre",
+      "pre": 0.1,
+      "speed": 1.27,
+      "gain": 1.15,
+      "highlights": [
+        "HIGHLIGHT",
+        "TAPE"
+      ],
+      "sentences": [
+        {
+          "text": "HE DOESN'T EVEN HAVE A HIGHLIGHT TAPE!",
+          "tts": "He doesn't even have a highlight tape!"
+        }
+      ],
+      "post": 0.6
+    },
+    {
+      "id": "12",
+      "speaker": "gus",
+      "pre": 0.2,
+      "highlights": [
+        "snap",
+        "day"
+      ],
+      "sentences": [
+        {
+          "text": "I don't."
+        },
+        {
+          "text": "I just snap the ball."
+        },
+        {
+          "text": "Every single day.",
+          "pre": 0.2
+        }
+      ],
+      "post": 0.3
+    }
+  ]
+}

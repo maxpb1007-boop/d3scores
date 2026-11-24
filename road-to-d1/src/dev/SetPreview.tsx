@@ -14,6 +14,7 @@ const CFG: Record<K, { light: LightPreset; cam: V3; target: V3; fov: number }> =
   Bedroom: { light: "bedroom", cam: [0.5, 1.6, 4.5], target: [0, 1.1, -0.5], fov: 50 },
   Bathroom: { light: "hallway", cam: [0.3, 1.6, 3.2], target: [0, 1.4, -0.5], fov: 50 },
   Field: { light: "golden", cam: [1.5, 1.6, 6], target: [0, 1.2, 0], fov: 50 },
+  Town: { light: "sunny", cam: [1.5, 2.2, 7], target: [0, 1.2, 0], fov: 50 },
 };
 
 export const SetPreview: React.FC<{ set: K; bleachers?: boolean }> = ({ set, bleachers }) => {

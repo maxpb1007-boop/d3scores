@@ -5,8 +5,9 @@ import { FONT } from "../lib/fonts";
 
 export type CaptionWord = Caption & { line: string; sentence: number };
 
-/** TikTok safe zone at 1080x1920: keep out of top 10 %, bottom 22 %, right 14 %. */
-export const SAFE = { top: 0.1, bottom: 0.22, right: 0.14, left: 0.05 };
+/** Cross-platform safe zone at 1080x1920 (TikTok + Reels + Shorts). */
+// Updated 2026-11-23 from platform research: Reels/Shorts UI covers ~35% at the bottom and ~15% at the top.
+export const SAFE = { top: 0.15, bottom: 0.35, right: 0.14, left: 0.11 };
 
 const STOP = new Set(["a", "an", "the", "of", "to", "in", "is", "it", "my", "i'm", "i", "he", "his", "was", "for", "at", "on", "and", "with", "us", "me", "one", "by", "if", "do"]);
 const norm = (w: string) => w.toLowerCase().replace(/^[^a-z0-9]+|[^a-z0-9'-]+$/g, "").replace(/^\.+/, "");
@@ -65,12 +66,20 @@ export const buildPages = (words: CaptionWord[], highlights: Record<string, stri
   return pages;
 };
 
-export const Captions: React.FC<{ words: CaptionWord[]; highlights: Record<string, string[]>; hideFrom: number; debug?: boolean }> = ({
-  words, highlights, hideFrom, debug,
+/** "word" mode (the In-This-Town style): one word per page, yellow only on listed keywords. */
+export const buildWordPages = (words: CaptionWord[], highlights: Record<string, string[]>): (Page & { hi: number })[] =>
+  words.map((w, i) => {
+    const text = w.text.trim();
+    const list = (highlights[w.line] ?? []).map((h) => h.toLowerCase());
+    return { text, startMs: w.startMs, endMs: w.endMs, tokens: [{ text, fromMs: w.startMs, toMs: w.endMs }], key: i, line: w.line, hi: list.includes(norm(text)) ? 0 : -1 };
+  });
+
+export const Captions: React.FC<{ words: CaptionWord[]; highlights: Record<string, string[]>; hideFrom: number; debug?: boolean; mode?: "phrase" | "word" }> = ({
+  words, highlights, hideFrom, debug, mode = "phrase",
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
-  const pages = useMemo(() => buildPages(words, highlights), [words, highlights]);
+  const pages = useMemo(() => (mode === "word" ? buildWordPages(words, highlights) : buildPages(words, highlights)), [words, highlights, mode]);
   const ms = (frame / fps) * 1000;
   // a page stays up until the next page starts, or 0.45 s after its last word
   let page: (typeof pages)[number] | undefined;
@@ -98,7 +107,8 @@ const CaptionPage: React.FC<{ page: Page & { hi: number }; frame: number; fps: n
   const local = frame - f0;
   const scale = interpolate(local, [0, 2, 4], [1.0, 1.08, 1.0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const long = page.text.length > 18;
-  const size = long ? 84 : 100;
+  const single = page.tokens.length === 1;
+  const size = single ? (page.text.length > 11 ? 96 : 122) : long ? 84 : 100;
   return (
     <div
       style={{
