@@ -160,3 +160,18 @@ to the repo. Everything is committed locally on `claude/road-to-d1-ep01-aoxozi`;
   Reels/Shorts overlays cover roughly the bottom 35% (≈672 px) and top ≈290 px. Ep 1 is fine because captions
   sit at 58%, but from Ep 2 keep every important thing (captions, phone screens, tallies) inside
   x 120–880, y 290–1250 and update `SAFE` in `Captions.tsx` + the SafeZoneDebug overlay to match.
+
+### 2026-11-24 — Ep 2 "In This Town" (trend format) + new engine pieces
+
+- **Star badges** (`src/props/StarBadge.tsx`): billboard over any actor via `stars: [{f, n}]` and `glow: [f0, f1]`.
+  Textures are plain canvas paths cached per star count (no font → no delayRender needed). n = 0 is the gray circle.
+  Billboarding needs the camera position: `ShotView` provides it through the `CamPos` context.
+- **Crowds** (`src/characters/Crowd.tsx`): cheap ~9-mesh figures, seeded looks, optional badge/cap/jersey;
+  `scatter()` places N people deterministically. 40-60 people render fine on swangle.
+- **Town set** (toy-town street, `light: "sunny"`), `walk` pose, spoon prop, fries on trays, phone screens
+  `rank` and `search`, sticker labels/counters (`fx: label | counter`), one-word captions (`captionMode="word"`).
+- The cafeteria's glass sneeze-guard was removed: it blocked every camera between the line and the lunch lady.
+- `SAFE` in Captions.tsx now uses the research numbers (top 15 %, bottom 35 %, left 11 %, right 14 %).
+- Ep 2: 62.3 s, 38 shots, QA 12/12. Render ~11 min (1868 frames).
+- Trend note: copying the looksmaxxing "PSL scale" videos was declined on purpose — they rank teens as
+  "subhuman" and show bone-smashing with a hammer. The rating-over-heads hook was kept with recruiting stars.
