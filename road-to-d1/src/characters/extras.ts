@@ -54,3 +54,33 @@ export const KID2: CharSpec = {
 };
 
 export const EXTRAS = { FRESHMAN, LUNCH_LADY, COACH, PUNTER, KID, KID2 };
+
+/* ---- "Technically Right" (second series test) ---- */
+/** DALE — early 30s, mustache, mustard sweater vest over a light-blue shirt. Always technically right. */
+export const DALE: CharSpec = {
+  ...kidBase, id: "dale",
+  skin: "#E8B48F", hair: "#4A3020", hairStyle: "short", brow: "#3A2416",
+  headW: 0.66, headH: 0.6, headD: 0.58,
+  torsoW: 0.6, torsoH: 0.6, torsoD: 0.36, thigh: 0.34, shin: 0.32, upperArm: 0.3, foreArm: 0.27, limb: 0.12,
+  top: "#C9A227", sleeve: "#BFD7EA", topDark: "#A8861C", pants: "#B9A57E", shoe: "#5A3A22", sole: "#2E2018",
+  extras: { mustache: "#3A2416", collar: "#BFD7EA" },
+  defaultExpression: "neutral",
+};
+
+export const WAITER: CharSpec = {
+  ...kidBase, id: "waiter",
+  skin: "#C98B62", hair: "#1A1412", hairStyle: "buzz", brow: "#1A1412",
+  torsoW: 0.54, torsoH: 0.58, torsoD: 0.32, thigh: 0.33, shin: 0.31, upperArm: 0.29, foreArm: 0.26, limb: 0.11,
+  top: "#1C1C22", sleeve: "#F4F4F4", topDark: "#111", pants: "#1C1C22", shoe: "#111", sole: "#333",
+  extras: { collar: "#F4F4F4", bowtie: "#8B1E2E" },
+  defaultExpression: "neutral",
+};
+
+export const INTERVIEWER: CharSpec = {
+  ...kidBase, id: "interviewer",
+  skin: "#9A6440", hair: "#1A1412", hairStyle: "bun", brow: "#1A1412",
+  torsoW: 0.54, torsoH: 0.58, torsoD: 0.32, thigh: 0.33, shin: 0.31, upperArm: 0.29, foreArm: 0.26, limb: 0.11,
+  top: "#2E3A59", sleeve: "#2E3A59", topDark: "#222B44", pants: "#2E3A59", shoe: "#111", sole: "#333",
+  extras: { collar: "#F4F4F4" },
+  defaultExpression: "annoyed",
+};

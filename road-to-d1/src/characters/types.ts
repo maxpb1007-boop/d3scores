@@ -3,10 +3,10 @@ export const EXPRESSIONS: Expression[] = ["neutral", "annoyed", "shocked", "smug
 
 export type Pose =
   | "idle" | "talk" | "phoneHold" | "phoneShow" | "run" | "celebrate" | "facepalm" | "armsCrossed"
-  | "lookOver" | "juke" | "snap" | "sit" | "chew" | "flex" | "stumble" | "walk";
+  | "lookOver" | "juke" | "snap" | "sit" | "chew" | "flex" | "stumble" | "walk" | "holdDoor";
 export const POSES: Pose[] = [
   "idle", "talk", "phoneHold", "phoneShow", "run", "celebrate", "facepalm", "armsCrossed",
-  "lookOver", "juke", "snap", "sit", "chew", "flex", "stumble", "walk",
+  "lookOver", "juke", "snap", "sit", "chew", "flex", "stumble", "walk", "holdDoor",
 ];
 
 export type V3 = [number, number, number];
@@ -37,6 +37,7 @@ export type CharSpec = {
     letterman?: boolean; headband?: string;
     cap?: string; whistle?: boolean; backpack?: string; apron?: boolean; hairnet?: boolean;
     glasses?: boolean; shorts?: boolean; jerseyNumber?: string;
+    mustache?: string; collar?: string; bowtie?: string;
   };
   defaultExpression: import("./types").Expression;
 };

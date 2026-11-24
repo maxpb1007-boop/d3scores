@@ -3,6 +3,8 @@ import { GlTest } from "./dev/GlTest";
 import { SetPreview } from "./dev/SetPreview";
 import { Ep01, EP01_DURATION } from "./episodes/ep01/Ep01";
 import { Ep02, EP02_DURATION } from "./episodes/ep02/Ep02";
+import { Dalea, Dalea_DURATION } from "./episodes/dalea/Dalea";
+import { Daleb, Daleb_DURATION } from "./episodes/daleb/Daleb";
 import { Testa, Testa_DURATION } from "./episodes/testa/Testa";
 import { Testb, Testb_DURATION } from "./episodes/testb/Testb";
 import { Turnaround, ExpressionSheet, PoseSheet } from "./dev/Sheets";
@@ -13,6 +15,8 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="Ep01" component={Ep01} durationInFrames={EP01_DURATION} fps={30} width={1080} height={1920} />
     <Composition id="Ep02" component={Ep02} durationInFrames={EP02_DURATION} fps={30} width={1080} height={1920} />
     {/* short concept test clips */}
+    <Composition id="Dalea" component={Dalea} durationInFrames={Dalea_DURATION} fps={30} width={1080} height={1920} />
+    <Composition id="Daleb" component={Daleb} durationInFrames={Daleb_DURATION} fps={30} width={1080} height={1920} />
     <Composition id="Testa" component={Testa} durationInFrames={Testa_DURATION} fps={30} width={1080} height={1920} />
     <Composition id="Testb" component={Testb} durationInFrames={Testb_DURATION} fps={30} width={1080} height={1920} />
     {/* DEV ONLY: same episode with the TikTok safe-zone overlay. Never render this for posting. */}

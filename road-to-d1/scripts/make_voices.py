@@ -31,16 +31,49 @@ def trim(x, sr, pad=0.04, thresh_db=-42):
     y[:f] *= np.linspace(0, 1, f); y[-f:] *= np.linspace(1, 0, f)
     return y
 
+def split_at_pauses(x, sr, n):
+    """Split one whole-line take into n sentence chunks at its n-1 longest pauses.
+    Whole-line takes keep natural intonation across sentences (per-sentence takes sound choppy),
+    and cutting at the real pauses keeps caption timing exact."""
+    if n == 1:
+        return [x]
+    hop = int(sr * 0.01)
+    env = np.array([np.sqrt(np.mean(x[i:i + hop] ** 2) + 1e-12) for i in range(0, len(x), hop)])
+    quiet = env < env.max() * 0.03
+    runs, start = [], None
+    for i, q in enumerate(quiet):
+        if q and start is None: start = i
+        if (not q or i == len(quiet) - 1) and start is not None:
+            if start > 5 and i < len(quiet) - 5: runs.append((i - start, start, i))
+            start = None
+    cuts = sorted(sorted(runs, reverse=True)[: n - 1], key=lambda r: r[1])
+    if len(cuts) < n - 1:
+        return None
+    pts = [0] + [((a + b) // 2) * hop for _, a, b in cuts] + [len(x)]
+    return [x[pts[i]:pts[i + 1]] for i in range(n)]
+
+whole_line = script.get("wholeLine", False)
 for line in script["lines"]:
     spk = line["speaker"]; v = script["voices"][spk]
     speed = line.get("speed", v["speed"]); gain = line.get("gain", 1.0)
-    for n, s in enumerate(line["sentences"]):
-        audio, sr = k.create(s.get("tts", s["text"]), voice=v["voice"], speed=speed, lang="en-us")
-        audio = trim(audio.astype(np.float64), sr)
+    voice = v["voice"]
+    texts = [s.get("tts", s["text"]) for s in line["sentences"]]
+    chunks = None
+    if whole_line and len(texts) > 1:
+        full, sr0 = k.create(" ".join(texts), voice=voice, speed=speed, lang="en-us")
+        chunks = split_at_pauses(full.astype(np.float64), sr0, len(texts))
+        if chunks is None:
+            print(f"line {line['id']}: could not find {len(texts) - 1} pauses, falling back to per-sentence")
+    if chunks is None:
+        chunks = []
+        for t in texts:
+            a, sr0 = k.create(t, voice=voice, speed=speed, lang="en-us")
+            chunks.append(a.astype(np.float64))
+    for n, audio in enumerate(chunks):
+        audio = trim(audio, sr0)
         audio = resample_poly(audio, 2, 1)  # 24 kHz -> 48 kHz
         sr = 48000
-        if spk == "tre" and line["id"] == "03":
-            # Whisper-ish: thinner and quieter, with a little breath noise riding the envelope.
+        if line.get("whisper"):
             audio = sosfilt(butter(2, 300, "hp", fs=sr, output="sos"), audio)
             env = np.convolve(np.abs(audio), np.ones(480) / 480, "same")
             audio = audio + np.random.default_rng(3).normal(0, 1, len(audio)) * env * 0.35

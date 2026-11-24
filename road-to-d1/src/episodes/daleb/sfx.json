@@ -1,0 +1,4 @@
+{ "bpm": 84, "musicOff": [[88, 160], [534, 598]],
+  "cues": [ {"f": 57, "kind": "pop", "gain": 0.6}, {"f": 126, "kind": "scratch"}, {"f": 205, "kind": "whoosh", "gain": 0.4},
+    {"f": 291, "kind": "pop"}, {"f": 319, "kind": "thump", "gain": 0.6}, {"f": 398, "kind": "ding", "gain": 0.6},
+    {"f": 421, "kind": "whoosh", "gain": 0.4}, {"f": 494, "kind": "pop", "gain": 0.5}, {"f": 556, "kind": "cricket"}, {"f": 598, "kind": "sting", "gain": 0.8} ] }

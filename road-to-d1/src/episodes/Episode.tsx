@@ -151,16 +151,17 @@ export type EpisodeProps = {
   endTitle?: string; // end-card overrides for one-off clips
   endCta?: string;
   captionMode?: "phrase" | "word";
+  series?: [string, string];
   safeZoneDebug?: boolean;
   shotFrame?: (videoFrame: number) => number; // retime map (see retime.ts); identity if omitted
 };
 
-export const Episode: React.FC<EpisodeProps> = ({ shots, mouth, captions, highlights, blackStart, endCardStart, episodeNumber, safeZoneDebug, shotFrame, endTitle, endCta, captionMode }) => {
+export const Episode: React.FC<EpisodeProps> = ({ shots, mouth, captions, highlights, blackStart, endCardStart, episodeNumber, safeZoneDebug, shotFrame, endTitle, endCta, captionMode, series }) => {
   const frame = useCurrentFrame();
   const sf = shotFrame ? shotFrame(frame) : frame;
   const { width, height } = useVideoConfig();
   const shot = shots.find((s) => sf >= s.start && sf < s.end) ?? shots[shots.length - 1];
-  if (frame >= endCardStart) return <EndCard episode={episodeNumber} start={endCardStart} safeZoneDebug={safeZoneDebug} title={endTitle} cta={endCta} />;
+  if (frame >= endCardStart) return <EndCard episode={episodeNumber} start={endCardStart} safeZoneDebug={safeZoneDebug} title={endTitle} cta={endCta} series={series} />;
   if (frame >= blackStart) return <AbsoluteFill style={{ background: "#000" }} />;
   return (
     <AbsoluteFill style={{ background: "#000" }}>

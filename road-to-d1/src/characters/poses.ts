@@ -66,6 +66,13 @@ export const poseJoints = (pose: Pose, t: number): Joints => {
       j.neck = [-0.15, 0, 0];
       break;
     }
+    case "holdDoor":
+      // right arm straight out to the side (the open door is on the character's right, -x)
+      j.rSh = [-0.25, 0, -1.3 + S(t / 31) * 0.03];
+      j.rEl = [-0.1, 0, 0];
+      j.lSh = [0.05, 0, 0.12];
+      j.spine = [0, 0, -0.05];
+      break;
     case "walk": {
       // calm, purposeful walk (the coach): small stride, arms swing gently
       const c = S(t * 0.28);

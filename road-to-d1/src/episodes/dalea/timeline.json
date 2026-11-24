@@ -1,0 +1,548 @@
+{
+ "fps": 30,
+ "lines": [
+  {
+   "id": "01",
+   "speaker": "narr",
+   "start": 0.2,
+   "sentences": [
+    {
+     "text": "Dale has one rule.",
+     "start": 0.2,
+     "end": 1.49,
+     "words": [
+      {
+       "text": "Dale",
+       "start": 0.24,
+       "end": 0.624,
+       "frame": 7
+      },
+      {
+       "text": "has",
+       "start": 0.624,
+       "end": 0.845,
+       "frame": 19
+      },
+      {
+       "text": "one",
+       "start": 0.845,
+       "end": 1.066,
+       "frame": 25
+      },
+      {
+       "text": "rule.",
+       "start": 1.066,
+       "end": 1.45,
+       "frame": 32
+      }
+     ]
+    },
+    {
+     "text": "You always hold the door.",
+     "start": 1.6099999999999999,
+     "end": 2.9699999999999998,
+     "words": [
+      {
+       "text": "You",
+       "start": 1.65,
+       "end": 1.873,
+       "frame": 50
+      },
+      {
+       "text": "always",
+       "start": 1.873,
+       "end": 2.261,
+       "frame": 56
+      },
+      {
+       "text": "hold",
+       "start": 2.261,
+       "end": 2.484,
+       "frame": 68
+      },
+      {
+       "text": "the",
+       "start": 2.484,
+       "end": 2.707,
+       "frame": 75
+      },
+      {
+       "text": "door.",
+       "start": 2.707,
+       "end": 2.93,
+       "frame": 81
+      }
+     ]
+    }
+   ],
+   "end": 2.9699999999999998,
+   "startFrame": 6,
+   "endFrame": 89,
+   "postEndFrame": 89
+  },
+  {
+   "id": "02",
+   "speaker": "narr",
+   "start": 3.2699999999999996,
+   "sentences": [
+    {
+     "text": "Even when the person is forty feet away.",
+     "start": 3.2699999999999996,
+     "end": 6.0,
+     "words": [
+      {
+       "text": "Even",
+       "start": 3.31,
+       "end": 3.731,
+       "frame": 99
+      },
+      {
+       "text": "when",
+       "start": 3.731,
+       "end": 3.972,
+       "frame": 112
+      },
+      {
+       "text": "the",
+       "start": 3.972,
+       "end": 4.214,
+       "frame": 119
+      },
+      {
+       "text": "person",
+       "start": 4.214,
+       "end": 4.635,
+       "frame": 126
+      },
+      {
+       "text": "is",
+       "start": 4.635,
+       "end": 4.877,
+       "frame": 139
+      },
+      {
+       "text": "forty",
+       "start": 4.877,
+       "end": 5.297,
+       "frame": 146
+      },
+      {
+       "text": "feet",
+       "start": 5.297,
+       "end": 5.539,
+       "frame": 159
+      },
+      {
+       "text": "away.",
+       "start": 5.539,
+       "end": 5.96,
+       "frame": 166
+      }
+     ]
+    }
+   ],
+   "end": 6.0,
+   "startFrame": 98,
+   "endFrame": 180,
+   "postEndFrame": 189
+  },
+  {
+   "id": "03",
+   "speaker": "dale",
+   "start": 6.45,
+   "sentences": [
+    {
+     "text": "No rush!",
+     "start": 6.45,
+     "end": 7.23,
+     "words": [
+      {
+       "text": "No",
+       "start": 6.49,
+       "end": 6.84,
+       "frame": 195
+      },
+      {
+       "text": "rush!",
+       "start": 6.84,
+       "end": 7.19,
+       "frame": 205
+      }
+     ]
+    }
+   ],
+   "end": 7.23,
+   "startFrame": 194,
+   "endFrame": 217,
+   "postEndFrame": 223
+  },
+  {
+   "id": "04",
+   "speaker": "narr",
+   "start": 7.73,
+   "sentences": [
+    {
+     "text": "She rushed.",
+     "start": 7.73,
+     "end": 8.605,
+     "words": [
+      {
+       "text": "She",
+       "start": 7.77,
+       "end": 8.06,
+       "frame": 233
+      },
+      {
+       "text": "rushed.",
+       "start": 8.06,
+       "end": 8.565,
+       "frame": 242
+      }
+     ]
+    }
+   ],
+   "end": 8.605,
+   "startFrame": 232,
+   "endFrame": 258,
+   "postEndFrame": 276
+  },
+  {
+   "id": "05",
+   "speaker": "narr",
+   "start": 9.405,
+   "sentences": [
+    {
+     "text": "Then three more people came.",
+     "start": 9.405,
+     "end": 11.024999999999999,
+     "words": [
+      {
+       "text": "Then",
+       "start": 9.445,
+       "end": 9.713,
+       "frame": 283
+      },
+      {
+       "text": "three",
+       "start": 9.713,
+       "end": 9.982,
+       "frame": 291
+      },
+      {
+       "text": "more",
+       "start": 9.982,
+       "end": 10.25,
+       "frame": 299
+      },
+      {
+       "text": "people",
+       "start": 10.25,
+       "end": 10.717,
+       "frame": 307
+      },
+      {
+       "text": "came.",
+       "start": 10.717,
+       "end": 10.985,
+       "frame": 322
+      }
+     ]
+    },
+    {
+     "text": "Then a school field trip.",
+     "start": 11.144999999999998,
+     "end": 12.734999999999998,
+     "words": [
+      {
+       "text": "Then",
+       "start": 11.185,
+       "end": 11.487,
+       "frame": 336
+      },
+      {
+       "text": "a",
+       "start": 11.487,
+       "end": 11.789,
+       "frame": 345
+      },
+      {
+       "text": "school",
+       "start": 11.789,
+       "end": 12.091,
+       "frame": 354
+      },
+      {
+       "text": "field",
+       "start": 12.091,
+       "end": 12.393,
+       "frame": 363
+      },
+      {
+       "text": "trip.",
+       "start": 12.393,
+       "end": 12.695,
+       "frame": 372
+      }
+     ]
+    }
+   ],
+   "end": 12.734999999999998,
+   "startFrame": 282,
+   "endFrame": 382,
+   "postEndFrame": 388
+  },
+  {
+   "id": "06",
+   "speaker": "dale",
+   "start": 13.034999999999997,
+   "sentences": [
+    {
+     "text": "Morning.",
+     "start": 13.034999999999997,
+     "end": 13.714999999999996,
+     "words": [
+      {
+       "text": "Morning.",
+       "start": 13.075,
+       "end": 13.675,
+       "frame": 392
+      }
+     ]
+    },
+    {
+     "text": "Morning.",
+     "start": 13.834999999999996,
+     "end": 14.514999999999995,
+     "words": [
+      {
+       "text": "Morning.",
+       "start": 13.875,
+       "end": 14.475,
+       "frame": 416
+      }
+     ]
+    },
+    {
+     "text": "Morning.",
+     "start": 14.634999999999994,
+     "end": 15.314999999999994,
+     "words": [
+      {
+       "text": "Morning.",
+       "start": 14.675,
+       "end": 15.275,
+       "frame": 440
+      }
+     ]
+    },
+    {
+     "text": "Morning.",
+     "start": 15.434999999999993,
+     "end": 16.114999999999995,
+     "words": [
+      {
+       "text": "Morning.",
+       "start": 15.475,
+       "end": 16.075,
+       "frame": 464
+      }
+     ]
+    }
+   ],
+   "end": 16.114999999999995,
+   "startFrame": 391,
+   "endFrame": 483,
+   "postEndFrame": 483
+  },
+  {
+   "id": "07",
+   "speaker": "narr",
+   "start": 16.514999999999993,
+   "sentences": [
+    {
+     "text": "Eleven minutes later, Dale was still holding the door.",
+     "start": 16.514999999999993,
+     "end": 19.769999999999992,
+     "words": [
+      {
+       "text": "Eleven",
+       "start": 16.555,
+       "end": 17.085,
+       "frame": 497
+      },
+      {
+       "text": "minutes",
+       "start": 17.085,
+       "end": 17.616,
+       "frame": 513
+      },
+      {
+       "text": "later,",
+       "start": 17.616,
+       "end": 18.131,
+       "frame": 528
+      },
+      {
+       "text": "Dale",
+       "start": 18.131,
+       "end": 18.503,
+       "frame": 544
+      },
+      {
+       "text": "was",
+       "start": 18.503,
+       "end": 18.717,
+       "frame": 555
+      },
+      {
+       "text": "still",
+       "start": 18.717,
+       "end": 18.93,
+       "frame": 561
+      },
+      {
+       "text": "holding",
+       "start": 18.93,
+       "end": 19.302,
+       "frame": 568
+      },
+      {
+       "text": "the",
+       "start": 19.302,
+       "end": 19.516,
+       "frame": 579
+      },
+      {
+       "text": "door.",
+       "start": 19.516,
+       "end": 19.73,
+       "frame": 585
+      }
+     ]
+    }
+   ],
+   "end": 19.769999999999992,
+   "startFrame": 495,
+   "endFrame": 593,
+   "postEndFrame": 602
+  },
+  {
+   "id": "08",
+   "speaker": "interviewer",
+   "start": 20.269999999999992,
+   "sentences": [
+    {
+     "text": "Dale?",
+     "start": 20.269999999999992,
+     "end": 20.71999999999999,
+     "words": [
+      {
+       "text": "Dale?",
+       "start": 20.31,
+       "end": 20.68,
+       "frame": 609
+      }
+     ]
+    },
+    {
+     "text": "Your interview was at nine.",
+     "start": 20.839999999999993,
+     "end": 22.104999999999993,
+     "words": [
+      {
+       "text": "Your",
+       "start": 20.88,
+       "end": 21.063,
+       "frame": 626
+      },
+      {
+       "text": "interview",
+       "start": 21.063,
+       "end": 21.517,
+       "frame": 632
+      },
+      {
+       "text": "was",
+       "start": 21.517,
+       "end": 21.699,
+       "frame": 645
+      },
+      {
+       "text": "at",
+       "start": 21.699,
+       "end": 21.882,
+       "frame": 651
+      },
+      {
+       "text": "nine.",
+       "start": 21.882,
+       "end": 22.065,
+       "frame": 656
+      }
+     ]
+    }
+   ],
+   "end": 22.104999999999993,
+   "startFrame": 608,
+   "endFrame": 663,
+   "postEndFrame": 675
+  },
+  {
+   "id": "09",
+   "speaker": "dale",
+   "start": 22.70499999999999,
+   "sentences": [
+    {
+     "text": "I've been here the whole time.",
+     "start": 22.70499999999999,
+     "end": 24.15999999999999,
+     "words": [
+      {
+       "text": "I've",
+       "start": 22.745,
+       "end": 22.949,
+       "frame": 682
+      },
+      {
+       "text": "been",
+       "start": 22.949,
+       "end": 23.153,
+       "frame": 688
+      },
+      {
+       "text": "here",
+       "start": 23.153,
+       "end": 23.357,
+       "frame": 695
+      },
+      {
+       "text": "the",
+       "start": 23.357,
+       "end": 23.561,
+       "frame": 701
+      },
+      {
+       "text": "whole",
+       "start": 23.561,
+       "end": 23.916,
+       "frame": 707
+      },
+      {
+       "text": "time.",
+       "start": 23.916,
+       "end": 24.12,
+       "frame": 717
+      }
+     ]
+    }
+   ],
+   "end": 24.15999999999999,
+   "startFrame": 681,
+   "endFrame": 725,
+   "postEndFrame": 752
+  }
+ ],
+ "blackStart": 752,
+ "endCardStart": 761,
+ "durationInFrames": 809
+}

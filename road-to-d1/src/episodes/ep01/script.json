@@ -84,7 +84,8 @@
           "text": "A coach looked at my story.",
           "pre": 0.25
         }
-      ]
+      ],
+      "whisper": true
     },
     {
       "id": "04",

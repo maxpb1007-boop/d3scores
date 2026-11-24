@@ -1,0 +1,380 @@
+[
+{
+"text": "Enjoy",
+"startMs": 240,
+"endMs": 736,
+"timestampMs": 488,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " your",
+"startMs": 736,
+"endMs": 1020,
+"timestampMs": 878,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " meal.",
+"startMs": 1020,
+"endMs": 1305,
+"timestampMs": 1163,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": "You",
+"startMs": 1585,
+"endMs": 1898,
+"timestampMs": 1741,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " too.",
+"startMs": 1898,
+"endMs": 2210,
+"timestampMs": 2054,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": "The",
+"startMs": 2990,
+"endMs": 3274,
+"timestampMs": 3132,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " waiter",
+"startMs": 3274,
+"endMs": 3768,
+"timestampMs": 3521,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " was",
+"startMs": 3768,
+"endMs": 4052,
+"timestampMs": 3910,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " not",
+"startMs": 4052,
+"endMs": 4336,
+"timestampMs": 4194,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " eating.",
+"startMs": 4336,
+"endMs": 4830,
+"timestampMs": 4583,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": "Dale",
+"startMs": 5510,
+"endMs": 5869,
+"timestampMs": 5690,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " had",
+"startMs": 5869,
+"endMs": 6076,
+"timestampMs": 5973,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " to",
+"startMs": 6076,
+"endMs": 6282,
+"timestampMs": 6179,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " fix",
+"startMs": 6282,
+"endMs": 6489,
+"timestampMs": 6385,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " it.",
+"startMs": 6489,
+"endMs": 6695,
+"timestampMs": 6592,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": "So",
+"startMs": 6895,
+"endMs": 7094,
+"timestampMs": 6994,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " when",
+"startMs": 7094,
+"endMs": 7292,
+"timestampMs": 7193,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " the",
+"startMs": 7292,
+"endMs": 7491,
+"timestampMs": 7391,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " waiter",
+"startMs": 7491,
+"endMs": 7836,
+"timestampMs": 7664,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " came",
+"startMs": 7836,
+"endMs": 8035,
+"timestampMs": 7936,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": " back...",
+"startMs": 8035,
+"endMs": 8410,
+"timestampMs": 8222,
+"confidence": null,
+"line": "04",
+"sentence": 1
+},
+{
+"text": "Enjoy",
+"startMs": 8790,
+"endMs": 9226,
+"timestampMs": 9008,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": " your...",
+"startMs": 9226,
+"endMs": 9699,
+"timestampMs": 9463,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": " shift.",
+"startMs": 9699,
+"endMs": 9950,
+"timestampMs": 9825,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": "Worse.",
+"startMs": 10630,
+"endMs": 11300,
+"timestampMs": 10965,
+"confidence": null,
+"line": "06",
+"sentence": 0
+},
+{
+"text": "So",
+"startMs": 11980,
+"endMs": 12188,
+"timestampMs": 12084,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " Dale",
+"startMs": 12188,
+"endMs": 12549,
+"timestampMs": 12368,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " ordered",
+"startMs": 12549,
+"endMs": 13064,
+"timestampMs": 12806,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " a",
+"startMs": 13064,
+"endMs": 13271,
+"timestampMs": 13167,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " second",
+"startMs": 13271,
+"endMs": 13632,
+"timestampMs": 13452,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " meal.",
+"startMs": 13632,
+"endMs": 13840,
+"timestampMs": 13736,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": "For",
+"startMs": 14040,
+"endMs": 14254,
+"timestampMs": 14147,
+"confidence": null,
+"line": "07",
+"sentence": 1
+},
+{
+"text": " the",
+"startMs": 14254,
+"endMs": 14468,
+"timestampMs": 14361,
+"confidence": null,
+"line": "07",
+"sentence": 1
+},
+{
+"text": " waiter.",
+"startMs": 14468,
+"endMs": 14840,
+"timestampMs": 14654,
+"confidence": null,
+"line": "07",
+"sentence": 1
+},
+{
+"text": "Sir...",
+"startMs": 15520,
+"endMs": 16011,
+"timestampMs": 15765,
+"confidence": null,
+"line": "08",
+"sentence": 0
+},
+{
+"text": "I",
+"startMs": 16211,
+"endMs": 16472,
+"timestampMs": 16341,
+"confidence": null,
+"line": "08",
+"sentence": 1
+},
+{
+"text": " can't",
+"startMs": 16472,
+"endMs": 16733,
+"timestampMs": 16603,
+"confidence": null,
+"line": "08",
+"sentence": 1
+},
+{
+"text": " eat",
+"startMs": 16733,
+"endMs": 16994,
+"timestampMs": 16864,
+"confidence": null,
+"line": "08",
+"sentence": 1
+},
+{
+"text": " this.",
+"startMs": 16994,
+"endMs": 17256,
+"timestampMs": 17125,
+"confidence": null,
+"line": "08",
+"sentence": 1
+},
+{
+"text": "Then",
+"startMs": 17836,
+"endMs": 18066,
+"timestampMs": 17951,
+"confidence": null,
+"line": "09",
+"sentence": 0
+},
+{
+"text": " we're",
+"startMs": 18066,
+"endMs": 18295,
+"timestampMs": 18181,
+"confidence": null,
+"line": "09",
+"sentence": 0
+},
+{
+"text": " even.",
+"startMs": 18295,
+"endMs": 18696,
+"timestampMs": 18496,
+"confidence": null,
+"line": "09",
+"sentence": 0
+}
+]

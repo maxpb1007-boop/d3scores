@@ -5,7 +5,7 @@ import { Cam } from "../lib/camera";
 import { LightPreset } from "../lib/Stage";
 import { Screen } from "../props/Phone";
 
-export type SetName = "Hallway" | "Classroom" | "Cafeteria" | "Bedroom" | "Bathroom" | "Field" | "Town";
+export type SetName = "Hallway" | "Classroom" | "Cafeteria" | "Bedroom" | "Bathroom" | "Field" | "Town" | "Storefront" | "Restaurant";
 
 export type HandProp =
   | { kind: "phone"; screen: Screen; light?: number }

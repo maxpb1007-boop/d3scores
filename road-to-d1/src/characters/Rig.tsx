@@ -264,6 +264,13 @@ export const Rig: React.FC<RigProps> = ({
                 <M g={box(0.028, 0.08, 0.006)} c={top} p={[tw * 0.24, th * 0.62 - 0.01, td / 2 + 0.014]} />
               </>
             )}
+            {x.collar && (
+              <>
+                <M g={box(0.13, 0.08, 0.03)} c={x.collar} p={[0.07, th - 0.03, td / 2 + 0.01]} r={[0, 0, -0.5]} />
+                <M g={box(0.13, 0.08, 0.03)} c={x.collar} p={[-0.07, th - 0.03, td / 2 + 0.01]} r={[0, 0, 0.5]} />
+              </>
+            )}
+            {x.bowtie && <M g={box(0.14, 0.06, 0.03)} c={x.bowtie} p={[0, th - 0.06, td / 2 + 0.025]} />}
             {x.apron && <M g={box(tw * 0.7, th * 0.85, 0.02)} c="#F3F3EE" p={[0, th * 0.42, td / 2 + 0.006]} />}
             {x.whistle && (
               <>
@@ -314,6 +321,7 @@ export const Rig: React.FC<RigProps> = ({
                   <M g={box(0.07, 0.015, 0.015)} c="#222" shadow={false} />
                 </group>
               )}
+              {x.mustache && <M g={rbox(0.24, 0.06, 0.05, 0.02)} c={x.mustache} p={[0, -0.1, headD / 2 + 0.03]} shadow={false} />}
               <Face spec={spec} expression={e} mouthOpen={mo} blink={b} t={t} gaze={lookAt[0] * 0.5} />
             </group>
           </group>

@@ -1,0 +1,506 @@
+[
+{
+"text": "Dale",
+"startMs": 240,
+"endMs": 624,
+"timestampMs": 432,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " has",
+"startMs": 624,
+"endMs": 845,
+"timestampMs": 735,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " one",
+"startMs": 845,
+"endMs": 1066,
+"timestampMs": 955,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": " rule.",
+"startMs": 1066,
+"endMs": 1450,
+"timestampMs": 1258,
+"confidence": null,
+"line": "01",
+"sentence": 0
+},
+{
+"text": "You",
+"startMs": 1650,
+"endMs": 1873,
+"timestampMs": 1761,
+"confidence": null,
+"line": "01",
+"sentence": 1
+},
+{
+"text": " always",
+"startMs": 1873,
+"endMs": 2261,
+"timestampMs": 2067,
+"confidence": null,
+"line": "01",
+"sentence": 1
+},
+{
+"text": " hold",
+"startMs": 2261,
+"endMs": 2484,
+"timestampMs": 2373,
+"confidence": null,
+"line": "01",
+"sentence": 1
+},
+{
+"text": " the",
+"startMs": 2484,
+"endMs": 2707,
+"timestampMs": 2596,
+"confidence": null,
+"line": "01",
+"sentence": 1
+},
+{
+"text": " door.",
+"startMs": 2707,
+"endMs": 2930,
+"timestampMs": 2819,
+"confidence": null,
+"line": "01",
+"sentence": 1
+},
+{
+"text": "Even",
+"startMs": 3310,
+"endMs": 3731,
+"timestampMs": 3520,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " when",
+"startMs": 3731,
+"endMs": 3972,
+"timestampMs": 3852,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " the",
+"startMs": 3972,
+"endMs": 4214,
+"timestampMs": 4093,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " person",
+"startMs": 4214,
+"endMs": 4635,
+"timestampMs": 4425,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " is",
+"startMs": 4635,
+"endMs": 4877,
+"timestampMs": 4756,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " forty",
+"startMs": 4877,
+"endMs": 5297,
+"timestampMs": 5087,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " feet",
+"startMs": 5297,
+"endMs": 5539,
+"timestampMs": 5418,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": " away.",
+"startMs": 5539,
+"endMs": 5960,
+"timestampMs": 5750,
+"confidence": null,
+"line": "02",
+"sentence": 0
+},
+{
+"text": "No",
+"startMs": 6490,
+"endMs": 6840,
+"timestampMs": 6665,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": " rush!",
+"startMs": 6840,
+"endMs": 7190,
+"timestampMs": 7015,
+"confidence": null,
+"line": "03",
+"sentence": 0
+},
+{
+"text": "She",
+"startMs": 7770,
+"endMs": 8060,
+"timestampMs": 7915,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": " rushed.",
+"startMs": 8060,
+"endMs": 8565,
+"timestampMs": 8313,
+"confidence": null,
+"line": "04",
+"sentence": 0
+},
+{
+"text": "Then",
+"startMs": 9445,
+"endMs": 9713,
+"timestampMs": 9579,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": " three",
+"startMs": 9713,
+"endMs": 9982,
+"timestampMs": 9847,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": " more",
+"startMs": 9982,
+"endMs": 10250,
+"timestampMs": 10116,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": " people",
+"startMs": 10250,
+"endMs": 10717,
+"timestampMs": 10483,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": " came.",
+"startMs": 10717,
+"endMs": 10985,
+"timestampMs": 10851,
+"confidence": null,
+"line": "05",
+"sentence": 0
+},
+{
+"text": "Then",
+"startMs": 11185,
+"endMs": 11487,
+"timestampMs": 11336,
+"confidence": null,
+"line": "05",
+"sentence": 1
+},
+{
+"text": " a",
+"startMs": 11487,
+"endMs": 11789,
+"timestampMs": 11638,
+"confidence": null,
+"line": "05",
+"sentence": 1
+},
+{
+"text": " school",
+"startMs": 11789,
+"endMs": 12091,
+"timestampMs": 11940,
+"confidence": null,
+"line": "05",
+"sentence": 1
+},
+{
+"text": " field",
+"startMs": 12091,
+"endMs": 12393,
+"timestampMs": 12242,
+"confidence": null,
+"line": "05",
+"sentence": 1
+},
+{
+"text": " trip.",
+"startMs": 12393,
+"endMs": 12695,
+"timestampMs": 12544,
+"confidence": null,
+"line": "05",
+"sentence": 1
+},
+{
+"text": "Morning.",
+"startMs": 13075,
+"endMs": 13675,
+"timestampMs": 13375,
+"confidence": null,
+"line": "06",
+"sentence": 0
+},
+{
+"text": "Morning.",
+"startMs": 13875,
+"endMs": 14475,
+"timestampMs": 14175,
+"confidence": null,
+"line": "06",
+"sentence": 1
+},
+{
+"text": "Morning.",
+"startMs": 14675,
+"endMs": 15275,
+"timestampMs": 14975,
+"confidence": null,
+"line": "06",
+"sentence": 2
+},
+{
+"text": "Morning.",
+"startMs": 15475,
+"endMs": 16075,
+"timestampMs": 15775,
+"confidence": null,
+"line": "06",
+"sentence": 3
+},
+{
+"text": "Eleven",
+"startMs": 16555,
+"endMs": 17085,
+"timestampMs": 16820,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " minutes",
+"startMs": 17085,
+"endMs": 17616,
+"timestampMs": 17351,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " later,",
+"startMs": 17616,
+"endMs": 18131,
+"timestampMs": 17873,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " Dale",
+"startMs": 18131,
+"endMs": 18503,
+"timestampMs": 18317,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " was",
+"startMs": 18503,
+"endMs": 18717,
+"timestampMs": 18610,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " still",
+"startMs": 18717,
+"endMs": 18930,
+"timestampMs": 18823,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " holding",
+"startMs": 18930,
+"endMs": 19302,
+"timestampMs": 19116,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " the",
+"startMs": 19302,
+"endMs": 19516,
+"timestampMs": 19409,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": " door.",
+"startMs": 19516,
+"endMs": 19730,
+"timestampMs": 19623,
+"confidence": null,
+"line": "07",
+"sentence": 0
+},
+{
+"text": "Dale?",
+"startMs": 20310,
+"endMs": 20680,
+"timestampMs": 20495,
+"confidence": null,
+"line": "08",
+"sentence": 0
+},
+{
+"text": "Your",
+"startMs": 20880,
+"endMs": 21063,
+"timestampMs": 20971,
+"confidence": null,
+"line": "08",
+"sentence": 1
+},
+{
+"text": " interview",
+"startMs": 21063,
+"endMs": 21517,
+"timestampMs": 21290,
+"confidence": null,
+"line": "08",
+"sentence": 1
+},
+{
+"text": " was",
+"startMs": 21517,
+"endMs": 21699,
+"timestampMs": 21608,
+"confidence": null,
+"line": "08",
+"sentence": 1
+},
+{
+"text": " at",
+"startMs": 21699,
+"endMs": 21882,
+"timestampMs": 21791,
+"confidence": null,
+"line": "08",
+"sentence": 1
+},
+{
+"text": " nine.",
+"startMs": 21882,
+"endMs": 22065,
+"timestampMs": 21974,
+"confidence": null,
+"line": "08",
+"sentence": 1
+},
+{
+"text": "I've",
+"startMs": 22745,
+"endMs": 22949,
+"timestampMs": 22847,
+"confidence": null,
+"line": "09",
+"sentence": 0
+},
+{
+"text": " been",
+"startMs": 22949,
+"endMs": 23153,
+"timestampMs": 23051,
+"confidence": null,
+"line": "09",
+"sentence": 0
+},
+{
+"text": " here",
+"startMs": 23153,
+"endMs": 23357,
+"timestampMs": 23255,
+"confidence": null,
+"line": "09",
+"sentence": 0
+},
+{
+"text": " the",
+"startMs": 23357,
+"endMs": 23561,
+"timestampMs": 23459,
+"confidence": null,
+"line": "09",
+"sentence": 0
+},
+{
+"text": " whole",
+"startMs": 23561,
+"endMs": 23916,
+"timestampMs": 23738,
+"confidence": null,
+"line": "09",
+"sentence": 0
+},
+{
+"text": " time.",
+"startMs": 23916,
+"endMs": 24120,
+"timestampMs": 24018,
+"confidence": null,
+"line": "09",
+"sentence": 0
+}
+]

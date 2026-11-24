@@ -1,0 +1,5 @@
+{ "bpm": 100, "musicOff": [[600, 761]],
+  "cues": [ {"f": 48, "kind": "whoosh", "gain": 0.4}, {"f": 146, "kind": "pop"}, {"f": 205, "kind": "pop", "gain": 0.6},
+    {"f": 238, "kind": "step"}, {"f": 244, "kind": "step"}, {"f": 250, "kind": "step"}, {"f": 256, "kind": "step"}, {"f": 262, "kind": "step"}, {"f": 268, "kind": "step"},
+    {"f": 334, "kind": "whoosh", "gain": 0.5}, {"f": 392, "kind": "click"}, {"f": 416, "kind": "click"}, {"f": 440, "kind": "click"}, {"f": 464, "kind": "click"},
+    {"f": 497, "kind": "scratch", "gain": 0.6}, {"f": 609, "kind": "thump", "gain": 0.5}, {"f": 722, "kind": "cricket"}, {"f": 761, "kind": "sting", "gain": 0.8} ] }

@@ -1,0 +1,443 @@
+{
+ "fps": 30,
+ "lines": [
+  {
+   "id": "01",
+   "speaker": "waiter",
+   "start": 0.2,
+   "sentences": [
+    {
+     "text": "Enjoy your meal.",
+     "start": 0.2,
+     "end": 1.345,
+     "words": [
+      {
+       "text": "Enjoy",
+       "start": 0.24,
+       "end": 0.736,
+       "frame": 7
+      },
+      {
+       "text": "your",
+       "start": 0.736,
+       "end": 1.02,
+       "frame": 22
+      },
+      {
+       "text": "meal.",
+       "start": 1.02,
+       "end": 1.305,
+       "frame": 31
+      }
+     ]
+    }
+   ],
+   "end": 1.345,
+   "startFrame": 6,
+   "endFrame": 40,
+   "postEndFrame": 43
+  },
+  {
+   "id": "02",
+   "speaker": "dale",
+   "start": 1.5450000000000002,
+   "sentences": [
+    {
+     "text": "You too.",
+     "start": 1.5450000000000002,
+     "end": 2.25,
+     "words": [
+      {
+       "text": "You",
+       "start": 1.585,
+       "end": 1.897,
+       "frame": 48
+      },
+      {
+       "text": "too.",
+       "start": 1.897,
+       "end": 2.21,
+       "frame": 57
+      }
+     ]
+    }
+   ],
+   "end": 2.25,
+   "startFrame": 46,
+   "endFrame": 68,
+   "postEndFrame": 82
+  },
+  {
+   "id": "03",
+   "speaker": "narr",
+   "start": 2.95,
+   "sentences": [
+    {
+     "text": "The waiter was not eating.",
+     "start": 2.95,
+     "end": 4.87,
+     "words": [
+      {
+       "text": "The",
+       "start": 2.99,
+       "end": 3.274,
+       "frame": 90
+      },
+      {
+       "text": "waiter",
+       "start": 3.274,
+       "end": 3.768,
+       "frame": 98
+      },
+      {
+       "text": "was",
+       "start": 3.768,
+       "end": 4.052,
+       "frame": 113
+      },
+      {
+       "text": "not",
+       "start": 4.052,
+       "end": 4.336,
+       "frame": 122
+      },
+      {
+       "text": "eating.",
+       "start": 4.336,
+       "end": 4.83,
+       "frame": 130
+      }
+     ]
+    }
+   ],
+   "end": 4.87,
+   "startFrame": 88,
+   "endFrame": 146,
+   "postEndFrame": 158
+  },
+  {
+   "id": "04",
+   "speaker": "narr",
+   "start": 5.470000000000001,
+   "sentences": [
+    {
+     "text": "Dale had to fix it.",
+     "start": 5.470000000000001,
+     "end": 6.735,
+     "words": [
+      {
+       "text": "Dale",
+       "start": 5.51,
+       "end": 5.869,
+       "frame": 165
+      },
+      {
+       "text": "had",
+       "start": 5.869,
+       "end": 6.076,
+       "frame": 176
+      },
+      {
+       "text": "to",
+       "start": 6.076,
+       "end": 6.282,
+       "frame": 182
+      },
+      {
+       "text": "fix",
+       "start": 6.282,
+       "end": 6.489,
+       "frame": 188
+      },
+      {
+       "text": "it.",
+       "start": 6.489,
+       "end": 6.695,
+       "frame": 195
+      }
+     ]
+    },
+    {
+     "text": "So when the waiter came back...",
+     "start": 6.855,
+     "end": 8.450000000000001,
+     "words": [
+      {
+       "text": "So",
+       "start": 6.895,
+       "end": 7.094,
+       "frame": 207
+      },
+      {
+       "text": "when",
+       "start": 7.094,
+       "end": 7.292,
+       "frame": 213
+      },
+      {
+       "text": "the",
+       "start": 7.292,
+       "end": 7.491,
+       "frame": 219
+      },
+      {
+       "text": "waiter",
+       "start": 7.491,
+       "end": 7.836,
+       "frame": 225
+      },
+      {
+       "text": "came",
+       "start": 7.836,
+       "end": 8.035,
+       "frame": 235
+      },
+      {
+       "text": "back...",
+       "start": 8.035,
+       "end": 8.41,
+       "frame": 241
+      }
+     ]
+    }
+   ],
+   "end": 8.450000000000001,
+   "startFrame": 164,
+   "endFrame": 254,
+   "postEndFrame": 260
+  },
+  {
+   "id": "05",
+   "speaker": "dale",
+   "start": 8.75,
+   "sentences": [
+    {
+     "text": "Enjoy your... shift.",
+     "start": 8.75,
+     "end": 9.99,
+     "words": [
+      {
+       "text": "Enjoy",
+       "start": 8.79,
+       "end": 9.226,
+       "frame": 264
+      },
+      {
+       "text": "your...",
+       "start": 9.226,
+       "end": 9.699,
+       "frame": 277
+      },
+      {
+       "text": "shift.",
+       "start": 9.699,
+       "end": 9.95,
+       "frame": 291
+      }
+     ]
+    }
+   ],
+   "end": 9.99,
+   "startFrame": 262,
+   "endFrame": 300,
+   "postEndFrame": 315
+  },
+  {
+   "id": "06",
+   "speaker": "narr",
+   "start": 10.59,
+   "sentences": [
+    {
+     "text": "Worse.",
+     "start": 10.59,
+     "end": 11.34,
+     "words": [
+      {
+       "text": "Worse.",
+       "start": 10.63,
+       "end": 11.3,
+       "frame": 319
+      }
+     ]
+    }
+   ],
+   "end": 11.34,
+   "startFrame": 318,
+   "endFrame": 340,
+   "postEndFrame": 352
+  },
+  {
+   "id": "07",
+   "speaker": "narr",
+   "start": 11.94,
+   "sentences": [
+    {
+     "text": "So Dale ordered a second meal.",
+     "start": 11.94,
+     "end": 13.879999999999999,
+     "words": [
+      {
+       "text": "So",
+       "start": 11.98,
+       "end": 12.188,
+       "frame": 359
+      },
+      {
+       "text": "Dale",
+       "start": 12.188,
+       "end": 12.549,
+       "frame": 366
+      },
+      {
+       "text": "ordered",
+       "start": 12.549,
+       "end": 13.064,
+       "frame": 376
+      },
+      {
+       "text": "a",
+       "start": 13.064,
+       "end": 13.271,
+       "frame": 392
+      },
+      {
+       "text": "second",
+       "start": 13.271,
+       "end": 13.632,
+       "frame": 398
+      },
+      {
+       "text": "meal.",
+       "start": 13.632,
+       "end": 13.84,
+       "frame": 409
+      }
+     ]
+    },
+    {
+     "text": "For the waiter.",
+     "start": 13.999999999999998,
+     "end": 14.879999999999999,
+     "words": [
+      {
+       "text": "For",
+       "start": 14.04,
+       "end": 14.254,
+       "frame": 421
+      },
+      {
+       "text": "the",
+       "start": 14.254,
+       "end": 14.468,
+       "frame": 428
+      },
+      {
+       "text": "waiter.",
+       "start": 14.468,
+       "end": 14.84,
+       "frame": 434
+      }
+     ]
+    }
+   ],
+   "end": 14.879999999999999,
+   "startFrame": 358,
+   "endFrame": 446,
+   "postEndFrame": 458
+  },
+  {
+   "id": "08",
+   "speaker": "waiter",
+   "start": 15.479999999999999,
+   "sentences": [
+    {
+     "text": "Sir...",
+     "start": 15.479999999999999,
+     "end": 16.050666666666665,
+     "words": [
+      {
+       "text": "Sir...",
+       "start": 15.52,
+       "end": 16.011,
+       "frame": 466
+      }
+     ]
+    },
+    {
+     "text": "I can't eat this.",
+     "start": 16.170666666666666,
+     "end": 17.295666666666666,
+     "words": [
+      {
+       "text": "I",
+       "start": 16.211,
+       "end": 16.472,
+       "frame": 486
+      },
+      {
+       "text": "can't",
+       "start": 16.472,
+       "end": 16.733,
+       "frame": 494
+      },
+      {
+       "text": "eat",
+       "start": 16.733,
+       "end": 16.994,
+       "frame": 502
+      },
+      {
+       "text": "this.",
+       "start": 16.994,
+       "end": 17.256,
+       "frame": 510
+      }
+     ]
+    }
+   ],
+   "end": 17.295666666666666,
+   "startFrame": 464,
+   "endFrame": 519,
+   "postEndFrame": 528
+  },
+  {
+   "id": "09",
+   "speaker": "dale",
+   "start": 17.795666666666666,
+   "sentences": [
+    {
+     "text": "Then we're even.",
+     "start": 17.795666666666666,
+     "end": 18.735666666666667,
+     "words": [
+      {
+       "text": "Then",
+       "start": 17.836,
+       "end": 18.066,
+       "frame": 535
+      },
+      {
+       "text": "we're",
+       "start": 18.066,
+       "end": 18.295,
+       "frame": 542
+      },
+      {
+       "text": "even.",
+       "start": 18.295,
+       "end": 18.696,
+       "frame": 549
+      }
+     ]
+    }
+   ],
+   "end": 18.735666666666667,
+   "startFrame": 534,
+   "endFrame": 562,
+   "postEndFrame": 589
+  }
+ ],
+ "blackStart": 589,
+ "endCardStart": 598,
+ "durationInFrames": 646
+}

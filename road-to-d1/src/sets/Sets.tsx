@@ -438,4 +438,96 @@ export const Town: React.FC = () => {
   );
 };
 
-export const SETS = { Hallway, Classroom, Cafeteria, Bedroom, Bathroom, Field, Town };
+// ---------------------------------------------------------------- STOREFRONT (office building entrance)
+/** Glass double door at x 0 in a building facade at z -1.8; the left door panel stands open toward
+ *  the camera (+z). Sidewalk runs along x so people can approach from far away (x +14). */
+export const Storefront: React.FC = () => (
+  <group>
+    <SkyDome top="#6FB0F2" mid="#D6ECFF" bottom="#B9C7D6" />
+    <fog attach="fog" args={["#D6ECFF", 30, 120]} />
+    <mesh geometry={plane(400, 400)} material={mat("#8A8F96")} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, 0]} receiveShadow />
+    <B s={[40, 0.12, 4.5]} p={[0, 0.06, 0.4]} c="#D8D4CC" />
+    <B s={[40, 0.02, 6]} p={[0, 0.01, 5.6]} c="#4A4E58" shadow={false} />
+    {/* facade */}
+    <B s={[40, 8, 0.4]} p={[0, 4, -2.0]} c="#B9A58A" />
+    {[-12, -8, -4, 4, 8, 12].map((x) => (
+      <B key={x} s={[2.6, 1.8, 0.06]} p={[x, 1.6, -1.78]} c="#9CC7E8" emissive shadow={false} />
+    ))}
+    {[-12, -8, -4, 0, 4, 8, 12].map((x) => (
+      <B key={`u${x}`} s={[2.6, 1.5, 0.06]} p={[x, 4.6, -1.78]} c="#9CC7E8" emissive shadow={false} />
+    ))}
+    <Poster id="bldg-sign" p={[0, 3.35, -1.77]} w={2.6} h={0.5}
+      draw={(c, W, H) => { c.fillStyle = "#2E3A59"; c.fillRect(0, 0, W, H); c.fillStyle = "#FFFFFF"; c.font = `800 ${H * 0.5}px ${FONT}`; c.textAlign = "center"; c.fillText("BUILDING 9", W / 2, H * 0.68); }} />
+    {/* door frame + fixed right panel + open left panel */}
+    <B s={[2.3, 2.7, 0.3]} p={[0, 1.35, -1.85]} c="#3A3F48" />
+    <B s={[1.0, 2.4, 0.06]} p={[0.52, 1.22, -1.66]} c="#BFE3F7" emissive shadow={false} />
+    <group position={[-1.02, 0, -1.66]} rotation={[0, -1.35, 0]}>
+      <B s={[1.0, 2.4, 0.06]} p={[0.5, 1.22, 0]} c="#BFE3F7" />
+      <B s={[1.04, 2.44, 0.03]} p={[0.5, 1.22, -0.03]} c="#3A3F48" />
+      <B s={[0.05, 0.5, 0.08]} p={[0.88, 1.1, 0.06]} c="#C9CED6" />
+    </group>
+    <B s={[1.0, 2.4, 0.05]} p={[-0.52, 1.22, -1.8]} c="#2A2E36" shadow={false} />
+    {/* planters */}
+    {[-2.2, 2.2].map((x) => (
+      <group key={x} position={[x, 0, -1.2]}>
+        <B s={[0.7, 0.6, 0.7]} p={[0, 0.3, 0]} c="#6B4F3A" />
+        <mesh geometry={sphere(0.45, 6, 5)} material={mat("#4FA24A")} position={[0, 0.9, 0]} castShadow />
+      </group>
+    ))}
+    {[-9, 9, 15].map((x) => (
+      <group key={`t${x}`} position={[x, 0, 2.4]}>
+        <Cyl r={0.12} h={1.4} p={[0, 0.7, 0]} c="#7A4E33" />
+        <mesh geometry={sphere(1.0, 6, 5)} material={mat("#6ABF4B")} position={[0, 1.9, 0]} castShadow />
+      </group>
+    ))}
+  </group>
+);
+
+// ---------------------------------------------------------------- RESTAURANT (warm, evening)
+/** One table at the origin (top y 0.78). Diner sits on the far side (z -0.55) facing +z; the waiter
+ *  stands at the side. Background tables, pendant lights and a window for depth. */
+export const Restaurant: React.FC = () => {
+  const table = (x: number, z: number, k: string) => (
+    <group key={k} position={[x, 0, z]}>
+      <B s={[1.2, 0.05, 0.9]} p={[0, 0.78, 0]} c="#F7F3EA" />
+      <B s={[1.24, 0.22, 0.94]} p={[0, 0.66, 0]} c="#F2EDE2" shadow={false} />
+      <B s={[0.1, 0.6, 0.1]} p={[0, 0.3, 0]} c="#3A2A22" />
+      <B s={[0.5, 0.05, 0.45]} p={[0, 0.46, -0.65]} c="#7A3E2A" />
+      <B s={[0.5, 0.55, 0.06]} p={[0, 0.74, -0.86]} c="#7A3E2A" />
+    </group>
+  );
+  return (
+    <group>
+      <color attach="background" args={["#2A1A14"]} />
+      <B s={[14, 0.1, 10]} p={[0, -0.05, 1]} c="#6B4630" />
+      <B s={[14, 3.4, 0.2]} p={[0, 1.7, -2.2]} c="#C9A27A" />
+      <B s={[14, 1.0, 0.24]} p={[0, 0.5, -2.1]} c="#7A3E2A" />
+      <B s={[0.2, 3.4, 10]} p={[-4.5, 1.7, 1]} c="#BC956E" />
+      <group position={[1.6, 1.9, -2.08]}>
+        <B s={[1.6, 1.1, 0.04]} p={[0, 0, 0]} c="#2B3E6E" emissive shadow={false} />
+        <B s={[1.7, 0.06, 0.08]} p={[0, 0, 0.02]} c="#3A2A22" />
+        <B s={[0.06, 1.2, 0.08]} p={[0, 0, 0.02]} c="#3A2A22" />
+      </group>
+      <Poster id="rest-art" p={[-1.8, 2.0, -2.08]} w={0.9} h={0.7}
+        draw={(c, W, H) => { c.fillStyle = "#E9D8B4"; c.fillRect(0, 0, W, H); c.fillStyle = "#C0392B"; c.beginPath(); c.arc(W * 0.4, H * 0.55, H * 0.25, 0, 6.28); c.fill(); c.fillStyle = "#3E6B4A"; c.fillRect(W * 0.6, H * 0.3, W * 0.15, H * 0.5); }} />
+      {table(0, 0, "main")}
+      {table(-2.6, -0.6, "b1")}
+      {table(2.8, -0.4, "b2")}
+      {table(-1.6, 2.6, "b3")}
+      {/* place settings + candle on the main table */}
+      <Cyl r={0.15} h={0.02} p={[0, 0.81, -0.25]} c="#FFFFFF" seg={14} />
+      <Cyl r={0.04} h={0.12} p={[0.35, 0.87, 0.05]} c="#F4EFE3" />
+      <mesh geometry={sphere(0.025, 6, 5)} material={glow("#FFC46B")} position={[0.35, 0.95, 0.05]} />
+      <pointLight position={[0.35, 1.05, 0.05]} intensity={0.6} distance={2} color="#FFB060" />
+      {[-2.6, 0, 2.8].map((x) => (
+        <group key={x} position={[x, 2.6, x === 0 ? 0 : -0.5]}>
+          <Cyl r={0.01} h={0.8} p={[0, 0.4, 0]} c="#222" />
+          <mesh geometry={cone(0.22, 0.2, 8)} material={mat("#2E2A26")} />
+          <mesh geometry={sphere(0.08, 6, 5)} material={glow("#FFD9A0")} position={[0, -0.1, 0]} />
+        </group>
+      ))}
+    </group>
+  );
+};
+
+export const SETS = { Hallway, Classroom, Cafeteria, Bedroom, Bathroom, Field, Town, Storefront, Restaurant };
