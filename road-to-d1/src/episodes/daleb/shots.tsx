@@ -57,5 +57,5 @@ export const SHOTS: Shot[] = [
   // "Sir... I can't eat this."
   { id: "b11", start: 464, end: 534, set: "Restaurant", light: "warm", cam: waiterCU(1.2), push: 0.06, actors: [waiter({ expr: [{ f: 0, e: "sad" }] })], extra: both },
   // "Then we're even."
-  { id: "b12", start: 534, end: 589, set: "Restaurant", light: "warm", cam: daleCU(1.2, { yaw: 0.05 }), push: 0.06, actors: [dale({ expr: [{ f: 0, e: "smug" }] })], extra: both, fx: [{ kind: "label", f: 556, text: "WHO WAS WRONG?", color: "#FF6B6B" }] },
+  { id: "b12", start: 534, end: 589, set: "Restaurant", light: "warm", cam: daleCU(1.2, { yaw: 0.05 }), push: 0.06, actors: [dale({ expr: [{ f: 0, e: "smug" }] })], extra: both, fx: [{ kind: "label", f: 556, text: "WHO WAS WRONG?", x: 47, color: "#FF6B6B" }] },
 ];

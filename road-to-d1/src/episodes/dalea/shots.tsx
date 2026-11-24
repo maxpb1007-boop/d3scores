@@ -86,6 +86,6 @@ export const SHOTS: Shot[] = [
   // "I've been here the whole time."
   {
     id: "a13", start: 678, end: 752, set: "Storefront", light: "sunny", lightTarget: DALE_AT, cam: cu(1.2, { yaw: 0.05 }), push: 0.06,
-    actors: [dale({ expr: [{ f: 0, e: "neutral" }] })], fx: [{ kind: "label", f: 722, text: "WHO WAS WRONG?", color: "#FF6B6B" }],
+    actors: [dale({ expr: [{ f: 0, e: "neutral" }] })], fx: [{ kind: "label", f: 722, text: "WHO WAS WRONG?", x: 47, color: "#FF6B6B" }],
   },
 ];
