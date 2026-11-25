@@ -113,10 +113,6 @@ for L in timeline["lines"]:
 
 json.dump(timeline, open(f"{base}/timeline.json", "w"), indent=1)
 json.dump(captions, open(f"{base}/captions.json", "w"), indent=0)
-print(f"duration {total:.2f}s = {timeline['durationInFrames']} frames; {len(captions)} words")
-for L in timeline["lines"]:
-    print(L["id"], L["speaker"], f"{L['start']:6.2f}-{L['end']:6.2f}  frames {L['startFrame']}-{L['endFrame']} (post→{L['postEndFrame']})")
-
 # A tiny generated index so the video can import every mouth file statically.
 ids = [L["id"] for L in timeline["lines"]]
 with open(f"{base}/mouth/index.ts", "w") as fh:
@@ -125,3 +121,8 @@ with open(f"{base}/mouth/index.ts", "w") as fh:
         fh.write(f'import m{i} from "./{i}.json";\n')
     fh.write("export type MouthTrack = { id: string; speaker: string; startFrame: number; values: number[] };\n")
     fh.write("export const MOUTH: MouthTrack[] = [" + ", ".join(f"m{i}" for i in ids) + "];\n")
+
+print(f"duration {total:.2f}s = {timeline['durationInFrames']} frames; {len(captions)} words")
+for L in timeline["lines"]:
+    print(L["id"], L["speaker"], f"{L['start']:6.2f}-{L['end']:6.2f}  frames {L['startFrame']}-{L['endFrame']} (post→{L['postEndFrame']})")
+

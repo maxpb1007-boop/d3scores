@@ -36,6 +36,12 @@ python3 -c "import json;t=json.load(open('src/episodes/epNN/timeline.json'));[pr
 ```
 Check the printed duration is 62–75 s; adjust `pre`/`post`/speeds and rerun if not.
 
+### Real voices (preferred since 2026-11-25)
+The owner records the lines instead of Kokoro. Run `python3 scripts/line_sheet.py epNN`, send him
+`recording/epNN_line_sheet.md`, and when each memo arrives run
+`.venv/bin/python scripts/import_recording.py epNN <speaker> <memo path>` (uploads land under
+`/root/.claude/uploads/...`). Then build_timeline → make_audio → render. Keep Kokoro only for drafts.
+
 ## 3. Shots (`src/episodes/epNN/shots.tsx`) + composition
 - Copy `src/episodes/ep01/shots.tsx` and `Ep01.tsx` → `epNN/`. In `EpNN.tsx` change imports and `episodeNumber`.
 - Register `<Composition id="EpNN" …>` in `src/Root.tsx` next to Ep01 (duration from its timeline.json).

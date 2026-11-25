@@ -1,29 +1,167 @@
 {
-  "episode": "daleb", "title": "Technically Right - You Too", "wholeLine": true,
+  "episode": "daleb",
+  "title": "Technically Right - You Too",
+  "wholeLine": true,
   "voices": {
-    "narr": { "voice": "bm_george", "speed": 1.05 },
-    "dale": { "voice": "am_adam", "speed": 1.05 },
-    "waiter": { "voice": "am_eric", "speed": 1.05 }
+    "narr": {
+      "voice": "bm_george",
+      "speed": 1.05
+    },
+    "dale": {
+      "voice": "am_adam",
+      "speed": 1.05
+    },
+    "waiter": {
+      "voice": "am_eric",
+      "speed": 1.05
+    }
   },
-  "sentenceGap": 0.12, "endBlack": 0.3, "endCard": 1.6,
+  "sentenceGap": 0.12,
+  "endBlack": 0.3,
+  "endCard": 1.6,
   "lines": [
-    { "id": "01", "speaker": "waiter", "pre": 0.2, "highlights": ["Enjoy"],
-      "sentences": [ { "text": "Enjoy your meal." } ], "post": 0.1 },
-    { "id": "02", "speaker": "dale", "pre": 0.1, "highlights": ["too"],
-      "sentences": [ { "text": "You too." } ], "post": 0.5 },
-    { "id": "03", "speaker": "narr", "pre": 0.2, "highlights": ["not"],
-      "sentences": [ { "text": "The waiter was not eating." } ], "post": 0.4 },
-    { "id": "04", "speaker": "narr", "pre": 0.2, "highlights": ["fix"],
-      "sentences": [ { "text": "Dale had to fix it." }, { "text": "So when the waiter came back..." } ], "post": 0.2 },
-    { "id": "05", "speaker": "dale", "pre": 0.1, "highlights": ["shift"],
-      "sentences": [ { "text": "Enjoy your... shift.", "tts": "Enjoy your... shift." } ], "post": 0.5 },
-    { "id": "06", "speaker": "narr", "pre": 0.1, "highlights": ["Worse"],
-      "sentences": [ { "text": "Worse." } ], "post": 0.4 },
-    { "id": "07", "speaker": "narr", "pre": 0.2, "highlights": ["second", "waiter"],
-      "sentences": [ { "text": "So Dale ordered a second meal." }, { "text": "For the waiter." } ], "post": 0.4 },
-    { "id": "08", "speaker": "waiter", "pre": 0.2, "highlights": ["can't"],
-      "sentences": [ { "text": "Sir..." }, { "text": "I can't eat this." } ], "post": 0.3 },
-    { "id": "09", "speaker": "dale", "pre": 0.2, "highlights": ["even"],
-      "sentences": [ { "text": "Then we're even." } ], "post": 0.9 }
-  ]
+    {
+      "id": "01",
+      "speaker": "waiter",
+      "pre": 0.2,
+      "highlights": [
+        "Enjoy"
+      ],
+      "sentences": [
+        {
+          "text": "Enjoy your meal."
+        }
+      ],
+      "post": 0.1
+    },
+    {
+      "id": "02",
+      "speaker": "dale",
+      "pre": 0.1,
+      "highlights": [
+        "too"
+      ],
+      "sentences": [
+        {
+          "text": "You too."
+        }
+      ],
+      "post": 0.5
+    },
+    {
+      "id": "03",
+      "speaker": "narr",
+      "pre": 0.2,
+      "highlights": [
+        "not"
+      ],
+      "sentences": [
+        {
+          "text": "The waiter was not eating."
+        }
+      ],
+      "post": 0.4
+    },
+    {
+      "id": "04",
+      "speaker": "narr",
+      "pre": 0.2,
+      "highlights": [
+        "fix"
+      ],
+      "sentences": [
+        {
+          "text": "Dale had to fix it."
+        },
+        {
+          "text": "So when the waiter came back..."
+        }
+      ],
+      "post": 0.2
+    },
+    {
+      "id": "05",
+      "speaker": "dale",
+      "pre": 0.1,
+      "highlights": [
+        "shift"
+      ],
+      "sentences": [
+        {
+          "text": "Enjoy your... shift.",
+          "tts": "Enjoy your... shift."
+        }
+      ],
+      "post": 0.5
+    },
+    {
+      "id": "06",
+      "speaker": "narr",
+      "pre": 0.1,
+      "highlights": [
+        "Worse"
+      ],
+      "sentences": [
+        {
+          "text": "Worse."
+        }
+      ],
+      "post": 0.4
+    },
+    {
+      "id": "07",
+      "speaker": "narr",
+      "pre": 0.2,
+      "highlights": [
+        "second",
+        "waiter"
+      ],
+      "sentences": [
+        {
+          "text": "So Dale ordered a second meal."
+        },
+        {
+          "text": "For the waiter."
+        }
+      ],
+      "post": 0.4
+    },
+    {
+      "id": "08",
+      "speaker": "waiter",
+      "pre": 0.2,
+      "highlights": [
+        "can't"
+      ],
+      "sentences": [
+        {
+          "text": "Sir..."
+        },
+        {
+          "text": "I can't eat this."
+        }
+      ],
+      "post": 0.3
+    },
+    {
+      "id": "09",
+      "speaker": "dale",
+      "pre": 0.2,
+      "highlights": [
+        "even"
+      ],
+      "sentences": [
+        {
+          "text": "Then we're even."
+        }
+      ],
+      "post": 0.9
+    }
+  ],
+  "actingNotes": {
+    "narr": "Dry documentary narrator. Calm, unimpressed, like a nature film about a strange animal.",
+    "dale": "Confident, polite, a little too pleased with himself. Never realizes he's the problem.",
+    "interviewer": "Annoyed, clipped, professional.",
+    "waiter": "Polite, tired, trying very hard to stay professional."
+  }
 }

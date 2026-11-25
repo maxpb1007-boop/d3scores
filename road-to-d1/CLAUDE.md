@@ -175,3 +175,19 @@ to the repo. Everything is committed locally on `claude/road-to-d1-ep01-aoxozi`;
 - Ep 2: 62.3 s, 38 shots, QA 12/12. Render ~11 min (1868 frames).
 - Trend note: copying the looksmaxxing "PSL scale" videos was declined on purpose — they rank teens as
   "subhuman" and show bone-smashing with a hammer. The rating-over-heads hook was kept with recruiting stars.
+
+### 2026-11-25 — real voices: the owner records, the pipeline imports
+
+Kokoro hit its ceiling: after a faster speed, 8 voice samples and whole-line generation, the owner still
+said "the voice isn't right". Decision: **the owner records the lines himself** on his phone.
+- `python3 scripts/line_sheet.py <ep>` → `recording/<ep>_line_sheet.md`: one section per character, numbered lines,
+  acting notes (`actingNotes` per speaker and optional per-sentence `note` in script.json).
+- He records **one voice memo per character**, lines in order, ~2 s pause between lines.
+- `.venv/bin/python scripts/import_recording.py <ep> <speaker> <memo>` cuts the memo at its N-1 longest pauses
+  (threshold adapts to the room's noise floor), cleans it (80 Hz HPF, gate, normalise) and writes the same
+  `voice/<ep>/line_*_s*.wav` files Kokoro would. Then `build_timeline.py` → `make_audio.py` → render as usual.
+  Tested on a fake memo (TTS + 2 s gaps + room noise + AAC): 34/34 sentences assigned correctly.
+- The retime layer (now wired into Ep 2 too) maps his real pacing onto the cut, so no shot list changes.
+  Watch the length: a faster read can drop an episode under TikTok's 60 s payout line — add `pre`/`post` beats.
+- If the import finds too few pauses, it refuses (never guesses) — ask for a re-record with longer pauses,
+  or retry with `--min-pause 0.4`.

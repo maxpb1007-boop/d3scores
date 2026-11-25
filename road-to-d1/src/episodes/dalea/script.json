@@ -1,29 +1,175 @@
 {
-  "episode": "dalea", "title": "Technically Right - The Door", "wholeLine": true,
+  "episode": "dalea",
+  "title": "Technically Right - The Door",
+  "wholeLine": true,
   "voices": {
-    "narr": { "voice": "bm_george", "speed": 1.05 },
-    "dale": { "voice": "am_adam", "speed": 1.05 },
-    "interviewer": { "voice": "af_heart", "speed": 1.05 }
+    "narr": {
+      "voice": "bm_george",
+      "speed": 1.05
+    },
+    "dale": {
+      "voice": "am_adam",
+      "speed": 1.05
+    },
+    "interviewer": {
+      "voice": "af_heart",
+      "speed": 1.05
+    }
   },
-  "sentenceGap": 0.12, "endBlack": 0.3, "endCard": 1.6,
+  "sentenceGap": 0.12,
+  "endBlack": 0.3,
+  "endCard": 1.6,
   "lines": [
-    { "id": "01", "speaker": "narr", "pre": 0.2, "highlights": ["rule", "door"],
-      "sentences": [ { "text": "Dale has one rule." }, { "text": "You always hold the door." } ] },
-    { "id": "02", "speaker": "narr", "pre": 0.3, "highlights": ["forty"],
-      "sentences": [ { "text": "Even when the person is forty feet away." } ], "post": 0.3 },
-    { "id": "03", "speaker": "dale", "pre": 0.15, "highlights": ["rush"],
-      "sentences": [ { "text": "No rush!" } ], "post": 0.2 },
-    { "id": "04", "speaker": "narr", "pre": 0.3, "highlights": ["rushed"],
-      "sentences": [ { "text": "She rushed." } ], "post": 0.6 },
-    { "id": "05", "speaker": "narr", "pre": 0.2, "highlights": ["three", "trip"],
-      "sentences": [ { "text": "Then three more people came." }, { "text": "Then a school field trip." } ], "post": 0.2 },
-    { "id": "06", "speaker": "dale", "pre": 0.1, "highlights": ["Morning"],
-      "sentences": [ { "text": "Morning." }, { "text": "Morning." }, { "text": "Morning." }, { "text": "Morning." } ] },
-    { "id": "07", "speaker": "narr", "pre": 0.4, "highlights": ["Eleven", "door"],
-      "sentences": [ { "text": "Eleven minutes later, Dale was still holding the door." } ], "post": 0.3 },
-    { "id": "08", "speaker": "interviewer", "pre": 0.2, "highlights": ["nine"],
-      "sentences": [ { "text": "Dale?" }, { "text": "Your interview was at nine." } ], "post": 0.4 },
-    { "id": "09", "speaker": "dale", "pre": 0.2, "highlights": ["whole"],
-      "sentences": [ { "text": "I've been here the whole time." } ], "post": 0.9 }
-  ]
+    {
+      "id": "01",
+      "speaker": "narr",
+      "pre": 0.2,
+      "highlights": [
+        "rule",
+        "door"
+      ],
+      "sentences": [
+        {
+          "text": "Dale has one rule."
+        },
+        {
+          "text": "You always hold the door."
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "speaker": "narr",
+      "pre": 0.3,
+      "highlights": [
+        "forty"
+      ],
+      "sentences": [
+        {
+          "text": "Even when the person is forty feet away."
+        }
+      ],
+      "post": 0.3
+    },
+    {
+      "id": "03",
+      "speaker": "dale",
+      "pre": 0.15,
+      "highlights": [
+        "rush"
+      ],
+      "sentences": [
+        {
+          "text": "No rush!"
+        }
+      ],
+      "post": 0.2
+    },
+    {
+      "id": "04",
+      "speaker": "narr",
+      "pre": 0.3,
+      "highlights": [
+        "rushed"
+      ],
+      "sentences": [
+        {
+          "text": "She rushed."
+        }
+      ],
+      "post": 0.6
+    },
+    {
+      "id": "05",
+      "speaker": "narr",
+      "pre": 0.2,
+      "highlights": [
+        "three",
+        "trip"
+      ],
+      "sentences": [
+        {
+          "text": "Then three more people came."
+        },
+        {
+          "text": "Then a school field trip."
+        }
+      ],
+      "post": 0.2
+    },
+    {
+      "id": "06",
+      "speaker": "dale",
+      "pre": 0.1,
+      "highlights": [
+        "Morning"
+      ],
+      "sentences": [
+        {
+          "text": "Morning."
+        },
+        {
+          "text": "Morning."
+        },
+        {
+          "text": "Morning."
+        },
+        {
+          "text": "Morning."
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "speaker": "narr",
+      "pre": 0.4,
+      "highlights": [
+        "Eleven",
+        "door"
+      ],
+      "sentences": [
+        {
+          "text": "Eleven minutes later, Dale was still holding the door."
+        }
+      ],
+      "post": 0.3
+    },
+    {
+      "id": "08",
+      "speaker": "interviewer",
+      "pre": 0.2,
+      "highlights": [
+        "nine"
+      ],
+      "sentences": [
+        {
+          "text": "Dale?"
+        },
+        {
+          "text": "Your interview was at nine."
+        }
+      ],
+      "post": 0.4
+    },
+    {
+      "id": "09",
+      "speaker": "dale",
+      "pre": 0.2,
+      "highlights": [
+        "whole"
+      ],
+      "sentences": [
+        {
+          "text": "I've been here the whole time."
+        }
+      ],
+      "post": 0.9
+    }
+  ],
+  "actingNotes": {
+    "narr": "Dry documentary narrator. Calm, unimpressed, like a nature film about a strange animal.",
+    "dale": "Confident, polite, a little too pleased with himself. Never realizes he's the problem.",
+    "interviewer": "Annoyed, clipped, professional.",
+    "waiter": "Polite, tired, trying very hard to stay professional."
+  }
 }

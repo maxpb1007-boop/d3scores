@@ -84,7 +84,8 @@
       ],
       "sentences": [
         {
-          "text": "And me?"
+          "text": "And me?",
+          "note": "flat, mild interest in yourself"
         },
         {
           "text": "Zero stars."
@@ -225,7 +226,8 @@
       "sentences": [
         {
           "text": "...Yeah.",
-          "tts": "Yeah."
+          "tts": "Yeah.",
+          "note": "one flat word, tiny pause before it"
         }
       ],
       "post": 0.2
@@ -260,7 +262,8 @@
         },
         {
           "text": "Five.",
-          "pre": 0.6
+          "pre": 0.6,
+          "note": "say it like it's nothing"
         }
       ],
       "post": 0.9
@@ -300,10 +303,16 @@
         },
         {
           "text": "Every single day.",
-          "pre": 0.2
+          "pre": 0.2,
+          "note": "slower, final"
         }
       ],
       "post": 0.3
     }
-  ]
+  ],
+  "actingNotes": {
+    "gus": "Deadpan. Bored, slightly tired, like you're explaining something obvious. Never excited \u2014 even at FIVE stars, stay flat. That's the joke.",
+    "tre": "Loud, frustrated, high energy. Both lines are near-yelling.",
+    "coach": "Slow, low, serious old-school coach. Short pause after 'Son.'"
+  }
 }
